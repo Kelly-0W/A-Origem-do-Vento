@@ -1,0 +1,2135 @@
+{
+  "agua": {
+    "nome": "Água",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "gelo",
+        "nome": "Gelo"
+      },
+      {
+        "id": "sangue",
+        "nome": "Sangue"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Recupera +1d6 de vida extra ao curar/ser curado; adquire Vulnerabilidade a ataques elétricos/choque."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Imunidade a contenção/agarrão; sofre -2 em testes de Força ou ataques físicos."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — O Derretimento: o corpo derrete e vira uma poça d'água. Morte."
+      }
+    ],
+    "poderes": {
+      "tiro-dagua": {
+        "nome": "Tiro d'Água",
+        "descricao": "Projeta as mãos ou braços, disparando projéteis esféricos de água sob extrema pressão que causam dano ao primeiro oponente atingido em linha reta.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "agua_impacto"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "O projétil solidifica em estaca cristalina: dano vira Perfuração e ignora 2 pontos de Resistência Física natural do alvo."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Manipula a umidade externa para rasgar os poros da presa: dano vira Alma (Trevas); se o alvo já estiver com Sangramento, causa dano adicional fixo."
+          }
+        ]
+      },
+      "bolha-dagua": {
+        "nome": "Bolha d'Água",
+        "descricao": "Molda uma esfera de água densa ao redor da cabeça do oponente, dificultando a respiração: reduz velocidade e causa dano contínuo por sufocamento.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "sufocamento_por_turno"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "A bolha congela em máscara de geada: aplica Cego além da penalidade de velocidade no primeiro turno."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Força os fluidos internos do alvo para fora: o dano contínuo passa a aplicar Sangramento."
+          }
+        ]
+      },
+      "correnteza-curativa": {
+        "nome": "Correnteza Curativa",
+        "descricao": "Uma torrente suave de água flui de você e envolve um companheiro em alcance visual, restaurando sua vida imediatamente.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d8",
+          "atributo_bonus": "misticismo",
+          "tipo": "cura"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Anestesia as dores: o aliado curado recebe imunidade temporária a Tonto até o início do próximo turno dele."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Pacto de Hemomancia: você pode perder Vida voluntariamente para aplicar Purificação, removendo um Efeito Negativo biológico ativo do alvo."
+          }
+        ]
+      },
+      "campo-chuvoso": {
+        "nome": "Campo Chuvoso",
+        "descricao": "Invoca precipitação constante numa área; apaga chamas instantaneamente e potencializa outras habilidades de água conjuradas ali dentro.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "area (9m de raio)",
+        "duracao": "5 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Nulo em dano direto; concede +5 de bônus fixo para habilidades de água usadas na área.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Nevasca: a chuva vira granizo/neve; área age como Terreno Difícil e inimigos sofrem penalidade em Reflexos."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Chuva de Sangue: precipitação rubra e odor metálico; inimigos na área sofrem Desvantagem em Vontade contra Medo."
+          }
+        ]
+      },
+      "chicote-dagua": {
+        "nome": "Chicote d'Água",
+        "descricao": "Molda um longo chicote hidráulico e o estala contra o oponente, causando dano físico e abrindo chance de desarme em resultado alto no dado.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "luta",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "luta",
+          "tipo": "impacto"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Chicote com espinhos congelados: item desarmado é congelado no solo, exigindo ação para ser pego de volta."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Prende-se ao fluxo sanguíneo do agressor: em vez de desarmar, aplica Puxado, trazendo o alvo na sua direção."
+          }
+        ]
+      },
+      "lamina-das-profundezas": {
+        "nome": "Lâmina das Profundezas",
+        "descricao": "Condensa água ao redor dos punhos ou de uma arma corpo a corpo, gerando gumes fluidos que aumentam o dano de corte; ativa até um número fixo de golpes.",
+        "execucao": "movimento",
+        "alcance": "pessoal",
+        "pericia": "luta",
+        "alvo": "pessoal (afeta os próximos ataques)",
+        "duracao": "ate 3 golpes (acertando ou errando)",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "3d6",
+          "atributo_bonus": "luta",
+          "tipo": "corte_por_golpe"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Solidifica em sabre de gelo denso: dano vira Perfuração e ignora Defesa bônus de escudos leves/armaduras de couro."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Lâmina vampírica: se atingir alvo com Sangramento, o limite de uso da lâmina aumenta em mais 1 golpe."
+          }
+        ]
+      },
+      "escudo-dagua": {
+        "nome": "Escudo d'Água",
+        "descricao": "Reação ao ver a si ou um companheiro prestes a sofrer agressão: ergue barreira giratória de água que bloqueia ataques físicos e mitiga dano de projéteis/magias.",
+        "execucao": "reacao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Absorve até 7 + modificador de Misticismo de dano bruto (proteção).",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Placa cristalina rígida: se o ataque for totalmente mitigado, a barreira estilhaça e causa dano de Perfuração de volta no atacante corpo a corpo."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "O dano mitigado é parcialmente convertido em Arché restaurado para o conjurador."
+          }
+        ]
+      },
+      "prisao-aquatica": {
+        "nome": "Prisão Aquática",
+        "descricao": "Envolve o corpo do inimigo com esfera densa e giratória de água, aplicando Imobilizado; alvo resiste continuamente sob risco de desmaiar se preso até o fim da duração.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "5 rodadas",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Nulo em dano; aplica Imobilizado e risco de Inconsciência.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Cápsula de Criostase: o alvo não pode tentar Vontade para sair; precisa de dano físico direto na estrutura de gelo para libertá-lo."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Marionete Hemática: se o alvo falhar em resistir, você pode gastar uma ação menor para forçá-lo a se mover alguns metros."
+          }
+        ]
+      },
+      "tubaroes-perseguidores": {
+        "nome": "Tubarões Perseguidores",
+        "descricao": "Invoca constructos em formato de tubarões que perseguem até 3 alvos diferentes e explodem em impacto hidrodinâmico.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 a 3 alvos",
+        "duracao": "instantaneo",
+        "custo_arche": 2,
+        "dano": {
+          "dados": "1d4+2",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto_por_tubarao"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Estilhaçam em fragmentos congelados: alvos atingidos por 2+ tubarões no mesmo turno recebem Tonto."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Sanguessugas de Arché: se o alvo estiver com Sangramento, você rouba pontos de Arché dele."
+          }
+        ]
+      },
+      "aprimoramento-curativo": {
+        "nome": "Aprimoramento Curativo",
+        "descricao": "Sintoniza o corpo com o fluxo restaurador por um tempo: magias curativas ficam mais potentes e emana aura de regeneração para aliados adjacentes.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "pessoal (aura em alcance corpo a corpo)",
+        "duracao": "3 rodadas",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "+5 de bônus em curas realizadas; gera aura de regeneração para aliados adjacentes.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "gelo",
+            "efeito": "Aura vira resfriamento protetor: aliados adjacentes recebem bônus fixo de Defesa em vez de vida por turno."
+          },
+          {
+            "submanipulacao": "sangue",
+            "efeito": "Fervor Hemático: sempre que você ou aliado adjacente causar Sangramento/Hemorragia, você cura Vida instantaneamente."
+          }
+        ]
+      }
+    }
+  },
+  "fogo": {
+    "nome": "Fogo",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "combustao",
+        "nome": "Combustão"
+      },
+      {
+        "id": "eletricidade",
+        "nome": "Eletricidade"
+      },
+      {
+        "id": "energia",
+        "nome": "Energia"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Ataques causam +1d6 de dano de fogo adicional; sofre 2 de dano fixo não mitigável no início de cada turno."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Dano adicional sobe para +1d10; cura recebida tem eficácia reduzida pela metade; itens inflamáveis derretem/incendeiam."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — Combustão Espontânea: o corpo explode em pilar de chamas, reduzido a cinzas. Morte."
+      }
+    ],
+    "poderes": {
+      "bola-de-fogo": {
+        "nome": "Bola de Fogo",
+        "descricao": "Molda e lança uma esfera flamejante que detona ao atingir obstáculo/criatura, causando dano ao alvo principal e expandindo labaredas em área.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo (e área adjacente de 3m de raio)",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Raio de detonação expande; alvos na área sofrem Queimadura contínua por mais tempo."
+          },
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Esfera vira globo de plasma estático: encadeia arcos elétricos, causando choque e Tonto nos afetados."
+          }
+        ]
+      },
+      "erupcao-flamejante": {
+        "nome": "Erupção Flamejante",
+        "descricao": "Golpeia o solo criando um rastro abrasador em linha reta até o alvo; ao alcançá-lo, irrompe em labareda vertical que atinge também quem estiver adjacente.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo (e área de impacto imediato)",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "energia",
+            "efeito": "Rastro com luz mística ofuscante: o alvo deve testar Vontade ou recebe Cego."
+          },
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Rastro vira fresta de relâmpago subterrâneo: lança o alvo para cima, aplicando Derrubado se falhar em Reflexos."
+          }
+        ]
+      },
+      "rastro-de-chamas": {
+        "nome": "Rastro de Chamas",
+        "descricao": "Infunde as pernas com calor volátil; ao se mover, deixa trilha de fogo no chão que causa dano contínuo e Queimadura a quem a atravessar.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "pessoal (afeta quadrados percorridos)",
+        "duracao": "4 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo_para_quem_cruzar"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Trilha instável: quem pisar nela sofre explosão com pico de dano adicional antes da Queimadura."
+          },
+          {
+            "submanipulacao": "energia",
+            "efeito": "Purifica os canais de movimento: você recebe bônus de deslocamento terrestre e ignora Terreno Difícil biológico."
+          }
+        ]
+      },
+      "barreira-de-fogo": {
+        "nome": "Barreira de Fogo",
+        "descricao": "Ergue parede linear de chamas verticais que bloqueia passagem, causa dano a quem tentar cruzá-la e aplica desvantagem a disparos inimigos que a atravessem.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "area (linha de ate 9m, alta elevacao)",
+        "duracao": "cena",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Cortina de alta voltagem: quem tentar atravessar deve testar Fortitude ou recebe Paralisado."
+          },
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Fumaça preta opaca bloqueia linha de visão dos dois lados, agindo como cobertura total contra ataques à distância."
+          }
+        ]
+      },
+      "punho-de-chamas": {
+        "nome": "Punho de Chamas",
+        "descricao": "Envolve os punhos ou a lâmina em chamas concentradas, potencializando o próximo ataque corpo a corpo físico; expira após golpear com sucesso.",
+        "execucao": "movimento",
+        "alcance": "pessoal",
+        "pericia": "luta",
+        "alvo": "pessoal (aprimora o proximo golpe)",
+        "duracao": "5 rodadas ou ate golpear com sucesso",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "+2d6",
+          "atributo_bonus": "luta",
+          "tipo": "fogo_adicional_no_proximo_ataque"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Aceleração estática: ganha Vantagem no teste de acerto e o dano adicional vira Choque."
+          },
+          {
+            "submanipulacao": "energia",
+            "efeito": "Lâmina de plasma cortante: ignora Defesa base concedida por armaduras físicas pesadas ou escudos mundanos."
+          }
+        ]
+      },
+      "raio-de-fogo": {
+        "nome": "Raio de Fogo",
+        "descricao": "Projeta feixe contínuo e superaquecido em linha reta, perfurando múltiplos alvos e aplicando Queimadura a todos na reta.",
+        "execucao": "padrao",
+        "alcance": "longo",
+        "pericia": "misticismo",
+        "alvo": "todos os alvos na linha reta",
+        "duracao": "instantaneo",
+        "custo_arche": 2,
+        "dano": {
+          "dados": "1d12",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Superpressão gasosa: alvos na linha testam Fortitude ou são empurrados 4,5m para trás."
+          },
+          {
+            "submanipulacao": "energia",
+            "efeito": "Vira laser focalizado estável: duração muda para Concentração, mantendo o feixe ativo gastando Ação Padrão por turno."
+          }
+        ]
+      },
+      "armadura-de-fogo": {
+        "nome": "Armadura de Fogo",
+        "descricao": "Labaredas defensivas envolvem o corpo, absorvendo dano bruto recebido, concedendo bônus de defesa e queimando automaticamente quem tocar em você.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "cena",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Concede 20 + modificador de Misticismo de Vida Temporária e +2 de Defesa bônus.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Estática defensiva: inimigo que errar ataque físico corpo a corpo contra você perde a capacidade de usar Ações de Reação até o fim do turno dele."
+          },
+          {
+            "submanipulacao": "energia",
+            "efeito": "Sintoniza frequências arcanas: ao sofrer ataque mágico, converte parte do impacto em Vida Temporária adicional."
+          }
+        ]
+      },
+      "correntes-de-fogo": {
+        "nome": "Correntes de Fogo",
+        "descricao": "Manifesta grilhões flamejantes de Arché puro que se agarram a um oponente, restringindo movimento e causando dano contínuo; alvo pode testar resistência para se libertar.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "4 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo_no_inicio_do_turno_do_alvo"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Amarras de plasma elétrico: em vez de só limitar movimento, aplica Paralisado enquanto persistirem."
+          },
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Amarras acumulam pressão térmica: se o alvo não se libertar até a última rodada, detonam com pico massivo de dano em área."
+          }
+        ]
+      },
+      "reflexo-infernal": {
+        "nome": "Reflexo Infernal",
+        "descricao": "Reação punitiva a uma agressão física: expele rajada circular de chamas em todas as direções, causando dano a todos os oponentes adjacentes.",
+        "execucao": "reacao",
+        "alcance": "reacao (corpo a corpo / area adjacente)",
+        "pericia": "luta",
+        "alvo": "area (inimigos adjacentes a voce)",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d8",
+          "atributo_bonus": "luta",
+          "tipo": "fogo"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "eletricidade",
+            "efeito": "Onda de choque estática: inimigos adjacentes são empurrados 3m para trás e recebem Tonto."
+          },
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Revide incendeia os agressores: todos que sofrerem o dano recebem imediatamente Queimadura."
+          }
+        ]
+      },
+      "marca-flamejante": {
+        "nome": "Marca Flamejante",
+        "descricao": "Por contato físico direto, grava uma runa de calor concentrado sobre uma superfície ou no corpo do oponente; pode ser detonada depois como ação livre.",
+        "execucao": "movimento",
+        "alcance": "toque",
+        "pericia": "misticismo",
+        "alvo": "1 alvo ou superficie tocada",
+        "duracao": "cena (ate ser detonada ou o encontro acabar)",
+        "custo_arche": 2,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "misticismo",
+          "tipo": "fogo_ao_detonar"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "energia",
+            "efeito": "Runa se alimenta dos canais místicos: enquanto latente, drena Arché do oponente a cada início de turno dele."
+          },
+          {
+            "submanipulacao": "combustao",
+            "efeito": "Runa acumula gases combustíveis: detonação espalha estilhaços incendiários, causando metade do dano e Queimadura em alvos adjacentes."
+          }
+        ]
+      }
+    }
+  },
+  "alma": {
+    "nome": "Alma",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "necromancia",
+        "nome": "Necromancia"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Ataques mágicos ignoram Defesa física/armadura; ao errar um ataque, sofre 2 de dano espiritual/mental direto."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Enxerga entidades e ilusões, ignorando invisibilidade; -2 em Vontade ou interações sociais (apatia absoluta)."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — O Descolamento: a alma é ejetada do corpo, que desaba sem vida. Vira espectro errante. Morte."
+      }
+    ],
+    "poderes": {
+      "corte-etereo": {
+        "nome": "Corte Etéreo",
+        "descricao": "Desfere golpe físico infundido com energia espiritual concentrada; se acertar, reduz defesas físicas do alvo e planta marca que deteriora sua mente continuamente.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "luta",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo (marca dura 3 rodadas)",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "luta",
+          "tipo": "corte_alma"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Corte rasga carne além do espírito: alvo sofre Sangramento junto do dano contínuo na Sanidade."
+          }
+        ]
+      },
+      "fragmento-de-alma": {
+        "nome": "Fragmento de Alma",
+        "descricao": "Projeta estilhaço de pura energia espiritual que perfura o núcleo intangível do inimigo, causando dano mental direto.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "sanidade"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Estilhaço banhado em agonia física: além do dano em Sanidade, alvo testa Fortitude ou recebe Vulnerável até o início do próximo turno."
+          }
+        ]
+      },
+      "fragilizacao-da-alma": {
+        "nome": "Fragilização da Alma",
+        "descricao": "Enfraquece as barreiras espirituais de uma criatura, tornando-a vulnerável a ataques mágicos/misticismo; alvo pode resistir com Vontade.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "4 rodadas",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Reduz resistência e amplifica dano mágico recebido em 50%.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Enfraquecimento apodrece a carne: se falhar em Vontade, o alvo também perde a capacidade de receber cura/regeneração enquanto durar."
+          }
+        ]
+      },
+      "invocacao-eterea": {
+        "nome": "Invocação Etérea",
+        "descricao": "Manifesta o eco de uma alma passada ou entidade espiritual para lutar ao seu lado; quando destruído, o choque de retorno fere o conjurador.",
+        "execucao": "padrao",
+        "alcance": "pessoal (manifesta-se em alcance curto)",
+        "pericia": "misticismo",
+        "alvo": "pessoal (gera 1 construto com 15 de vida)",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto_espiritual_do_lacaio"
+        },
+        "dano_secundario": null,
+        "efeito": "Custa também 1 de Sanidade além do Arché.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Ergue carcaça física próxima em vez de eco espiritual: ao morrer, explode em nuvem de carne podre que aplica Envenenado a inimigos adjacentes."
+          }
+        ]
+      },
+      "controle-de-alma": {
+        "nome": "Controle de Alma",
+        "descricao": "Estende fios invisíveis de Arché conectando-se à essência de um indivíduo; a cada rodada pode disputar Misticismo contra a Vontade do oponente para anular uma ação dele.",
+        "execucao": "padrao",
+        "alcance": "longo",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "3 rodadas",
+        "custo_arche": 3,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Anula ações do alvo por turno através de testes contestados.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Vira parasitose vital: ao vencer o teste contestado e anular a ação, drena 1 ponto de Arché do inimigo para si."
+          }
+        ]
+      },
+      "armadura-fantasmagorica": {
+        "nome": "Armadura Fantasmagórica",
+        "descricao": "Camada translúcida e etérea de energia espiritual envolve o corpo, criando barreira que absorve o impacto de magias e danos sobrenaturais.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "cena",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Concede 15 + modificador de Misticismo de Vida Temporária, válida apenas contra ataques mágicos.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Manto de Espinhos Ósseos: se um inimigo quebrar a armadura com ataque físico, sofre Sangramento automaticamente pelos estilhaços."
+          }
+        ]
+      },
+      "deturpacao-espiritual": {
+        "nome": "Deturpação Espiritual",
+        "descricao": "Corrompe temporariamente a mente e impulsos de uma criatura, forçando-a a agir de maneira errática; alvo testa Vontade ou o mestre rola 1d4 para determinar a ação caótica.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "cena",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Força uma ação aleatória (tropeçar, ir a local perigoso, congelar ou golpear um aliado) se o alvo falhar em Vontade.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Causa paranoia agressiva: se o 1d4 resultar em atacar um aliado, o modificador de Misticismo do conjurador vira bônus de dano contra o próprio companheiro do alvo."
+          }
+        ]
+      },
+      "resgatar-a-centelha": {
+        "nome": "Resgatar a Centelha",
+        "descricao": "Canaliza memórias de conforto e energia espectral para puxar um fragmento de alma ferida de volta ao equilíbrio, restaurando saúde física e mental simultaneamente.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 3,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "misticismo",
+          "tipo": "cura_de_vida"
+        },
+        "dano_secundario": {
+          "dados": "1d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "cura_de_sanidade"
+        },
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Transfusão Sombria: pode sofrer metade do valor curado como dano direto à própria Vida para estender a cura mista a mais um aliado em alcance curto."
+          }
+        ]
+      },
+      "choro-das-almas": {
+        "nome": "Choro das Almas",
+        "descricao": "Abre fenda espiritual temporária trazendo o lamento de espíritos errantes ao plano físico; oponentes na área sofrem dano físico e mental contínuo, podendo testar Vontade para mitigar a dor mental.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "area (9m de raio)",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "vida_por_turno"
+        },
+        "dano_secundario": {
+          "dados": "1d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "sanidade_por_turno"
+        },
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Choro paraliza músculos de pavor: quem falhar em Vontade contra o dano na Sanidade também recebe Lentidão."
+          }
+        ]
+      },
+      "santuario-mortifero": {
+        "nome": "Santuário Mortífero",
+        "descricao": "Demarca solo sagrado ou fúnebre ao redor; dentro da zona, aliados são revitalizados por ondas de cura enquanto o Arché dos inimigos é drenado continuamente.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "area (6m de raio)",
+        "duracao": "3 rodadas",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Cura 2d4 + Misticismo em aliados por turno; drena pontos de Arché dos inimigos na área.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "necromancia",
+            "efeito": "Sifão Macabro: metade do Arché drenado dos inimigos é convertida diretamente em cura de Vida adicional para os aliados na zona."
+          }
+        ]
+      }
+    }
+  },
+  "natureza": {
+    "nome": "Natureza",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "toxicos",
+        "nome": "Tóxicos"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "+2 na Defesa; deslocamento máximo reduzido em 3m."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Regenera 3 de vida no início dos turnos; -2 em Reflexos/Acrobacia e Vulnerabilidade a dano de Fogo."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — A Germinação Final: pernas viram raízes, braços viram galhos; torna-se uma árvore gigante permanente."
+      }
+    ],
+    "poderes": {
+      "superflorescimento": {
+        "nome": "Superflorescimento",
+        "descricao": "Acelera drasticamente o crescimento da flora ao redor; flores liberam névoa de energia vital que espalha cura e restaura vida de aliados na área.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "area (6m de raio centrada em voce)",
+        "duracao": "instantaneo",
+        "custo_arche": 2,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "misticismo",
+          "tipo": "cura"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Florescimento invertido: flores escuras liberam fumaça ácida; em vez de curar, causa metade do valor como dano aos inimigos na área e aplica Envenenado."
+          }
+        ]
+      },
+      "erva-venenosa": {
+        "nome": "Erva Venenosa",
+        "descricao": "Faz brotar vegetação trepadeira e espessa no solo, liberando nuvem densa de esporos nocivos que causam dano contínuo e sufocamento na área.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "area (6m de raio)",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "veneno_por_turno"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Esporos corrosivos: quem falhar em Fortitude contra o dano contínuo também recebe Vulnerável pela degradação química das defesas."
+          }
+        ]
+      },
+      "campo-de-petalas": {
+        "nome": "Campo de Pétalas",
+        "descricao": "Evoca rajada circular que ergue tempestade de pétalas afiadas, obstruindo a visão das criaturas na área e reduzindo pontaria/acerto físico dos oponentes (o conjurador ignora essa penalidade).",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "area (9m de raio)",
+        "duracao": "cena",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Aplica penalidades de acerto e visibilidade aos inimigos na área.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Pétalas de Beladona com toxina alucinógena: inimigos no turbilhão sofrem Desvantagem em Vontade contra medo/controle mental."
+          }
+        ]
+      },
+      "sementes-sanguessugas": {
+        "nome": "Sementes Sanguessugas",
+        "descricao": "Dispara sementes místicas que perfuram a pele e criam raízes parasitas, causando dano contínuo ao sugar energia vital e transferindo metade como cura para o conjurador.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "4 rodadas ou ate ser removida",
+        "custo_arche": 3,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "dano_por_turno_metade_vira_cura"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Reage quimicamente com organismos debilitados: se o alvo já estiver Envenenado, o dreno vital se intensifica e você recupera 1 de Arché no primeiro turno."
+          }
+        ]
+      },
+      "barreira-de-espinhos": {
+        "nome": "Barreira de Espinhos",
+        "descricao": "Reação: ergue parede compacta de galhos entrelaçados e cobertos de espinhos para proteger a si ou um companheiro, ferindo quem tocar nela.",
+        "execucao": "reacao",
+        "alcance": "curto (ate 9m)",
+        "pericia": "luta",
+        "alvo": "area (muda quadrado adjacente em barreira com 10 de vida)",
+        "duracao": "cena",
+        "custo_arche": 2,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "luta",
+          "tipo": "perfuracao_para_quem_atacar_a_barreira"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Galhos secretam seiva peçonhenta: quem sofrer o dano de perfuração ao golpear a parede testa Fortitude ou recebe Envenenado."
+          }
+        ]
+      },
+      "correntes-de-plantas": {
+        "nome": "Correntes de Plantas",
+        "descricao": "Comanda cipós e raízes para se enroscarem nas pernas do oponente, aplicando Imobilizado; alvo disputa forças contra o Arché do conjurador a cada rodada para se libertar.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Aplica restrição de movimento e Imobilizado.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Cipós de urtiga brava: enquanto imobilizado, o oponente recebe Vulnerável pela dor aguda."
+          }
+        ]
+      },
+      "polen-da-sonolencia": {
+        "nome": "Pólen da Sonolência",
+        "descricao": "Sopra nuvem densa de pólen dourado e sonífero em cone; induz colapso de fadiga que pode aplicar Inconsciente nos oponentes na área.",
+        "execucao": "padrao",
+        "alcance": "medio (cone)",
+        "pericia": "misticismo",
+        "alvo": "area (todos no cone)",
+        "duracao": "2 rodadas ou ate sofrer dano",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Induz sono/Inconsciente aos alvos que falharem em resistir.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Gás anestésico concentrado: se resistir ao sono, ainda sabota os reflexos, aplicando Tonto por 1 rodada."
+          }
+        ]
+      },
+      "brotos-de-vida": {
+        "nome": "Brotos de Vida",
+        "descricao": "Arremessa semente curativa condensada para restaurar a vida de um companheiro; se errar o alvo, germina no solo e libera cura em área a quem pisar adjacente.",
+        "execucao": "padrao",
+        "alcance": "longo (penalidades cumulativas alem do alcance curto)",
+        "pericia": "misticismo",
+        "alvo": "1 alvo (ou quadrado onde a semente cair)",
+        "duracao": "4 rodadas latente se errar o alvo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "cura"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Semente parasita agressiva: se arremessada contra oponente (testado contra a Defesa dele), explode na rodada seguinte causando dano de veneno a ele e a adjacentes."
+          }
+        ]
+      },
+      "entendimento-natural": {
+        "nome": "Entendimento Natural",
+        "descricao": "Sintoniza-se holisticamente com o ecossistema local: sentidos biológicos se aguçam, detecta presenças vivas escondidas e ignora penalidades de terrenos difíceis naturais.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "cena",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Ganha percepção ambiental aprimorada e ignora restrições de terreno natural.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Sentidos sintonizados com impurezas: detecta venenos/gases nocivos e recebe imunidade completa a Envenenado enquanto durar."
+          }
+        ]
+      },
+      "apodrecimento-vegetal": {
+        "nome": "Apodrecimento Vegetal",
+        "descricao": "Por contato físico direto, canaliza decomposição acelerada que apodrece estruturas de madeira/plantas/materiais orgânicos; pode ser usado em disputa física para inutilizar armas empunhadas.",
+        "execucao": "padrao",
+        "alcance": "toque",
+        "pericia": "luta",
+        "alvo": "1 objeto organico ou criatura do tipo vegetal",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Destrói ou inutiliza objetos de madeira e estruturas orgânicas.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "toxicos",
+            "efeito": "Resina necrosante corrosiva: usado contra criatura viva, causa 1d8 + Luta de dano físico e aplica Sangramento."
+          }
+        ]
+      }
+    }
+  },
+  "terra": {
+    "nome": "Terra",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "areia",
+        "nome": "Areia"
+      },
+      {
+        "id": "metal",
+        "nome": "Metal"
+      },
+      {
+        "id": "magma",
+        "nome": "Magma"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Punhos/armas ignoram até 5 pontos de resistência física do alvo; Iniciativa reduzida a 0 e impede saltos longos."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Reduz qualquer dano físico recebido em 5 pontos absolutos; perde Ações de Reação e gasta o dobro de movimento para levantar-se caído."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — A Estátua Gélida: coração vira granito; torna-se estátua de pedra permanente."
+      }
+    ],
+    "poderes": {
+      "barreira-de-pedra": {
+        "nome": "Barreira de Pedra",
+        "descricao": "Reação: bate o pé/palma no solo e ergue parede compacta de rocha maciça para interceptar golpe iminente contra si ou um companheiro.",
+        "execucao": "reacao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "1 alvo protegido",
+        "duracao": "cena (ou ate a barreira ser destruida)",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Cria cobertura com 15 + modificador de Misticismo de Vida.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Barreira de areia movediça compacta: absorve o impacto e aplica Tonto ao atacante corpo a corpo pela dissipação de energia."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Muralha de placas de ferro fundido: Vida ampliada e resistência a Corte/Perfuração."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Barreira pulsa com lava: quem atacar corpo a corpo recebe Queimadura pelo calor emitido."
+          }
+        ]
+      },
+      "lanca-pedra": {
+        "nome": "Lança Pedra",
+        "descricao": "Molda e projeta fragmento pontiagudo de rocha que paira no ar e ataca de forma independente logo após o turno do conjurador.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "cena (invocacao com 5 de vida)",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "fisico_impacto"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Desfaz-se em lufada de grãos: em vez de reduzir Defesa, força Fortitude — falha causa Cego por 1 rodada."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Vira estaca de metal refinado: dano vira Perfuração e o redutor na Defesa do oponente é ampliado."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Envolta em escória vulcânica: dano vira Fogo e aplica Queimadura no primeiro acerto."
+          }
+        ]
+      },
+      "carapaca": {
+        "nome": "Carapaça",
+        "descricao": "Recobre o corpo com armadura biológica de pedra reforçada, absorvendo impactos de feitiços e concedendo resguardo contra golpes físicos diretos.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "cena",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Concede 10 de Vida Temporária, +3 de Defesa e redução de dano físico fixo.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Nuvem de poeira e grãos orbita a armadura: ataques à distância contra você sofrem Desvantagem."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Blindagem de aço em placas: perde 3m de deslocamento, mas ganha bônus massivo de Defesa e imunidade a Sangramento."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Carapaça emana calor extremo: imune a dano de Frio; quem agarrar você sofre dano contínuo de Fogo."
+          }
+        ]
+      },
+      "chuva-de-pedregulhos": {
+        "nome": "Chuva de Pedregulhos",
+        "descricao": "Projeta série de detritos e pedras pesadas em trajetória linear contínua, quebrando barreiras e causando dano a todos na linha.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "todos na linha reta",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "3d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Tempestade de areia abrasiva: atingidos não podem usar Ações de Reação na rodada seguinte."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Fragmentos cortantes: dano vira Corte e aplica Sangramento a quem falhar em Reflexos."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Detritos vulcânicos e piroclastos: dano vira Fogo e incendeia Terreno Difícil biológico no caminho."
+          }
+        ]
+      },
+      "solo-liso": {
+        "nome": "Solo Liso",
+        "descricao": "Altera a densidade/granulação do solo sob os pés para deslizar com facilidade, ganhando bônus em testes de Reflexos.",
+        "execucao": "movimento",
+        "alcance": "pessoal",
+        "pericia": "luta",
+        "alvo": "voce mesmo",
+        "duracao": "4 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Concede bônus em testes de Reflexos e agilidade.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Transforma o solo em dunas maleáveis: bônus de Reflexos estendido a aliados que iniciarem o turno adjacentes a você."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Solo com magnetismo estável: imunidade a efeitos que tentem derrubá-lo."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Solo amolece e irradia calor ascendente: aumenta o deslocamento terrestre na rodada."
+          }
+        ]
+      },
+      "soco-telurico": {
+        "nome": "Soco Telúrico",
+        "descricao": "Concentra Arché marcial no punho e golpeia o solo, propagando onda de choque sísmica em raio circular que desestabiliza o equilíbrio de todos na área.",
+        "execucao": "movimento",
+        "alcance": "pessoal",
+        "pericia": "luta",
+        "alvo": "area (9m de raio baseada em voce)",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Aplica Derrubado em área.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Impacto dissolve o chão em areia fofa: derrubados gastam o dobro do movimento para se levantar."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Espinhos de ferro brotam do solo: quem falhar em Reflexos sofre dano de Perfuração além de cair."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Ondas de calor das frestas: derrubados pelo impacto recebem Queimadura."
+          }
+        ]
+      },
+      "raizes-estaveis": {
+        "nome": "Raízes Estáveis",
+        "descricao": "Assume postura de guarda inabalável e ancora os pés no elemento terra, tornando-se imune a empurrões/puxões/quedas/deslocamento forçado; defesa aumenta, mobilidade é anulada.",
+        "execucao": "movimento",
+        "alcance": "pessoal",
+        "pericia": "luta",
+        "alvo": "voce mesmo",
+        "duracao": "2 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Imunidade a deslocamento forçado e +2 de Defesa.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Corpo liquefaz parcialmente em grãos pesados: quem tentar mover você à força sofre Desvantagem no próximo ataque."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Pernas se fundem ao solo como estacas de ferro: bônus de Defesa aumenta e recebe redução de dano contra Impacto."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Ancoragem aquece o solo ao redor: quem terminar o turno adjacente sofre dano menor de Fogo."
+          }
+        ]
+      },
+      "cratera": {
+        "nome": "Cratera",
+        "descricao": "Foca energia telúrica para colapsar o solo sob as pernas de um oponente, abrindo fenda que prende/derruba o alvo, exigindo Ação Padrão dele para escalar e sair.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "cena (ou ate o alvo escapar)",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Prende e derruba o oponente, exigindo Ação Padrão para se libertar.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Funil de areia movediça: oponente não pode tentar escapar na primeira rodada e recebe Imobilizado."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Bordas colapsam em lâminas de metal: ao sair da cratera, sofre dano de Corte."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Fundo se enche de lava: enquanto preso, sofre dano de Fogo a cada início de turno."
+          }
+        ]
+      },
+      "golem-de-pedra": {
+        "nome": "Golem de Pedra",
+        "descricao": "Ergue constructo colossal de rochas e minerais brutos para lutar ao seu lado; proteção física absurda, ataca corpo a corpo, mas abdica de reflexos/esquivas.",
+        "execucao": "padrao",
+        "alcance": "medio (para a conjuracao)",
+        "pericia": "misticismo",
+        "alvo": "cria 1 constructo (vida = metade da sua + 10 / defesa = a sua + 3)",
+        "duracao": "cena",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto_por_ataque_do_golem"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Golem de poeira compacta: imune a Perfuração; ao sofrer ataque físico, libera nuvem que cega o agressor adjacente."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Autômato de ferro maciço: ataques causam Impacto/Corte; Vida Temporária e Defesa recebem bônus adicionais."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Gigante de rocha vulcânica e lava: ataques causam dano misto Impacto+Fogo, aplicando Queimadura."
+          }
+        ]
+      },
+      "abalos-sismicos": {
+        "nome": "Abalos Sísmicos",
+        "descricao": "Canaliza vibração harmônica destrutiva contínua no solo de uma grande região; desestabiliza pernas de todos na área, quebra coberturas mundanas e interrompe concentração de inimigos.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "area (9m de raio)",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto_por_rodada"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "areia",
+            "efeito": "Solo vibra como líquido em ebulição: área vira Terreno Difícil pesado e quem correr ali sofre Derrubado automaticamente."
+          },
+          {
+            "submanipulacao": "metal",
+            "efeito": "Ondas eletromagnéticas: criaturas com armas metálicas/armaduras pesadas sofrem Desvantagem em ataque e perícia."
+          },
+          {
+            "submanipulacao": "magma",
+            "efeito": "Fissuras de lava irrompem aleatoriamente: dano por turno vira Fogo e ignora resistências físicas de alvos encouraçados."
+          }
+        ]
+      }
+    }
+  },
+  "trevas": {
+    "nome": "Trevas",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "luz",
+        "nome": "Luz"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Rola dado de dano adicional ao atacar inimigo desprevenido/flanqueado; em locais bem iluminados recebe Ofuscado (-2 em ataque)."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "25% do dano causado retorna como cura; se terminar o turno sob luz solar/luminosidade intensa, sofre 1d6 de dano e deslocamento reduzido pela metade."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — Consumido pelo Abismo: é sugado para dentro do próprio manto sombrio, sumindo da realidade. Morte."
+      }
+    ],
+    "poderes": {
+      "corte-de-sombras": {
+        "nome": "Corte de Sombras",
+        "descricao": "Concentra energia sombria na mão ou arma, desferindo corte que projeta lâmina de vácuo atravessando alvos em linha reta.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "luta",
+        "alvo": "linha reta",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "luta",
+          "tipo": "corte_alma"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Lâmina de fótons causa dano radiante equivalente; alvo testa Reflexos ou fica Cego por 1 rodada."
+          }
+        ]
+      },
+      "explosao-de-sombras": {
+        "nome": "Explosão de Sombras",
+        "descricao": "Expele onda de escuridão total ao redor, criando campo que obscurece a visão; ataques dentro ou através da zona sofrem penalidade.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "area (6m de raio)",
+        "duracao": "cena",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Cria área com -3 na pontaria de ataques inimigos.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Explosão emite luz ofuscante: inimigos na área sofrem 2d6 + Misticismo de dano radiante e perdem Ações de Reação até o início do próximo turno."
+          }
+        ]
+      },
+      "perseguicao-de-sombras": {
+        "nome": "Perseguição de Sombras",
+        "descricao": "Projeta manto de sombras que investe contra um alvo e invade sua mente com visões aterrorizantes.",
+        "execucao": "padrao",
+        "alcance": "longo",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "vida"
+        },
+        "dano_secundario": {
+          "dados": "1d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "sanidade"
+        },
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Manto vira feixe de luz pura: mesmo dano em vida, mas em vez de dano em sanidade, aplica Incapacitado por 1 rodada."
+          }
+        ]
+      },
+      "manto-negro": {
+        "nome": "Manto Negro",
+        "descricao": "Torna-se extensão das sombras: Furtividade aumenta e a escuridão desvia projéteis/magias com base na agilidade.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "4 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "+5 em Furtividade e +2 na Defesa.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Torna-se um borrão de brilho: em vez de furtividade, recebe -2 em todo dano sofrido de ataques à distância."
+          }
+        ]
+      },
+      "vozes-sombrias": {
+        "nome": "Vozes Sombrias",
+        "descricao": "Sussurra frases que ressoam na psique do alvo, evocando dúvidas que o impedem de agir corretamente.",
+        "execucao": "movimento",
+        "alcance": "longo",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "3 rodadas",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Alvo testa Vontade (CD 12 + Misticismo) ou perde a ação de movimento.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Vozes viram comandos divinos: se falhar em Vontade, o alvo deve atacar um inimigo de sua escolha em vez de perder a ação."
+          }
+        ]
+      },
+      "correntes-de-sombras": {
+        "nome": "Correntes de Sombras",
+        "descricao": "Correntes negras surgem do solo para prender o inimigo enquanto drenam sua energia.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "cena (ou ate o alvo se libertar)",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "misticismo",
+          "tipo": "fisico_espiritual"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Laços de energia fotônica: se o alvo falhar em se soltar, as correntes emitem pulso que cura 1d4 de vida em todos os aliados em alcance curto (até 9m)."
+          }
+        ]
+      },
+      "espada-das-trevas": {
+        "nome": "Espada das Trevas",
+        "descricao": "Invoca lâmina de escuridão pura que ignora armaduras; golpes críticos causam deterioração.",
+        "execucao": "movimento",
+        "alcance": "corpo a corpo",
+        "pericia": "luta",
+        "alvo": "voce mesmo (invocacao de arma)",
+        "duracao": "cena",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "luta",
+          "tipo": "fisico"
+        },
+        "dano_secundario": {
+          "dados": "1d6",
+          "atributo_bonus": "luta",
+          "tipo": "sanidade"
+        },
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Lâmina de luz: mesmo dano físico; em vez de dano na sanidade, 50% de chance de Paralisado no alvo (CD 12+Luta para resistir)."
+          }
+        ]
+      },
+      "agulhas-de-trevas": {
+        "nome": "Agulhas de Trevas",
+        "descricao": "Dispara agulhas de sombra que se alojam no corpo do inimigo, causando dano contínuo.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "cena (dano continuo ate ser removido)",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto"
+        },
+        "dano_secundario": {
+          "dados": "1d4",
+          "atributo_bonus": "misticismo",
+          "tipo": "dano_por_turno"
+        },
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Agulhas de fótons: o dano contínuo é substituído pela condição Vulnerável (+1d4 de qualquer fonte) enquanto alojadas."
+          }
+        ]
+      },
+      "assombracao-silenciosa": {
+        "nome": "Assombração Silenciosa",
+        "descricao": "Dissolve-se nas sombras, movendo-se sem ser detectado; pode reaparecer a até 12m, atrás de um alvo desprevenido.",
+        "execucao": "padrao",
+        "alcance": "12m",
+        "pericia": "furtividade ou luta",
+        "alvo": "1 alvo (apos o surgimento)",
+        "duracao": "instantaneo",
+        "custo_arche": 2,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "A próxima ação ganha +5 no teste de perícia ou dano.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Cria 'espelhismo' de luz: não fica invisível, mas se atacado antes de golpear, a ilusão absorve 10 de dano e desaparece."
+          }
+        ]
+      },
+      "diabretes-de-sombras": {
+        "nome": "Diabretes de Sombras",
+        "descricao": "Invoca 2 pequenas criaturas sombrias que atacam e distraem inimigos, interrompendo canalizações.",
+        "execucao": "padrao",
+        "alcance": "pessoal (cria 2 lacaios com 10 de vida cada)",
+        "pericia": "luta",
+        "alvo": "1 alvo por diabrete",
+        "duracao": "6 rodadas",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "1d6",
+          "atributo_bonus": "luta",
+          "tipo": "mordida"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "luz",
+            "efeito": "Invoca 2 construtos de luz: não atacam, mas criam aura de luz brilhante em 6m — inimigos na área não podem se esconder e sofrem -2 em ataque."
+          }
+        ]
+      }
+    }
+  },
+  "vento": {
+    "nome": "Vento",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "submanipulacoes": [
+      {
+        "id": "nevoa",
+        "nome": "Névoa"
+      }
+    ],
+    "restricao_elegibilidade": null,
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Vantagem em testes de Esquiva/Reflexos; ataques físicos corpo a corpo causam -3 de dano pela perda de massa."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Ignora penalidades de terreno difícil; qualquer ataque que acerte empurra 3m para trás; incapaz de segurar itens pesados."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — Dissipação: desfaz-se em lufada de vento, deixando roupas e armas caírem no chão. Morte."
+      }
+    ],
+    "poderes": {
+      "vento-cortante": {
+        "nome": "Vento Cortante",
+        "descricao": "Projeta rajada de ar concentrada em velocidade extrema, cortando o ar e superfícies em linha reta como lâmina invisível.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "luta",
+        "alvo": "linha reta",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d8",
+          "atributo_bonus": "luta",
+          "tipo": "corte"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Lâmina carrega umidade condensada que se estilhaça no impacto: alvos atingidos recebem Cego por 1 rodada."
+          }
+        ]
+      },
+      "bomba-de-ar": {
+        "nome": "Bomba de Ar",
+        "descricao": "Comprime massa de ar em um ponto e libera em detonação súbita que desloca tudo ao redor, empurrando oponentes atingidos para longe.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "luta",
+        "alvo": "area (6m de raio)",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Empurra o alvo 9m para trás caso falhe em Fortitude.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Explosão dispersa nuvem gélida instantânea: além de empurrar, aplica Lentidão."
+          }
+        ]
+      },
+      "sopro-disparo": {
+        "nome": "Sopro Disparo",
+        "descricao": "Acumula ar nos pulmões e o expele em sucessão de rajadas comprimidas, disparando projéteis de vento como balas rápidas e letais.",
+        "execucao": "padrao",
+        "alcance": "longo",
+        "pericia": "misticismo",
+        "alvo": "linha reta",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "perfuracao_impacto"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Disparos carregados de partículas de gelo: se atingido por 2+ disparos, recebe Tonto."
+          }
+        ]
+      },
+      "forca-de-pressao": {
+        "nome": "Força de Pressão",
+        "descricao": "Manipula a pressão atmosférica ao redor de um alvo; ar denso o sufoca brevemente e esmaga sua mobilidade, causando dano severo e reduzindo deslocamento.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "1 alvo",
+        "duracao": "3 rodadas",
+        "custo_arche": 2,
+        "dano": {
+          "dados": "2d10",
+          "atributo_bonus": "misticismo",
+          "tipo": "impacto"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Pressão aumenta densidade da umidade: transforma o ar ao redor do alvo em casulo de névoa fria que reduz o dano elemental causado por ele."
+          }
+        ]
+      },
+      "redemoinho-energetico": {
+        "nome": "Redemoinho Energético",
+        "descricao": "Controla correntes de ar ao redor do próprio corpo para diminuir o peso e a resistência do ar, permitindo saltos grandes, mais velocidade e agilidade sobrenatural.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Aumenta deslocamento em 6m e concede bônus em Acrobacia, Reflexos e Furtividade.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Torna-se forma fluida de névoa: atravessa frestas pequenas e recebe bônus em furtividade contra criaturas que dependem de visão."
+          }
+        ]
+      },
+      "esfera-de-ar": {
+        "nome": "Esfera de Ar",
+        "descricao": "Molda esfera flutuante de vento comprimido que orbita o conjurador, podendo ser disparada à distância ou usada corpo a corpo; detona ao colidir.",
+        "execucao": "padrao",
+        "alcance": "curto",
+        "pericia": "luta ou misticismo",
+        "alvo": "1 alvo",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": {
+          "dados": "2d6",
+          "atributo_bonus": "misticismo",
+          "tipo": "a_distancia"
+        },
+        "dano_secundario": {
+          "dados": "3d4",
+          "atributo_bonus": "luta",
+          "tipo": "corpo_a_corpo"
+        },
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Núcleo gelado: ao explodir, libera névoa que congela a umidade do solo ao redor do alvo, virando Terreno Difícil."
+          }
+        ]
+      },
+      "sons-do-ar": {
+        "nome": "Sons do Ar",
+        "descricao": "O vento capta vibrações e sons do ambiente ao redor, entregando informações precisas sobre localização, número e estado geral de criaturas próximas.",
+        "execucao": "movimento",
+        "alcance": "longo",
+        "pericia": "misticismo",
+        "alvo": "area (36m de raio)",
+        "duracao": "instantaneo",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Detecta presenças e locais.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Detecta criaturas ocultas por barreiras físicas ou invisibilidade, pela variação de temperatura e umidade na névoa."
+          }
+        ]
+      },
+      "flecha-de-vento": {
+        "nome": "Flecha de Vento",
+        "descricao": "Condensa o ar em projétil fino, extremamente denso e veloz; precisão cirúrgica que ignora parcialmente defesas frágeis e coberturas.",
+        "execucao": "padrao",
+        "alcance": "medio",
+        "pericia": "misticismo",
+        "alvo": "linha reta",
+        "duracao": "instantaneo",
+        "custo_arche": 3,
+        "dano": {
+          "dados": "3d12",
+          "atributo_bonus": "misticismo",
+          "tipo": "perfuracao"
+        },
+        "dano_secundario": null,
+        "efeito": null,
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Condensa umidade do ar ao atingir o alvo, congelando o ferimento instantaneamente e causando dano de frio adicional."
+          }
+        ]
+      },
+      "passo-leve": {
+        "nome": "Passo Leve",
+        "descricao": "Usa correntes de ar ascendentes sob os pés para impulsionar movimentos, permitindo correr sobre superfícies instáveis e aumentar a velocidade base.",
+        "execucao": "movimento",
+        "alcance": "pessoal",
+        "pericia": "luta",
+        "alvo": "voce mesmo",
+        "duracao": "3 rodadas",
+        "custo_arche": 1,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "+3m de deslocamento.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Deixa rastro de névoa fria por onde passa, dificultando que inimigos rastreiem sua posição."
+          }
+        ]
+      },
+      "barreira-de-ar": {
+        "nome": "Barreira de Ar",
+        "descricao": "Cria redemoinho constante de alta pressão ao redor; a rotação rápida do ar reduz o impacto de projéteis e ataques mágicos de longo alcance.",
+        "execucao": "padrao",
+        "alcance": "pessoal",
+        "pericia": "misticismo",
+        "alvo": "voce mesmo",
+        "duracao": "3 rodadas",
+        "custo_arche": 3,
+        "dano": null,
+        "dano_secundario": null,
+        "efeito": "Reduz 10 pontos de dano bruto de ataques à distância por turno.",
+        "grau_minimo": 0,
+        "variacoes": [
+          {
+            "submanipulacao": "nevoa",
+            "efeito": "Barreira de névoa densa: além da redução de dano, inimigos que atacarem corpo a corpo através dela sofrem Desvantagem pela baixa visibilidade."
+          }
+        ]
+      }
+    }
+  },
+  "caca": {
+    "nome": "Caça",
+    "descricao": "Quando o Arché atual cai abaixo de 50% do máximo, o corpo do manipulador não consegue mais isolar o poder manipulado e sua carne começa a transmutar-se na propria essência do elemento: poder bruto e desesperado, com preço físico violento. Efeitos são cumulativos (Estágio 2 soma ao Estágio 1) e revertem totalmente ao recuperar Arché para níveis seguros. Arché a 0 = Colapso: morte imediata e irreversível.",
+    "estrutura_especial": "Caça não usa submanipulacoes nem a lista normal de 'poderes'. Em vez disso, o personagem tem 1 poder universal (Transformação Animal) e escolhe entre 'espirituais' (totens ligados a um elemento de afinidade), cada um dando bônus de status fixos + 1 Poder Tribal exclusivo. Motor de cálculo e formulário de criação precisam tratar este elemento como um caso especial.",
+    "submanipulacoes": [],
+    "restricao_elegibilidade": {
+      "tipo": "origem_geografica",
+      "condicao": "Personagem precisa ter nascido ou sido criado em Oruqai."
+    },
+    "estagios_arche_baixo": [
+      {
+        "estagio": 1,
+        "limiar_pct": 50,
+        "efeito": "Vantagem em Percepção, Sobrevivência e Rastreamento; perde a capacidade de falar frases complexas (só rosnados/palavras curtas)."
+      },
+      {
+        "estagio": 2,
+        "limiar_pct": 25,
+        "efeito": "Dano máximo no dado de ataque corpo a corpo permite outro ataque imediato; obrigado a atacar o inimigo mais próximo e não pode conjurar magias que exijam concentração."
+      },
+      {
+        "estagio": 3,
+        "limiar_pct": 0,
+        "efeito": "Colapso — Domínio da Fera: perde a sanidade por completo, vira besta selvagem permanentemente violenta controlada pelo mestre."
+      }
+    ],
+    "poder_universal": {
+      "nome": "Transformação Animal",
+      "descricao": "Transforma-se em algum animal, adquirindo suas capacidades (vida, sanidade, defesa, perícias somadas como bônus, habilidades tribais). Só pode se transformar nos animais cujos espíritos estão interligados; transforma/destransforma no máximo 1x por turno.",
+      "execucao": "livre",
+      "alcance": "pessoal",
+      "pericia": null,
+      "alvo": "voce mesmo",
+      "duracao": "cena",
+      "custo_arche": 1,
+      "dano": null,
+      "dano_secundario": null,
+      "efeito": null,
+      "grau_minimo": 0,
+      "variacoes": []
+    },
+    "espirituais": {
+      "vyrathos": {
+        "nome": "Vyrathos — Vento",
+        "bonus_transformacao": [
+          "+3 Perícia (Percepção)",
+          "+2 Defesa",
+          "+3 Sanidade"
+        ],
+        "poder_tribal": {
+          "nome": "Olhar do Predador",
+          "descricao": "Marca um alvo à distância; enquanto ativa, ataques seus ou de aliados contra o alvo ignoram coberturas e causam +1d4 de dano extra.",
+          "execucao": "padrao",
+          "alcance": "longo",
+          "pericia": null,
+          "alvo": "1 alvo",
+          "duracao": "3 rodadas",
+          "custo_arche": 1,
+          "dano": null,
+          "dano_secundario": null,
+          "efeito": null,
+          "grau_minimo": 0,
+          "variacoes": []
+        }
+      },
+      "ignarok": {
+        "nome": "Ignarok — Fogo",
+        "bonus_transformacao": [
+          "+5 Vida",
+          "+2 Dano físico",
+          "+2 Perícia (Intimidação)"
+        ],
+        "poder_tribal": {
+          "nome": "Garra de Cinzas",
+          "descricao": "A próxima investida física incendeia a carne do alvo: causa o dano normal mais 1d6 de dano de fogo e aplica Queimadura.",
+          "execucao": "padrao",
+          "alcance": "pessoal",
+          "pericia": null,
+          "alvo": "1 alvo",
+          "duracao": "instantaneo",
+          "custo_arche": 1,
+          "dano": null,
+          "dano_secundario": null,
+          "efeito": null,
+          "grau_minimo": 0,
+          "variacoes": []
+        }
+      },
+      "khor-azkal": {
+        "nome": "Khor-Azkal — Terra",
+        "bonus_transformacao": [
+          "+10 Vida",
+          "+3 Defesa",
+          "+2 Perícia (Atletismo)"
+        ],
+        "poder_tribal": {
+          "nome": "Investida Sísmica",
+          "descricao": "Avança e colide com o solo ou um inimigo; o impacto gera tremor que obriga o alvo a testar Fortitude ou ser jogado 6m para trás e cair (Derrubado).",
+          "execucao": "padrao",
+          "alcance": "curto",
+          "pericia": null,
+          "alvo": "1 alvo",
+          "duracao": "instantaneo",
+          "custo_arche": 1,
+          "dano": null,
+          "dano_secundario": null,
+          "efeito": null,
+          "grau_minimo": 0,
+          "variacoes": []
+        }
+      },
+      "sylvarin": {
+        "nome": "Sylvarin — Natureza",
+        "bonus_transformacao": [
+          "+3 Perícia (Furtividade)",
+          "+2 Sanidade",
+          "+2 Defesa"
+        ],
+        "poder_tribal": {
+          "nome": "Passo Fantasma",
+          "descricao": "Funde sua presença com o ambiente: fica invisível até o final do próximo turno ou até atacar. Se atacar saindo da invisibilidade, o acerto ganha Vantagem.",
+          "execucao": "movimento",
+          "alcance": "pessoal",
+          "pericia": null,
+          "alvo": "voce mesmo",
+          "duracao": "1 rodada",
+          "custo_arche": 1,
+          "dano": null,
+          "dano_secundario": null,
+          "efeito": null,
+          "grau_minimo": 0,
+          "variacoes": []
+        }
+      },
+      "kaze-rai": {
+        "nome": "Kaze-Rai — Vento",
+        "bonus_transformacao": [
+          "+3 Perícia (Acrobacia)",
+          "+3 Reflexos",
+          "+2 Sanidade"
+        ],
+        "poder_tribal": {
+          "nome": "Corte Relâmpago",
+          "descricao": "Move-se na velocidade do vento para atacar; faz ataque físico corpo a corpo e, se acertar, pode se deslocar até 6m sem provocar ataques de oportunidade.",
+          "execucao": "padrao",
+          "alcance": "curto",
+          "pericia": null,
+          "alvo": "1 alvo",
+          "duracao": "instantaneo",
+          "custo_arche": 1,
+          "dano": null,
+          "dano_secundario": null,
+          "efeito": null,
+          "grau_minimo": 0,
+          "variacoes": []
+        }
+      }
+    }
+  }
+}

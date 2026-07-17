@@ -1,0 +1,238 @@
+"""
+Validacao das ESCOLHAS de criacao de personagem contra o catalogo de regras
+de "A Origem do Vento" (racas, classes, origens, pericias, elementos).
+
+IMPORTANTE: este motor e especifico deste sistema -- atributos sao
+for/des/con/int/sab/car com 10 pontos para distribuir (nao "forca,
+agilidade, intelecto, vigor, presenca" com 20 pontos), pericias sao
+treinada/destreinada com bonus por Grau de Ascensao (nao "ranks"), e nao
+existe atributo "mana". Ver docs/schema-banco-dados-personagem.md para o
+formato completo do catalogo e das escolhas.
+"""
+import logging
+from typing import Any, Dict, List, Tuple
+
+from .atributos import validar_distribuicao_atributos
+
+logger = logging.getLogger(__name__)
+
+
+def validar_escolhas_personagem(
+    escolhas: Dict[str, Any], catalogo: Dict[str, Any]
+) -> Tuple[bool, List[str]]:
+    """
+    escolhas: o que o jogador escolheu na criacao. Formato esperado:
+        {
+          "raca_id": "anao", "linhagem_id": "ferro" | None,
+          "classe_id": "gladiador", "subclasse_id": None,
+          "origem_id": "artista", "origem_pericia_escolhida": "enganacao",
+          "elemento_id": "agua", "poderes_escolhidos": ["tiro-dagua", "bolha-dagua"],
+          "confirma_elegibilidade_elemento": False,     # so importa p/ Caca
+          "espiritual_escolhido": None,                  # so p/ Caca
+          "atributos": {"for": 1, "des": 2, "con": 3, "int": -1, "sab": 2, "car": 3},
+          "pericias_treinadas": ["enganacao", "luta"],
+          "habilidades_escolhidas": {
+              "raca_globais": [...], "raca_linhagem": [...], "classe": [...]
+          },
+        }
+
+    catalogo: dict com as colecoes carregadas do Firestore/JSON:
+        {"racas": {...}, "classes": {...}, "origens": {...}, "pericias": {...},
+         "elementos": {...}, "itens": {...}, "constantes_ascensao": {...}}
+
+    Retorna (valido, lista_de_erros). Lista vazia == valido.
+    """
+    erros: List[str] = []
+
+    campos_obrigatorios = [
+        "raca_id", "classe_id", "origem_id", "origem_pericia_escolhida",
+        "elemento_id", "atributos", "pericias_treinadas", "habilidades_escolhidas",
+    ]
+    for campo in campos_obrigatorios:
+        if campo not in escolhas:
+            erros.append(f"Campo obrigatorio ausente nas escolhas: '{campo}'.")
+    if erros:
+        # sem os campos base nao da pra validar o resto com seguranca
+        return False, erros
+
+    racas = catalogo.get("racas", {})
+    classes = catalogo.get("classes", {})
+    origens = catalogo.get("origens", {})
+    pericias_catalogo = catalogo.get("pericias", {})
+    elementos = catalogo.get("elementos", {})
+
+    # ---- Atributos ----
+    _, erros_attr = validar_distribuicao_atributos(escolhas["atributos"])
+    erros.extend(erros_attr)
+
+    # ---- Raça, Linhagem e habilidades raciais ----
+    raca_id = escolhas["raca_id"]
+    raca = racas.get(raca_id)
+    linhagem = None
+    if raca is None:
+        erros.append(f"Raca '{raca_id}' nao existe no catalogo.")
+    else:
+        linhagens = raca.get("linhagens", [])
+        linhagem_id = escolhas.get("linhagem_id")
+
+        if linhagens:
+            if not linhagem_id:
+                erros.append(f"A raca '{raca_id}' possui linhagens; e obrigatorio escolher uma.")
+            else:
+                linhagem = next((l for l in linhagens if l.get("id") == linhagem_id), None)
+                if linhagem is None:
+                    ids_validos = [l.get("id") for l in linhagens]
+                    erros.append(
+                        f"Linhagem '{linhagem_id}' nao existe para a raca '{raca_id}'. "
+                        f"Opcoes: {ids_validos}."
+                    )
+        elif linhagem_id:
+            erros.append(f"A raca '{raca_id}' nao possui linhagens, mas 'linhagem_id' foi enviado.")
+
+        # habilidades de raça escolhidas no Grau 0 (globais + especificas da linhagem)
+        hab_escolhidas = escolhas.get("habilidades_escolhidas", {})
+        globais_escolhidas = hab_escolhidas.get("raca_globais", [])
+        especificas_escolhidas = hab_escolhidas.get("raca_linhagem", [])
+        qtd_esperada = raca.get("qtd_habilidades_iniciais", 2)
+        total_hab_raca = len(globais_escolhidas) + len(especificas_escolhidas)
+        if total_hab_raca != qtd_esperada:
+            erros.append(
+                f"A raca '{raca_id}' exige exatamente {qtd_esperada} habilidade(s) racial(is) "
+                f"no Grau 0 (recebido: {total_hab_raca})."
+            )
+
+        ids_globais_validos = {h["id"] for h in raca.get("habilidades_globais", [])}
+        for hid in globais_escolhidas:
+            if hid not in ids_globais_validos:
+                erros.append(f"Habilidade global '{hid}' nao pertence a raca '{raca_id}'.")
+
+        # habilidades_especificas fica achatada no nivel da RACA, cada item
+        # marcado com 'linhagem_id' -- nao aninhada dentro de cada linhagem.
+        if especificas_escolhidas and linhagem is None:
+            erros.append(
+                "Foram escolhidas habilidades especificas de linhagem, mas nenhuma "
+                "linhagem valida foi selecionada."
+            )
+        elif especificas_escolhidas and linhagem is not None:
+            ids_especificas_validos = {
+                h["id"]
+                for h in raca.get("habilidades_especificas", [])
+                if h.get("linhagem_id") == linhagem["id"]
+            }
+            for hid in especificas_escolhidas:
+                if hid not in ids_especificas_validos:
+                    erros.append(
+                        f"Habilidade especifica '{hid}' nao pertence a linhagem "
+                        f"'{linhagem['id']}' da raca '{raca_id}'."
+                    )
+
+    # ---- Classe ----
+    classe_id = escolhas["classe_id"]
+    classe = classes.get(classe_id)
+    if classe is None:
+        erros.append(f"Classe '{classe_id}' nao existe no catalogo.")
+    else:
+        hab_classe_escolhidas = escolhas.get("habilidades_escolhidas", {}).get("classe", [])
+        qtd_esperada = classe.get("qtd_habilidades_iniciais", 1)
+        if len(hab_classe_escolhidas) != qtd_esperada:
+            erros.append(
+                f"A classe '{classe_id}' exige exatamente {qtd_esperada} habilidade(s) "
+                f"no Grau 0 (recebido: {len(hab_classe_escolhidas)})."
+            )
+
+        ids_hab_classe_validas = {h["id"] for h in classe.get("habilidades", [])}
+        for hid in hab_classe_escolhidas:
+            if hid not in ids_hab_classe_validas:
+                erros.append(f"Habilidade '{hid}' nao pertence a classe '{classe_id}'.")
+
+        # subclasse exige 3 habilidades da classe normal ja adquiridas -- nao
+        # pode ser escolhida na criacao (Grau 0).
+        if escolhas.get("subclasse_id"):
+            erros.append(
+                "Subclasse nao pode ser escolhida na criacao do personagem "
+                "(exige 3 habilidades previas da classe normal)."
+            )
+
+    # multiclasse: no maximo 2 classes simultaneas, se o formulario usar
+    # uma lista 'classes_ids' em vez de 'classe_id' unico.
+    classes_ids = escolhas.get("classes_ids")
+    if classes_ids is not None and len(classes_ids) > 2:
+        erros.append(f"Multiclasse permite no maximo 2 classes simultaneas (recebido: {len(classes_ids)}).")
+
+    # ---- Origem ----
+    origem_id = escolhas["origem_id"]
+    origem = origens.get(origem_id)
+    if origem is None:
+        erros.append(f"Origem '{origem_id}' nao existe no catalogo.")
+    else:
+        pericia_escolhida = escolhas["origem_pericia_escolhida"]
+        opcoes_bruto = origem.get("pericias_opcoes", [])
+        # cada opcao e um objeto {"pericia_id": ..., "nota": ...}, nao uma string direta
+        opcoes = [o["pericia_id"] if isinstance(o, dict) else o for o in opcoes_bruto]
+        if pericia_escolhida not in opcoes:
+            erros.append(
+                f"A pericia '{pericia_escolhida}' nao esta entre as opcoes da origem "
+                f"'{origem_id}' ({opcoes})."
+            )
+
+    # ---- Pericias treinadas: existem no catalogo + coerentes com classe/origem ----
+    pericias_treinadas = escolhas.get("pericias_treinadas", [])
+    for pid in pericias_treinadas:
+        if pid not in pericias_catalogo:
+            erros.append(f"Pericia '{pid}' nao existe no catalogo.")
+
+    pericias_esperadas = set()
+    if classe is not None and classe.get("pericia_treinada_fixa"):
+        pericias_esperadas.add(classe["pericia_treinada_fixa"])
+    if origem is not None and escolhas.get("origem_pericia_escolhida"):
+        pericias_esperadas.add(escolhas["origem_pericia_escolhida"])
+    faltando_pericias = pericias_esperadas - set(pericias_treinadas)
+    if faltando_pericias:
+        erros.append(
+            f"As pericias garantidas pela classe/origem precisam constar em "
+            f"'pericias_treinadas' (faltando: {sorted(faltando_pericias)})."
+        )
+
+    # ---- Elemento de Manipulação (obrigatório para TODO personagem) ----
+    elemento_id = escolhas["elemento_id"]
+    elemento = elementos.get(elemento_id)
+    if elemento is None:
+        erros.append(f"Elemento '{elemento_id}' nao existe no catalogo.")
+    else:
+        restricao = elemento.get("restricao_elegibilidade")
+        if restricao and not escolhas.get("confirma_elegibilidade_elemento"):
+            erros.append(
+                f"O elemento '{elemento_id}' tem restricao de elegibilidade "
+                f"({restricao.get('condicao', restricao)}); marque "
+                f"'confirma_elegibilidade_elemento' apos o Mestre validar a condicao."
+            )
+
+        if elemento_id == "caca":
+            # Caça tem estrutura própria: poder universal + espirituais.
+            espirituais_validos = set(elemento.get("espirituais", {}).keys())
+            espiritual_escolhido = escolhas.get("espiritual_escolhido")
+            if not espiritual_escolhido:
+                erros.append("O elemento Caca exige a escolha de 1 espiritual em 'espiritual_escolhido'.")
+            elif espiritual_escolhido not in espirituais_validos:
+                erros.append(
+                    f"Espiritual '{espiritual_escolhido}' nao existe para Caca. "
+                    f"Opcoes: {sorted(espirituais_validos)}."
+                )
+            if escolhas.get("poderes_escolhidos"):
+                erros.append("O elemento Caca nao usa 'poderes_escolhidos' -- use 'espiritual_escolhido'.")
+        else:
+            poderes_validos = set(elemento.get("poderes", {}).keys())
+            poderes_escolhidos = escolhas.get("poderes_escolhidos", [])
+            if len(poderes_escolhidos) != 2:
+                erros.append(
+                    f"E preciso escolher exatamente 2 poderes iniciais do elemento "
+                    f"'{elemento_id}' (recebido: {len(poderes_escolhidos)})."
+                )
+            for pid in poderes_escolhidos:
+                if pid not in poderes_validos:
+                    erros.append(f"Poder '{pid}' nao pertence ao elemento '{elemento_id}'.")
+
+    sucesso = len(erros) == 0
+    if not sucesso:
+        logger.info("Validacao de escolhas de personagem falhou com %d erro(s).", len(erros))
+    return sucesso, erros

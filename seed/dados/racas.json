@@ -1,0 +1,2911 @@
+{
+  "humano": {
+    "nome": "Humano",
+    "descricao_curta": "Versateis e ambiciosos, se adaptam a qualquer papel.",
+    "status": {
+      "vida": {
+        "base": 10,
+        "atributo": "con",
+        "mult_ascensao": 4
+      },
+      "sanidade": {
+        "base": 8,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 8,
+        "atributo": "int",
+        "mult_ascensao": 2
+      },
+      "defesa": {
+        "base": 7,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1d4",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": -1,
+      "des": 0,
+      "con": 0,
+      "int": 1,
+      "sab": 0,
+      "car": 1
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "comando-de-massa",
+        "nome": "Comando de Massa",
+        "descricao": "Voce consegue liderar e manipular as reacoes de grandes grupos com extrema facilidade. Sempre que voce precisar enganar ou convencer 3 ou mais entidades simultaneamente utilizando as pericias Enganacao ou Diplomacia, voce recebe um bonus fixo de +4 em sua rolagem.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "mestre-da-enganacao",
+        "nome": "Mestre da Enganacao",
+        "descricao": "Sua mente astuta trabalha mais rapido que os olhos dos seus interlocutores. Voce recebe +2 de bonus fixo em todos os seus testes de Enganacao. Caso voce esteja tentando ludibriar ou enganar uma criatura que pertenca a qualquer outra raca que nao seja humana, esse bonus aumenta automaticamente para +4 no teste.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "acao-desleal",
+        "nome": "Acao Desleal",
+        "descricao": "Voce sabe perfeitamente como aproveitar uma brecha na guarda inimiga apos se proteger. Sempre que um ataque fisico ou magico direcionado a voce errar a sua Defesa atual, voce pode gastar sua Acao de Reacao e 2 pontos de Arche para conjurar imediatamente uma habilidade propria que custe uma Acao Bonus, ou realizar um ataque basico gratuito.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "negociador-nato",
+        "nome": "Negociador Nato",
+        "descricao": "O valor das moedas e das palavras dança conforme a sua musica. Sempre que estiver ativamente conduzindo uma negociacao comercial, compra de itens ou barganha de recompensas, voce recebe Vantagem em seu teste de Diplomacia. Alem disso, os seus Sucessos Criticos nesses testes especificos passam a ocorrer sempre que o resultado total da rolagem atingir uma CD 25 ou mais.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "seus-segredos-nao-estao-seguros-comigo",
+        "nome": "Seus Segredos (Nao) Estao Seguros Comigo",
+        "descricao": "Sua capacidade de coletar podres e vulnerabilidades torna voce uma ameaca letal. Para cada segredo obscuro, fraqueza mecanica ou ponto fraco pessoal que voce descobrir e souber a respeito de uma criatura, voce recebe um bonus de +2 em todos os seus testes de pericia e rolagens de ataque direcionados diretamente contra ela (bonus maximo de +6 por criatura alvo).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "falsa-lealdade",
+        "nome": "Falsa Lealdade",
+        "descricao": "Aliancas e palavras escritas sao apenas ferramentas temporarias para a sua sobrevivencia. Sempre que voce romper intencionalmente uma promessa, alianca tatica ou contrato formal estabelecido com um NPC ou faccao inimiga, voce recebe um bonus de +3 em todas as suas pericias e jogadas de dano contra os alvos envolvidos no acordo quebrado ate o fim da cena atual.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "minha-voz-e-minha-arma",
+        "nome": "Minha Voz e Minha Arma",
+        "descricao": "Sua argumentacao possui um teor tao hipnotico e convincente que e capaz de distorcer a realidade imediata. Uma vez por cena, voce pode gastar uma Acao Padrao e 3 pontos de Arche para plantar uma mentira verbal na mente de um alvo. Se a Inteligencia do alvo for igual ou menor que a sua, ele acreditara na informacao cegamente por 1 rodada completa, sem a necessidade de rolagem de dados.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "ambicao-e-minha-sina",
+        "nome": "Ambicao e Minha Sina",
+        "descricao": "No inicio de cada sessao ou arco de historia, voce deve definir em conjunto com o Mestre um objetivo grandioso e tangivel para o seu personagem. Enquanto estiver realizando uma acao que contribua diretamente para a conclusao desse objetivo, voce recebe +2 em seus testes. Quando o objetivo for cumprido com sucesso, seu proximo golpe em combate causara +15 de dano fixo.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "linguagem-de-ouro",
+        "nome": "Linguagem de Ouro",
+        "descricao": "A sua adaptabilidade permite que voce encontre padroes em qualquer dialeto ou comportamento biologico. Voce consegue se comunicar verbalmente de forma rudimentar com absolutamente qualquer criatura viva que possua um valor de Inteligencia igual a 2 ou maior. Ao estabelecer essa comunicacao improvisada, voce recebe +3 de bonus na pericia Diplomacia ate o final da cena.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "me-de-o-que-desejo",
+        "nome": "Me De o que Desejo",
+        "descricao": "Voce possui o dom de extrair informacoes confidenciais atraves de conversas que parecem casuais. Voce pode gastar uma Acao Padrao para interrogar ou extrair um dado importante de um NPC, realizando um teste de Diplomacia com CD 23. Voce recebe +2 de bonus nato nessa rolagem e, se for bem-sucedido, a criatura revela voluntariamente a informacao solicitada.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "nao-tente-mentir-para-um-mentiroso",
+        "nome": "Nao Tente Mentir para um Mentiroso",
+        "descricao": "Um vigarista reconhece os passos de outro a distancia de leguas. Sempre que uma criatura tentar mentir, omitir ou usar a pericia Enganacao contra voce ou na sua presenca imediata, voce pode rolar um teste de Percepcao com CD 20. Voce recebe +2 de bonus nesse teste e, caso passe, identificara a mentira e a real intencao por tras das palavras dela.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Fragmento de Monumento Antigo",
+        "Gema de Familia",
+        "Erva de Poder"
+      ],
+      "medio": [
+        "Reliquia Historica",
+        "Essencia de Conquista",
+        "Cristal de Vontade"
+      ],
+      "dificil": [
+        "Simbolo de um Rei",
+        "Fragmento do Destino",
+        "Alma do Heroi Lendario"
+      ]
+    }
+  },
+  "anao": {
+    "nome": "Anao",
+    "descricao_curta": "Povo forjado no fogo e na pedra, dividido em tres linhagens moldadas pelas nacoes onde se refugiaram apos a Guerra do Metal.",
+    "status": null,
+    "modificadores_atributo": null,
+    "linhagens": [
+      {
+        "id": "ferro",
+        "nome": "Linhagem de Ferro (Fenyra)",
+        "descricao_curta": "Anoes das Montanhas de Eisenhorn, adaptados ao calor vulcanico, pele mais escura e tons avermelhados como chamas.",
+        "status": {
+          "vida": {
+            "base": 12,
+            "atributo": "con",
+            "mult_ascensao": 5
+          },
+          "sanidade": {
+            "base": 5,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "arche": {
+            "base": 6,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 9,
+            "atributo": "con",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 6,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 1,
+          "des": -1,
+          "con": 1,
+          "int": 0,
+          "sab": 0,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      },
+      {
+        "id": "prata",
+        "nome": "Linhagem de Prata (Karnath)",
+        "descricao_curta": "Anoes do Monte Khaz-Dahur, forjados por tempestades de areia, pelos rigidos como espinhos e pele morena.",
+        "status": {
+          "vida": {
+            "base": 10,
+            "atributo": "con",
+            "mult_ascensao": 4
+          },
+          "sanidade": {
+            "base": 8,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 7,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 7,
+            "atributo": "con",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 6,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 1,
+          "des": -1,
+          "con": 1,
+          "int": 0,
+          "sab": 0,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      },
+      {
+        "id": "aco",
+        "nome": "Linhagem de Aco (Velmor)",
+        "descricao_curta": "Discipulos de Velmor nas Cordilheiras de Argentum, de pele mais alva e pelos grisalhos, adaptados ao frio.",
+        "status": {
+          "vida": {
+            "base": 8,
+            "atributo": "con",
+            "mult_ascensao": 2
+          },
+          "sanidade": {
+            "base": 10,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 9,
+            "atributo": "sab",
+            "mult_ascensao": 4
+          },
+          "defesa": {
+            "base": 5,
+            "atributo": "con",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 6,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 1,
+          "des": -1,
+          "con": 1,
+          "int": 0,
+          "sab": 0,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      }
+    ],
+    "habilidades_globais": [
+      {
+        "id": "habitante-das-montanhas",
+        "nome": "Habitante das Montanhas",
+        "descricao": "Devido sua habitacao em montanhas, se tornou extremamente acostumado com o local, desse modo ao lutar em um terreno montanhoso, recebe +2 de bonus em todos seus testes. Alem disso, nao sofre com terrenos dificeis em montanhas.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "nascido-na-forja",
+        "nome": "Nascido na Forja",
+        "descricao": "Por conta de sua origem como filho de Hefesto, possui vasto conhecimento sobre metais e equipamentos. Sendo assim, torna-se treinado em Conhecimento e seu Conhecimento Aprofundado e sobre armas, armaduras e minerais.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "trabalhador-das-cavernas",
+        "nome": "Trabalhador das Cavernas",
+        "descricao": "Por conta de sua natureza trabalhadora, principalmente dentro de cavernas, seu olho se adapta a locais de baixa luminosidade. Recebe visao no escuro.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "resiliencia-por-trabalho",
+        "nome": "Resiliencia por Trabalho",
+        "descricao": "Como uma raca trabalhadora, sempre foi ensinado que resistir os males de seu trabalho te dariam frutos. Por isso recebe +2 em testes de Vontade e Fortitude ao usar itens criados por voce.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "a-uniao-faz-a-forca",
+        "nome": "A Uniao Faz a Forca",
+        "descricao": "Ao lutar com aliados proximos de voce, em ate 6m de distancia, seus testes de pericia cujo atributo-chave seja Forca ou Constituicao ganham +2 de bonus.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "vinculo-rochoso",
+        "nome": "Vinculo Rochoso",
+        "descricao": "Sua criacao nas montanhas te mostrou que a rocha e sua aliada, nao sua inimiga. Recebe Resistencia contra golpes de Dano de Terra.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "coragem-inabalavel",
+        "nome": "Coragem Inabalavel",
+        "descricao": "Uma criatura pequena, mas de grande autoconfianca. A primeira vez que evitar um efeito paralisante, se torna imune ao mesmo efeito novamente ate o final da cena. So pode ser imune a 1 efeito por cena.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "pulmao-de-carvao",
+        "nome": "Pulmao de Carvao",
+        "descricao": "Por viver em locais com pouco oxigenio e em forjas calorosas. Sendo assim, recebe imunidade aos efeitos obtidos por inalacao de gases.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "forjado-no-barro-e-na-rocha",
+        "nome": "Forjado no Barro e na Rocha",
+        "descricao": "Criados pela forja de Hefesto a base de barro e rocha, anoes recebem +1 de defesa. Esse efeito aumenta para +3 ao utilizar uma armadura pesada.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "pilar-da-terra",
+        "nome": "Pilar da Terra",
+        "descricao": "Voce e forte e estavel, como uma pedra. Com isso, anule qualquer penalidade de locomocao pelo uso de armaduras pesadas ou excesso de carga (isso nao remove o limite de peso permitido).",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [
+      {
+        "id": "pele-vulcanica",
+        "nome": "Pele Vulcanica",
+        "descricao": "Voce vive em ambientes quentes e escaldosos, se tornando acostumado com o fogo. Sendo assim, recebe Resistencia a Fogo e ao receber um dano de fogo, recebe +1 de defesa pelo resto da cena. (Acumula ate 2 vezes)",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "ferro"
+      },
+      {
+        "id": "sangue-em-ebulicao",
+        "nome": "Sangue em Ebulicao",
+        "descricao": "Voce e capaz de aquecer seu sangue e impulsionar suas acoes. Recebe +3 de bonus em todos seus testes e aumenta seu Deslocamento em +3m. Esse efeito dura 2 turnos e no final dele te causa fadiga.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "ferro"
+      },
+      {
+        "id": "corpo-da-fornalha",
+        "nome": "Corpo da Fornalha",
+        "descricao": "Criado com martelo e metal, voce reduz a CD de Fadiga em 3 pontos. Alem disso, ignora penalidades de locais quentes.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "ferro"
+      },
+      {
+        "id": "golpe-incandescente",
+        "nome": "Golpe Incandescente",
+        "descricao": "Voce e capaz de aquecer seu proprio corpo a niveis extremos de temperatura. Fazendo isso, voce pode efetuar um golpe como acao livre que causa 1d6+Forca. Esse golpe causa Queimadura no alvo.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "ferro"
+      },
+      {
+        "id": "ferreiro-do-poco-de-lava",
+        "nome": "Ferreiro do Poco de Lava",
+        "descricao": "Enquanto utilizar uma arma ou armadura criada por voce, recebe +2 de vida temporaria por nivel nos primeiros 2 turnos de combate. Essa vida temporaria nao pode ser curada e some no final dos turnos.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "ferro"
+      },
+      {
+        "id": "corpo-maleavel",
+        "nome": "Corpo Maleavel",
+        "descricao": "No comeco de cada turno, escolha uma das manipulacoes (exceto Caca) e receba Resistencia a ela ate o comeco do seu proximo turno. Nao pode ser resistente a mesma manipulacao em 2 turnos seguidos.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "prata"
+      },
+      {
+        "id": "mente-do-deserto",
+        "nome": "Mente do Deserto",
+        "descricao": "Como voce foi criado nos locais mais a parte do mundo, ja viu todo tipo de coisa e ja vislumbra todo tipo de criatura. Assim recebe Vantagem contra qualquer tipo de teste de Intimidacao ou Enganacao contra voce.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "prata"
+      },
+      {
+        "id": "pes-de-areia",
+        "nome": "Pes de Areia",
+        "descricao": "Voce conhece o que e um terreno instavel como as areias. Desse modo voce nao perde Deslocamento em nenhum terreno dificil.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "prata"
+      },
+      {
+        "id": "fortitude-estoica",
+        "nome": "Fortitude Estoica",
+        "descricao": "Voce tem grande conhecimento sobre suas vontades e sobre a verdade das emocoes. Voce pode repetir (uma unica falha) testes de pericias cujo atributo-chave seja Sabedoria ou Constituicao.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "prata"
+      },
+      {
+        "id": "sobrevivente-da-ruina",
+        "nome": "Sobrevivente da Ruina",
+        "descricao": "Com sua vivencia no deserto, aprendeu a aproveitar qualquer momento de paz. Assim voce recebe +2 de arche em descansos e +2 em testes de Sobrevivencia.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "prata"
+      },
+      {
+        "id": "coracao-de-aco",
+        "nome": "Coracao de Aco",
+        "descricao": "Com uma forca intransponivel e uma vontade inabalavel, voce recebe Resistencia a dano de Trevas e efeitos de Intimidacao tem desvantagem contra voce.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "aco"
+      },
+      {
+        "id": "postura-inabalavel",
+        "nome": "Postura Inabalavel",
+        "descricao": "Caso nao se mova neste turno, voce ganha +3 de defesa e nao pode ser deslocado a forca.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "aco"
+      },
+      {
+        "id": "frieza-do-pico",
+        "nome": "Frieza do Pico",
+        "descricao": "Apos um inimigo errar um golpe contra voce, recebe +1 em seu proximo teste de Luta ou Intimidacao. (Acumula ate 3 vezes)",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "aco"
+      },
+      {
+        "id": "escudo-da-cordilheira",
+        "nome": "Escudo da Cordilheira",
+        "descricao": "Uma vez por cena, quando um aliado seu sofrer dano, voce pode escolher reduzir o dano que ele sofreu em 1d6+Sua Constituicao, ou redirecionar metade do dano sofrido para voce.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "aco"
+      },
+      {
+        "id": "aprendiz-de-velmor",
+        "nome": "Aprendiz de Velmor",
+        "descricao": "Voce recebeu ensinamentos de mestres antigos de Velmor. Assim, enquanto sua Sanidade estiver acima de 50%, recebe +3 de Vontade e anula o primeiro efeito negativo aplicado a voce.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "aco"
+      }
+    ],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Ferro",
+        "Quartzo",
+        "Carvao Puro"
+      ],
+      "medio": [
+        "Fragmento de Adamantita",
+        "Essencia de Magma",
+        "Cristal de Terra"
+      ],
+      "dificil": [
+        "Coracao da Montanha",
+        "Metal do Primeiro Dia",
+        "Alma da Bigorna"
+      ]
+    }
+  },
+  "astara": {
+    "nome": "Astara",
+    "descricao_curta": "Ligadas ao Plano Espiritual, capazes de atravessar momentaneamente o limiar entre os dois mundos atraves da Toca do Coelho.",
+    "status": {
+      "vida": {
+        "base": 7,
+        "atributo": "con",
+        "mult_ascensao": 2
+      },
+      "sanidade": {
+        "base": 9,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 11,
+        "atributo": "sab",
+        "mult_ascensao": 4
+      },
+      "defesa": {
+        "base": 5,
+        "atributo": "con",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 10.5,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 0,
+      "des": 0,
+      "con": -1,
+      "int": 1,
+      "sab": 1,
+      "car": 0
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "limiar-espiritual",
+        "nome": "Limiar Espiritual",
+        "descricao": "Sempre que retornar ao Plano Fisico, recebe Vantagem em seu proximo teste de Furtividade ou Acrobacia ate o final do turno.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "pata-espiritual",
+        "nome": "Pata Espiritual",
+        "descricao": "Voce sente naturalmente a presenca do Plano Espiritual. Recebe +2 em Ocultismo e pode perceber naturalmente quando uma criatura, objeto ou fenomeno possui natureza espiritual.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "salto-assustado",
+        "nome": "Salto Assustado",
+        "descricao": "Sempre que rolar Reflexo para evitar um efeito, recebe +2 no teste. Caso obtenha um sucesso critico, pode mover-se 3m imediatamente apos o teste.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "orelhas-atentas",
+        "nome": "Orelhas Atentas",
+        "descricao": "Sua audicao e extremamente sensivel. Recebe +2 em Percepcao envolvendo sons. Alem disso, criaturas Escondidas ou Invisiveis nao recebem vantagem contra voce caso estejam produzindo qualquer ruido.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "refugio-estelar",
+        "nome": "Refugio Estelar",
+        "descricao": "Uma vez por cena, quando sua Vida cair abaixo de 25%, recebe automaticamente um Escudo igual ao seu Nivel + Sabedoria. Esse efeito representa sua alma tentando escapar para o Plano Espiritual.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "passo-da-nebulosa",
+        "nome": "Passo da Nebulosa",
+        "descricao": "Seu corpo possui dificuldade em permanecer completamente preso ao mundo fisico. Voce ignora a primeira penalidade de terreno dificil que sofrer a cada turno.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "ouro-incandescente",
+        "nome": "Ouro Incandescente",
+        "descricao": "As correntes douradas gravadas em sua alma queimam constantemente. Recebe Resistencia contra dano de Alma. Porem sofre Vulnerabilidade contra habilidades que tenham como alvo especificamente criaturas espirituais.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "toque-de-vystraea",
+        "nome": "Toque de Vystraea",
+        "descricao": "Seu contato transmite serenidade. Sempre que remover um efeito negativo de um aliado por qualquer habilidade, magia ou efeito, esse aliado recebe +2 em Vontade ate o comeco do proximo turno dele.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "memoria-fragmentada",
+        "nome": "Memoria Fragmentada",
+        "descricao": "Fragmentos de vidas passadas surgem inesperadamente. Uma vez por cena, apos falhar um teste de pericia, voce pode repeti-lo. Deve obrigatoriamente aceitar o novo resultado.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "danca-da-lua",
+        "nome": "Danca da Lua",
+        "descricao": "Sob a luz da lua ou dentro do Plano Espiritual, seus movimentos tornam-se quase etereos. Recebe +2 em Acrobacia, +2 em Furtividade e +3m de Deslocamento.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": {
+      "tipo": "toca_do_coelho",
+      "nome": "Toca do Coelho",
+      "descricao": "As Astari possuem uma ligacao inata com o Plano Espiritual, sendo capazes de atravessar momentaneamente o limiar entre os dois mundos (Entrar na Toca). Enquanto estiver no Plano Espiritual, seu corpo desaparece completamente do Plano Fisico, tornando-se invisivel e inalcancavel para criaturas que permanecam nele, e vice-versa. Entrar ou sair da Toca e uma Acao Bonus; permanecer na Toca consome 1 Arche no inicio de cada turno; caso fique sem Arche, retorna imediatamente ao Plano Fisico. Voce mantem sua posicao ao trocar de plano e continua enxergando apenas criaturas e objetos presentes no mesmo plano que voce.",
+      "parametros": {
+        "acao": "bonus",
+        "custo_arche_por_turno": 1
+      }
+    },
+    "catalisadores": {
+      "facil": [
+        "Poeira Estelar",
+        "Fragmento de Meteoro",
+        "Cristal de Luar"
+      ],
+      "medio": [
+        "Seiva de Constelacao",
+        "Oleo de Nebulosa",
+        "Luz Prismatica"
+      ],
+      "dificil": [
+        "Fragmento de Supernova",
+        "Coracao de Estrela",
+        "Essencia do Vacuo"
+      ]
+    }
+  },
+  "bathari": {
+    "nome": "Bathari",
+    "descricao_curta": "Humanoides anfibios das profundezas, com pele resistente como lixa e instintos de predadores marinhos.",
+    "status": {
+      "vida": {
+        "base": 10,
+        "atributo": "con",
+        "mult_ascensao": 4
+      },
+      "sanidade": {
+        "base": 6,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 8,
+        "atributo": "sab",
+        "mult_ascensao": 2
+      },
+      "defesa": {
+        "base": 8,
+        "atributo": "con",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "deslocamento_agua_m": 13.5,
+      "ataque_desarmado": {
+        "dano": "1d4",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 1,
+      "des": 0,
+      "con": 1,
+      "int": 0,
+      "sab": 0,
+      "car": -1
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "sentido-ampular",
+        "nome": "Sentido Ampular",
+        "descricao": "Seus poros faciais detectam os campos eletricos e batimentos cardiacos das criaturas. Voce recebe Visao Noturna e e capaz de detectar a localizacao exata de qualquer criatura viva em ate alcance curto, mesmo que ela esteja Invisivel, Escondida ou atras de camuflagem por nevoa, desde que ela nao seja um Constructo ou Morto-Vivo.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "couro-de-lixa",
+        "nome": "Couro de Lixa",
+        "descricao": "Sua pele e coberta por denticulos dermicos extremamente rigidos e asperos. Voce recebe +1 de Defesa permanente. Alem disso, qualquer inimigo que tentar realizar uma acao de agarrar ou desarmar voce corpo a corpo sofre imediatamente 1d4 de dano de corte devido ao atrito da pele.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "anfibio-das-trincheiras",
+        "nome": "Anfibio das Trincheiras",
+        "descricao": "Seu corpo foi perfeitamente adaptado para suportar ambientes extremos tanto na agua quanto na terra. Voce pode respirar debaixo d'agua indefinidamente, ignora qualquer penalidade de terreno dificil decorrente de lama, pantanos ou agua profunda, e sua Defesa aumenta em +2 enquanto estiver completamente submerso.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "mordida-estracalhadora",
+        "nome": "Mordida Estracalhadora",
+        "descricao": "Suas mandibulas possuem fileiras sobressalentes de dentes serrilhados. Voce pode gastar uma acao padrao para realizar um ataque desarmado de mordida. Caso acerte, causa 1d8+Forca de dano de perfuracao e aplica a condicao Sangramento no alvo.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "presenca-aterradora",
+        "nome": "Presenca Aterradora",
+        "descricao": "Seu porte fisico massivo e o olhar frio sem pupilas exalam a aura de um monstro marinho. Voce se torna treinado na pericia Intimidacao. Alem disso, voce pode utilizar o seu atributo Forca ou Constituicao para realizar testes de Intimidacao no lugar de Carisma.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "sangue-frio",
+        "nome": "Sangue Frio",
+        "descricao": "Nascido nas pressoes congelantes das fossas abissais, seu corpo nao reage a dor de forma comum. Sempre que sua vida atual estiver abaixo de 50%, voce recebe Resistencia Elemental voltada especificamente para danos do tipo Agua e Trevas.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "abraco-de-pontus",
+        "nome": "Abraco de Pontus",
+        "descricao": "A pressao esmagadora do oceano corre em suas veias. Quando voce realizar um ataque bem-sucedido contra um inimigo que esteja sob o efeito de Fadiga ou Atordoamento, voce pode gastar 2 pontos de Arche para estender a duracao desse efeito negativo por mais 1 turno.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "mandibula-de-ferro",
+        "nome": "Mandibula de Ferro",
+        "descricao": "Sua estrutura ossea foi de certa forma comprimida para aguentar impactos brutais. Voce se torna completamente imune a condicao Atordoamento. Alem disso, quando receber um ataque critico, voce pode gastar sua Reacao para receber apenas o dano normal do golpe.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "cheiro-de-sangue",
+        "nome": "Cheiro de Sangue",
+        "descricao": "A fragilidade dos feridos guia seus golpes de forma mortal. Seus testes de ataque fisico contra qualquer criatura que esteja com a condicao Sangramento ativa recebem Vantagem.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "rasgar-tendoes",
+        "nome": "Rasgar Tendoes",
+        "descricao": "Seus golpes buscam mutilar e incapacitar a presa para que ela nao fuja do seu territorio. Uma vez por cena, ao causar dano de Sangramento em um alvo, voce pode forca-lo a realizar um teste de Fortitude (DT 10 + sua Forca). Em caso de falha, o alvo recebe o efeito negativo Imobilizado por 1 turno.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "devorador-implacavel",
+        "nome": "Devorador Implacavel",
+        "descricao": "A dor alheia alimenta o seu vigor de combate. Sempre que voce derrotar uma criatura que esteja sob o efeito de Sangramento, voce recupera instantaneamente uma quantidade de Vida igual a 1d8 + sua Constituicao e seu proximo ataque fisico realizado nesta mesma cena causara +3 de dano fisico adicional.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Perola de Rio",
+        "Coral Seco",
+        "Musgo Fluorescente"
+      ],
+      "medio": [
+        "Escama de Hidra",
+        "Agua de Nascente Profunda",
+        "Perola Negra"
+      ],
+      "dificil": [
+        "Coracao do Abismo",
+        "Lagrima de Leviata",
+        "Essencia do Oceano Primordial"
+      ]
+    }
+  },
+  "demonio": {
+    "nome": "Demonio",
+    "descricao_curta": "Criaturas espirituais de extremo poder, divididas em 7 linhagens (Daemons), cada uma marcada por um Selo unico.",
+    "status": null,
+    "modificadores_atributo": null,
+    "linhagens": [
+      {
+        "id": "areiano",
+        "nome": "Areianos (Sangue-Vivo)",
+        "descricao_curta": "Demonios de pele alaranjada e corpo robusto, com partes expostas de carne e sangue. Possuem chifres pronunciados e o rabo com ponta similar a um machado duplo.",
+        "status": {
+          "vida": {
+            "base": 14,
+            "atributo": "con",
+            "mult_ascensao": 5
+          },
+          "sanidade": {
+            "base": 3,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "arche": {
+            "base": 6,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 12,
+            "atributo": "for",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 7.5,
+          "ataque_desarmado": {
+            "dano": "1d4",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 2,
+          "des": 0,
+          "con": 0,
+          "int": 0,
+          "sab": -2,
+          "car": 0
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_areiano",
+          "nome": "Selo de Ares",
+          "descricao": "Ao ser acertado por um alvo, voce so pode atacar ele e permanecer em alcance corpo a corpo ou curto dele. Nesses casos, recebe +2 em luta.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      },
+      {
+        "id": "asmodiano",
+        "nome": "Asmodianos (Incubos/Sucubos)",
+        "descricao_curta": "Demonios de pele azulada ou roxa, olhos rosados com pupilas em formato de coracao. Chifres de tamanho medio e rabo com ponta em formato de coracao.",
+        "status": {
+          "vida": {
+            "base": 10,
+            "atributo": "con",
+            "mult_ascensao": 4
+          },
+          "sanidade": {
+            "base": 6,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 8,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 8,
+            "atributo": "car",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": -2,
+          "des": 0,
+          "con": 0,
+          "int": 0,
+          "sab": 0,
+          "car": 2
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_asmodiano",
+          "nome": "Selo de Asmodeus",
+          "descricao": "Voce deve, a cada comeco de turno, marcar um alvo como Desejado. Seus testes contra esse alvo irao receber bonus com base no seu Carisma. Porem nesse estado, sua defesa para ataques vindos de outros inimigos recebe reducao de 3 pontos.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      },
+      {
+        "id": "lokiano",
+        "nome": "Lokianos (Sem-Rosto)",
+        "descricao_curta": "Demonios de pele acinzentada e olhos palidos e aprisionantes. Chifres ligeiramente menores e rabo com ponta super afiada.",
+        "status": {
+          "vida": {
+            "base": 7,
+            "atributo": "con",
+            "mult_ascensao": 2
+          },
+          "sanidade": {
+            "base": 9,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 11,
+            "atributo": "sab",
+            "mult_ascensao": 4
+          },
+          "defesa": {
+            "base": 5,
+            "atributo": "car",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 0,
+          "con": -2,
+          "int": 0,
+          "sab": 0,
+          "car": 2
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_lokiano",
+          "nome": "Selo de Loki",
+          "descricao": "Voce nao pode repetir as mesmas acoes em dois turnos seguidos (ex: se utilizou sua acao padrao para atacar com um poder, nao podera fazer isso no proximo turno), caso contrario, sofrera 1d4 de dano na sanidade. Contudo, seus poderes e habilidades recebem bonus de +2 nos testes.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      },
+      {
+        "id": "midasiano",
+        "nome": "Midasianos (Aureos)",
+        "descricao_curta": "Demonios de pele vermelha que, quanto mais velhos, ganham manchas douradas pelo corpo. Chifres de tamanho medio e rabo semelhante a um cetro real.",
+        "status": {
+          "vida": {
+            "base": 10,
+            "atributo": "con",
+            "mult_ascensao": 4
+          },
+          "sanidade": {
+            "base": 4,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 10,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 8,
+            "atributo": "con",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": -2,
+          "con": 0,
+          "int": 2,
+          "sab": 0,
+          "car": 0
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_midasiano",
+          "nome": "Selo de Midas",
+          "descricao": "No comeco do combate, escolha um item seu como Preciosidade; esse item deve ficar na sua mao e voce e incapaz de larga-lo ate o final da cena. Enquanto se mantiver segurando ele, recebe Resistencia Fisica.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      },
+      {
+        "id": "paniano",
+        "nome": "Panianos (Corniferos)",
+        "descricao_curta": "Demonios marrons com caracteristicas animalescas de bodes ou cavalos na parte inferior do corpo. Possuem os menores chifres entre os demonios.",
+        "status": {
+          "vida": {
+            "base": 8,
+            "atributo": "con",
+            "mult_ascensao": 2
+          },
+          "sanidade": {
+            "base": 6,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 12,
+            "atributo": "sab",
+            "mult_ascensao": 4
+          },
+          "defesa": {
+            "base": 6,
+            "atributo": "des",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 11.5,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "des",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 0,
+          "con": 0,
+          "int": -2,
+          "sab": 2,
+          "car": 0
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_paniano",
+          "nome": "Selo de Pa",
+          "descricao": "Enquanto estiver em locais estreitos (corredores de cavernas, celas, comodos pequenos), recebera desvantagens em todos seus testes. Porem, quando estiver em locais abertos aumentara seu deslocamento em +3m e suas pericias cujo atributo-chave e Sabedoria recebem +2 bonus nos testes.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      },
+      {
+        "id": "sethita",
+        "nome": "Sethitas (Imperiosos)",
+        "descricao_curta": "Demonios de pele negra e corpo alto, porem magro. Olhos rubros como sangue e chifres bastante acentuados; rabo em forma de maca.",
+        "status": {
+          "vida": {
+            "base": 12,
+            "atributo": "con",
+            "mult_ascensao": 5
+          },
+          "sanidade": {
+            "base": 5,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "arche": {
+            "base": 5,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 10,
+            "atributo": "con",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1d4",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 0,
+          "con": 2,
+          "int": 0,
+          "sab": -2,
+          "car": 0
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_sethita",
+          "nome": "Selo de Seth",
+          "descricao": "Voce nao pode ser curado por algum aliado ou receber bonus deles; caso aconteca, sofre 1d6 de dano na sanidade. Enquanto estiver com a vida 5+Nivel pontos abaixo do maximo, seus golpes causarao dano adicional com base na sua Forca.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      },
+      {
+        "id": "zebubita",
+        "nome": "Zebubitas (Carnicentos)",
+        "descricao_curta": "Demonios de coloracao verde, olhos com inumeras vistas, o menor e mais fragil corpo entre os demonios. Nao possuem chifres; o rabo parece cortado ao meio e nunca cicatriza; sempre rodeados de moscas.",
+        "status": {
+          "vida": {
+            "base": 5,
+            "atributo": "con",
+            "mult_ascensao": 2
+          },
+          "sanidade": {
+            "base": 11,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 10,
+            "atributo": "sab",
+            "mult_ascensao": 4
+          },
+          "defesa": {
+            "base": 6,
+            "atributo": "car",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": -2,
+          "des": 0,
+          "con": 0,
+          "int": 0,
+          "sab": 2,
+          "car": 0
+        },
+        "sistema_racial_inato": {
+          "tipo": "selo_de_zebubita",
+          "nome": "Selo de Zebub",
+          "descricao": "Aliados que comecam o turno em alcance corpo a corpo de voce perdem 2 pontos em todos os testes. Porem voce pode gastar uma acao de movimento e ordenar que suas moscas restaurem 1d8+Cura dos pontos de vida de algum aliado em ate 4,5m de voce. Esse efeito pode ser ativado uma vez por cena.",
+          "parametros": {
+            "idade_minima": 20
+          }
+        }
+      }
+    ],
+    "habilidades_globais": [
+      {
+        "id": "boca-do-inferno",
+        "nome": "Boca do Inferno",
+        "descricao": "Voce e uma criatura do profundo abismo, sendo mestre da conversacao macabra. Recebe treinamento em Enganacao e pode rolar Enganacao sempre que desejar rolar Intimidacao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "olhar-do-abismo",
+        "nome": "Olhar do Abismo",
+        "descricao": "Voce, sendo uma criatura do poco infernal, tem um olhar penetrante e macabro. Assim, recebe Vantagem em todos os testes de Intimidacao. Obs: caso tenha a habilidade Boca do Inferno, esse efeito tambem contara para ela.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "armamento-infernal",
+        "nome": "Armamento Infernal",
+        "descricao": "Seu corpo como um todo e uma arma mortal criada nos confins do inferno. Voce pode gastar sua acao padrao ou 2 de arche em acao de movimento para atacar um alvo em alcance corpo a corpo com seu rabo ou seus chifres. Chifres: 1d8+Forca de dano perfurante (Zebubitas nao podem usar). Rabo: 1d6+Destreza de dano de impacto.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "espirito-errante",
+        "nome": "Espirito Errante",
+        "descricao": "Uma criatura solitaria sempre sera uma criatura solitaria. Voce recebe treinamento em Sobrevivencia e, sempre que estiver pelo menos 6m de distancia de qualquer aliado, todos seus testes recebem +2 bonus.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "arauto-dos-daemons",
+        "nome": "Arauto dos Daemons",
+        "descricao": "Como uma criatura criada por deuses inferiores, voce tem grande conhecimento magico. Assim, recebe treinamento em Misticismo e pode trocar o atributo-chave dele para o beneficiado pelo seu grupo (ex: Lokianos recebem +2 de carisma, podendo utilizar Carisma no Misticismo no lugar de Sabedoria).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "visao-de-calor",
+        "nome": "Visao de Calor",
+        "descricao": "Voce nasceu do fogo e o fogo reconhece. Voce consegue identificar qualquer criatura que esteja sob o efeito de Queimadura. Alem disso, seus golpes contra inimigos nesse estado recebem bonus de dano com base no seu maior atributo.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "armadura-incandescente",
+        "nome": "Armadura Incandescente",
+        "descricao": "Seu corpo queima como as brasas do inferno. Recebe +1 de defesa e o inimigo que te atacar, com um golpe corpo a corpo, precisara rolar um teste de Constituicao com a CD sendo sua defesa; se falhar, sofrera Queimadura.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "aura-profana",
+        "nome": "Aura Profana",
+        "descricao": "Seu espirito maligno e sombrio subjuga aqueles ao seu redor. Pague 2 pontos de arche e crie uma aura ao seu redor. Ela atinge aliados e inimigos em ate 4,5m de voce e dura 2 turnos. Personagens afetados por essa aura perdem 3 pontos em todos seus testes.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "cacador-do-espirito",
+        "nome": "Cacador do Espirito",
+        "descricao": "Voce deixa de cacar a carne e busca o espirito. Assim, uma vez por turno, pode pagar uma acao de movimento para tocar em um inimigo e absorver 2 de arche dele. O inimigo pode desviar rolando Reflexos contra sua Velocidade.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "criatura-das-trevas",
+        "nome": "Criatura das Trevas",
+        "descricao": "Voce ja viu as coisas mais horrendas e hediondas da face da terra e do profundo abismo. Dessa forma, recebe treinamento em Vontade e ganha vantagem em testes contra poderes e habilidades de efeito mental.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [
+      {
+        "id": "demonio-da-guerra",
+        "nome": "Demonio da Guerra",
+        "descricao": "Voce foi criado pelo Daemon da Guerra e da Ira. Entao recebe treinamento em Guerra e, uma vez por cena, pode se curar em 1d4+Guerra como acao livre.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "areiano"
+      },
+      {
+        "id": "lutador-do-abismo",
+        "nome": "Lutador do Abismo",
+        "descricao": "Voce nasceu no abismo e enfrentou todas das piores criaturas da terra. Torna-se treinado em Luta e, sempre que atingir o mesmo alvo em turnos consecutivos, recebe +1 de dano, podendo acumular ate +3 de dano bonus.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "areiano"
+      },
+      {
+        "id": "prazer-de-sangue",
+        "nome": "Prazer de Sangue",
+        "descricao": "A carnificina te chama e te guia. Sempre que atacar um alvo que esteja sob efeito de Sangramento, voce recebe vantagem em seus testes de ataque. Caso voce sofra Sangramento ou Hemorragia, pode pagar 2 de arche e anular o efeito.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "areiano"
+      },
+      {
+        "id": "doce-paixao",
+        "nome": "Doce Paixao",
+        "descricao": "Seu desejo carnal e superior a qualquer emocao que possua e isso se reflete a todos que queira atrair. Uma vez por turno pode gastar 2 de arche e sua acao de movimento e escolher um alvo em ate alcance curto de voce e rolar sua Enganacao contra a Vontade do alvo. Se passar, voce deixa o alvo Encantado.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "asmodiano"
+      },
+      {
+        "id": "ilusao-amorosa",
+        "nome": "Ilusao Amorosa",
+        "descricao": "Voce e mestre das artimanhas amorosas e da dor que e causada por um coracao quebrado. Sendo assim, sempre que um alvo que estava sob efeito Encantado aplicado por voce for atacado (tambem por voce), ele saira do estado e sofrera sua Enganacao como dano bonus. O alvo nao podera ser encantado pelo resto da cena.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "asmodiano"
+      },
+      {
+        "id": "dependencia-emocional",
+        "nome": "Dependencia Emocional",
+        "descricao": "Voce cria um laco de dependencia com seu aliado mais proximo que tenha nivel 3 ou mais de amizade. Voce recebe +3 bonus em todos os dados, porem seu aliado recebe -3 pontos em todos os dados. O vinculo dura ate o fim da cena, outro aliado de amizade nivel 3 ou mais ficar mais proximo ou o aliado cair a vida para 0.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "asmodiano"
+      },
+      {
+        "id": "multifacetado",
+        "nome": "Multifacetado",
+        "descricao": "Seu corpo possui extrema facilidade em assumir novas identidades. Como uma acao de movimento, voce pode alterar completamente sua aparencia fisica, incluindo voz, altura aparente, cabelos, olhos e demais caracteristicas corporais. Esse disfarce permanece ate que voce decida encerra-lo. Criaturas que possuam motivos para desconfiar podem realizar um teste de Percepcao contra sua Enganacao para perceber a farsa. Alem disso, recebe treinamento em Enganacao.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "lokiano"
+      },
+      {
+        "id": "miragem",
+        "nome": "Miragem",
+        "descricao": "Sua imagem oscila constantemente entre o real e o ilusorio. Sempre que um inimigo errar um ataque contra voce, pode gastar sua reacao para criar uma imagem ilusoria em um espaco adjacente. Ate o inicio do seu proximo turno, criaturas que desejarem ataca-lo deverao primeiro vencer um teste de Percepcao contra sua Enganacao. Caso falhem, desperdicam o ataque acertando a ilusao, que desaparece imediatamente.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "lokiano"
+      },
+      {
+        "id": "heimskringla",
+        "nome": "Heimskringla",
+        "descricao": "Sua alma manifesta parte do lendario Anel da Multiplicacao. Uma vez por cena, pode gastar 3 de Arche para criar ate tres copias de si mesmo em espacos adjacentes. As copias possuem 1 ponto de vida, utilizam seu deslocamento normalmente e podem realizar qualquer acao que nao cause dano ou aplique efeitos (ilusoria). Sempre que um inimigo escolher voce como alvo de um ataque, role 1d4: em 1 o ataque atinge voce, em qualquer outro resultado atinge uma das copias, destruindo-a. As copias desaparecem apos 3 turnos ou quando destruidas.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "lokiano"
+      },
+      {
+        "id": "toque-da-ganancia",
+        "nome": "Toque da Ganancia",
+        "descricao": "Tudo aquilo que desperta sua cobica torna-se impossivel de ignorar. Sempre que acertar um inimigo com um ataque corpo a corpo, pode marca-lo ate o fim da cena. Enquanto a marca permanecer, sempre que causar dano ao alvo recupera 1 ponto de Arche. A marca desaparece caso voce escolha outro alvo.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "midasiano"
+      },
+      {
+        "id": "carapaca-reluzente",
+        "nome": "Carapaca Reluzente",
+        "descricao": "O ouro demoniaco presente em seu corpo endurece sua pele conforme os combates se prolongam. Sempre que sofrer dano fisico, recebe 1 ponto de Resistencia Fisica ate o inicio do seu proximo turno. Caso esse ataque nao ultrapasse sua Defesa, tambem recebe +1 de Defesa ate o fim da cena, acumulando ate tres vezes.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "midasiano"
+      },
+      {
+        "id": "rei-caido",
+        "nome": "Rei Caido",
+        "descricao": "Mesmo sem possuir um reino, sua presenca naturalmente impoe autoridade. Recebe treinamento em Diplomacia. Sempre que utilizar uma pericia social contra uma criatura, recebe vantagem caso ela possua menos Arche que voce.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "midasiano"
+      },
+      {
+        "id": "salto-do-bode",
+        "nome": "Salto do Bode",
+        "descricao": "Seu corpo foi moldado para percorrer terrenos acidentados. Sua distancia maxima de salto dobra. Sempre que finalizar um salto adjacente a uma criatura, seu proximo ataque corpo a corpo contra ela recebe vantagem.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "paniano"
+      },
+      {
+        "id": "esquiva-animal",
+        "nome": "Esquiva Animal",
+        "descricao": "Seus instintos sao mais rapidos que qualquer pensamento. Sempre que passar em um teste de Reflexos para evitar um ataque, pode mover-se ate 3 metros imediatamente sem provocar ataques de oportunidade.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "paniano"
+      },
+      {
+        "id": "mata-revigorante",
+        "nome": "Mata Revigorante",
+        "descricao": "Seu espirito mantem uma profunda ligacao com ambientes naturais. Enquanto estiver em terreno natural, recebe treinamento em Sobrevivencia caso ainda nao possua. Alem disso, uma vez por turno, ao terminar seu movimento sem inimigos adjacentes, recupera 1 ponto de Arche.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "paniano"
+      },
+      {
+        "id": "ser-superior",
+        "nome": "Ser Superior",
+        "descricao": "Voce acredita que nasceu acima das demais criaturas. Recebe treinamento em Intimidacao. Sempre que uma criatura falhar em um teste contra uma habilidade sua, ela recebe -2 em testes realizados diretamente contra voce ate o inicio do seu proximo turno.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sethita"
+      },
+      {
+        "id": "exemplar-da-perfeicao",
+        "nome": "Exemplar da Perfeicao",
+        "descricao": "Seu corpo e sua mente foram moldados para buscar excelencia absoluta. Escolha uma pericia treinada. Uma vez por cena, apos realizar um teste dessa pericia, pode repetir a rolagem. E obrigatorio utilizar o novo resultado.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sethita"
+      },
+      {
+        "id": "cao-do-inferno",
+        "nome": "Cao do Inferno",
+        "descricao": "A violencia desperta seus instintos mais primitivos. Enquanto estiver com metade da Vida ou menos, recebe +2 em Luta e torna-se imune as condicoes Amedrontado e Intimidado.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sethita"
+      },
+      {
+        "id": "ataque-do-enxame",
+        "nome": "Ataque do Enxame",
+        "descricao": "As moscas que o acompanham atacam qualquer um que demonstre fraqueza. Sempre que causar dano a uma criatura, pode gastar 1 de Arche para que seu enxame a persiga ate o inicio do seu proximo turno. Enquanto estiver sendo perseguido, o alvo recebe -2 em testes de Concentracao e Canalizacao.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "zebubita"
+      },
+      {
+        "id": "mil-olhos",
+        "nome": "Mil Olhos",
+        "descricao": "Voce enxerga atraves de centenas de pequenas criaturas espalhadas pelo ambiente. Recebe treinamento em Percepcao. Alem disso, criaturas Invisiveis, Escondidas ou Disfarcadas nao recebem vantagens naturais contra seus testes de Percepcao.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "zebubita"
+      },
+      {
+        "id": "sangue-venenoso",
+        "nome": "Sangue Venenoso",
+        "descricao": "Seu sangue e impregnado pela corrupcao do submundo. Sempre que uma criatura causar dano corpo a corpo em voce, ela deve realizar um teste de Constituicao contra sua Defesa. Caso falhe, recebe Envenenamento. Uma mesma criatura so pode ser afetada por esta habilidade uma vez por cena.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "zebubita"
+      }
+    ],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "observacoes": "Demonios ainda jovens (antes dos 20 anos) nao possuem o selo e sao isentos de suas regras, contudo todo dano em sua sanidade e considerado dano critico.",
+    "catalisadores": {
+      "facil": [
+        "Carvao Sulfuroso",
+        "Fragmento de Obsidiana",
+        "Sangue de Besta Abissal"
+      ],
+      "medio": [
+        "Chifre de Arquidemonio",
+        "Cinzas do Purgatorio",
+        "Cristal de Caos"
+      ],
+      "dificil": [
+        "Essencia do Vazio",
+        "Fogo Negro Eterno",
+        "Fragmento do Trono Infernal"
+      ]
+    }
+  },
+  "draconato": {
+    "nome": "Draconato",
+    "descricao_curta": "Descendentes de dragoes amaldicoados por Nidhogg com o Tormento do Tirano, divididos entre Couracos e Sutis.",
+    "status": null,
+    "modificadores_atributo": null,
+    "linhagens": [
+      {
+        "id": "couraco",
+        "nome": "Couraco",
+        "descricao_curta": "Mantem grande parte das caracteristicas dracionicas: feicoes marcantes, corpo completamente escamado e garras afiadas.",
+        "status": {
+          "vida": {
+            "base": 10,
+            "atributo": "con",
+            "mult_ascensao": 5
+          },
+          "sanidade": {
+            "base": 5,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "arche": {
+            "base": 7,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 10,
+            "atributo": "con",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 6,
+          "ataque_desarmado": {
+            "dano": "1d4",
+            "atributo": "for",
+            "tipo_dano": "corte_perfuracao"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 0,
+          "con": 1,
+          "int": 1,
+          "sab": -1,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      },
+      {
+        "id": "sutil",
+        "nome": "Sutil",
+        "descricao_curta": "Mais humanoides, com pele aparente, feicoes proximas as dos seres humanos e poucas escamas entre pescoco, rosto e braco.",
+        "status": {
+          "vida": {
+            "base": 7,
+            "atributo": "con",
+            "mult_ascensao": 3
+          },
+          "sanidade": {
+            "base": 9,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 9,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "defesa": {
+            "base": 7,
+            "atributo": "des",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 7.5,
+          "ataque_desarmado": {
+            "dano": "1d4",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 0,
+          "con": 1,
+          "int": 1,
+          "sab": -1,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      }
+    ],
+    "habilidades_globais": [
+      {
+        "id": "palpebra-evoluida",
+        "nome": "Palpebra Evoluida",
+        "descricao": "Como um nato habitante do deserto, seu olho se adaptou plenamente a cenarios extremos. Recebe Visao Noturna e nao sofre penalidades de Pontaria por conta de terreno, fumaca ou nevoa.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "cacador-ancestral",
+        "nome": "Cacador Ancestral",
+        "descricao": "Como um antigo cacador, essas ideias ainda circulam em sua mente. Assim, voce recebe +3 em testes ofensivos contra criaturas consideradas Animais ou Bestiais.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "asas-funcionais",
+        "nome": "Asas Funcionais",
+        "descricao": "Voce tem um par de asas uteis em combate e fora dele. Recebe a capacidade de Voar com sua acao e movimento, podendo subir ate 4,5m em um movimento ascendente. Pode voar por ate 2 turnos ou 3 minutos (com descanso de 2 turnos ou 5 minutos a cada uso) e precisa voltar ao chao, caso contrario cai e sofre dano de 1d4+(1 a cada 1,5 metro).",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "fisico-ancestral",
+        "nome": "Fisico Ancestral",
+        "descricao": "Sua raca foi criada por um deus que deseja poder e matanca. Com isso, seu corpo e uma eximia maquina de matar, recebendo +1 de Forca ou Constituicao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "espirito-do-deserto",
+        "nome": "Espirito do Deserto",
+        "descricao": "Sendo natural das areias de Gaiorn, voce e completamente adaptado a esse lugar. Torna-se imune aos efeitos da Tempestade de Areia e durante elas recebe +2 de bonus em todas as pericias cujo atributo-chave seja Constituicao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "conhecimento-divino",
+        "nome": "Conhecimento Divino",
+        "descricao": "Voce se torna treinado em conhecimento e escolhe uma das capacidades: Deteccao de Encantamento (vantagem em Misticismo), Acrescimo de poder (pagando 3 de arche no comeco do combate, aumenta o dano de todas suas habilidades com base na sua Inteligencia), ou Descendente de Fafnir (pagando 3 de arche, recebe Resistencia Fixa de -3 contra todos os elementos exceto Fogo, que recebe Fraqueza Fixa de +3).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "antiguidade-cosmica",
+        "nome": "Antiguidade Cosmica",
+        "descricao": "Voce rola Misticismo com CD20+Metade do seu nivel. Caso passe, seu dano passara a ser considerado Cosmico por 2 turnos. Dano Cosmico causa uma explosao de 1/4 do dano maximo causado apos 3 turnos.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "sabedoria-animal",
+        "nome": "Sabedoria Animal",
+        "descricao": "Voce possui grande conhecimento sobre a anatomia dos animais. Pode rolar Percepcao com CD20 e descobrir o ponto fraco de uma criatura considerada Animal ou Bestial. Golpes em pontos fracos sao rolados com desvantagem, mas causam 50% do dano causado como dano extra no alvo.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "culto-as-areias",
+        "nome": "Culto as Areias",
+        "descricao": "Criado na cultura e fe sob as areias, voce pode canalizar o poder delas. Gaste uma acao completa e invoque uma tempestade de areia em um raio de ate 10,5m de voce.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "elo-dos-ceus",
+        "nome": "Elo dos Ceus",
+        "descricao": "Enquanto estiver voando mas sua distancia for de alcance curto a um alvo, pode pagar sua acao completa e entao se atirar ate ele. Voce causa 1d6+(1 a cada 1,5 metro de distancia) como dano causado e para de voar.",
+        "tipo": "ativa",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [
+      {
+        "id": "carapaca-da-miseria",
+        "nome": "Carapaca da Miseria",
+        "descricao": "Seu corpo entende suas dores e quando precisa te proteger de inimigos. Apos receber o primeiro ataque direto, voce recebe +2 de defesa pelo resto da cena.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "couraco"
+      },
+      {
+        "id": "sangue-acido",
+        "nome": "Sangue Acido",
+        "descricao": "Seu sangue pulsa como acido fervente. Quando receber um ataque cortante ou perfurante, seu proximo ataque fisico causara Envenenamento.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "couraco"
+      },
+      {
+        "id": "presenca-do-nemesis",
+        "nome": "Presenca do Nemesis",
+        "descricao": "A ira e o odio estao dispostos na sua cara. Pode utilizar Forca ou Constituicao em testes de Intimidacao no lugar de Carisma. Alem disso, golpes contra voce sofrem penalidade de -2 no teste de ataque.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "couraco"
+      },
+      {
+        "id": "garras-de-furia",
+        "nome": "Garras de Furia",
+        "descricao": "Suas garras sao suas armas mais fieis e poderosas. Pode atacar um alvo em alcance corpo a corpo, causando 1d8+Forca como dano e aplicando Sangramento. Pode gastar 2 de arche para transformar esse golpe em uma acao de movimento.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "couraco"
+      },
+      {
+        "id": "carne-dura",
+        "nome": "Carne Dura",
+        "descricao": "Seu corpo e mais resistente que o comum e super rigido. Torna-se imune ao efeito de Sangramento e Hemorragia.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "couraco"
+      },
+      {
+        "id": "energia-latente",
+        "nome": "Energia Latente",
+        "descricao": "A energia primordial pulsa em suas veias. Recupera +2 de arche por descanso. Alem disso, uma vez a cada 2 turnos, pode reduzir seu custo de arche de uma habilidade ou poder em 1 ponto (nao pode ficar com valor 0).",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sutil"
+      },
+      {
+        "id": "mente-fragmentada",
+        "nome": "Mente Fragmentada",
+        "descricao": "Sua mente e multifacetada e indecifravel. Torna-se imune a efeitos de Intimidacao ou outros tipos de controle mental.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sutil"
+      },
+      {
+        "id": "lingua-de-prata",
+        "nome": "Lingua de Prata",
+        "descricao": "Criado entre seres humanoides e conhecendo o poder da fala, tornou-se um eximio charlatao. Recebe treinamento em Enganacao e pode utilizar esse bonus ao inves de sua Luta em testes de ataque.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sutil"
+      },
+      {
+        "id": "escamas-arco-iris",
+        "nome": "Escamas Arco-Iris",
+        "descricao": "Suas escamas refletem plenamente a luz do sol em um belo arco-iris brilhoso. Voce aumenta a area de efeitos de luz em 4,5m e diminui a precisao de golpes a distancia contra voce, impondo desvantagem em testes inimigos.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "sutil"
+      },
+      {
+        "id": "heranca-mistica",
+        "nome": "Heranca Mistica",
+        "descricao": "A natureza divina e criadora das manipulacoes ainda estao em seu corpo. Pague 2 de arche e aumente o dano de todas seus poderes com base na sua Sabedoria e Nivel pelo resto da cena.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "sutil"
+      }
+    ],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": {
+      "tipo": "tormento_do_tirano",
+      "nome": "O Tormento do Tirano",
+      "descricao": "Maldicao lancada por Nidhogg. Cria a barra 'Loucura' (0 a 30) nos Status Basicos do draconato. Para cada ponto de sanidade perdido, a barra ganha 1 ponto (nao diminui mesmo que a sanidade seja curada). Ao atingir 30 pontos, o draconato entra em 'Metamorfose': cobre-se com uma casca protetora (mesma vida do draconato) por 7 turnos (ou 7 minutos fora de combate). Jogadores podem quebrar o ovo com runas ou poderes de restauracao para anular a metamorfose; caso contrario, o draconato retorna como um dragao puro (Vida: 50+2xCon+Nivel, Sanidade: 0, Defesa: 15+Con+Nivel, Deslocamento: 4,5m, Tamanho Gigante), que sempre ataca o alvo mais proximo e rola todos os testes com vantagem. Apenas Nidhogg e capaz de retroceder esse estado, atraves de ritual especifico dos Clerigos de alta patente do Templo de Nidhogg.",
+      "parametros": {
+        "loucura_max": 30,
+        "turnos_metamorfose": 7,
+        "dragao_vida_base": 50,
+        "dragao_vida_mult_con": 2,
+        "dragao_defesa_base": 15,
+        "dragao_deslocamento_m": 4.5,
+        "dragao_tamanho": "gigante"
+      }
+    },
+    "catalisadores": {
+      "facil": [
+        "Escama de Draconato",
+        "Dente de Dragao Menor",
+        "Gema de Fogo"
+      ],
+      "medio": [
+        "Sangue de Dragao",
+        "Escama de Wyvern",
+        "Essencia Elemental"
+      ],
+      "dificil": [
+        "Coracao de Dragao Ancestral",
+        "Escama de Tita",
+        "Chama do Dragao Primal"
+      ]
+    }
+  },
+  "elfo": {
+    "nome": "Elfo",
+    "descricao_curta": "Guardioes da Floresta-mundo Sylvaka, divididos entre Elfos Solares e Elfos Lunares apos a Guerra do Metal.",
+    "status": null,
+    "modificadores_atributo": null,
+    "linhagens": [
+      {
+        "id": "solar",
+        "nome": "Elfo Solar",
+        "descricao_curta": "Permaneceram nas regioes centrais de Sylvaka sob luz direta do sol; pele bronzeada ou dourada, olhos vivos e cabelos em tons quentes.",
+        "status": {
+          "vida": {
+            "base": 8,
+            "atributo": "con",
+            "mult_ascensao": 4
+          },
+          "sanidade": {
+            "base": 8,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 9,
+            "atributo": "sab",
+            "mult_ascensao": 2
+          },
+          "defesa": {
+            "base": 7,
+            "atributo": "des",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 1,
+          "con": -1,
+          "int": 0,
+          "sab": 1,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      },
+      {
+        "id": "lunar",
+        "nome": "Elfo Lunar",
+        "descricao_curta": "Alocados nas partes densas e enevoadas das florestas; pele alva com toques azulados, olhos prateados e cabelos platinados ou azul-escuros.",
+        "status": {
+          "vida": {
+            "base": 7,
+            "atributo": "con",
+            "mult_ascensao": 2
+          },
+          "sanidade": {
+            "base": 9,
+            "atributo": "sab",
+            "mult_ascensao": 3
+          },
+          "arche": {
+            "base": 11,
+            "atributo": "sab",
+            "mult_ascensao": 4
+          },
+          "defesa": {
+            "base": 5,
+            "atributo": "des",
+            "mult_ascensao": 1
+          },
+          "deslocamento_m": 9,
+          "ataque_desarmado": {
+            "dano": "1",
+            "atributo": "for",
+            "tipo_dano": "impacto"
+          }
+        },
+        "modificadores_atributo": {
+          "for": 0,
+          "des": 1,
+          "con": -1,
+          "int": 0,
+          "sab": 1,
+          "car": 0
+        },
+        "sistema_racial_inato": null
+      }
+    ],
+    "habilidades_globais": [
+      {
+        "id": "sentidos-de-sylvaka",
+        "nome": "Sentidos de Sylvaka",
+        "descricao": "Seus olhos e ouvidos foram moldados para notar as menores alteracoes no ambiente. Voce recebe +2 em Percepcao e +2 em Investigacao. Alem disso, voce ignora as penalidades de camuflagem leve causadas por folhagens ou copas de arvores em testes de Percepcao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "passo-das-petalas",
+        "nome": "Passo das Petalas",
+        "descricao": "Seus movimentos sao leves e nao deixam rastros nas superficies naturais. Voce se torna treinado na pericia Furtividade. Quando estiver em terreno de floresta, mata ou vegetacao densa, voce recebe Vantagem em testes de Furtividade para ocultar sua presenca.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "flecha-de-amion",
+        "nome": "Flecha de Amion",
+        "descricao": "Sua raca possui uma afinidade natural com o combate a distancia para proteger as clareiras. Voce recebe treinamento na pericia Pontaria. Uma vez por turno, ao realizar um ataque a distancia contra um alvo que esteja em terreno dificil natural, voce recebe +2 no teste de Acerto.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "conexao-da-flora",
+        "nome": "Conexao da Flora",
+        "descricao": "Sua ligacao com o deus da natureza permite que voce entenda os sussurros da mata. Voce se torna treinado na pericia Sobrevivencia. Pode realizar um teste de Sobrevivencia (DT 15) para conversar rudimentarmente com plantas locais e descobrir se alguma criatura passou por aquela regiao nas ultimas 24 horas.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "sangue-renovador",
+        "nome": "Sangue Renovador",
+        "descricao": "O vigor de Amion corre em suas veias, acelerando sua recuperacao fisica. Sempre que voce receber qualquer efeito de Regeneracao ou Cura vindo de uma habilidade ou item, a quantidade de Vida restaurada aumenta em +2 pontos fixos.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "agilidade-arborea",
+        "nome": "Agilidade Arborea",
+        "descricao": "Seu corpo esguio ignora a gravidade ao lidar com a vegetacao. Voce pode gastar uma Acao de Movimento para escalar superficies verticais naturais (como troncos de arvores e cipos) sem reduzir seu deslocamento padrao. Alem disso, recebe +2 em testes de Acrobacia para realizar saltos entre plataformas elevadas ou copas de arvores.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "esquiva-graciosa",
+        "nome": "Esquiva Graciosa",
+        "descricao": "Sua flexibilidade permite desviar de projeteis com extrema elegancia. Quando for alvo de um ataque a distancia que utilize a pericia Pontaria, voce pode gastar sua Acao de Reacao para receber +2 de bonus em sua Defesa contra aquele ataque especifico.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "foco-do-cacador",
+        "nome": "Foco do Cacador",
+        "descricao": "Sua paciencia e visao focada anulam as defesas do cenario. Voce pode gastar uma Acao Bonus para marcar um inimigo em alcance longo que esteja visivel. Ate o final do seu turno, todos os seus ataques com armas de disparo contra o alvo marcado ignoram os efeitos de cobertura leve fornecidos por arvores ou estruturas.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "bencao-de-amion",
+        "nome": "Bencao de Amion",
+        "descricao": "Seu organismo possui anticorpos misticos desenvolvidos pela convivencia com os perigos da mata. Voce se torna completamente imune ao efeito negativo Envenenamento caso ele seja proveniente de plantas, espinhos naturais, fungos ou toxinas vegetais encontradas em florestas.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "trilo-da-floresta",
+        "nome": "Trilo da Floresta",
+        "descricao": "Voce consegue manipular suas cordas vocais para replicar com perfeicao a fauna silvestre. Voce e capaz de imitar o som de qualquer animal ou passaro nativo de medio a pequeno porte. Criaturas humanoides que ouvirem o chamado devem passar em um teste de Intuicao contra sua Enganacao para perceber que o som e artificial.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [
+      {
+        "id": "vigor-do-verao",
+        "nome": "Vigor do Verao",
+        "descricao": "O calor do sol revigora seu espirito de combate nos momentos de maior acao. Enquanto estiver sob a luz direta do sol ou durante as estacoes de Primavera e Verao, voce recebe +2 em Iniciativa e seu deslocamento aumenta em +1,5m.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "solar"
+      },
+      {
+        "id": "claridade-purificadora",
+        "nome": "Claridade Purificadora",
+        "descricao": "A energia do dia queima as impurezas do seu corpo. Uma vez por cena, voce pode gastar uma Acao de Movimento e 2 pontos de Arche para canalizar o calor solar, ativando o efeito Purificacao em si mesmo para remover todos os Efeitos Negativos atuais.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "solar"
+      },
+      {
+        "id": "flecha-incandescente",
+        "nome": "Flecha Incandescente",
+        "descricao": "Seu Arche molda a energia termica solar diretamente em seus ataques. Quando voce realizar um ataque bem-sucedido utilizando a pericia Pontaria, voce pode pagar 2 pontos de Arche para imbuir o projetil em chamas, aplicando o efeito negativo Queimadura no alvo.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "solar"
+      },
+      {
+        "id": "aura-solar",
+        "nome": "Aura Solar",
+        "descricao": "Seu corpo emite ondas de calor e luz cegante. Gaste uma Acao Padrao e 3 pontos de Arche para criar uma aura luminosa em um raio de 4,5m ao seu redor que dura 2 turnos. Todos os inimigos que iniciarem seus respectivos turnos dentro da area devem ser bem-sucedidos em um teste de Reflexos (DT 15) ou receberao o efeito negativo Cego por 1 turno.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "solar"
+      },
+      {
+        "id": "chama-do-amanhecer",
+        "nome": "Chama do Amanhecer",
+        "descricao": "Sua energia solar expoe as falhas na guarda dos inimigos. Sempre que voce causar dano do tipo Fogo a uma criatura, a intensidade do brilho deixa o alvo vulneravel. O proximo ataque fisico ou magico realizado por um de seus aliados contra essa mesma criatura recebera +2 de bonus no teste de Acerto.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "solar"
+      },
+      {
+        "id": "manto-de-outono",
+        "nome": "Manto de Outono",
+        "descricao": "A escuridao e as sombras das estacoes frias cobrem o seu corpo. Enquanto estiver em ambientes de penumbra, durante a noite, ou nas estacoes de Outono e Inverno, voce recebe +2 de bonus em sua Defesa contra ataques a distancia.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "lunar"
+      },
+      {
+        "id": "meditacao-astral",
+        "nome": "Meditacao Astral",
+        "descricao": "Sua mente se estabiliza perfeitamente ao vislumbrar o cosmos. Uma vez por dia, durante uma cena de descanso que ocorra sob o luar, voce pode canalizar o poder da noite para recuperar 3 pontos adicionais de Arche alem do seu valor padrao de descanso.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "lunar"
+      },
+      {
+        "id": "passo-etereo",
+        "nome": "Passo Etereo",
+        "descricao": "Seu corpo oscila suavemente entre o mundo fisico e a nevoa fria da noite. Uma vez por cena, ao receber um ataque direto que ultrapasse sua Defesa, voce pode gastar sua Reacao e 3 pontos de Arche para transformar o dano recebido em apenas metade do valor total.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "lunar"
+      },
+      {
+        "id": "flecha-sombria",
+        "nome": "Flecha Sombria",
+        "descricao": "A calada da noite carrega o torpor do descanso eterno em suas flechas. Quando realizar um ataque utilizando a pericia Pontaria estando sob a condicao Invisivel ou Escondido durante a noite, voce pode pagar 2 de Arche. Se o ataque acertar, o alvo deve passar em um teste de Vontade (DT 16) ou recebera o efeito negativo Sono por 1 turno.",
+        "tipo": "ativa",
+        "efeitos": [],
+        "linhagem_id": "lunar"
+      },
+      {
+        "id": "bencao-de-selene",
+        "nome": "Bencao de Selene",
+        "descricao": "O luar confere a voce uma postura inabalavel e rigida. Enquanto estiver lutando sob a luz da lua, voce recebe automaticamente o efeito positivo Fortificacao (+2 em Defesa). Alem disso, sua mente se torna completamente imune a efeitos de controle mental ou medo, como as pericias Assustar ou Intimidacao vindas de inimigos.",
+        "tipo": "passiva",
+        "efeitos": [],
+        "linhagem_id": "lunar"
+      }
+    ],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Folha de Yggdrasil",
+        "Seiva de Carvalho",
+        "Flor da Lua"
+      ],
+      "medio": [
+        "Galho de Arvore Ancestral",
+        "Cristal de Mana",
+        "Essencia de Fada"
+      ],
+      "dificil": [
+        "Semente da Criacao",
+        "Coracao da Floresta Virgem",
+        "Fruto da Eternidade"
+      ]
+    }
+  },
+  "fada": {
+    "nome": "Fada",
+    "descricao_curta": "Criaturas aladas cujo corpo reage diretamente as estacoes do ano, ganhando tracos e magias unicas conforme o clima de Midgard.",
+    "status": {
+      "vida": {
+        "base": 8,
+        "atributo": "con",
+        "mult_ascensao": 2
+      },
+      "sanidade": {
+        "base": 8,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 11,
+        "atributo": "sab",
+        "mult_ascensao": 4
+      },
+      "defesa": {
+        "base": 5,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "deslocamento_voo_m": 12,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": -1,
+      "des": 1,
+      "con": 0,
+      "int": 0,
+      "sab": 1,
+      "car": 0
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "asas-de-amion",
+        "nome": "Asas de Amion",
+        "descricao": "Seu par de asas permite que voce execute voos controlados em combate. Voce pode utilizar sua acao de movimento para voar, erguendo-se ate 4,5m do chao. Pode permanecer voando por ate 2 turnos consecutivos antes de precisar tocar uma superficie solida para descansar suas asas por 1 turno. (Habilidade inata, concedida automaticamente a todas as fadas, nao conta entre as escolhidas no Grau 0.)",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "velo-protetor",
+        "nome": "Velo Protetor",
+        "descricao": "Sua magia cria uma barreira instintiva para resguardar a vida de quem luta ao seu lado. Uma vez por rodada, quando um aliado adjacente a voce for alvo de um ataque fisico, voce pode gastar sua Reacao para conceder +2 de Defesa a ele contra aquele golpe.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "poeira-de-alivio",
+        "nome": "Poeira de Alivio",
+        "descricao": "Suas asas liberam esporos brilhantes que acalmam as dores do corpo. Voce se torna treinada na pericia Cura. Alem disso, ao utilizar a acao Primeiros Socorros, voce pode gastar 1 ponto de Arche para realizar a cura a ate alcance curto, em vez de corpo a corpo.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "essencia-evasiva",
+        "nome": "Essencia Evasiva",
+        "descricao": "Sua agilidade aerea torna seu corpo um alvo extremamente dificil de rastrear no ar. Enquanto estiver voando atraves das Asas de Amion, todos os ataques a distancia realizados contra voce que utilizem a pericia Pontaria sofrem Desvantagem.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "toque-da-renovacao",
+        "nome": "Toque da Renovacao",
+        "descricao": "Sua energia vital consegue estancar feridas profundas atraves do toque. Gastando uma Acao Padrao e 2 pontos de Arche, voce pode tocar em um aliado e remover imediatamente dele o efeito negativo Sangramento ou Envenenamento.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "zunido-distrativo",
+        "nome": "Zunido Distrativo",
+        "descricao": "O bater veloz de suas asas emite um som mistico que quebra a concentracao dos rivais. Sempre que voce terminar seu movimento de voo adjacente a um inimigo, ele recebe uma penalidade de -2 em testes de Concentracao ou Canalizacao ate o inicio do seu proximo turno.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "casulo-de-arche",
+        "nome": "Casulo de Arche",
+        "descricao": "Sua energia magica envolve o corpo de um companheiro em um escudo biologico. Gastando uma Acao Padrao e 3 pontos de Arche, voce concede a um aliado em alcance curto um Escudo equivalente a 20% da Vida Maxima dele que dura por ate 2 turnos.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "sentinela-alerta",
+        "nome": "Sentinela Alerta",
+        "descricao": "Seus instintos de guardia captam as vibracoes e alteracoes nas correntes de ar. Voce recebe +2 em Percepcao. Alem disso, inimigos Escondidos ou Invisiveis nao recebem Vantagem em testes de ataque contra voce.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "canalizadora-de-amion",
+        "nome": "Canalizadora de Amion",
+        "descricao": "Sua proximidade com a essencia mistica de seu criador amplia seu reservatorio magico. Voce se torna treinada na pericia Misticismo. Alem disso, voce recupera +1 ponto de Arche adicional sempre que realizar um descanso diario.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "impulso-das-asas",
+        "nome": "Impulso das Asas",
+        "descricao": "Voce consegue forcar suas asas para realizar uma evasao desesperada. Sempre que voce for alvo de uma habilidade ou ataque em area, voce pode gastar sua Reacao para receber Vantagem em seu teste de Reflexos ou Acrobacia para mitigar o dano.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "espirito-compassivo",
+        "nome": "Espirito Compassivo",
+        "descricao": "Sua mente e blindada pela determinacao de manter seu bando vivo. Voce recebe treinamento na pericia Vontade. Sempre que voce realizar um teste de Vontade para resistir a efeitos de medo ou panico (como Assustar), voce adiciona +2 de bonus no resultado.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "encolhimento-proporcional",
+        "nome": "Encolhimento Proporcional",
+        "descricao": "Voce consegue retrair temporariamente o seu volume fisico. Gastando uma Acao Bonus, voce pode diminuir seu tamanho para Pequeno por ate 3 minutos. Enquanto estiver encolhida, voce recebe +3 em testes de Furtividade, mas todos os seus danos fisicos baseados em Forca sofrem uma penalidade de -2.",
+        "tipo": "ativa",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": {
+      "tipo": "sinfonia_das_estacoes",
+      "nome": "Sinfonia das Estacoes",
+      "descricao": "O corpo de uma fada reage de forma direta e involuntaria ao clima e a estacao atual do mundo de Midgard, alterando seus tracos fisicos e concedendo uma caracteristica mistica passiva unica conforme a estacao vigente: Primavera (Regeneracao de 1d8+2 de Vida no inicio de cada turno durante os 2 primeiros turnos de combate), Verao (poderes de suporte que concedem Escudo ou Protecao a aliados aumentam o valor em um bonus igual ao modificador de Sabedoria), Outono (+2 de bonus em testes de Vontade ou Misticismo para resistir a controle mental ou debuffs), Inverno (Resistencia Elemental a dano de Agua/frio e +1 de Defesa permanente enquanto durar o inverno).",
+      "parametros": {
+        "primavera": "regeneracao_1d8_mais_2_por_2_turnos",
+        "verao": "bonus_suporte_igual_mod_sabedoria",
+        "outono": "bonus_2_vontade_misticismo_vs_controle_mental",
+        "inverno": "resistencia_agua_frio_e_1_defesa_permanente"
+      }
+    },
+    "catalisadores": {
+      "facil": [
+        "Po de Fada",
+        "Petala de Orquidea",
+        "Gota de Orvalho"
+      ],
+      "medio": [
+        "Cristal de Ilusao",
+        "Asa de Borboleta Espiritual",
+        "Nectar do Crepusculo"
+      ],
+      "dificil": [
+        "Essencia de Luz",
+        "Fragmento de Dimensao",
+        "Coracao do Reino das Fadas"
+      ]
+    }
+  },
+  "goblin": {
+    "nome": "Goblin",
+    "descricao_curta": "Pequenos sobreviventes urbanos, mestres da improvisacao, da labia e da fuga oportunista.",
+    "status": {
+      "vida": {
+        "base": 8,
+        "atributo": "con",
+        "mult_ascensao": 3
+      },
+      "sanidade": {
+        "base": 6,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 8,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "defesa": {
+        "base": 10,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 0,
+      "des": 1,
+      "con": 0,
+      "int": 1,
+      "sab": 0,
+      "car": -1
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "sobrevivente-encardido",
+        "nome": "Sobrevivente Encardido",
+        "descricao": "Quando sofrer um dano que reduziria sua Vida a 0 ou menos, voce pode usar sua Acao de Reacao para rolar um teste de Enganacao com CD25. Se passar, voce finge sua morte com maestria, sobrevivendo com exatamente 1 de Vida e removendo imediatamente todos os Efeitos Negativos que estavam ativos em seu corpo. (Usavel apenas uma vez por combate).",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "engenhosidade-improvisada",
+        "nome": "Engenhosidade Improvisada",
+        "descricao": "Sua mente voltada para o improviso permite que voce utilize qualquer objeto do cenario como uma arma funcional, causando 1d8+Forca de dano fisico. Alem disso, durante uma cena de descanso, voce pode gastar tralhas ao seu redor para aprimorar uma arma ou armadura de um aliado, concedendo +1 de bonus no proximo teste de Acerto ou de Defesa realizado com aquele equipamento na proxima cena de combate.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "agilidade-do-ladrao",
+        "nome": "Agilidade do Ladrao",
+        "descricao": "Sua natureza sorrateira se sobressai quando voce opera nas sombras. Sempre que estiver agindo de forma discreta, silenciosa ou sob a condicao Escondido, voce pode substituir qualquer teste de Reflexos pelo seu bonus da pericia Ladinagem, recebendo +3 de bonus fixo nessa acao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "reflexo-covarde",
+        "nome": "Reflexo Covarde",
+        "descricao": "O medo desperta um senso de preservacao avassalador em seu corpo. Sempre que seus pontos de Vida atuais estiverem abaixo de 50% do seu valor Maximo, voce recebe um bonus instintivo de +4 pontos em todos os seus testes de Reflexos e sua Defesa aumenta em +2 contra ataques de oportunidade.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "cheiro-de-encrenca",
+        "nome": "Cheiro de Encrenca",
+        "descricao": "Voce possui um sexto sentido extremamente apurado para emboscadas e perigo iminente. No inicio de qualquer combate, voce nao rola Iniciativa e torna-se automaticamente o primeiro na ordem de acao durante a primeira rodada (empate desfeito pelo maior modificador de Destreza).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "grito-goblinoide",
+        "nome": "Grito Goblinoide",
+        "descricao": "Voce consegue berrar em uma frequencia estridente e irritante que estracalha os nervos dos oponentes. Voce pode gastar uma Acao de Movimento para soltar um grito audivel. Todos os inimigos em um alcance de ate 12 metros recebem uma penalidade de -3 pontos em sua Defesa por 1 rodada completa.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "abencoado-para-viver",
+        "nome": "Abencoado para Viver",
+        "descricao": "Seu organismo possui uma resistencia urbana inexplicavel e se recupera de ferimentos com uma velocidade impressionante. Sempre que voce receber qualquer efeito de cura, a quantidade total de Vida restaurada em voce e aumentada em 50% (arredondado para baixo).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "criado-nas-tralhas",
+        "nome": "Criado nas Tralhas",
+        "descricao": "A gambiarra corre em suas veias de forma natural. Gastando uma Acao Padrao e alguns pedacos de ferro, madeira ou sucata ao seu redor, voce consegue replicar o efeito de qualquer ferramenta comum. O objeto improvisado possui uma Durabilidade de 1d4 usos bem-sucedidos; apos isso, se despedaca.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "labia-do-malandro",
+        "nome": "Labia do Malandro",
+        "descricao": "Sua labia trapaceira garante a voce um bonus de +3 em testes da pericia Enganacao sempre que estiver conduzindo uma negociacao comercial ou barganha. Alem disso, se voce rolar uma falha critica em qualquer teste de Enganacao, pode pagar 1d4+2 de Sanidade para anular o desastre e rolar o dado novamente (uma vez por cena).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "olhar-de-tesouros",
+        "nome": "Olhar de Tesouros",
+        "descricao": "Seus olhos brilham intensamente ao farejar a possibilidade de lucro ou objetos valiosos. Uma vez por cena, voce pode gastar uma Acao Padrao para examinar minuciosamente o ambiente ao seu redor e realizar um teste de Ladinagem com CD21. Se bem-sucedido, o mestre deve revelar se ha algum compartimento secreto, item valioso, armadilha oculta ou tesouro escondido na area imediata.",
+        "tipo": "ativa",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Sucata Magica",
+        "Engrenagem Runica",
+        "Vidro de Garrafa"
+      ],
+      "medio": [
+        "Cristal de Explosao",
+        "Componente de Reliquia",
+        "Essencia de Metal"
+      ],
+      "dificil": [
+        "Nucleo de Tecnologia Ancestral",
+        "Fragmento de Artefato Proibido",
+        "Coracao do Inventor"
+      ]
+    }
+  },
+  "kaimar": {
+    "nome": "Kaimar",
+    "descricao_curta": "Hibridos amaldicoados pelo Frenesi do Luar, sofrendo metamorfose bestial compulsoria nas noites de lua cheia.",
+    "status": {
+      "vida": {
+        "base": 10,
+        "atributo": "con",
+        "mult_ascensao": 5
+      },
+      "sanidade": {
+        "base": 6,
+        "atributo": "sab",
+        "mult_ascensao": 1
+      },
+      "arche": {
+        "base": 8,
+        "atributo": "int",
+        "mult_ascensao": 3
+      },
+      "defesa": {
+        "base": 7,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 1,
+      "des": 1,
+      "con": 0,
+      "int": 0,
+      "sab": -1,
+      "car": 0
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "sede-de-sangue",
+        "nome": "Sede de Sangue",
+        "descricao": "A necessidade de se alimentar guia seus golpes mesmo fora da Forma Bestial. Sempre que voce desferir um ataque fisico corpo a corpo contra um alvo que esteja sob a condicao Sangramento, voce pode gastar 2 pontos de Arche para realizar uma mordida brutal. Se acertar, voce causa +1d6 de dano e recupera pontos de Vida iguais ao dano total causado por essa mordida.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "despertar-bestial",
+        "nome": "Despertar Bestial",
+        "descricao": "Voce aprendeu a forcar as grades da sua propria maldicao por breves momentos. Uma vez por combate, voce pode gastar uma Acao Padrao e 3 pontos de Arche para manifestar voluntariamente o Frenesi do Luar por 3 rodadas completas, mesmo fora da lua cheia. Todas as regras, bonus e penalidades da Forma Bestial se aplicam imediatamente.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "ancoragem-melodica",
+        "nome": "Ancoragem Melodica",
+        "descricao": "Sua mente reage de forma extremamente profunda aos estimulos de calmaria divinos. Sempre que voce estiver sob o efeito redutor do som da flauta de madeira ou proximo ao mar, voce recebe +4 de bonus em todos os seus testes de Vontade e torna-se completamente imune a habilidades inimigas que causem as condicoes Medo ou Provocacao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "penitencia-de-prata",
+        "nome": "Penitencia de Prata",
+        "descricao": "O ato de flagelar sua propria marca com prata feerica blindou seu organismo contra a dor. Uma vez por cena, quando sofrer um Efeito Negativo fisico (como Sangramento ou Envenenamento), voce pode gastar uma Acao Bonus e queimar voluntariamente 2 pontos de sua Sanidade atual para expurgar e encerrar imediatamente aquele efeito de seu corpo.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "predador-noturno",
+        "nome": "Predador Noturno",
+        "descricao": "Seus olhos se adaptaram a escuridao das cavernas onde sua raca se esconde. Voce possui Visao no Escuro completa. Alem disso, sempre que estiver operando em escuridao total ou penumbra, voce recebe +2 de bonus fixo em testes de Percepcao e Ladinagem. Em contrapartida, rolar testes sob luz solar direta impoe -1 de penalidade em suas acoes.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "faro-para-fraqueza",
+        "nome": "Faro para Fraqueza",
+        "descricao": "O cheiro do sangue e do medo de suas presas e impossivel de ocultar de suas narinas. Voce consegue farejar a localizacao exata de qualquer criatura viva que esteja sangrando em um raio de ate 18 metros, mesmo que ela esteja invisivel ou atras de cobertura total, ignorando qualquer bonus de camuflagem que ela possua contra voce.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "resiliencia-do-paria",
+        "nome": "Resiliencia do Paria",
+        "descricao": "Anos vivendo como um nomade rejeitado endureceram seu corpo contra as intemperies do mundo. Voce se torna automaticamente Treinado na pericia Sobrevivencia. Alem disso, seu sistema imunologico desenvolve imunidade natural a doencas mundanas e resistencia a venenos de nivel baixo (CD15 ou menor).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "salto-do-perseguidor",
+        "nome": "Salto do Perseguidor",
+        "descricao": "Sua musculatura hibrida permite arranques de movimentacao assustadores. Voce pode gastar uma Acao de Movimento e 1 ponto de Arche para realizar um salto vertical ou horizontal de ate 6 metros de distancia. Este movimento permite ultrapassar obstaculos ou inimigos de tamanho Medio ou menor sem gerar ataques de oportunidade.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "garras-dilacerantes",
+        "nome": "Garras Dilacerantes",
+        "descricao": "Suas unhas sao naturalmente endurecidas e afiadas como navalhas. Seus ataques desarmados deixam de causar dano de impacto comum e passam a causar 1d6 + Forca de dano de corte. Sempre que voce tirar um Sucesso Critico em um ataque desarmado utilizando suas garras, o alvo sofre a condicao Sangramento instantaneamente.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "vontade-encurralada",
+        "nome": "Vontade Encurralada",
+        "descricao": "O desespero de perder sua humanidade faz com que voce se apegue ao livre arbitrio com todas as forcas. Sempre que uma habilidade magica ou efeito mistico inimigo tentar controlar as suas acoes, forcar voce a atacar um aliado ou induzir uma condicao mental adversa (exceto as restricoes do seu proprio Frenesi), voce recebe Vantagem no teste de Vontade para negar o efeito.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": {
+      "tipo": "frenesi_do_luar",
+      "nome": "O Frenesi do Luar",
+      "descricao": "Maldicao lancada pelos deuses elementares que forca o kaimar a sofrer uma metamorfose animalesca compulsoria durante as noites de lua cheia, ou voluntariamente atraves de suas capacidades latentes, assumindo a Forma Bestial. Na Forma Bestial: Vida sem alteracoes (mas +5 de Vida Temporaria por Nivel de Ascensao ao transformar), Sanidade reduzida a metade enquanto durar, Defesa 7+Destreza+Nivel de Ascensao, Deslocamento 12m, Tamanho Grande. O kaimar sempre se move e ataca o alvo mais proximo devido a fome insaciavel, fugindo de fontes de luz mistica ou solar direta. Testes de Luta, Atletismo, Acrobacia e Reflexos recebem +4 fixo; ataques desarmados passam a causar 1d8+Forca de dano de corte; cura pontos de vida iguais ao Nivel de Ascensao sempre que causa dano a uma criatura viva. Para manter a consciencia e agir livremente por 1 rodada, o kaimar deve passar em um teste de Vontade CD20 (ou CD12 se estiver a menos de 50 metros do oceano ou sob o som direto de uma flauta de madeira tocada por um aliado). Apenas a complacencia de Tetis e Amion e capaz de retroceder ou conter esse estado.",
+      "parametros": {
+        "defesa_base": 7,
+        "deslocamento_m": 12,
+        "tamanho": "grande",
+        "cd_vontade_normal": 20,
+        "cd_vontade_reduzida": 12,
+        "bonus_testes_fisicos": 4
+      }
+    },
+    "catalisadores": {
+      "facil": [
+        "Garra de Predador",
+        "Pelo de Besta",
+        "Presa de Cacador"
+      ],
+      "medio": [
+        "Essencia de Predador",
+        "Sangue de Alpha",
+        "Cristal de Instinto"
+      ],
+      "dificil": [
+        "Coracao da Besta Primordial",
+        "Presa do Antigo",
+        "Espirito da Floresta"
+      ]
+    }
+  },
+  "melanthae": {
+    "nome": "Melanthae",
+    "descricao_curta": "Raca amaldicoada ligada a toxinas e venenos, guardando conhecimento ancestral da flora proibida de Sylvaka.",
+    "status": {
+      "vida": {
+        "base": 7,
+        "atributo": "con",
+        "mult_ascensao": 2
+      },
+      "sanidade": {
+        "base": 9,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 11,
+        "atributo": "int",
+        "mult_ascensao": 4
+      },
+      "defesa": {
+        "base": 5,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": -1,
+      "des": 0,
+      "con": 0,
+      "int": 1,
+      "sab": 1,
+      "car": 0
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "mente-blindada",
+        "nome": "Mente Blindada",
+        "descricao": "A resiliencia intelectual da sua raca protege sua psique contra invasoes externas. Voce recebe +3 de bonus fixo em todos os testes de Vontade para resistir a efeitos de controle mental, ilusoes ou habilidades que causem dano direto a sua Sanidade.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "ferroada-corrosiva",
+        "nome": "Ferroada Corrosiva",
+        "descricao": "Voce secreta uma toxina letal, aceitando o preco da punicao divina. Voce pode gastar uma Acao Bonus e 2 pontos de Arche para imbuir sua arma ou ataque desarmado com peconha. Seu proximo ataque bem-sucedido causara +2d6 de dano de Veneno e aplicara a condicao Envenenado ao alvo. Contudo, voce sofre instantaneamente 3 pontos de dano fisico fixo que nao pode ser reduzido por Defesa.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "segredos-de-sylvaka",
+        "nome": "Segredos de Sylvaka",
+        "descricao": "Mesmo amaldicoadas, o conhecimento milenar sobre a flora do mundo antigo ainda reside em sua mente. Voce se torna automaticamente Treinada na pericia Sobrevivencia ou Ciencia (Natureza). Alem disso, voce recebe Vantagem ao rolar testes para identificar plantas, produzir antidotos ou manipular substancias alquimicas vegetais.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "nevoa-de-shaamyrth",
+        "nome": "Nevoa de Shaamyrth",
+        "descricao": "Voce exala um gas toxico pelos poros, danificando os pulmoes dos inimigos e os seus proprios. Voce pode gastar uma Acao Padrao e 3 pontos de Arche para criar uma nuvem de fumaca esverdeada com 3 metros de raio ao seu redor. Todos os inimigos na area sofrem 1d10 de dano de Veneno por rodada em que permanecerem na nevoa. Como efeito colateral, voce recebe a condicao Vulneravel ate o final da rodada.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "sangue-peconhento",
+        "nome": "Sangue Peconhento",
+        "descricao": "Suas defesas biologicas reagem de forma violenta quando sua integridade e violada. Sempre que voce sofrer um ataque fisico corpo a corpo que cause dano a sua Vida, o atacante deve passar em um teste de Reflexos (CD 15) ou recebera 4 pontos fixos de dano de Veneno devido aos respingos do seu sangue toxico.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "prestigio-de-caelith",
+        "nome": "Prestigio de Caelith",
+        "descricao": "A sua raca possui uma forte influencia politica e respeito na terra do refugio. Enquanto voce estiver dentro das fronteiras de Caelith ou interagindo com a nobreza daquela nacao, voce recebe +4 de bonus fixo em testes de Diplomacia, Enganacao e Intuicao.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "toxina-entorpecente",
+        "nome": "Toxina Entorpecente",
+        "descricao": "Seu veneno afeta o sistema nervoso dos alvos, diminuindo a reacao deles. Ao causar dano de Veneno a uma criatura atraves de qualquer habilidade de raca, voce pode gastar 1 ponto de Arche adicional para forcar o alvo a realizar um teste de Fortitude (CD 16). Se ele falhar, tera seu Deslocamento reduzido pela metade por 2 rodadas.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "olhar-calculista",
+        "nome": "Olhar Calculista",
+        "descricao": "Sua frieza e capacidade de analise permitem prever as intencoes dos interlocutores. Voce pode usar sua Inteligencia em vez de Sabedoria ao rolar testes da pericia Intuicao. Alem disso, uma vez por cena, voce pode gastar uma Acao Bonus para descobrir instantaneamente se um NPC esta mentindo ativamente para voce.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "purificacao-dolorosa",
+        "nome": "Purificacao Dolorosa",
+        "descricao": "Seu conhecimento alquimico permite que voce force seu proprio veneno a anular toxinas externas, mesmo que isso queime por dentro. Sempre que voce estiver sob o efeito de um veneno ou doenca de origem externa, voce pode gastar uma Acao Padrao para expurgar completamente a condicao. Ao fazer isso, o conflito quimico interno causa a voce 5 pontos de dano de Vida fixo.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "persuasao-peconhenta",
+        "nome": "Persuasao Peconhenta",
+        "descricao": "Voce utiliza microparticulas de feromonios venenosos no ar para fragilizar a linha de raciocinio de uma criatura. Durante uma interacao social, voce pode gastar uma Acao Padrao e 2 pontos de Arche para induzir o alvo a cometer um deslize. O alvo recebe -3 de penalidade em sua Defesa Mental ou testes de Vontade contra as suas pericias de interacoes (Diplomacia ou Enganacao) ate o fim da cena.",
+        "tipo": "ativa",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Po de Casca Negra",
+        "Seiva Sombria",
+        "Petala Roxa"
+      ],
+      "medio": [
+        "Gema Corrompida",
+        "Essencia de Melanthae",
+        "Veneno Destilado"
+      ],
+      "dificil": [
+        "Coracao de Ebano",
+        "Orquidea Negra Primal",
+        "Semente da Noite Eterna"
+      ]
+    }
+  },
+  "merith": {
+    "nome": "Merith",
+    "descricao_curta": "Povo aquatico adaptado a vida nos oceanos, com cauda ativa para natacao e forte ligacao com Tetis.",
+    "status": {
+      "vida": {
+        "base": 8,
+        "atributo": "con",
+        "mult_ascensao": 3
+      },
+      "sanidade": {
+        "base": 7,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 9,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "defesa": {
+        "base": 7,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "deslocamento_natacao_m": 15,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 1,
+      "des": 1,
+      "con": -1,
+      "int": 0,
+      "sab": 0,
+      "car": 0
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "pele-hidrodinamica",
+        "nome": "Pele Hidrodinamica",
+        "descricao": "Sua pele se adapta instantaneamente a umidade. Sempre que voce estiver pisando em um Terreno Molhado, submerso na agua ou sob efeito de chuva, voce recebe +2 de bonus em sua Defesa e ignora qualquer penalidade de movimento causada por terrenos dificeis baseados em lama ou agua.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "chamado-da-mare",
+        "nome": "Chamado da Mare",
+        "descricao": "Voce consegue conjurar a umidade do ar para sabotar o posicionamento inimigo. Voce pode gastar uma Acao Bonus e 2 pontos de Arche para cobrir uma area circular de 6 metros de raio ao seu redor com uma fina camada de agua mistica. Essa area se torna permanentemente um Terreno Molhado para fins de interacoes mecanicas.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "combatente-de-conves",
+        "nome": "Combatente de Convés",
+        "descricao": "Voce passou a vida lidando com o balanco violento das ondas. Voce e completamente imune a efeitos de tontura, enjoo ou desestabilizacao causados por embarcacoes em movimento, tempestades ou terremotos. Alem disso, voce recebe +3 em testes de Atletismo e Acrobacia realizados a bordo de navios ou estruturas flutuantes.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "corrente-impulsionadora",
+        "nome": "Corrente Impulsionadora",
+        "descricao": "A agua impulsiona seus movimentos como um estilingue natural. Sempre que voce iniciar o seu turno pisando em um Terreno Molhado ou dentro da agua, voce pode gastar uma Acao de Movimento para realizar uma investida linear gratuita de ate 6 metros. Esse movimento nao provoca ataques de oportunidade.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "bencao-de-tetis",
+        "nome": "Bencao de Tetis",
+        "descricao": "Os pulmoes e tecidos de um merith foram feitos para o oceano. Voce consegue respirar embaixo d'agua indefinidamente e seu corpo e perfeitamente adaptado as pressoes esmagadoras das profundezas. Alem disso, voce possui Resistencia a Dano de Frio (reduz todo dano desse tipo recebido em 3 pontos fixos).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "golpe-hidraulico",
+        "nome": "Golpe Hidraulico",
+        "descricao": "A umidade em suas armas adiciona um impacto devastador aos seus ataques. Sempre que voce desferir um ataque corpo a corpo enquanto estiver sob a condicao de Terreno Molhado ou na agua, seu golpe causa +1d6 de dano fisico adicional e o alvo deve passar em um teste de Fortitude com CD 18 ou sera empurrado 3 metros para tras devido a forca do impacto hidraulico.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "diplomacia-de-recife",
+        "nome": "Diplomacia de Recife",
+        "descricao": "O laco historico de sua raca garante a voce um respeito natural entre os povos do oceano. Voce recebe +3 de bonus fixo em testes de Diplomacia ou Intuicao quando estiver interagindo com Oculardes ou com qualquer criatura que possua o tipo Mistico ou Aquatico.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "marujo-de-sangue",
+        "nome": "Marujo de Sangue",
+        "descricao": "Sua compreensao sobre correntes e ventos maritimos torna voce um timoneiro lendario. Sempre que voce estiver operando, consertando ou pilotando uma embarcacao, qualquer teste do grupo voltado para a navegacao ou sobrevivencia maritima recebe Vantagem caso voce esteja auxiliando.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "sentido-da-corrente",
+        "nome": "Sentido da Corrente",
+        "descricao": "Seu corpo le as vibracoes da agua como se fossem extensoes do seu proprio sistema nervoso. Enquanto estiver submerso ou pisando em um Terreno Molhado que se conecte ao seu alvo, voce ganha Sentido Sismico em um alcance de 12 metros, sendo capaz de detectar a posicao exata de qualquer criatura invisivel ou escondida que tambem esteja em contato com a agua.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "evaporacao-defensiva",
+        "nome": "Evaporacao Defensiva",
+        "descricao": "Voce consegue consumir a agua ao seu redor para criar uma barreira de vapor protetora. Sempre que voce sofrer um ataque e estiver pisando em um Terreno Molhado, voce pode usar sua Acao de Reacao para secar a agua do quadrado onde voce esta. Ao fazer isso, o vapor gerado concede a voce Cobertura Parcial, fazendo com que o ataque inimigo receba Desvantagem. (Usavel uma vez por cena).",
+        "tipo": "ativa",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Concha Brilhante",
+        "Areia do Tempo",
+        "Cristal de Mare"
+      ],
+      "medio": [
+        "Escama de Profundeza",
+        "Perola de Sabedoria",
+        "Essencia de Correnteza"
+      ],
+      "dificil": [
+        "Coracao de Coral Ancestral",
+        "Fragmento de Reliquia Submersa",
+        "Essencia do Fundo"
+      ]
+    }
+  },
+  "ocularde": {
+    "nome": "Ocularde",
+    "descricao_curta": "Criaturas multioculares presenteadas por Tetis com o Olhar da Verdade, capazes de ler mentes ao preco da propria sanidade.",
+    "status": {
+      "vida": {
+        "base": 6,
+        "atributo": "con",
+        "mult_ascensao": 2
+      },
+      "sanidade": {
+        "base": 10,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 10,
+        "atributo": "int",
+        "mult_ascensao": 4
+      },
+      "defesa": {
+        "base": 5,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 0,
+      "des": 0,
+      "con": -1,
+      "int": 1,
+      "sab": 0,
+      "car": 1
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "visao-panoptica",
+        "nome": "Visao Panoptica",
+        "descricao": "Com centenas de olhos vigiando cada angulo morto do seu corpo, e impossivel pega-lo desprevenido. Voce e completamente imune a ataques flanqueados e nao pode sofrer ataques de oportunidade baseados em surpresa. Alem disso, voce recebe +3 de bonus fixo em testes de Percepcao Visual.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "reconhecimento-de-terreno",
+        "nome": "Reconhecimento de Terreno",
+        "descricao": "Seus olhos catalogam falhas e vantagens geograficas instantaneamente. Ao iniciar um combate ou entrar em uma nova area, voce pode gastar uma Acao Bonus para analisar o cenario. Voce e seus aliados ignoram penalidades de movimento por terreno dificil naquela area ate o fim da cena.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "logica-fria",
+        "nome": "Logica Fria",
+        "descricao": "Sua mente processa tudo de forma puramente racional, ignorando apelos emocionais. Voce se torna completamente imune a habilidades que causem a condicao Provocado ou que tentem induzir charme e manipulacao baseados em sentimentos ou empatia.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "conselheiro-de-corte",
+        "nome": "Conselheiro de Corte",
+        "descricao": "Sua astucia e capacidade de ler as microexpressoes dos outros fazem de voce um diplomata temido. Sempre que voce realizar um teste de Diplomacia ou Enganacao utilizando argumentos puramente logicos, matematicos ou vantajosos para o interlocutor, voce recebe +3 de bonus na rolagem.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "timoneiro-calculista",
+        "nome": "Timoneiro Calculista",
+        "descricao": "Sua percepcao espacial aprimorada faz de voce um genio da navegacao. Enquanto voce estiver a bordo de uma embarcacao ou navio oficial, a Defesa do navio recebe +2 de bonus caso voce esteja na funcao de conselheiro ou timoneiro, e voce ganha Vantagem em testes para prever tempestades ou perigos costeiros.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "foco-de-inverno",
+        "nome": "Foco de Inverno",
+        "descricao": "O periodo frio do calendario estimula suas capacidades misticas de estudo. Uma vez por cena, durante um descanso curto de 5 minutos, voce pode realizar uma meditacao silenciosa. Ao fazer isso, voce recupera uma quantidade de pontos de Arche igual a 5 + seu modificador de Inteligencia.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "flash-de-memoria",
+        "nome": "Flash de Memoria",
+        "descricao": "Voce abre seu terceiro olho por uma fracao de segundo apenas para sobrecarregar a mente inimiga com dados projetados. Voce pode gastar uma Acao de Reacao e 2 pontos de Arche quando um inimigo declarar um ataque contra voce para emitir um feixe de memorias confusas. O alvo deve passar em um teste de Vontade (CD 16) ou errara o ataque automaticamente devido a confusao mental.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "processamento-acelerado",
+        "nome": "Processamento Acelerado",
+        "descricao": "Seu cerebro multiocular calcula probabilidades em tempo recorde. Uma vez por cena, ao falhar em um teste de Investigacao, Ciencia ou Guerra, voce pode gastar 2 pontos de Arche para refazer o teste imediatamente com o seu cerebro recalculando as variaveis. Voce deve aceitar o novo resultado.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "analise-de-sentinela",
+        "nome": "Analise de Sentinela",
+        "descricao": "Voce localiza pontos fracos em estruturas e defesas inimigas apenas observando o fluxo de movimento. Sempre que voce gastar uma Acao Padrao observando um alvo sem ataca-lo, seu proximo ataque contra ele ou o proximo ataque de um aliado que voce instruir ignorara 4 pontos da Defesa do alvo.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "fisiologia-eguia",
+        "nome": "Fisiologia Eguia",
+        "descricao": "Seus membros longos e estrutura magra permitem que voce se esprema e escape de situacoes fisicas desfavoraveis. Voce recebe +3 em testes de Acrobacia para escapar de agarroes ou amarras, e consegue se mover atraves de espacos estreitos projetados para criaturas de tamanho Pequeno sem reduzir seu Deslocamento.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": {
+      "tipo": "olhar_da_verdade",
+      "nome": "O Olhar da Verdade",
+      "descricao": "Dadiva sensorial concedida por Tetis que cobra um preco doloroso do organismo. Permite ao ocularde abrir o terceiro olho de sua testa para desvendar o ambiente. Ativar consome uma Acao Padrao e custo fixo de 4 pontos de Arche. Enquanto o terceiro olho estiver aberto: Leitura Cognitiva (le pensamentos superficiais, intencoes imediatas e sentimentos de qualquer criatura inteligente em ate 12 metros), Projecao de Memoria (projeta visualmente memorias proprias ou capturadas do alvo como ilusoes translucidas realistas), Antecipacao Tatica (Vantagem em testes de pericias Mentais como Intuicao, Investigacao e Percepcao). Manter o olho aberto alem do turno inicial exige 2 pontos de Arche por rodada adicional. Ao fechar o Terceiro Olho (voluntariamente ou por falta de Arche), o personagem sofre a condicao Tonto por 1 rodada completa e perde 2 pontos de Sanidade atuais que nao podem ser mitigados. Apenas repouso prolongado ou elixires de foco mental especificos estabilizam o ocularde apos uso prolongado.",
+      "parametros": {
+        "acao": "padrao",
+        "custo_arche_ativacao": 4,
+        "custo_arche_manutencao_por_rodada": 2,
+        "alcance_leitura_m": 12,
+        "penalidade_fechamento": {
+          "condicao": "tonto",
+          "duracao_turnos": 1,
+          "perda_sanidade": 2
+        }
+      }
+    },
+    "catalisadores": {
+      "facil": [
+        "Cristal de Visao",
+        "Olho de Vidro",
+        "Ambar Espiritual"
+      ],
+      "medio": [
+        "Essencia de Telepatia",
+        "Lente de Foco",
+        "Fragmento de Mente"
+      ],
+      "dificil": [
+        "Olho do Vidente",
+        "Cristal da Verdade",
+        "Fragmento do Cosmos"
+      ]
+    }
+  },
+  "orc": {
+    "nome": "Orc",
+    "descricao_curta": "Guerreiros natos, fisicamente formidaveis, movidos pela furia ancestral e pela gloria da batalha.",
+    "status": {
+      "vida": {
+        "base": 12,
+        "atributo": "con",
+        "mult_ascensao": 5
+      },
+      "sanidade": {
+        "base": 5,
+        "atributo": "sab",
+        "mult_ascensao": 2
+      },
+      "arche": {
+        "base": 6,
+        "atributo": "sab",
+        "mult_ascensao": 2
+      },
+      "defesa": {
+        "base": 9,
+        "atributo": "con",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1d6",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": 1,
+      "des": 0,
+      "con": 1,
+      "int": 0,
+      "sab": 0,
+      "car": -1
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "furia-ancestral",
+        "nome": "Furia Ancestral",
+        "descricao": "Voce consegue canalizar o foco de batalha dos seus antepassados. Uma vez por combate, voce pode gastar uma Acao Padrao para ativar esse estado de transe. Durante 3 rodadas completas, todos os seus golpes fisicos ignoram 5 pontos da Defesa de qualquer alvo.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "musculos-de-guerra",
+        "nome": "Musculos de Guerra",
+        "descricao": "Sua fisionomia foi moldada para suportar o peso do combate. Voce se torna automaticamente Treinado na pericia Luta. Alem disso, voce recebe +2 de bonus fixo em todos os testes de Atletismo e sua capacidade de carga e levantamento de peso e duplicada.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "dente-por-dente",
+        "nome": "Dente por Dente",
+        "descricao": "Sua mente tatica reage instantaneamente ao perigo. Sempre que voce sofrer um ataque fisico corpo a corpo bem-sucedido, voce pode gastar sua Acao de Reacao e 2 pontos de Arche para desferir um contra-ataque fisico imediato contra o agressor. Ao fazer isso, sua proxima Acao de Movimento no turno seguinte e consumida.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "estimulo-cardiaco",
+        "nome": "Estimulo Cardiaco",
+        "descricao": "Voce forca seu coracao a bombear adrenalina pura em seus musculos. Voce pode gastar uma Acao Bonus e 3 pontos de Arche para acelerar seus batimentos. Durante 3 rodadas, voce recebe +5 de bonus em testes de Luta e seu Deslocamento aumenta em +3 metros. Assim que o efeito se encerra, seu corpo sofre e voce recebe a condicao Fadiga por 2 turnos.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "cacador-de-gigantes",
+        "nome": "Cacador de Gigantes",
+        "descricao": "Sua mente analitica sabe exatamente como derrubar alvos massivos. Sempre que voce estiver enfrentando um inimigo que possua uma categoria de tamanho maior que a sua, todos os seus ataques corpo a corpo causam +1d6 de dano fisico adicional e qualquer dano que voce sofrer vindo dessa criatura e reduzido em um valor igual ao seu modificador de Luta (maximo de 5 pontos de reducao).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "deus-da-guerra",
+        "nome": "Deus da Guerra",
+        "descricao": "A genialidade militar corre em suas veias. Voce se torna Treinado na pericia Guerra e passa a utilizar seu modificador de Forca em vez de Inteligencia para rolar testes dessa pericia. Alem disso, enquanto seus pontos de Vida atuais estiverem abaixo de 50% do seu valor Maximo, todos os seus golpes recebem um bonus de dano igual ao seu bonus de Guerra.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "rugido-do-guerreiro",
+        "nome": "Rugido do Guerreiro",
+        "descricao": "Seu brado de comando organiza aliados e desestabiliza oponentes. Uma vez por rodada, voce pode gastar uma Acao de Movimento e 2 pontos de Arche para soltar um rugido tatico. Todos os inimigos em um alcance de ate 9 metros recebem uma penalidade de -2 pontos em sua Defesa por 1 rodada, e todos os seus aliados na area recebem +2 de bonus em seus testes de Luta por 1 rodada.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "nascido-para-o-combate",
+        "nome": "Nascido para o Combate",
+        "descricao": "Seu vigor em batalha se alimenta da queda dos seus oponentes. Seus pontos de Vida Maximos aumentam em +5 permanentemente. Alem disso, sempre que voce desferir o golpe final que reduzir um inimigo a 0 de Vida, voce recebe instantaneamente uma quantidade de Pontos de Vida Temporarios igual a 5 + seu Nivel de Ascensao (nao acumulam entre si e duram ate o fim da cena).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "presas-letais",
+        "nome": "Presas Letais",
+        "descricao": "Suas mandibulas sao armas de proximidade terriveis. Voce pode gastar uma Acao Bonus para realizar um ataque de mordida contra um alvo em alcance corpo a corpo, realizando um teste de Luta. Se acertar, causa 1d10 + Forca de dano fisico e o alvo deve passar em um teste de Fortitude (CD 15) ou sofrera a condicao Sangramento. Caso sua rolagem de ataque seja um Sucesso Critico, o alvo sofre Hemorragia automaticamente.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "nao-vou-cair-tao-facil",
+        "nome": "Nao Vou Cair Tao Facil",
+        "descricao": "Sua resiliencia tatica impede que seu corpo apague antes da hora. Uma vez por combate, no exato momento em que seus pontos de Vida forem reduzidos a 0 ou menos por um ataque inimigo, voce pode gastar sua Acao de Reacao para recusar a queda, mantendo-se de pe com exatamente 1 ponto de Vida. Caso faca isso, seu proximo teste de ataque realizado na cena atual recebera Vantagem e, se acertar, o dano sera considerado um Sucesso Critico.",
+        "tipo": "ativa",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Presa de Orc",
+        "Ferro de Batalha",
+        "Polvora Grossa"
+      ],
+      "medio": [
+        "Medalha de Guerra",
+        "Sangue de Lider",
+        "Cristal de Furia"
+      ],
+      "dificil": [
+        "Coracao do Warchief",
+        "Estandarte de Conquista",
+        "Essencia da Guerra"
+      ]
+    }
+  }
+}

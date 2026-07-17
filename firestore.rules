@@ -1,0 +1,81 @@
+rules_version = '2';
+
+// Primeira versão das regras, baseada na seção 5/"Esboço de Security Rules"
+// do documento docs/schema-banco-dados-personagem.md.
+//
+// AINDA NÃO INCLUI: acesso do Mestre às fichas da campanha (depende do
+// schema de `campanhas`, que fica pra próxima etapa). Os pontos marcados
+// com TODO são exatamente onde essa lógica vai entrar.
+//
+// IMPORTANTE: por enquanto, o dono do personagem pode escrever em QUALQUER
+// campo da própria ficha, incluindo `calculado` — o ideal é que só a Cloud
+// Function (via Admin SDK, que ignora estas regras) escreva ali. Restringir
+// isso por campo dentro do Firestore Rules é possível mas mais avançado;
+// fica como endurecimento futuro (ver TODO no bloco de personagens).
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function estaAutenticado() {
+      return request.auth != null;
+    }
+
+    function ehDono(donoUid) {
+      return estaAutenticado() && request.auth.uid == donoUid;
+    }
+
+    // ---- Catálogo do sistema de regras: leitura livre, escrita só via admin/seed ----
+    match /racas/{racaId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
+    match /classes/{classeId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
+    match /origens/{origemId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
+    match /pericias/{periciaId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
+    match /elementos/{elementoId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+
+      match /poderes/{poderId} {
+        allow read: if estaAutenticado();
+        allow write: if false;
+      }
+    }
+    match /itens/{itemId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
+    match /constantes/{constanteId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
+
+    // ---- Perfil do usuário ----
+    match /usuarios/{uid} {
+      allow read, write: if ehDono(uid);
+    }
+
+    // ---- Fichas de personagem ----
+    match /personagens/{personagemId} {
+      allow read: if ehDono(resource.data.dono_uid);
+      allow create: if ehDono(request.resource.data.dono_uid);
+      allow update, delete: if ehDono(resource.data.dono_uid);
+
+      // TODO (fase Campanha): permitir leitura total ao mestre_id da
+      // campanha à qual este personagem pertence.
+      // TODO (fase Campanha): permitir ao mestre escrever somente em
+      // ascensao_em_progresso.status (aprovar/recusar), nada mais.
+      // TODO (endurecimento): restringir escrita do dono para excluir o
+      // bloco `calculado`, que deveria ser exclusivo da Cloud Function.
+    }
+  }
+}

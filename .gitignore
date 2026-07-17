@@ -1,0 +1,28 @@
+# Firebase
+.firebaserc
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+seed/serviceAccountKey.json
+firebase.rules
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.egg-info/
+
+# Node (frontend, quando existir)
+node_modules/
+
+# Variaveis de ambiente
+.env
+.env.local
+
+# SO
+.DS_Store
+Thumbs.db
+
+.vercel

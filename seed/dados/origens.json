@@ -1,0 +1,533 @@
+{
+  "artista": {
+    "nome": "Artista",
+    "descricao": "Amantes das obras de teatro, escrita, pintura e ate mesmo o artesanato, artistas sao pessoas de grande intelecto e criatividade reluzente.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "conhecimento",
+        "nota": "Especializado em conhecimento Artistico"
+      },
+      {
+        "pericia_id": "enganacao",
+        "nota": null
+      },
+      {
+        "pericia_id": "oficio",
+        "nota": "Qualquer um considerado dentro do ramo das artes"
+      }
+    ],
+    "kit_itens": [
+      "Kit de material relacionado a sua arte",
+      "Roupas coloridas",
+      "Cachecol de seda",
+      "1 Silberstuck",
+      "6 Bronzestuck"
+    ],
+    "habilidade_passiva": {
+      "nome": "Leitura de Publico",
+      "descricao": "Consegue entender as vontades e desejo de qualquer criatura de intelecto 2 ou mais que observe por mais de 1 minuto ou gastando uma acao de movimento. Recebe +2 em testes sociais."
+    },
+    "rituais": {
+      "facil": {
+        "id": "artista-facil",
+        "nome": "O Esboço da Alma",
+        "descricao": "Realizar uma performance, painting ou exibição em praça pública de uma grande vila. O jogador deve passar pelo menos 1 minuto observando a multidão local para usar sua habilidade Leitura de Público e ser bem-sucedido em um teste de Ofício ou Enganação com CD 15 para criar uma arte que cative os espectadores."
+      },
+      "medio": {
+        "id": "artista-medio",
+        "nome": "A Grande Estreia",
+        "descricao": "Criar uma obra de arte grandiosa que imortalize as conquistas recentes de seu grupo. O artista precisa gastar 2 dias inteiros de descanso dedicados exclusivamente a essa criação e, ao final, passar em um teste de Ofício com CD 20 ao expor o trabalho finalizado em uma grande estalagem ou corte para NPCs influentes."
+      },
+      "dificil": {
+        "id": "artista-dificil",
+        "nome": "A Obra-Prima Imortal",
+        "descricao": "Conceber uma criação artística lendária infundida com Arché que redefina a cultura ou mude o rumo político de uma província inteira. O jogador deve primeiro adquirir uma matéria-prima exótica durante suas aventuras (como o pigmento de uma gema mística ou madeira de uma árvore ancestral), passar 3 dias de descanso trabalhando e vencer um teste de Ofício com CD 25 para canalizar seu Arché na obra, que deve então ser apresentada a um governante ou conselho para resolver um grande conflito social em andamento."
+      }
+    }
+  },
+  "arqueologo": {
+    "nome": "Arqueologo",
+    "descricao": "Curioso pelas verdades do mundo antigo e provavel inimigo de povos ditadores, os arqueologos representam o amor e o prazer pela historia e pela cultura do mundo antigo.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "conhecimento",
+        "nota": "Especializado em conhecimento Historico"
+      },
+      {
+        "pericia_id": "investigacao",
+        "nota": null
+      },
+      {
+        "pericia_id": "percepcao",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Diario de campo",
+      "Conjunto de pinceis e espatulas",
+      "Fragmento de objeto historico sem valor comercial"
+    ],
+    "habilidade_passiva": {
+      "nome": "Investigacao Antiga",
+      "descricao": "Voce tem maior facilidade de encontrar passagens secretas, armadilhas ou qualquer comodo secreto em locais antigos e abandonados. Para isso, role Investigacao ou Percepcao com CD 20."
+    },
+    "rituais": {
+      "facil": {
+        "id": "arqueologo-facil",
+        "nome": "A Tradução de Símbolos",
+        "descricao": "Desvendar escritas ou um mecanismo simples em ruínas esquecidas. Ao explorar um local antigo, o arqueólogo deve realizar um teste de Conhecimento ou Investigação com CD 15 para decifrar pistas que guiem o grupo com segurança pelas câmaras."
+      },
+      "medio": {
+        "id": "arqueologo-medio",
+        "nome": "A Relíquia Desenterrada",
+        "descricao": "Descobrir e catalogar um artefato histórico legítimo de grande valor sem danificar sua estrutura. O arqueólogo deve primeiro localizar uma câmara secreta usando sua habilidade Investigação Antiga com CD 20 e, em seguida, gastar 1 hora de trabalho ininterrupto usando suas espátulas e pincéis de campo para extrair o objeto intacto."
+      },
+      "dificil": {
+        "id": "arqueologo-dificil",
+        "nome": "O Eco dos Ancestrais",
+        "descricao": "Sintonizar sua mente com a energia mística remanescente de um santuário colossal de civilizações caídas. O grupo deve primeiro adentrar a câmara mais profunda de uma masmorra lendária, onde o arqueólogo realizará uma vigília solitária de 6 horas em contato físico com a fonte de poder local, sendo bem-sucedido em um teste de Fortitude ou Vontade com CD 25 para suportar a sobrecarga mental das memórias e do Arché bruto dos antigos."
+      }
+    }
+  },
+  "criminoso": {
+    "nome": "Criminoso",
+    "descricao": "Seja por nascer nas ruas em meio a podridao ou por puro desejo maligno, voce viveu em meio ao mundo mais sombrio da historia: o mundo do crime.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "acrobacia",
+        "nota": null
+      },
+      {
+        "pericia_id": "furtividade",
+        "nota": null
+      },
+      {
+        "pericia_id": "ladinagem",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Conjunto de gazuas",
+      "Adaga pequena (1d4+Destreza)",
+      "Baralho marcado"
+    ],
+    "habilidade_passiva": {
+      "nome": "Contato das Trevas",
+      "descricao": "Voce sabe onde tem mercados negros e locais obscuros em qualquer cidade. Alem disso, enquanto estiver em locais marginalizados, recebe +1 de bonus em todos os seus testes."
+    },
+    "rituais": {
+      "facil": {
+        "id": "criminoso-facil",
+        "nome": "O Batismo das Sombras",
+        "descricao": "Vender um saque valioso ou obter uma informação sigilosa no mercado negro. O jogador deve usar sua habilidade Contato das Trevas para localizar um receptador em uma cidade e passar em um teste de Ladinagem ou Enganação com CD 15 para fechar o negócio sem levantar suspeitas da guarda."
+      },
+      "medio": {
+        "id": "criminoso-medio",
+        "nome": "O Golpe Perfeito",
+        "descricao": "Executar um roubo ou infiltração de grande escala contra uma instituição poderosa ou figura de autoridade tirânica. O criminoso deve planejar e invadir um local protegido (como uma mansão nobre ou forte militar), roubar um item valioso guardado sob forte segurança e escapar sem disparar alarmes, sendo bem-sucedido em testes de Furtividade e Ladinagem com CD 20."
+      },
+      "dificil": {
+        "id": "criminoso-dificil",
+        "nome": "O Rei do Submundo",
+        "descricao": "Tomar o controle de uma guilda ou ditar as operações criminosas de uma região inteira a partir das sombras. O jogador deve rastrear e invadir o covil de um chefe criminoso local, derrotá-lo em um confronto direto ou por meio de uma armadilha perfeita e, em seguida, passar em um teste de Intimidação ou Diplomacia com CD 25 diante da guilda para assumir a liderança absoluta e ditar as novas leis do submundo."
+      }
+    }
+  },
+  "escravo": {
+    "nome": "Escravo",
+    "descricao": "A vida nem sempre e justa, nem sempre todos tem a mesma sorte e voce sabe bem disso. Mas agora livre, sente que pela primeira vez pode haver justica.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "atletismo",
+        "nota": null
+      },
+      {
+        "pericia_id": "fortitude",
+        "nota": null
+      },
+      {
+        "pericia_id": "sobrevivencia",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Roupas rasgadas e gastas",
+      "Corrente de pulso quebrada",
+      "Pao mofado"
+    ],
+    "habilidade_passiva": {
+      "nome": "Espirito Inabalavel",
+      "descricao": "Voce nao suporta a ideia de perder sua liberdade mais uma vez. Assim recebe +2 para todos os testes contra habilidades e poderes que restringem acoes."
+    },
+    "rituais": {
+      "facil": {
+        "id": "escravo-facil",
+        "nome": "O Grito de Alforria",
+        "descricao": "Libertar-se de uma restrição física pesada por forças próprias no calor de uma fuga ou combate. O jogador deve se soltar de amarras, algemas ou de uma cela sendo bem-sucedido em um teste de Atletismo ou Fortitude com CD 15, beneficiando-se do bônus de sua passiva Espírito Inabalável."
+      },
+      "medio": {
+        "id": "escravo-medio",
+        "nome": "O Acerto de Contas",
+        "descricao": "Derrubar uma figura opressora ativa do seu passado e libertar aqueles que ela subjugava. O grupo deve localizar e invadir um acampamento de caçadores de recompensa ou rede de exploração, onde o ex-escravo deve derrotar o feitor principal em combate e libertar ativamente pelo menos 5 prisioneiros que estavam sob seu jugo."
+      },
+      "dificil": {
+        "id": "escravo-dificil",
+        "nome": "A Revolução dos Oprimidos",
+        "descricao": "Orquestrar e liderar um levante em massa para destruir um complexo escravocrata ou mina de exploração mineral de grande porte. O jogador deve infiltrar-se no local, passar em um teste de Diplomacia ou Intimidação com CD 25 para incitar os cativos a se rebelarem de forma coordenada e guiar a revolta com sucesso, desativando os portões e garantindo a fuga da maioria sem que as forças de segurança os aniquilem."
+      }
+    }
+  },
+  "estudioso": {
+    "nome": "Estudioso",
+    "descricao": "Amante dos livros e do saber, acima das espadas e da forca bruta vem a sua mente de aco.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "conhecimento",
+        "nota": null
+      },
+      {
+        "pericia_id": "intuicao",
+        "nota": null
+      },
+      {
+        "pericia_id": "misticismo",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Kit de escrita (penas e papeis)",
+      "Caderno de anotacoes",
+      "Pergaminho antigo sem traducao"
+    ],
+    "habilidade_passiva": {
+      "nome": "Mente Analitica",
+      "descricao": "Sempre que se deparar com um enigma, charada ou problema de raciocinio logico, pode fazer um teste de Inteligencia com CD 15 para receber uma dica."
+    },
+    "rituais": {
+      "facil": {
+        "id": "estudioso-facil",
+        "nome": "O Insight Acadêmico",
+        "descricao": "Decifrar uma charada complexa ou resolver um mistério de lógica antiga em uma masmorra. Diante do enigma, o estudioso deve realizar um teste de Inteligência com CD 15 para usar sua Mente Analítica e receber uma revelação ou dica direta do Mestre sobre o cenário."
+      },
+      "medio": {
+        "id": "estudioso-medio",
+        "nome": "A Tradução Proibida",
+        "descricao": "Traduzir e absorver por completo o conteúdo de um pergaminho místico ou tomo selado. O estudioso deve encontrar um livro ancestral de seu interesse e dedicar 24 horas consecutivas de estudo e jejum sem realizar nenhuma outra atividade física, passando em um teste de Misticismo ou Conhecimento com CD 20 ao final."
+      },
+      "dificil": {
+        "id": "estudioso-dificil",
+        "nome": "A Grande Revelação",
+        "descricao": "Formular, comprovar e defender publicamente uma nova teoria revolucionária sobre a dinâmica do Arché ou a história esquecida dos deuses. Tendo coletado dados e textos antigos de pelo menos 3 masmorras diferentes ao longo de suas viagens, o estudioso deve apresentar seu tratado diante de um comitê de uma Grande Academia de Magos ou Templo Sagrado e vencer um teste de Inteligência (usando Misticismo ou Conhecimento) com CD 25 para refutar as críticas locais."
+      }
+    }
+  },
+  "exilado": {
+    "nome": "Exilado",
+    "descricao": "Voce foi expulso da sua terra natal, seja por qual for o motivo, tendo raiva guardada ou nao, o que de fato importa e se vai conseguir sobreviver ao amanha.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "misticismo",
+        "nota": null
+      },
+      {
+        "pericia_id": "sobrevivencia",
+        "nota": null
+      },
+      {
+        "pericia_id": "vontade",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Capa pesada com capuz",
+      "Mapa da antiga nacao",
+      "Conjunto de alimentos nao pereciveis (5 itens, contando comida e bebida)"
+    ],
+    "habilidade_passiva": {
+      "nome": "Perigos da Estrada",
+      "descricao": "Apos tanto tempo dormindo no meio da mata ou nos becos mais escuros das nacoes, voce tem melhor visao para ataques surpresas. Recebe +2 de bonus de percepcao. Sempre tem ciencia para onde fica o Norte."
+    },
+    "rituais": {
+      "facil": {
+        "id": "exilado-facil",
+        "nome": "A Fogueira Solitária",
+        "descricao": "Sobreviver a uma tempestade climática severa em terreno inóspito sem nenhum teto civilizado por perto. Quando o grupo for pego por uma intempérie no mapa, o jogador deve passar em um teste de Sobrevivência com CD 15 para construir um abrigo funcional e manter uma fogueira acesa por 12 horas consecutivas."
+      },
+      "medio": {
+        "id": "exilado-medio",
+        "nome": "A Condenação Superada",
+        "descricao": "Retornar secretamente ao local de sua antiga terra natal para resolver um grande perigo que ameaça as fronteiras. O exilado deve criar um caminho pelas fronteiras de sua antiga nação e completar uma missão de batedor (como limpar um ninho de monstros que ameaça as vilas) sem ser capturado pela guarda oficial, utilizando seu bônus de Perigos da Estrada."
+      },
+      "dificil": {
+        "id": "exilado-dificil",
+        "nome": "O Retorno do Rejeitado",
+        "descricao": "Realizar um feito de impacto histórico tão grandioso que force a corte ou dinastia de origem a anular formalmente o seu decreto de exílio. O exilado deve salvar sua nação de origem de um colapso iminente ou derrotar uma força militar inimiga que a sitiava. Em seguida, marchar até a sala do trono diante do povo e passar em um teste de Vontade ou Diplomacia com CD 25 para discursar publicamente e exigir que seu nome seja limpo dos registros históricos."
+      }
+    }
+  },
+  "mercador": {
+    "nome": "Mercador",
+    "descricao": "Alem da moral e da etica, tudo sempre tera um preco, e voce bem sabe disso.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "diplomacia",
+        "nota": null
+      },
+      {
+        "pericia_id": "intuicao",
+        "nota": null
+      },
+      {
+        "pericia_id": "oficio",
+        "nota": "Mercador"
+      }
+    ],
+    "kit_itens": [
+      "Balanca de precisao",
+      "Bolsa de moedas com 1d8 de Silberstuck",
+      "1d12 de Bronzestuck",
+      "1 item de ate 5 moedas de prata"
+    ],
+    "habilidade_passiva": {
+      "nome": "Olho Dourado",
+      "descricao": "Voce tem bastante conhecimento comercial. Assim, sempre sabe o valor real dos itens, alem de receber +1 de bonus em testes de negociacao."
+    },
+    "rituais": {
+      "facil": {
+        "id": "mercador-facil",
+        "nome": "A Negociação Justa",
+        "descricao": "Selar um contrato ou negócio comercial obtendo um desconto massivo ou um item valioso sem custos. Durante uma transação em comércio civilizado, o jogador deve usar seu Olho Dourado e passar em um teste de Diplomacia com CD 15 para obter um item de exploração essencial gratuitamente ou reduzir o preço de um serviço pela metade."
+      },
+      "medio": {
+        "id": "mercador-medio",
+        "nome": "A Rota de Comércio",
+        "descricao": "Estabelecer um acordo econômico estável e duradouro de caravanas entre duas cidades ou guildas influentes. O jogador deve escoltar pessoalmente uma caravana de mercadorias por território perigoso até o destino e, em seguida, fechar a parceria comercial com um teste de Diplomacia ou Ofício (Mercador) com CD 20."
+      },
+      "dificil": {
+        "id": "mercador-dificil",
+        "nome": "O Dono da Moeda",
+        "descricao": "Monopolizar e manipular com sucesso a economia de uma grande cidade-estado, controlando o fluxo comercial de minérios ou itens exóticos. O jogador deve acumular uma quantia de capital alta, usá-la estrategicamente para adquirir propriedades ou armazéns de minério vitais na cidade e, em uma reunião secreta com o conselho ou sindicato de cambistas locais, vencer um teste de Inteligência (usando a perícia Ofício/Mercador) com CD 25 para provar que detém o controle financeiro, forçando-os a aceitar seus preços."
+      }
+    }
+  },
+  "militar": {
+    "nome": "Militar",
+    "descricao": "Ou viveu a grande guerra, ou e descendente dela, seja como for, o combate e o seu lar e a morte sua companheira fiel.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "atletismo",
+        "nota": null
+      },
+      {
+        "pericia_id": "guerra",
+        "nota": null
+      },
+      {
+        "pericia_id": "intimidacao",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Roupas militares (varia conforme a nacao)",
+      "Apito de comando",
+      "Brasao da unidade"
+    ],
+    "habilidade_passiva": {
+      "nome": "Disciplina de Ferro",
+      "descricao": "Voce pode gastar sua acao de movimento e inspirar um aliado proximo, dando +2 de bonus nos testes do proximo turno dele."
+    },
+    "rituais": {
+      "facil": {
+        "id": "militar-facil",
+        "nome": "A Chamada ao Dever",
+        "descricao": "Reagir a uma emboscada iminente reposicionando estrategicamente seus companheiros. Durante uma rodada de surpresa hostil, o militar deve passar em um teste de Guerra com CD 15 para usar sua Disciplina de Ferro e conceder o direito de deslocamento imediato para até dois aliados antes que o combate comece de fato."
+      },
+      "medio": {
+        "id": "militar-medio",
+        "nome": "O Avanço Tático",
+        "descricao": "Assumir o comando tático de uma milícia local ou de guardas de uma guarnição durante uma invasão. Em um combate de defesa urbana, o militar deve liderar taticamente pelo menos 10 NPCs defensores, passando em testes consecutivos de Guerra com CD 20 nas rodadas do cerco para posicionar barreiras, barricadas e ditar ordens com eficiência."
+      },
+      "dificil": {
+        "id": "militar-dificil",
+        "nome": "O General Lendário",
+        "descricao": "Comandar e vencer uma batalha de proporções continentais contra forças tirânicas ou hordas inimigas proeminentes. O militar deve realizar missões diplomáticas anteriores para unificar e convocar exércitos de diferentes facções e, no confronto decisivo, liderar o plano de ataque estratégico, sendo bem-sucedido em um teste de Guerra com CD 25 sem que a guarnição sob suas ordens diretas seja dizimada."
+      }
+    }
+  },
+  "nobre": {
+    "nome": "Nobre",
+    "descricao": "Tudo e todos estao abaixo de voce, e voce sabe disso, o sangue azul que corre em suas veias e o sinal de sua soberania.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "conhecimento",
+        "nota": null
+      },
+      {
+        "pericia_id": "diplomacia",
+        "nota": null
+      },
+      {
+        "pericia_id": "nobreza",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Roupas de seda",
+      "Anel de sinete da casa",
+      "1d4 de Goldstuck"
+    ],
+    "habilidade_passiva": {
+      "nome": "Voz da Autoridade",
+      "descricao": "Voce conhece seu lugar na hierarquia e sempre deixa isso visivel. Uma vez por cena, pode rolar Nobreza com CD 16 e entao ordenar hospitalidade (abrigo ou comida) para um NPC."
+    },
+    "rituais": {
+      "facil": {
+        "id": "nobre-facil",
+        "nome": "O Apelo da Coroa",
+        "descricao": "Obter passagens livres, escolta oficial ou favores políticos sem custos apenas por sua autoridade. O jogador deve se apresentar diante de um líder militar ou magistrado de uma cidade, usar sua Voz da Autoridade (CD 16) e passar em um teste de Nobreza para forçá-los a ceder abrigo gratuito ou salvo-conduto ao grupo."
+      },
+      "medio": {
+        "id": "nobre-medio",
+        "nome": "O Selamento de Pacto",
+        "descricao": "Atuar como o diplomata oficial que resolve um conflito armado ou político entre duas facções rivais proeminentes. O nobre deve organizar um comitê formal neutro entre líderes rivais, guiar as negociações táticas na mesa e selar um tratado duradouro ao passar em um teste de Nobreza ou Diplomacia com CD 20."
+      },
+      "dificil": {
+        "id": "nobre-dificil",
+        "nome": "A Reivindicação do Trono",
+        "descricao": "Superar as disputas de sangue de sua casa e coroar-se formalmente como o governante de sua linhagem dinástica ou de uma grande província. O nobre deve viajar até a capital de sua dinastia, desmascarar os usurpadores da corte, obter o apoio militar de pelo menos três clãs aliados e ser bem-sucedido em um teste de Nobreza com CD 25 diante de todo o grande salão."
+      }
+    }
+  },
+  "orfao-de-guerra": {
+    "nome": "Orfao de Guerra",
+    "descricao": "Voce aprendeu desde seu nascimento algo simples: o mundo e cruel, ou voce se adapta, ou sofre.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "fortitude",
+        "nota": null
+      },
+      {
+        "pericia_id": "intuicao",
+        "nota": null
+      },
+      {
+        "pericia_id": "sobrevivencia",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Manta rasgada",
+      "Artefato que lembre a familia",
+      "Faca de ossos (1d4+Destreza)"
+    ],
+    "habilidade_passiva": {
+      "nome": "Filho das Cinzas",
+      "descricao": "Voce recupera 1d6+Constituicao a mais de vida por dia de descanso. Alem disso, sofre 1d4 a menos de dano na sanidade."
+    },
+    "rituais": {
+      "facil": {
+        "id": "orfao-de-guerra-facil",
+        "nome": "O Memorial de Cinzas",
+        "descricao": "Prestar um rito solene para os mortos em uma ruína ou campo de batalha desolado. O jogador deve encontrar um local marcado pelo conflito recente, passar 4 horas erguendo um memorial de pedras brutas e passar em um teste de Vontade com CD 15 para canalizar sua dor, reafirmando sua passiva Filho das Cinzas."
+      },
+      "medio": {
+        "id": "orfao-de-guerra-medio",
+        "nome": "A Promessa de Proteção",
+        "descricao": "Fundar ou estabilizar de forma duradoura um refúgio seguro ou orfanato para civis desamparados. O órfão de guerra deve limpar uma propriedade segura de ameaças, resgatar ativamente pelo menos 5 civis indefesos de uma área de guerra ativa e garantir recursos básicos de alimentação para o local."
+      },
+      "dificil": {
+        "id": "orfao-de-guerra-dificil",
+        "nome": "O Fim do Ciclo de Sangue",
+        "descricao": "Localizar, confrontar e aniquilar o responsável direto (general, líder de seita ou criatura) pela destruição da sua terra natal. O jogador deve rastrear o covil pessoal de seu algoz histórico ao longo da história da campanha, invadir o reduto e derrotá-lo em um combate de vida ou morte, queimando sua bandeira ou estandarte militar sobre as cinzas de seu antigo lar devastado."
+      }
+    }
+  },
+  "peregrino": {
+    "nome": "Peregrino",
+    "descricao": "Devoto aos deuses e em busca de crescimento espiritual, se lancou em uma jornada desafiadora para que pudesse evoluir.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "religiao",
+        "nota": null
+      },
+      {
+        "pericia_id": "sobrevivencia",
+        "nota": null
+      },
+      {
+        "pericia_id": "vontade",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Cajado de caminhada (1d4+Destreza / 3m de alcance)",
+      "Simbolo sagrado",
+      "Diario de viagem"
+    ],
+    "habilidade_passiva": {
+      "nome": "Caminhada da Fe",
+      "descricao": "Voce ignora desvantagens de deslocamento em terrenos dificeis e, uma vez por dia, pode orar em um descanso curto para recuperar 1d6+Sabedoria de arche."
+    },
+    "rituais": {
+      "facil": {
+        "id": "peregrino-facil",
+        "nome": "A Prece do Viajante",
+        "descricao": "Concluir um trecho exaustivo de sua jornada sob profunda comunhão espiritual. O jogador deve viajar 24 horas consecutivas em jejum completo e oração dedicada, passando em um teste de Religião com CD 15 ao final para purificar seu espírito e manter ativa sua Caminhada da Fé."
+      },
+      "medio": {
+        "id": "peregrino-medio",
+        "nome": "A Revelação Divina",
+        "descricao": "Encontrar um monólito sagrado perdido e receber as bênçãos místicas de sua divindade patrona. O peregrino deve descobrir e alcançar um local sagrado oculto nas profundezas inexploradas do mundo, realizar os ritos específicos exigidos pela divindade local e passar em um teste de Religião ou Vontade com CD 20 para canalizar la energia mística."
+      },
+      "dificil": {
+        "id": "peregrino-dificil",
+        "nome": "O Escolhido dos Deuses",
+        "descricao": "Purificar uma grande catedral sagrada tomada por forças abissais e banir a corrupção de escala mística da região. O peregrino deve adentrar uma catedral profanada e, durante um combate de cerco (mínimo de 3 rodadas), posicionar-se no altar principal sem realizar ações de ataque, gastar toda a sua barra de Arché restante e passar em testes de Religião com CD 25 a cada rodada sob fogo hostil para detonar uma explosão de luz purificadora."
+      }
+    }
+  },
+  "selvagem": {
+    "nome": "Selvagem",
+    "descricao": "Nascido na selva e entre os animais, voce compreende que as regras comuns sao feitas para os fracos sobreviverem, mas voce nao e fraco.",
+    "pericias_opcoes": [
+      {
+        "pericia_id": "adestramento",
+        "nota": null
+      },
+      {
+        "pericia_id": "atletismo",
+        "nota": null
+      },
+      {
+        "pericia_id": "sobrevivencia",
+        "nota": null
+      }
+    ],
+    "kit_itens": [
+      "Pele de animal usada como roupa",
+      "Colar de ossos",
+      "1 animal pequeno nao combatente"
+    ],
+    "habilidade_passiva": {
+      "nome": "Instinto Animal",
+      "descricao": "Voce recebe vantagem em testes de Percepcao que utilizem o olfato ou audicao. Alem disso, recebe +1 de bonus em testes contra criaturas animais."
+    },
+    "rituais": {
+      "facil": {
+        "id": "selvagem-facil",
+        "nome": "A Comunhão da Natureza",
+        "descricao": "Acalmar e aproximar-se de um animal selvagem feroz em seu próprio covil. Ao deparar-se com uma criatura irracional hostil, o selvagem deve usar seu Instinto Animal e passar em um teste de Adestramento com CD 15 para fazê-la cessar o comportamento agressivo e permitir a passagem sem violência."
+      },
+      "medio": {
+        "id": "selvagem-medio",
+        "nome": "O Guardião das Matas",
+        "descricao": "Descobrir e expulsar uma ameaça que destrói o equilíbrio de uma floresta sagrada. O selvagem deve encontrar um grupo de caçadores ilegais, seitas rituais ou mineradores de minério exótico que devastam o ecossistema local, neutralizar os agressores e passar em um teste de Sobrevivência com CD 20 para restaurar o fluxo natural do Arché na terra."
+      },
+      "dificil": {
+        "id": "selvagem-dificil",
+        "nome": "O Alfa Primordial",
+        "descricao": "Desafiar, duelar e derrotar a lendária Besta Anciã que governa um bioma selvagem de Midgard. O selvagem deve rastrear a fera ápice (uma criatura majestosa do Bestiário) que domina as florestas primordiais, isolar-se de seus companheiros impedindo qualquer intervenção externa no duelo, enfrentá-la sozinho e sair vitorioso, fazendo com que ela herde seu respeito ou se funda voluntariamente a ele."
+      }
+    }
+  }
+}

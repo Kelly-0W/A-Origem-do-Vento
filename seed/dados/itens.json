@@ -1,0 +1,818 @@
+{
+  "adaga-pequena": {
+    "nome": "Adaga Pequena",
+    "categoria": "arma",
+    "descricao": "",
+    "arma": {
+      "dano": {
+        "dados": "1d4",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "espada-longa": {
+    "nome": "Espada Longa",
+    "categoria": "arma",
+    "descricao": "Peso: 2,0 kg. Corte ou Perfuração. Versátil: pode ser empunhada com as duas mãos, aumentando o dado de dano base para 1d10.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "rapieira": {
+    "nome": "Rapieira",
+    "categoria": "arma",
+    "descricao": "Peso: 1,0 kg. Acuidade: o usuário pode utilizar seu modificador de Destreza para somar nos seus testes de ataque e rolagens de dano.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": "des",
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "gladio": {
+    "nome": "Gládio",
+    "categoria": "arma",
+    "descricao": "Peso: 1,2 kg. Corte ou Perfuração. Guarda Fechada: concede +1 na Defesa física do usuário se ele estiver empunhando um escudo simultaneamente.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "katana": {
+    "nome": "Katana",
+    "categoria": "arma",
+    "descricao": "Peso: 1,5 kg. Saque Rápido: se a arma estiver embainhada e for sacada para atacar no mesmo turno, o usuário ganha Vantagem na primeira rolagem de acerto.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "cimitarra": {
+    "nome": "Cimitarra",
+    "categoria": "arma",
+    "descricao": "Peso: 1,3 kg. Corte em Arco: ao derrubar um inimigo a 0 de Vida com esta arma, pague 1 de Arché para um ataque extra como Ação Livre contra outro alvo adjacente.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "khopesh": {
+    "nome": "Khopesh",
+    "categoria": "arma",
+    "descricao": "Peso: 1,6 kg. Lâmina-Gancho: Vantagem em testes para realizar desarmes; pode usar o gancho para ignorar os bônus de Defesa de um escudo inimigo em seu ataque.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "adaga": {
+    "nome": "Adaga",
+    "categoria": "arma",
+    "descricao": "Peso: 0,5 kg. Perfuração ou Corte. Sorrateira: pode ser arremessada com precisão (alcance de 6 metros), concede +2 em Furtividade para ser ocultada nas vestes e possui margem de crítico expandida para 19-20 (1 crítico expandido por alvo).",
+    "arma": {
+      "dano": {
+        "dados": "1d4",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 6.0,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "stiletto": {
+    "nome": "Stiletto",
+    "categoria": "arma",
+    "descricao": "Peso: 0,4 kg. Perfuradora de Frestas: ataques com o Stiletto ignoram até 2 pontos da Armadura Física ou Redução de Dano do alvo.",
+    "arma": {
+      "dano": {
+        "dados": "1d4",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "katar": {
+    "nome": "Katar",
+    "categoria": "arma",
+    "descricao": "Peso: 0,8 kg. Punho Letal: acertos críticos infligem um ferimento profundo automático que drena 1d4 de Vida do alvo no início do próximo turno dele.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "machadinha-de-mao": {
+    "nome": "Machadinha de Mão",
+    "categoria": "arma",
+    "descricao": "Peso: 1,0 kg. Fúria Cortante: pode ser arremessada a até 9 metros. Em ataques corpo a corpo, pode rolar novamente qualquer \"1\" no dado de dano, aceitando o novo resultado.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "maca": {
+    "nome": "Maça",
+    "categoria": "arma",
+    "descricao": "Peso: 2,5 kg. Quebra-Ossos: inimigos que sofrerem um acerto crítico recebem Desvantagem em Atletismo e Acrobacia até o fim do turno seguinte.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "impacto"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "mangual": {
+    "nome": "Mangual",
+    "categoria": "arma",
+    "descricao": "Peso: 2,2 kg. Ignorar Escudos: ataques com o Mangual ignoram qualquer bônus de Defesa passiva proveniente de escudos segurados pelos inimigos.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": null,
+        "tipo_dano": "impacto"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "montante": {
+    "nome": "Montante",
+    "categoria": "arma",
+    "descricao": "Peso: 3,0 kg. Golpe Amplo: ao acertar um ataque corpo a corpo, cause dano igual ao seu modificador de Força a um segundo inimigo adjacente a você e ao alvo principal.",
+    "arma": {
+      "dano": {
+        "dados": "2d6",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "zweihander": {
+    "nome": "Zweihänder",
+    "categoria": "arma",
+    "descricao": "Peso: 4,0 kg. Quebrar Avanço: inimigos que tentarem entrar no seu alcance de combate permitem um ataque como Ação de Reação; se acertar, o deslocamento do inimigo é reduzido a zero pelo resto do turno.",
+    "arma": {
+      "dano": {
+        "dados": "1d12",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "lanca": {
+    "nome": "Lança",
+    "categoria": "arma",
+    "descricao": "Peso: 2,0 kg. Falange: se receber uma investida ou um inimigo avançar em sua direção, pode usar sua Reação para atacá-lo antes que ele o alcance, ganhando Vantagem na rolagem.",
+    "arma": {
+      "dano": {
+        "dados": "1d10",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 3.0,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "alabarda": {
+    "nome": "Alabarda",
+    "categoria": "arma",
+    "descricao": "Peso: 3,0 kg. Corte ou Perfuração. Derrubar: usa o gancho da lâmina para puxar oponentes; Vantagem em testes para derrubar alvos e pode usá-la contra inimigos montados para puxá-los de suas montarias.",
+    "arma": {
+      "dano": {
+        "dados": "1d10",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 3.0,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "guan-dao": {
+    "nome": "Guan Dao",
+    "categoria": "arma",
+    "descricao": "Peso: 2,5 kg. Dança da Lâmina: se o usuário se mover pelo menos 3 metros antes de atacar no mesmo turno, ganha +2 de bônus na rolagem de dano desse golpe.",
+    "arma": {
+      "dano": {
+        "dados": "1d10",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 3.0,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "martelo-de-guerra": {
+    "nome": "Martelo de Guerra",
+    "categoria": "arma",
+    "descricao": "Peso: 4,5 kg. Amassador de Latas: ataques ignoram até 3 pontos de Defesa passiva proveniente de armaduras pesadas ou de escudos.",
+    "arma": {
+      "dano": {
+        "dados": "2d6",
+        "atributo": null,
+        "tipo_dano": "impacto"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "kanabo": {
+    "nome": "Kanabō",
+    "categoria": "arma",
+    "descricao": "Peso: 5,0 kg. Esmagamento Brutal: alvos que sofram um acerto crítico recebem a condição Atordoamento.",
+    "arma": {
+      "dano": {
+        "dados": "1d12",
+        "atributo": null,
+        "tipo_dano": "impacto"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "arco-longo": {
+    "nome": "Arco Longo",
+    "categoria": "arma",
+    "descricao": "Peso: 1,2 kg. Kit de Combate: já inclui a aljava com 10 projéteis iniciais (consome as duas escolhas de equipamento inicial). Mira Focada: se o usuário não gastar deslocamento nem se teletransportar no turno para estabilizar a mira, seus ataques ignoram penalidades de cobertura parcial e a margem de crítico se expande para 19-20.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "disparo",
+      "alcance_m": 30.0,
+      "kit_de_combate": true,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "arco-composto": {
+    "nome": "Arco Composto",
+    "categoria": "arma",
+    "descricao": "Peso: 1,5 kg. Kit de Combate: já inclui a aljava com 10 projéteis iniciais (consome as duas escolhas de equipamento inicial). Tensão Híbrida: usa o modificador de Destreza para a rolagem de acerto, mas soma os modificadores de Força e Destreza juntos à rolagem de dano final.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "disparo",
+      "alcance_m": 24.0,
+      "kit_de_combate": true,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "besta-pesada": {
+    "nome": "Besta Pesada",
+    "categoria": "arma",
+    "descricao": "Peso: 3,5 kg. Kit de Combate: já inclui o coldre com 10 projéteis iniciais (consome as duas escolhas de equipamento inicial). Impacto Devastador: o disparo ignora até 3 pontos da Defesa física ou Redução de Dano do alvo. Recarregar consome a Ação de Movimento do turno.",
+    "arma": {
+      "dano": {
+        "dados": "1d10",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "disparo",
+      "alcance_m": 24.0,
+      "kit_de_combate": true,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "chu-ko-nu": {
+    "nome": "Chu-ko-nu (Besta Repetidora)",
+    "categoria": "arma",
+    "descricao": "Peso: 2,5 kg. Kit de Combate: já inclui o coldre com 10 projéteis iniciais (consome as duas escolhas de equipamento inicial). Chuva de Virotes: ao atacar com esta arma, pode realizar um disparo extra imediatamente como Ação Livre (limitado a 1 disparo extra por turno).",
+    "arma": {
+      "dano": {
+        "dados": "1d4",
+        "atributo": null,
+        "tipo_dano": "perfuracao"
+      },
+      "empunhadura": "disparo",
+      "alcance_m": 15.0,
+      "kit_de_combate": true,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "aljava-de-flechas": {
+    "nome": "Aljava de Flechas (10 Flechas ou Virotes)",
+    "categoria": "consumivel",
+    "descricao": "Peso: 0,5 kg (incluindo o coldre de couro ou madeira). Após o fim de um combate, o jogador pode buscar no cenário para recuperar flechas gastas, rolando 1d2 para cada flecha disparada; resultados pares indicam que a flecha sobreviveu ao impacto e pode ser reutilizada.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "chicote": {
+    "nome": "Chicote",
+    "categoria": "arma",
+    "descricao": "Peso: 1,0 kg. Alcance Tático: Vantagem em testes para realizar desarmes ou derrubadas, enrolando a ponta do chicote nas pernas ou braços do alvo.",
+    "arma": {
+      "dano": {
+        "dados": "1d4",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 3.0,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "kusarigama": {
+    "nome": "Kusarigama",
+    "categoria": "arma",
+    "descricao": "Peso: 2,0 kg. Foice (Corte, 1,5 m) ou Peso da corrente (Impacto, até 3,0 m). Dança da Corrente: pode substituir o ataque padrão para tentar Imobilizar um alvo a até 3,0 m usando o peso da corrente (Luta contra Fortitude do alvo). Se o alvo estiver imobilizado pela corrente, ataques subsequentes com a foice contra ele recebem Vantagem.",
+    "arma": {
+      "dano": {
+        "dados": "1d6",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "duas_maos",
+      "alcance_m": 3.0,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "bagh-nakh": {
+    "nome": "Bagh Nakh",
+    "categoria": "arma",
+    "descricao": "Peso: 0,5 kg. Acoplada ao punho. Furtividade Feroz: Vantagem em testes para esconder a arma em revistas. Personagens usando Garras de Tigre podem aplicar os bônus de modificador de minério diretamente em seus ataques desarmados.",
+    "arma": {
+      "dano": {
+        "dados": "1d4",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "macuahuitl": {
+    "nome": "Macuahuitl",
+    "categoria": "arma",
+    "descricao": "Peso: 2,5 kg. Lâmina Serrilhada: acertos críticos causam Sangramento Severo, que só cessa se o alvo for tratado com um teste de Tratamento Amplo bem-sucedido.",
+    "arma": {
+      "dano": {
+        "dados": "1d8",
+        "atributo": null,
+        "tipo_dano": "corte"
+      },
+      "empunhadura": "uma_mao",
+      "alcance_m": 1.5,
+      "kit_de_combate": false,
+      "minerio": "cobre"
+    },
+    "defesa": null,
+    "conteudo": null
+  },
+  "broquel": {
+    "nome": "Broquel",
+    "categoria": "escudo",
+    "descricao": "Peso: 1,5 kg. Defesa Ativa: deixa a mão equipada parcialmente livre, permitindo segurar itens leves (como poções ou tochas).",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 1,
+      "peso": "leve",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "escudo-gota": {
+    "nome": "Escudo Gota",
+    "categoria": "escudo",
+    "descricao": "Peso: 3,0 kg. Linha de Frente: oferece proteção sólida e confiável sem aplicar nenhuma penalidade de movimentação ou atributos ao usuário.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 2,
+      "peso": "leve",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "escudo-de-torre": {
+    "nome": "Escudo de Torre",
+    "categoria": "escudo",
+    "descricao": "Peso: 6,0 kg. Muralha Viva: impõe Desvantagem em Furtividade e Acrobacia, além de reduzir o deslocamento do usuário em 1,5 m. Como Ação, o usuário pode se esconder atrás dele, ganhando Cobertura Total contra ataques direcionais até se mover novamente.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 3,
+      "peso": "pesada",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "paves": {
+    "nome": "Pavês",
+    "categoria": "escudo",
+    "descricao": "Peso: 5,0 kg. Bônus de Defesa +2 empunhado, ou Cobertura Total quando fincado. Cobertura Portátil: gasta uma Ação de Movimento para fincá-lo no solo; uma vez fincado, sustenta-se sozinho, fornecendo Cobertura Total contra projéteis vindos daquela direção e liberando ambas as mãos do usuário para operar Arcos ou Bestas Pesadas. Arrancá-lo do chão exige uma Ação de Movimento.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 2,
+      "peso": "pesada",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "targe-farpado": {
+    "nome": "Targe Farpado",
+    "categoria": "escudo",
+    "descricao": "Peso: 2,5 kg. Investida Sangrenta: conta como uma arma corpo a corpo marcial que causa 1d6 (Perfuração). Se o usuário se mover pelo menos 3,0 m em linha reta em direção ao oponente e atacar com este escudo, concede Vantagem no teste.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 1,
+      "peso": "leve",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "quebra-espadas": {
+    "nome": "Quebra-Espadas / Escudo Lanterna",
+    "categoria": "escudo",
+    "descricao": "Peso: 2,0 kg. Aparar e Desarmar: se um inimigo errar um ataque corpo a corpo contra você por 2 pontos ou menos, a arma dele fica presa nos ganchos; use sua Reação imediatamente para realizar o desarme com Vantagem.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 1,
+      "peso": "leve",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "gambeson": {
+    "nome": "Gambeson",
+    "categoria": "armadura",
+    "descricao": "Peso: 4,0 kg. Sem penalidades.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 2,
+      "peso": "leve",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "couro-fervido": {
+    "nome": "Couro Fervido",
+    "categoria": "armadura",
+    "descricao": "Peso: 5,0 kg. Sem penalidades.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 3,
+      "peso": "leve",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "cota-de-malha": {
+    "nome": "Cota de Malha",
+    "categoria": "armadura",
+    "descricao": "Peso: 10,0 kg. Penalidade: impõe Desvantagem em testes de Furtividade.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 4,
+      "peso": "media",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "brigandina": {
+    "nome": "Brigandina",
+    "categoria": "armadura",
+    "descricao": "Peso: 12,0 kg. Penalidade: impõe Desvantagem em testes de Furtividade.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 5,
+      "peso": "media",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "meia-armadura": {
+    "nome": "Meia-Armadura",
+    "categoria": "armadura",
+    "descricao": "Peso: 20,0 kg. Penalidades: impõe Desvantagem em Furtividade e Acrobacia. Se o usuário não possuir Força 2 ou superior, o Deslocamento sofre penalidade de -1,5 m.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 6,
+      "peso": "pesada",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "armadura-de-placas": {
+    "nome": "Armadura de Placas",
+    "categoria": "armadura",
+    "descricao": "Peso: 30,0 kg. Penalidades: impõe Desvantagem em Furtividade e Acrobacia. Se o usuário não possuir Força 3 ou superior, o Deslocamento sofre penalidade de -3,0 m.",
+    "arma": null,
+    "defesa": {
+      "bonus_defesa": 8,
+      "peso": "pesada",
+      "minerio": "cobre"
+    },
+    "conteudo": null
+  },
+  "kit-de-primeiros-socorros": {
+    "nome": "Kit de Primeiros Socorros",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 1,0 kg. Conjunto de ataduras, agulhas e talas. Item obrigatório para usar a habilidade Primeiros Socorros da perícia Cura. Possui 5 usos antes de precisar de reposição.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "ferramentas-de-oficio": {
+    "nome": "Ferramentas de Ofício",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 4,0 kg. Martelos, lixas, pinças e alicates. Exigido para a habilidade Criar e Reparar da perícia Ofício. Crucial para restaurar a durabilidade de armas e armaduras nas cenas de descanso.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "kit-de-arrombamento": {
+    "nome": "Kit de Arrombamento",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 0,5 kg. Ferramentas finas e tensionadores essenciais para a habilidade Arrombamento da perícia Ladinagem. Rolar um \"1\" natural em um teste quebra a gazua utilizada.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "kit-de-falsificacao": {
+    "nome": "Kit de Falsificação",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 1,0 kg. Tintas, ceras e pergaminhos em branco. Necessário para criar documentos falsos através da habilidade Falsificação da perícia Enganação.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "corda-de-canhamo": {
+    "nome": "Corda de Cânhamo (15m)",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 2,5 kg. Pesada e robusta. Suporta o peso de até duas criaturas médias simultaneamente.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "corda-de-seda": {
+    "nome": "Corda de Seda (15m)",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 1,0 kg. Muito mais leve que o cânhamo e igualmente resistente, facilitando a gestão do inventário.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "arpeu": {
+    "nome": "Arpéu",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 1,5 kg. Gancho de metal amarrado à ponta de uma corda. Concede +2 em testes de Atletismo focados em escalada vertical.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "pederneira-e-isqueiro": {
+    "nome": "Pederneira e Isqueiro",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 0,1 kg. Essencial para iniciar fogueiras de acampamento. Funciona em quase qualquer condição que não seja chuva torrencial.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "tocha": {
+    "nome": "Tocha (Unidade)",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 0,5 kg. Ilumina um raio de 6 metros por 1 hora. Pode ser usada como arma corpo a corpo improvisada (causa 1d4 de dano de Fogo).",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "lanterna-furta-fogo": {
+    "nome": "Lanterna Furta-Fogo",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 1,0 kg. Utiliza óleo para iluminar de forma segura. Possui abas de metal que permitem \"fechar\" a lanterna completamente, bloqueando a luz sem apagá-la, evitando penalidades em Furtividade.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "saco-de-dormir-e-manta": {
+    "nome": "Saco de Dormir e Manta",
+    "categoria": "sobrevivencia",
+    "descricao": "Peso: 2,0 kg. Equipamento mínimo para garantir uma cena de descanso satisfatória em terrenos inóspitos, ativando a recuperação natural de 1d4 + Constituição + Ascensão pontos de Vida.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "ervas-de-eldgrove": {
+    "nome": "Ervas de Eldgrove",
+    "categoria": "consumivel",
+    "descricao": "Peso: 0,2 kg. Aplicá-lo consome uma Ação Completa. Aplica o efeito Regeneração: o alvo recupera 1d4+Cura de pontos de Vida no início de cada turno, durante 3 turnos.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "unguento-de-coagulacao": {
+    "nome": "Unguento de Coagulação",
+    "categoria": "consumivel",
+    "descricao": "Peso: 0,1 kg. Aplicá-lo consome uma Ação Padrão. Remove imediatamente os efeitos de Sangramento ou Hemorragia de um alvo corpo a corpo.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "sais-de-karnath": {
+    "nome": "Sais de Karnath",
+    "categoria": "consumivel",
+    "descricao": "Peso: 0,1 kg. Pós de cheiro pungente. Passá-los no nariz de um alvo consome uma Ação Padrão e remove imediatamente a condição Sono ou Inconsciente (desde que a Vida do alvo não esteja em 0).",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "frasco-de-oleo-inflamavel": {
+    "nome": "Frasco de Óleo Inflamável",
+    "categoria": "consumivel",
+    "descricao": "Peso: 0,5 kg. Pode ser arremessado a até 9 metros de distância. Se o alvo (criatura ou objeto) coberto pelo óleo receber qualquer dano de Fogo, recebe a condição Queimadura automaticamente.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "bolsa-de-estrepes": {
+    "nome": "Bolsa de Estrepes",
+    "categoria": "consumivel",
+    "descricao": "Peso: 1,0 kg. Espinhos de metal que podem ser espalhados no chão com uma Ação Padrão, cobrindo 1,5 m². Inimigos que passarem pelo local devem passar em um teste de Reflexos; falhar significa sofrer 1d4 de dano de Perfuração e ter o deslocamento reduzido pela metade naquele turno.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "mochila-de-aventureiro": {
+    "nome": "Mochila de Aventureiro",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 2,0 kg. Organiza o peso nas costas do personagem, indispensável para não estourar a regra da perícia Atletismo (cada 10 kg de carga não distribuída reduz o Deslocamento em -1,5 m).",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "bolsa-de-cinto": {
+    "nome": "Bolsa de Cinto",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 0,5 kg. Fixada na cintura, acomoda até 3 itens pequenos (como poções, gazuas ou unguentos). Sacar um item diretamente da bolsa de cinto consome apenas uma Ação Livre durante o combate.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "odre-cheio": {
+    "nome": "Odre (Cheio)",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 2,0 kg. Bolsa de couro tratada para carregar água ou vinho. Crucial para viagens.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  },
+  "frasco-de-vidro-vazio": {
+    "nome": "Frasco de Vidro (Vazio)",
+    "categoria": "ferramenta",
+    "descricao": "Peso: 0,1 kg. Recipiente selado, necessário para coletar com segurança venenos, poções, ácidos ou amostras do Bestiário.",
+    "arma": null,
+    "defesa": null,
+    "conteudo": null
+  }
+}

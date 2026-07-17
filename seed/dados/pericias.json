@@ -1,0 +1,254 @@
+{
+  "acrobacia": {
+    "nome": "Acrobacia",
+    "atributo": "des",
+    "requer_treinamento": true,
+    "descricao": "Capacidade de fazer proezas no ar. O mestre pode permitir uso no lugar de alguns testes de Reflexos.",
+    "mini_habilidades": [
+      { "nome": "Amortecer queda", "cd": 15, "descricao": "Ao sofrer dano de queda, sucesso reduz o dano em 1d6+Destreza; falha causa 1d4 de dano extra." },
+      { "nome": "Palco de circo", "cd": 25, "descricao": "Em terreno difícil, evita qualquer penalidade de terreno. 1x por combate." }
+    ]
+  },
+  "adestramento": {
+    "nome": "Adestramento",
+    "atributo": "car",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de controlar animais.",
+    "mini_habilidades": [
+      { "nome": "Comando animal", "cd": "15 a 25", "descricao": "Tenta fazer um animal obedecer um comando; CD varia conforme a interpretação do mestre. Não funciona em invocações." }
+    ]
+  },
+  "atletismo": {
+    "nome": "Atletismo",
+    "atributo": "for",
+    "requer_treinamento": false,
+    "descricao": "Demonstra conhecimento em habilidades atléticas.",
+    "mini_habilidades": [
+      { "nome": "Rompendo limites", "cd": null, "descricao": "Aumenta o deslocamento em +6m em qualquer ação com movimento (reduz -1,5m a cada 10kg carregados). 2x por cena." }
+    ]
+  },
+  "cavalgar": {
+    "nome": "Cavalgar",
+    "atributo": "des",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de conduzir montarias.",
+    "mini_habilidades": [
+      { "nome": "Montaria de combate", "cd": 20, "descricao": "Usa a montaria em combate: deslocamento igual ao dela, +2 de Defesa montado, -2 em Pontaria. Se derrubado (Fortitude CD20 ao sofrer ataque), cai e sofre 1d6 de dano." }
+    ]
+  },
+  "conhecimento": {
+    "nome": "Conhecimento",
+    "atributo": "int",
+    "requer_treinamento": true,
+    "descricao": "Capacidade de entender ou aprender coisas novas com facilidade.",
+    "mini_habilidades": [
+      { "nome": "Conhecimento aprofundado", "cd": null, "descricao": "Conhecimento aprofundado sobre um assunto à escolha, definido com o mestre ao adquirir a perícia." },
+      { "nome": "Memória antiga", "cd": 25, "descricao": "Tenta se lembrar de alguma informação perdida na memória, de qualquer assunto." }
+    ]
+  },
+  "cura": {
+    "nome": "Cura",
+    "atributo": "sab",
+    "requer_treinamento": true,
+    "descricao": "Habilidade de curar ou estabilizar a força vital própria ou de outro personagem.",
+    "mini_habilidades": [
+      { "nome": "Primeiros socorros", "cd": 15, "descricao": "Ação de movimento + kit de primeiros socorros: cura 2d4+Cura em si mesmo ou aliado em alcance corpo a corpo." },
+      { "nome": "Tratamento amplo", "cd": 20, "descricao": "Remove um estado negativo de um aliado, desde que haja tratamento medicamente plausível para o efeito." },
+      { "nome": "Reanimação", "cd": 25, "descricao": "Ação completa para tentar salvar um aliado em alcance curto que esteja no estado Limiar." }
+    ]
+  },
+  "diplomacia": {
+    "nome": "Diplomacia",
+    "atributo": "car",
+    "requer_treinamento": true,
+    "descricao": "Habilidades comunicativas para convencer alguém por meio de argumentos. O mestre pode preferir substituir por atuação/roleplay direto.",
+    "mini_habilidades": []
+  },
+  "enganacao": {
+    "nome": "Enganação",
+    "atributo": "car",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de mentir e blefar contra outro personagem.",
+    "mini_habilidades": [
+      { "nome": "Falsificação", "cd": null, "descricao": "Gera cópias perfeitas de documentos, chaves e afins, com os materiais e tempo necessários." },
+      { "nome": "Finta", "cd": 20, "descricao": "Em combate ou conversa, esquiva de um golpe ou assunto delicado. Em combate custa uma Reação; sucesso dá Vantagem no próximo ataque." }
+    ]
+  },
+  "fortitude": {
+    "nome": "Fortitude",
+    "atributo": "con",
+    "requer_treinamento": false,
+    "descricao": "Determina vigor e resistência em atividades físicas.",
+    "mini_habilidades": [
+      { "nome": "Resiliência", "cd": null, "descricao": "Se treinado, recebe +2 nos dados para resistir a efeitos negativos." }
+    ]
+  },
+  "furtividade": {
+    "nome": "Furtividade",
+    "atributo": "des",
+    "requer_treinamento": false,
+    "descricao": "Verifica a habilidade de se esconder ou anular presença e barulho.",
+    "mini_habilidades": [
+      { "nome": "Esconderijo improvisado", "cd": null, "descricao": "Atrás de cobertura completa, rola Furtividade com desvantagem contra a Percepção do inimigo; vencendo, ele esquece que você estava ali." }
+    ]
+  },
+  "guerra": {
+    "nome": "Guerra",
+    "atributo": "int",
+    "requer_treinamento": true,
+    "descricao": "Conhecimento militar avançado, reconhecimento e estratégias de batalha.",
+    "mini_habilidades": []
+  },
+  "iniciativa": {
+    "nome": "Iniciativa",
+    "atributo": "con",
+    "requer_treinamento": false,
+    "descricao": "Métrica principal que define a posição na ordem de ações, referente à impulsão e desejo inicial.",
+    "mini_habilidades": []
+  },
+  "intimidacao": {
+    "nome": "Intimidação",
+    "atributo": "car",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de intimidar ou coagir um personagem.",
+    "mini_habilidades": [
+      { "nome": "Assustar", "cd": null, "descricao": "Rola Intimidação contra a Vontade do alvo; vencendo, a próxima rolagem do alvo tem desvantagem contra você. Perdendo, não pode tentar de novo no mesmo alvo por 1 dia." }
+    ]
+  },
+  "investigacao": {
+    "nome": "Investigação",
+    "atributo": "int",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de procurar por pistas concretas e fazer deduções lógicas.",
+    "mini_habilidades": []
+  },
+  "intuicao": {
+    "nome": "Intuição",
+    "atributo": "sab",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de dedução lógica sobre algo sem informação plena.",
+    "mini_habilidades": [
+      { "nome": "Pressentimento", "cd": 20, "descricao": "Ao mudar de cena, rola Intuição para verificar se há alguma sensação estranha e sua origem." }
+    ]
+  },
+  "jogatina": {
+    "nome": "Jogatina",
+    "atributo": "int",
+    "requer_treinamento": true,
+    "descricao": "Capacidade de entender e trapacear em jogos de azar.",
+    "mini_habilidades": [
+      { "nome": "Truco", "cd": null, "descricao": "Uma vez, enquanto perdendo, rola Jogatina com vantagem; se perder mesmo assim, perde todo o dinheiro reservado para apostas." }
+    ]
+  },
+  "ladinagem": {
+    "nome": "Ladinagem",
+    "atributo": "des",
+    "requer_treinamento": true,
+    "descricao": "Medidor da capacidade de agir como um ladrão.",
+    "mini_habilidades": [
+      { "nome": "Arrombamento", "cd": "20 a 30", "descricao": "Abre fechaduras; CD varia com o vigor, importância ou material da fechadura." }
+    ]
+  },
+  "luta": {
+    "nome": "Luta",
+    "atributo": "for",
+    "requer_treinamento": false,
+    "descricao": "Habilidades de combate corpo a corpo, desarmado ou com armas brancas.",
+    "mini_habilidades": []
+  },
+  "misticismo": {
+    "nome": "Misticismo",
+    "atributo": "sab",
+    "requer_treinamento": true,
+    "descricao": "Capacidade de identificar, criar e anular efeitos mágicos rúnicos.",
+    "mini_habilidades": [
+      { "nome": "Conhecimento das runas", "cd": 15, "descricao": "Reconhece runas místicas no ambiente e entende seus efeitos." },
+      { "nome": "Lapidar runa", "cd": 20, "descricao": "Em cena de descanso, lapida um selo rúnico (Thor, Odin, Loki ou Eir) numa pedra Exousía; 1 runa a cada 3 dias; falha inutiliza a pedra." }
+    ]
+  },
+  "nobreza": {
+    "nome": "Nobreza",
+    "atributo": "int",
+    "requer_treinamento": true,
+    "descricao": "Conhecimento obtido através de uma educação especializada.",
+    "mini_habilidades": [
+      { "nome": "Aristocrata", "cd": null, "descricao": "Troca testes de Diplomacia e Enganação por Nobreza; em casos econômicos, recebe Vantagem." }
+    ]
+  },
+  "oficio": {
+    "nome": "Ofício",
+    "atributo": "int",
+    "requer_treinamento": true,
+    "descricao": "Habilidades ou trabalhos de fabricação material (diferente da criação de runas de Misticismo).",
+    "mini_habilidades": [
+      { "nome": "Criar e Reparar", "cd": "15 a 25", "descricao": "Em cena de descanso, cria utensílios com os materiais necessários; CD sobe +1 por nível de minério do item." },
+      { "nome": "Perceber durabilidade", "cd": "10 a 20", "descricao": "Identifica a durabilidade de um item do seu ofício; CD sobe +1 a cada 3m de distância do item." }
+    ]
+  },
+  "percepcao": {
+    "nome": "Percepção",
+    "atributo": "sab",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de ver e sentir o ambiente ao redor, por qualquer sentido.",
+    "mini_habilidades": []
+  },
+  "pilotagem": {
+    "nome": "Pilotagem",
+    "atributo": "des",
+    "requer_treinamento": true,
+    "descricao": "Permite conduzir veículos como carroças, barcos, etc.",
+    "mini_habilidades": []
+  },
+  "pontaria": {
+    "nome": "Pontaria",
+    "atributo": "des",
+    "requer_treinamento": false,
+    "descricao": "Capacidade de utilizar armas de longo alcance, de arremesso ou disparo.",
+    "mini_habilidades": []
+  },
+  "reflexos": {
+    "nome": "Reflexos",
+    "atributo": "des",
+    "requer_treinamento": false,
+    "descricao": "Habilidade de ver, perceber e reagir a algo feito contra você.",
+    "mini_habilidades": [
+      { "nome": "Contra finta", "cd": null, "descricao": "Contra uma Finta usada contra você, testa Reflexos vs. a Enganação do atacante; vencendo, anula a Finta." },
+      { "nome": "Desvio", "cd": null, "descricao": "Substitui a Defesa por um teste de Reflexos: reduz 50% do dano total em vez de anular completamente." }
+    ]
+  },
+  "religiao": {
+    "nome": "Religião",
+    "atributo": "sab",
+    "requer_treinamento": false,
+    "descricao": "Crença e devoção divina; todo manipulador elemental acredita em seus deuses e sabe fazer ritos e oferendas.",
+    "mini_habilidades": [
+      { "nome": "Prece", "cd": 20, "descricao": "Ação de movimento em combate para canalizar a vontade divina e obter bônus do Deus do personagem. 1x por cena." }
+    ]
+  },
+  "sobrevivencia": {
+    "nome": "Sobrevivência",
+    "atributo": "int",
+    "requer_treinamento": true,
+    "descricao": "Habilidade de viver longe da civilização e evitar grandes perigos.",
+    "mini_habilidades": [
+      { "nome": "Verificar alimento", "cd": 20, "descricao": "Verifica a qualidade de um alimento em estoque ou encontrado na natureza." },
+      { "nome": "Bússola inata", "cd": 15, "descricao": "Em locais remotos, se orienta para um local com poucos perigos ou para a cidade mais próxima." }
+    ]
+  },
+  "vontade": {
+    "nome": "Vontade",
+    "atributo": "sab",
+    "requer_treinamento": false,
+    "descricao": "Mede a capacidade de concentração, resistência a interrupções de canalização e força mental contra dano de Sanidade ou efeitos como Assustar.",
+    "mini_habilidades": []
+  },
+  "velocidade": {
+    "nome": "Velocidade",
+    "atributo": "des",
+    "requer_treinamento": true,
+    "descricao": "Segunda métrica da ordem de ações, relacionada à agilidade em combate.",
+    "mini_habilidades": [
+      { "nome": "Aceleração", "cd": null, "descricao": "No início do combate, decide rolar ou não Velocidade. Se rolar: 1d6+Velocidade soma na Iniciativa. Se não rolar: pode usar Velocidade para aumentar Reflexos." }
+    ]
+  }
+}

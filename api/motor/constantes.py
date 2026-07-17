@@ -1,0 +1,46 @@
+"""
+Constantes fixas do sistema "A Origem do Vento".
+
+Estas NAO dependem do catalogo carregado do Firestore/JSON -- sao regras
+fixas do sistema em si (ver docs/projeto-rpg-site-documento-base.md).
+"""
+from typing import Dict, Optional
+
+ATRIBUTOS_VALIDOS = ["for", "des", "con", "int", "sab", "car"]
+
+# Distribuicao de atributos na criacao (secao "Atributos e Modificadores"):
+# 10 pontos, cada atributo de -1 a 3, cada ponto negativo libera +1 extra.
+PONTOS_ATRIBUTOS_INICIAIS = 10
+ATRIBUTO_MINIMO = -1
+ATRIBUTO_MAXIMO = 3
+
+STATUS_BASICOS = ["vida", "sanidade", "arche", "defesa"]
+
+
+def bonus_treinamento_pericia(grau_ascensao: int, marcos: Dict[str, int]) -> int:
+    """
+    marcos vem de constantes_ascensao.json -> bonus_treinamento_pericia.marcos,
+    ex: {"1": 1, "3": 3, "5": 4, "7": 6, "10": 9}.
+
+    Regra confirmada com o dono do sistema: os graus intermediarios usam o
+    bonus do maior marco <= grau atual (grau 0 = +0).
+    """
+    pares = sorted((int(grau), bonus) for grau, bonus in marcos.items())
+    bonus_atual = 0
+    for grau_marco, bonus in pares:
+        if grau_ascensao >= grau_marco:
+            bonus_atual = bonus
+        else:
+            break
+    return bonus_atual
+
+
+def faixa_dificuldade_do_grau(grau: int, faixas: Dict[str, dict]) -> Optional[str]:
+    """
+    faixas vem de constantes_ascensao.json -> faixas_dificuldade,
+    ex: {"facil": {"graus": [1,2,3,4]}, "medio": {...}, "dificil": {...}}
+    """
+    for nome_faixa, dados in faixas.items():
+        if grau in dados.get("graus", []):
+            return nome_faixa
+    return None
