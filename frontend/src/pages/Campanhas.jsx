@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   collection,
   query,
@@ -194,7 +195,9 @@ function CardCampanha({ campanha, uid }) {
   const ehMestre = campanha.mestre_id === uid
   const [codigoCopiado, setCodigoCopiado] = useState(false)
 
-  async function copiarCodigo() {
+  async function copiarCodigo(e) {
+    e.preventDefault() // não deixa o clique "vazar" pro Link por trás do botão
+    e.stopPropagation()
     try {
       await navigator.clipboard.writeText(campanha.codigo_convite)
       setCodigoCopiado(true)
@@ -205,7 +208,7 @@ function CardCampanha({ campanha, uid }) {
   }
 
   return (
-    <div className="card-fantasy p-5 flex gap-4">
+    <Link to={`/campanhas/${campanha.id}`} className="card-fantasy p-5 flex gap-4 hover:border-white/20 transition-colors">
       <div className="w-16 h-16 rounded border border-panel-border bg-void overflow-hidden shrink-0 flex items-center justify-center">
         {campanha.imagem_base64 ? (
           <img src={campanha.imagem_base64} alt={campanha.nome} className="w-full h-full object-cover" />
@@ -228,7 +231,7 @@ function CardCampanha({ campanha, uid }) {
           </button>
         )}
       </div>
-    </div>
+    </Link>
   )
 }
 
