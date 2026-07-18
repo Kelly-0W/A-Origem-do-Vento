@@ -114,13 +114,20 @@ export default function CampanhaDetalhe() {
       // Só os personagens do PRÓPRIO jogador vinculados a essa campanha --
       // ver a ficha de outros jogadores é trabalho do Painel do Mestre
       // (fase seguinte), não dessa tela.
-      const q = query(
-        collection(db, 'personagens'),
-        where('dono_uid', '==', usuario.uid),
-        where('campanhas_ids', 'array-contains', id)
-      )
+      // Busca só por dono_uid (índice simples de campo único, sem precisar
+      // criar nada no console) e filtra `campanhas_ids` no cliente --
+      // combinar `==` com `array-contains` em campos diferentes exigiria
+      // um índice composto que este projeto não tem cadastrado, e isso
+      // fazia a tela inteira cair no catch() com "não foi possível
+      // carregar essa campanha agora" toda vez que alguém clicava numa
+      // campanha.
+      const q = query(collection(db, 'personagens'), where('dono_uid', '==', usuario.uid))
       const personagensSnap = await getDocs(q)
-      setPersonagensDaCampanha(personagensSnap.docs.map((d) => ({ id: d.id, ...d.data() })))
+      setPersonagensDaCampanha(
+        personagensSnap.docs
+          .map((d) => ({ id: d.id, ...d.data() }))
+          .filter((p) => (p.campanhas_ids || []).includes(id))
+      )
     } catch (err) {
       console.error(err)
       setErro('Não foi possível carregar essa campanha agora.')
