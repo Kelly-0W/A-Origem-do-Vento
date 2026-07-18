@@ -16,6 +16,7 @@
 ```
 firestore/
 ├── usuarios/{uid}
+├── catalogo_meta/versao
 ├── racas/{raca_id}
 ├── classes/{classe_id}
 ├── origens/{origem_id}
@@ -28,6 +29,20 @@ firestore/
 
 Por que os poderes são **subcoleção de elementos**? Todo poder pertence a exatamente 1 elemento, e a consulta típica é "todos os poderes do elemento X" (tela de escolha dos 2 poderes iniciais). A subcoleção dá isso de graça e mantém o caminho natural (`elementos/fogo/poderes/bola-de-fogo`). Se um dia precisar de busca global de poderes, usa-se *collection group query* (`collectionGroup('poderes')`).
 
+### `catalogo_meta/versao`
+
+Documento único, escrito só por `seed/seed_catalogo.py` (nunca pelo cliente nem pelas Cloud Functions em runtime). Existe para o frontend decidir, no login, se o catálogo salvo em cache local (IndexedDB) está desatualizado — ver "Cache local do catálogo" no documento-base.
+
+```jsonc
+{
+  "versao": 3,            // inteiro, incrementado automaticamente pelo seed
+  "hash": "34a75d38...",  // SHA-256 do conteúdo de seed/dados/, determinístico
+  "atualizado_em": Timestamp
+}
+```
+
+`versao` não é escolhida a mão: o seed calcula um hash de todo `seed/dados/` a cada run e só incrementa `versao` quando o hash muda de fato. O frontend só precisa comparar o `versao` local com o remoto (1 leitura barata) — não precisa entender nem comparar o `hash` diretamente, que existe só para o seed decidir se algo mudou.
+
 ---
 
 ## 1. `usuarios/{uid}`
@@ -39,7 +54,7 @@ O `uid` é o do Firebase Authentication. Guarda só perfil; personagem é docume
   "nome_exibicao": "Kelly",
   "email": "x@y.com",              // espelho do Auth, opcional
   "criado_em": Timestamp,
-  "avatar_url": "https://..."      // opcional
+  "avatar_url": "https://..."      // opcional -- URL simples (ver nota no item 6 da seção 10), sem Firebase Storage
   // futuramente: lista de campanhas como mestre/jogador (denormalização)
 }
 ```
@@ -334,7 +349,7 @@ Princípio central: a ficha guarda **escolhas** (inputs do jogador) separadas de
 
   // ---- Identidade / narrativa ----
   "nome": "Tharion",
-  "avatar_url": null,
+  "avatar_url": null,                   // URL simples (ver nota no item 6 da seção 10), sem Firebase Storage
   "historia": "...",                    // texto livre
   "anotacoes": "...",                   // texto livre do jogador
 
@@ -371,7 +386,7 @@ Princípio central: a ficha guarda **escolhas** (inputs do jogador) separadas de
   // ---- Progressão ----
   "grau_ascensao": 0,
   "manifestacoes": [                    // 1 entrada por Ascensão concluída (visual, sem mecânica)
-    { "grau": 1, "descricao": "...", "imagem_url": null }
+    { "grau": 1, "descricao": "...", "imagem_url": null }  // URL simples (ver nota no item 6 da seção 10), sem Firebase Storage
   ],
   "ascensao_em_progresso": {
     "grau_alvo": 1,
@@ -486,6 +501,28 @@ manualmente na mesa — automatiza-se depois, sem migração de schema.
    etc.) usando exatamente os mesmos formatos de documento.
 5. **RTDB não aparece aqui** de propósito: log de rolagens e estado de combate
    são schema da fase 2, junto com Campanha.
+6. **Sem Firebase Storage — imagens são URL, não upload.** Firebase Storage
+   deixou de ser gratuito (exige o plano Blaze com faturamento ativo), então
+   `avatar_url` (usuários e personagens) e `manifestacoes[].imagem_url`
+   passam a ser strings simples gravadas direto no Firestore, sem nenhum
+   pipeline de upload de arquivo. Na prática, o jogador cola o link de uma
+   imagem já hospedada em outro lugar (ex: Imgur, Discord CDN, Google
+   Drive com link público) e o frontend só faz `<img src={avatar_url} />`.
+   Consequências:
+   - Nenhum bucket, nenhuma Storage Rule, nenhum SDK de Storage — só o campo
+     de texto normal, sujeito às mesmas Firestore Rules do resto do
+     documento (dono lê/escreve o próprio; ver seção "Esboço de Security
+     Rules").
+   - Validação fica a cargo do motor/frontend, não do Storage: checar que é
+     string, opcionalmente com limite de tamanho (ex: 2048 caracteres) e
+     prefixo `http://`/`https://`; não há verificação de tipo de arquivo,
+     dimensão ou peso de imagem — o link pode apontar pra qualquer coisa,
+     então o frontend deve tratar erro de carregamento de imagem
+     (`onError`) com um placeholder.
+   - Fica documentado aqui como referência caso o projeto reative Storage
+     no futuro (ex: se o Blaze compensar); os campos já são
+     forward-compatible, já que só trocariam de "URL colada pelo jogador"
+     para "URL gerada pelo upload" sem mudar o schema.
 
 ## 11. Próximos passos sugeridos
 

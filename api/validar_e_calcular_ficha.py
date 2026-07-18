@@ -1,39 +1,11 @@
 from http.server import BaseHTTPRequestHandler
 import json
-import os
 
 # Import relativo ao pacote "api" (e assim que o Vercel Python Functions
 # resolve os modulos quando o handler fica em api/*.py e importa de api/motor/).
 from api.motor.ficha import calcular_ficha
-
-PASTA_DADOS = os.path.join(os.path.dirname(__file__), "..", "seed", "dados")
-
-
-def carregar_catalogo():
-    """
-    Carrega o catalogo de regras a partir dos JSONs em seed/dados/.
-
-    NOTA: isso le os arquivos locais empacotados no deploy da Vercel, NAO
-    o Firestore. E uma solucao valida por enquanto (o catalogo muda pouco,
-    e assim fica rapido e sem custo de leitura no Firestore a cada
-    requisicao), mas se no futuro o catalogo passar a ser editado direto
-    no Firestore (fora do Git), essa funcao precisa trocar para ler de la
-    via Firebase Admin SDK.
-    """
-    def ler(nome):
-        caminho = os.path.join(PASTA_DADOS, nome)
-        with open(caminho, encoding="utf-8") as f:
-            return json.load(f)
-
-    return {
-        "racas": ler("racas.json"),
-        "classes": ler("classes.json"),
-        "origens": ler("origens.json"),
-        "pericias": ler("pericias.json"),
-        "elementos": ler("elementos.json"),
-        "itens": ler("itens.json"),
-        "constantes_ascensao": ler("constantes_ascensao.json"),
-    }
+from api.motor.persistencia import salvar_ficha_calculada
+from api.motor.catalogo import carregar_catalogo
 
 
 class handler(BaseHTTPRequestHandler):
@@ -42,10 +14,21 @@ class handler(BaseHTTPRequestHandler):
         Espera um corpo JSON no formato:
             {
               "escolhas": { ...ver docs/schema-banco-dados-personagem.md... },
-              "grau_ascensao": 0
+              "grau_ascensao": 0,
+              "dono_uid": "uid-do-usuario-autenticado",   // opcional
+              "personagem_id": "id-do-documento-existente", // opcional, so' para ATUALIZAR
+              "campanha_id": "id-da-campanha"              // opcional, so' na CRIACAO
             }
         (aceita tambem o objeto de escolhas direto na raiz, sem a chave
         "escolhas", para facilitar testes rapidos).
+
+        Quando o calculo tem sucesso, a ficha e' salva automaticamente no
+        Firestore (colecao `personagens`), com escolhas + calculado +
+        criado_em/atualizado_em. Se a gravacao falhar (ex: variavel de
+        ambiente da credencial nao configurada), a resposta AINDA retorna
+        200 com a ficha calculada -- so' marca "ficha_salva": false e
+        inclui o motivo em "aviso", porque o calculo em si funcionou; nao
+        faz sentido derrubar a resposta inteira por causa da persistencia.
         """
         try:
             content_length = int(self.headers['Content-Length'])
@@ -54,6 +37,9 @@ class handler(BaseHTTPRequestHandler):
 
             escolhas = corpo.get("escolhas", corpo)
             grau_ascensao = corpo.get("grau_ascensao", 0)
+            dono_uid = corpo.get("dono_uid")
+            personagem_id = corpo.get("personagem_id")
+            campanha_id = corpo.get("campanha_id")
 
             catalogo = carregar_catalogo()
             sucesso, resultado = calcular_ficha(escolhas, catalogo, grau_ascensao=grau_ascensao)
@@ -61,6 +47,20 @@ class handler(BaseHTTPRequestHandler):
             if sucesso:
                 resposta = {"sucesso": True, **resultado}
                 status_code = 200
+
+                try:
+                    id_salvo = salvar_ficha_calculada(
+                        escolhas=escolhas,
+                        calculado=resultado["calculado"],
+                        dono_uid=dono_uid,
+                        personagem_id=personagem_id,
+                        campanha_id=campanha_id,
+                    )
+                    resposta["ficha_salva"] = True
+                    resposta["personagem_id"] = id_salvo
+                except Exception as erro_persistencia:
+                    resposta["ficha_salva"] = False
+                    resposta["aviso"] = f"Ficha calculada, mas nao foi salva: {erro_persistencia}"
             else:
                 resposta = {"sucesso": False, "erros": resultado["erros"]}
                 status_code = 400

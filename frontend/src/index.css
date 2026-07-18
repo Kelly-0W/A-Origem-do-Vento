@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-void;
+    background-image: radial-gradient(ellipse at top, rgba(122, 31, 31, 0.06), transparent 60%);
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .card-fantasy {
+    @apply bg-panel border border-panel-border rounded-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-md font-display text-sm tracking-wide
+           bg-blood-dark border border-blood-bright/40 text-white
+           hover:bg-blood transition-colors duration-150;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-md font-display text-sm tracking-wide
+           bg-forest-dark border border-forest/60 text-white
+           hover:bg-forest transition-colors duration-150;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-md text-mist font-display text-sm tracking-wide
+           border border-transparent hover:text-white transition-colors duration-150 cursor-pointer;
+  }
+
+  .sidebar-item.active {
+    @apply text-gold bg-blood-dark/20 border-blood-bright/30 relative;
+  }
+
+  .sidebar-item.active::before {
+    content: '';
+    @apply absolute left-0 top-0 bottom-0 w-[3px] bg-gold rounded-r;
+  }
+
+  .stat-tile {
+    @apply card-fantasy p-4 flex flex-col gap-1;
+  }
+
+  .campo-input {
+    @apply bg-void border border-panel-border rounded-md px-3 py-2.5 text-sm outline-none
+           focus:border-gold/50 transition-colors placeholder:text-mist/50;
+  }
+}

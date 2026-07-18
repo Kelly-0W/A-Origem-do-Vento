@@ -3,29 +3,17 @@ rules_version = '2';
 // Primeira versão das regras, baseada na seção 5/"Esboço de Security Rules"
 // do documento docs/schema-banco-dados-personagem.md.
 //
-// Fase Campanha (criar/entrar) já implementada abaixo.
-//
-// Painel do Mestre (Fase 4 -- ver pedidos de Ascensão e fichas de todos os
-// personagens de uma campanha): NÃO foi resolvido adicionando regras aqui.
-// Um mestre precisa ler/editar personagens de que NÃO é dono, e a checagem
-// "esse uid é mestre_id de alguma campanha cujo id está no array
-// campanhas_ids deste personagem" exigiria percorrer um array de tamanho
-// variável fazendo um get() por item -- o Firestore Rules não suporta essa
-// forma de laço. Por isso esse acesso passa por dois endpoints com Admin
-// SDK (que ignoram estas regras de propósito):
-//   - api/mestre_campanha_personagens.py (leitura: lista a mesa inteira)
-//   - api/responder_ascensao.py (escrita: aprova/recusa e recalcula a ficha)
-// Ambos conferem no servidor que quem chamou é de fato o mestre_id da
-// campanha antes de fazer qualquer leitura/escrita.
+// Fase Campanha (criar/entrar) já implementada abaixo. AINDA NÃO INCLUI:
+// acesso do Mestre às fichas de personagem da própria campanha -- isso
+// depende do campo `campanha_id`/`campanhas_ids` em `personagens`, que só
+// entra na fase "Personagem dentro da Mesa". Os TODOs no bloco de
+// personagens marcam exatamente onde essa lógica vai entrar.
 //
 // IMPORTANTE: por enquanto, o dono do personagem pode escrever em QUALQUER
-// campo da própria ficha, incluindo `calculado` — o ideal é que só uma
-// Cloud Function (via Admin SDK, que ignora estas regras) escreva ali.
-// Restringir isso por campo dentro do Firestore Rules é possível mas mais
-// avançado; fica como endurecimento futuro (ver TODO no bloco de
-// personagens). Os 3 booleans + descrição de `ascensao_em_progresso` já
-// aproveitam essa permissividade de propósito (é o próprio jogador quem
-// marca Catalisador/Provação/Ritual, client-side, direto no documento).
+// campo da própria ficha, incluindo `calculado` — o ideal é que só a Cloud
+// Function (via Admin SDK, que ignora estas regras) escreva ali. Restringir
+// isso por campo dentro do Firestore Rules é possível mas mais avançado;
+// fica como endurecimento futuro (ver TODO no bloco de personagens).
 
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -113,14 +101,12 @@ service cloud.firestore {
       allow create: if ehDono(request.resource.data.dono_uid);
       allow update, delete: if ehDono(resource.data.dono_uid);
 
-      // Acesso do Mestre (leitura da mesa inteira + aprovar/recusar
-      // Ascensão) NÃO é feito por regras aqui -- ver comentário no topo
-      // deste arquivo sobre api/mestre_campanha_personagens.py e
-      // api/responder_ascensao.py.
-      //
+      // TODO (fase Campanha): permitir leitura total ao mestre_id da
+      // campanha à qual este personagem pertence.
+      // TODO (fase Campanha): permitir ao mestre escrever somente em
+      // ascensao_em_progresso.status (aprovar/recusar), nada mais.
       // TODO (endurecimento): restringir escrita do dono para excluir o
-      // bloco `calculado`, que deveria ser exclusivo de um endpoint com
-      // Admin SDK (mesma ideia já aplicada em responder_ascensao.py).
+      // bloco `calculado`, que deveria ser exclusivo da Cloud Function.
     }
   }
 }

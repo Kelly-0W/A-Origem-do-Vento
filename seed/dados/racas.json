@@ -1,144 +1,4 @@
 {
-  "humano": {
-    "nome": "Humano",
-    "descricao_curta": "Versateis e ambiciosos, se adaptam a qualquer papel.",
-    "status": {
-      "vida": {
-        "base": 10,
-        "atributo": "con",
-        "mult_ascensao": 4
-      },
-      "sanidade": {
-        "base": 8,
-        "atributo": "sab",
-        "mult_ascensao": 3
-      },
-      "arche": {
-        "base": 8,
-        "atributo": "int",
-        "mult_ascensao": 2
-      },
-      "defesa": {
-        "base": 7,
-        "atributo": "des",
-        "mult_ascensao": 1
-      },
-      "deslocamento_m": 9,
-      "ataque_desarmado": {
-        "dano": "1d4",
-        "atributo": "for",
-        "tipo_dano": "impacto"
-      }
-    },
-    "modificadores_atributo": {
-      "for": -1,
-      "des": 0,
-      "con": 0,
-      "int": 1,
-      "sab": 0,
-      "car": 1
-    },
-    "linhagens": [],
-    "habilidades_globais": [
-      {
-        "id": "comando-de-massa",
-        "nome": "Comando de Massa",
-        "descricao": "Voce consegue liderar e manipular as reacoes de grandes grupos com extrema facilidade. Sempre que voce precisar enganar ou convencer 3 ou mais entidades simultaneamente utilizando as pericias Enganacao ou Diplomacia, voce recebe um bonus fixo de +4 em sua rolagem.",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "mestre-da-enganacao",
-        "nome": "Mestre da Enganacao",
-        "descricao": "Sua mente astuta trabalha mais rapido que os olhos dos seus interlocutores. Voce recebe +2 de bonus fixo em todos os seus testes de Enganacao. Caso voce esteja tentando ludibriar ou enganar uma criatura que pertenca a qualquer outra raca que nao seja humana, esse bonus aumenta automaticamente para +4 no teste.",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "acao-desleal",
-        "nome": "Acao Desleal",
-        "descricao": "Voce sabe perfeitamente como aproveitar uma brecha na guarda inimiga apos se proteger. Sempre que um ataque fisico ou magico direcionado a voce errar a sua Defesa atual, voce pode gastar sua Acao de Reacao e 2 pontos de Arche para conjurar imediatamente uma habilidade propria que custe uma Acao Bonus, ou realizar um ataque basico gratuito.",
-        "tipo": "ativa",
-        "efeitos": []
-      },
-      {
-        "id": "negociador-nato",
-        "nome": "Negociador Nato",
-        "descricao": "O valor das moedas e das palavras dança conforme a sua musica. Sempre que estiver ativamente conduzindo uma negociacao comercial, compra de itens ou barganha de recompensas, voce recebe Vantagem em seu teste de Diplomacia. Alem disso, os seus Sucessos Criticos nesses testes especificos passam a ocorrer sempre que o resultado total da rolagem atingir uma CD 25 ou mais.",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "seus-segredos-nao-estao-seguros-comigo",
-        "nome": "Seus Segredos (Nao) Estao Seguros Comigo",
-        "descricao": "Sua capacidade de coletar podres e vulnerabilidades torna voce uma ameaca letal. Para cada segredo obscuro, fraqueza mecanica ou ponto fraco pessoal que voce descobrir e souber a respeito de uma criatura, voce recebe um bonus de +2 em todos os seus testes de pericia e rolagens de ataque direcionados diretamente contra ela (bonus maximo de +6 por criatura alvo).",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "falsa-lealdade",
-        "nome": "Falsa Lealdade",
-        "descricao": "Aliancas e palavras escritas sao apenas ferramentas temporarias para a sua sobrevivencia. Sempre que voce romper intencionalmente uma promessa, alianca tatica ou contrato formal estabelecido com um NPC ou faccao inimiga, voce recebe um bonus de +3 em todas as suas pericias e jogadas de dano contra os alvos envolvidos no acordo quebrado ate o fim da cena atual.",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "minha-voz-e-minha-arma",
-        "nome": "Minha Voz e Minha Arma",
-        "descricao": "Sua argumentacao possui um teor tao hipnotico e convincente que e capaz de distorcer a realidade imediata. Uma vez por cena, voce pode gastar uma Acao Padrao e 3 pontos de Arche para plantar uma mentira verbal na mente de um alvo. Se a Inteligencia do alvo for igual ou menor que a sua, ele acreditara na informacao cegamente por 1 rodada completa, sem a necessidade de rolagem de dados.",
-        "tipo": "ativa",
-        "efeitos": []
-      },
-      {
-        "id": "ambicao-e-minha-sina",
-        "nome": "Ambicao e Minha Sina",
-        "descricao": "No inicio de cada sessao ou arco de historia, voce deve definir em conjunto com o Mestre um objetivo grandioso e tangivel para o seu personagem. Enquanto estiver realizando uma acao que contribua diretamente para a conclusao desse objetivo, voce recebe +2 em seus testes. Quando o objetivo for cumprido com sucesso, seu proximo golpe em combate causara +15 de dano fixo.",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "linguagem-de-ouro",
-        "nome": "Linguagem de Ouro",
-        "descricao": "A sua adaptabilidade permite que voce encontre padroes em qualquer dialeto ou comportamento biologico. Voce consegue se comunicar verbalmente de forma rudimentar com absolutamente qualquer criatura viva que possua um valor de Inteligencia igual a 2 ou maior. Ao estabelecer essa comunicacao improvisada, voce recebe +3 de bonus na pericia Diplomacia ate o final da cena.",
-        "tipo": "passiva",
-        "efeitos": []
-      },
-      {
-        "id": "me-de-o-que-desejo",
-        "nome": "Me De o que Desejo",
-        "descricao": "Voce possui o dom de extrair informacoes confidenciais atraves de conversas que parecem casuais. Voce pode gastar uma Acao Padrao para interrogar ou extrair um dado importante de um NPC, realizando um teste de Diplomacia com CD 23. Voce recebe +2 de bonus nato nessa rolagem e, se for bem-sucedido, a criatura revela voluntariamente a informacao solicitada.",
-        "tipo": "ativa",
-        "efeitos": []
-      },
-      {
-        "id": "nao-tente-mentir-para-um-mentiroso",
-        "nome": "Nao Tente Mentir para um Mentiroso",
-        "descricao": "Um vigarista reconhece os passos de outro a distancia de leguas. Sempre que uma criatura tentar mentir, omitir ou usar a pericia Enganacao contra voce ou na sua presenca imediata, voce pode rolar um teste de Percepcao com CD 20. Voce recebe +2 de bonus nesse teste e, caso passe, identificara a mentira e a real intencao por tras das palavras dela.",
-        "tipo": "passiva",
-        "efeitos": []
-      }
-    ],
-    "habilidades_especificas": [],
-    "qtd_habilidades_iniciais": 2,
-    "sistema_racial_inato": null,
-    "catalisadores": {
-      "facil": [
-        "Fragmento de Monumento Antigo",
-        "Gema de Familia",
-        "Erva de Poder"
-      ],
-      "medio": [
-        "Reliquia Historica",
-        "Essencia de Conquista",
-        "Cristal de Vontade"
-      ],
-      "dificil": [
-        "Simbolo de um Rei",
-        "Fragmento do Destino",
-        "Alma do Heroi Lendario"
-      ]
-    }
-  },
   "anao": {
     "nome": "Anao",
     "descricao_curta": "Povo forjado no fogo e na pedra, dividido em tres linhagens moldadas pelas nacoes onde se refugiaram apos a Guerra do Metal.",
@@ -2212,6 +2072,146 @@
         "Nucleo de Tecnologia Ancestral",
         "Fragmento de Artefato Proibido",
         "Coracao do Inventor"
+      ]
+    }
+  },
+  "humano": {
+    "nome": "Humano",
+    "descricao_curta": "Versateis e ambiciosos, se adaptam a qualquer papel.",
+    "status": {
+      "vida": {
+        "base": 10,
+        "atributo": "con",
+        "mult_ascensao": 4
+      },
+      "sanidade": {
+        "base": 8,
+        "atributo": "sab",
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 8,
+        "atributo": "int",
+        "mult_ascensao": 2
+      },
+      "defesa": {
+        "base": 7,
+        "atributo": "des",
+        "mult_ascensao": 1
+      },
+      "deslocamento_m": 9,
+      "ataque_desarmado": {
+        "dano": "1d4",
+        "atributo": "for",
+        "tipo_dano": "impacto"
+      }
+    },
+    "modificadores_atributo": {
+      "for": -1,
+      "des": 0,
+      "con": 0,
+      "int": 1,
+      "sab": 0,
+      "car": 1
+    },
+    "linhagens": [],
+    "habilidades_globais": [
+      {
+        "id": "comando-de-massa",
+        "nome": "Comando de Massa",
+        "descricao": "Voce consegue liderar e manipular as reacoes de grandes grupos com extrema facilidade. Sempre que voce precisar enganar ou convencer 3 ou mais entidades simultaneamente utilizando as pericias Enganacao ou Diplomacia, voce recebe um bonus fixo de +4 em sua rolagem.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "mestre-da-enganacao",
+        "nome": "Mestre da Enganacao",
+        "descricao": "Sua mente astuta trabalha mais rapido que os olhos dos seus interlocutores. Voce recebe +2 de bonus fixo em todos os seus testes de Enganacao. Caso voce esteja tentando ludibriar ou enganar uma criatura que pertenca a qualquer outra raca que nao seja humana, esse bonus aumenta automaticamente para +4 no teste.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "acao-desleal",
+        "nome": "Acao Desleal",
+        "descricao": "Voce sabe perfeitamente como aproveitar uma brecha na guarda inimiga apos se proteger. Sempre que um ataque fisico ou magico direcionado a voce errar a sua Defesa atual, voce pode gastar sua Acao de Reacao e 2 pontos de Arche para conjurar imediatamente uma habilidade propria que custe uma Acao Bonus, ou realizar um ataque basico gratuito.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "negociador-nato",
+        "nome": "Negociador Nato",
+        "descricao": "O valor das moedas e das palavras dança conforme a sua musica. Sempre que estiver ativamente conduzindo uma negociacao comercial, compra de itens ou barganha de recompensas, voce recebe Vantagem em seu teste de Diplomacia. Alem disso, os seus Sucessos Criticos nesses testes especificos passam a ocorrer sempre que o resultado total da rolagem atingir uma CD 25 ou mais.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "seus-segredos-nao-estao-seguros-comigo",
+        "nome": "Seus Segredos (Nao) Estao Seguros Comigo",
+        "descricao": "Sua capacidade de coletar podres e vulnerabilidades torna voce uma ameaca letal. Para cada segredo obscuro, fraqueza mecanica ou ponto fraco pessoal que voce descobrir e souber a respeito de uma criatura, voce recebe um bonus de +2 em todos os seus testes de pericia e rolagens de ataque direcionados diretamente contra ela (bonus maximo de +6 por criatura alvo).",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "falsa-lealdade",
+        "nome": "Falsa Lealdade",
+        "descricao": "Aliancas e palavras escritas sao apenas ferramentas temporarias para a sua sobrevivencia. Sempre que voce romper intencionalmente uma promessa, alianca tatica ou contrato formal estabelecido com um NPC ou faccao inimiga, voce recebe um bonus de +3 em todas as suas pericias e jogadas de dano contra os alvos envolvidos no acordo quebrado ate o fim da cena atual.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "minha-voz-e-minha-arma",
+        "nome": "Minha Voz e Minha Arma",
+        "descricao": "Sua argumentacao possui um teor tao hipnotico e convincente que e capaz de distorcer a realidade imediata. Uma vez por cena, voce pode gastar uma Acao Padrao e 3 pontos de Arche para plantar uma mentira verbal na mente de um alvo. Se a Inteligencia do alvo for igual ou menor que a sua, ele acreditara na informacao cegamente por 1 rodada completa, sem a necessidade de rolagem de dados.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "ambicao-e-minha-sina",
+        "nome": "Ambicao e Minha Sina",
+        "descricao": "No inicio de cada sessao ou arco de historia, voce deve definir em conjunto com o Mestre um objetivo grandioso e tangivel para o seu personagem. Enquanto estiver realizando uma acao que contribua diretamente para a conclusao desse objetivo, voce recebe +2 em seus testes. Quando o objetivo for cumprido com sucesso, seu proximo golpe em combate causara +15 de dano fixo.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "linguagem-de-ouro",
+        "nome": "Linguagem de Ouro",
+        "descricao": "A sua adaptabilidade permite que voce encontre padroes em qualquer dialeto ou comportamento biologico. Voce consegue se comunicar verbalmente de forma rudimentar com absolutamente qualquer criatura viva que possua um valor de Inteligencia igual a 2 ou maior. Ao estabelecer essa comunicacao improvisada, voce recebe +3 de bonus na pericia Diplomacia ate o final da cena.",
+        "tipo": "passiva",
+        "efeitos": []
+      },
+      {
+        "id": "me-de-o-que-desejo",
+        "nome": "Me De o que Desejo",
+        "descricao": "Voce possui o dom de extrair informacoes confidenciais atraves de conversas que parecem casuais. Voce pode gastar uma Acao Padrao para interrogar ou extrair um dado importante de um NPC, realizando um teste de Diplomacia com CD 23. Voce recebe +2 de bonus nato nessa rolagem e, se for bem-sucedido, a criatura revela voluntariamente a informacao solicitada.",
+        "tipo": "ativa",
+        "efeitos": []
+      },
+      {
+        "id": "nao-tente-mentir-para-um-mentiroso",
+        "nome": "Nao Tente Mentir para um Mentiroso",
+        "descricao": "Um vigarista reconhece os passos de outro a distancia de leguas. Sempre que uma criatura tentar mentir, omitir ou usar a pericia Enganacao contra voce ou na sua presenca imediata, voce pode rolar um teste de Percepcao com CD 20. Voce recebe +2 de bonus nesse teste e, caso passe, identificara a mentira e a real intencao por tras das palavras dela.",
+        "tipo": "passiva",
+        "efeitos": []
+      }
+    ],
+    "habilidades_especificas": [],
+    "qtd_habilidades_iniciais": 2,
+    "sistema_racial_inato": null,
+    "catalisadores": {
+      "facil": [
+        "Fragmento de Monumento Antigo",
+        "Gema de Familia",
+        "Erva de Poder"
+      ],
+      "medio": [
+        "Reliquia Historica",
+        "Essencia de Conquista",
+        "Cristal de Vontade"
+      ],
+      "dificil": [
+        "Simbolo de um Rei",
+        "Fragmento do Destino",
+        "Alma do Heroi Lendario"
       ]
     }
   },

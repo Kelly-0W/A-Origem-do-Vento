@@ -8,6 +8,11 @@ from typing import Dict, Optional
 
 ATRIBUTOS_VALIDOS = ["for", "des", "con", "int", "sab", "car"]
 
+# Versao do motor de regras, gravada em cada ficha calculada para saber
+# com qual versao das regras aquele calculo foi feito (util se as regras
+# mudarem no futuro e for preciso recalcular fichas antigas).
+VERSAO_MOTOR = "1.0.0"
+
 # Distribuicao de atributos na criacao (secao "Atributos e Modificadores"):
 # 10 pontos, cada atributo de -1 a 3, cada ponto negativo libera +1 extra.
 PONTOS_ATRIBUTOS_INICIAIS = 10

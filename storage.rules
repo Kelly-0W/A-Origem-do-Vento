@@ -1,0 +1,70 @@
+rules_version = '2';
+
+// Regras do Firebase Storage (imagens). Complementam firestore.rules -- ali
+// fica quem pode ler/escrever DOCUMENTOS, aqui quem pode subir/ver ARQUIVOS.
+//
+// Estrutura de pastas esperada no bucket:
+//   personagens/{uid_do_dono}/{personagemId}/{arquivo}
+//   campanhas/{campanhaId}/{arquivo}
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function estaAutenticado() {
+      return request.auth != null;
+    }
+
+    function eImagemValida() {
+      return request.resource.contentType.matches('image/.*')
+          && request.resource.size < 5 * 1024 * 1024; // limite de 5MB por imagem
+    }
+
+    function dadosDaCampanha(campanhaId) {
+      return firestore.get(/databases/(default)/documents/campanhas/$(campanhaId)).data;
+    }
+
+    function ehMestreDaCampanha(campanhaId) {
+      return dadosDaCampanha(campanhaId).mestre_id == request.auth.uid;
+    }
+
+    function ehParticipanteDaCampanha(campanhaId) {
+      let campanha = dadosDaCampanha(campanhaId);
+      return campanha.mestre_id == request.auth.uid
+          || (campanha.jogadores_uids is list && request.auth.uid in campanha.jogadores_uids);
+    }
+
+    // ---- Imagens de personagem ----
+    // Por enquanto, so o dono do personagem sobe e ve a propria imagem.
+    //
+    // TODO (fase Campanha): quando um personagem estiver vinculado a uma
+    // campanha, o Mestre e os demais jogadores da MESMA campanha tambem
+    // deveriam poder ver o retrato -- isso exige guardar a campanha_id do
+    // personagem em algum lugar consultavel daqui (ex: subir a imagem para
+    // um path que inclua campanha_id, ou consultar o documento do
+    // personagem no Firestore igual fazemos abaixo para campanhas). Ainda
+    // nao implementado porque a colecao `personagens` no Firestore ainda
+    // nao existe.
+    match /personagens/{uid}/{personagemId}/{arquivo} {
+      allow read: if estaAutenticado() && request.auth.uid == uid;
+      allow write: if estaAutenticado() && request.auth.uid == uid && eImagemValida();
+    }
+
+    // ---- Imagens de campanha ----
+    // Le: Mestre ou qualquer jogador participante da campanha.
+    // Escreve: so o Mestre (e' quem administra a campanha).
+    //
+    // Depende de campanhas/{campanhaId} existir no Firestore com os campos
+    // `mestre_id` (string, uid) e `jogadores_uids` (lista de uids) -- essa
+    // colecao ainda nao foi criada, entao por enquanto isso nega tudo com
+    // seguranca (fail-closed) ate ela existir.
+    match /campanhas/{campanhaId}/{arquivo} {
+      allow read: if estaAutenticado() && ehParticipanteDaCampanha(campanhaId);
+      allow write: if estaAutenticado() && ehMestreDaCampanha(campanhaId) && eImagemValida();
+    }
+
+    // Qualquer outro caminho: negado por padrao.
+    match /{caminhoRestante=**} {
+      allow read, write: if false;
+    }
+  }
+}
