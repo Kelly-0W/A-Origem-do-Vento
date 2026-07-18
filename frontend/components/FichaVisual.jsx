@@ -1,18 +1,13 @@
-import { useState } from 'react'
 import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
 import { nomePericia } from '../lib/formato.js'
-import ModalBase from './ModalBase.jsx'
-import PoderDetalhe from './PoderDetalhe.jsx'
 
 const NOMES_STATUS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defesa: 'Defesa' }
 
 // Ficha visual pós-cálculo -- troca o JSON cru de `resultado` por blocos no
 // mesmo design system já usado no passo de Atributos (`stat-tile`). Usada
 // tanto logo após calcular no Wizard quanto na tela de detalhe do
-// personagem (a partir do `calculado` já salvo no Firestore). Cada poder é
-// clicável e abre o mesmo card de detalhe mecânico usado na Biblioteca.
+// personagem (a partir do `calculado` já salvo no Firestore).
 export default function FichaVisual({ resultado, catalogo, elemento, escolhas, isCaca }) {
-  const [poderAberto, setPoderAberto] = useState(null)
   const { status, atributos_finais, pericias, grau_ascensao } = resultado
   const ataqueDesarmado = status?.ataque_desarmado
   const bonusAtaqueDesarmado = ataqueDesarmado ? (atributos_finais?.[ataqueDesarmado.atributo] ?? 0) : 0
@@ -78,12 +73,7 @@ export default function FichaVisual({ resultado, catalogo, elemento, escolhas, i
               <div className="font-display font-semibold mb-1">{espiritual.nome}</div>
               <p className="text-xs text-mist mb-2">{(espiritual.bonus_transformacao || []).join(' · ')}</p>
               {espiritual.poder_tribal && (
-                <button
-                  onClick={() => setPoderAberto(espiritual.poder_tribal)}
-                  className="text-xs text-gold text-left hover:underline"
-                >
-                  {espiritual.poder_tribal.nome}: <span className="text-mist">{espiritual.poder_tribal.descricao}</span>
-                </button>
+                <p className="text-xs text-gold">{espiritual.poder_tribal.nome}: <span className="text-mist">{espiritual.poder_tribal.descricao}</span></p>
               )}
             </div>
           </div>
@@ -94,27 +84,17 @@ export default function FichaVisual({ resultado, catalogo, elemento, escolhas, i
             <div className="text-xs uppercase tracking-widest text-mist mb-3">Poderes</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {poderesResolvidos.map((poder) => (
-                <button
-                  key={poder.nome}
-                  onClick={() => setPoderAberto(poder)}
-                  className="text-left card-fantasy p-4 hover:border-white/20 transition-colors"
-                >
+                <div key={poder.nome} className="card-fantasy p-4">
                   <div className="font-display font-semibold mb-1">{poder.nome}</div>
                   <p className="text-xs text-mist mb-2">{poder.descricao}</p>
                   <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
                     Custo: {poder.custo_arche} Arché
                   </span>
-                </button>
+                </div>
               ))}
             </div>
           </div>
         )
-      )}
-
-      {poderAberto && (
-        <ModalBase onFechar={() => setPoderAberto(null)}>
-          <PoderDetalhe p={poderAberto} />
-        </ModalBase>
       )}
     </div>
   )
