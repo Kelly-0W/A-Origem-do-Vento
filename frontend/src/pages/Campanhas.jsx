@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   collection,
   query,
@@ -15,7 +14,6 @@ import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { redimensionarImagem } from '../lib/imagem.js'
 import { gerarCodigoConvite, normalizarCodigoConvite } from '../lib/codigoConvite.js'
-import ModalBase from '../components/ModalBase.jsx'
 
 async function buscarCampanhasDoUsuario(uid) {
   const [comoMestre, comoJogador] = await Promise.all([
@@ -27,6 +25,18 @@ async function buscarCampanhasDoUsuario(uid) {
   comoJogador.docs.forEach((d) => mapa.set(d.id, { id: d.id, ...d.data() }))
   return Array.from(mapa.values()).sort(
     (a, b) => (b.atualizado_em?.seconds ?? 0) - (a.atualizado_em?.seconds ?? 0)
+  )
+}
+
+function ModalBase({ titulo, onFechar, children }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 p-4 sm:p-10 overflow-y-auto" onClick={onFechar}>
+      <div className="card-fantasy w-full max-w-md p-6 relative" onClick={(e) => e.stopPropagation()}>
+        <button onClick={onFechar} className="absolute top-4 right-4 text-mist hover:text-white text-xl leading-none" aria-label="Fechar">×</button>
+        <h2 className="text-2xl font-display text-white mb-5 pr-8">{titulo}</h2>
+        {children}
+      </div>
+    </div>
   )
 }
 
@@ -195,7 +205,7 @@ function CardCampanha({ campanha, uid }) {
   }
 
   return (
-    <Link to={`/campanhas/${campanha.id}`} className="card-fantasy p-5 flex gap-4 hover:border-white/20 transition-colors">
+    <div className="card-fantasy p-5 flex gap-4">
       <div className="w-16 h-16 rounded border border-panel-border bg-void overflow-hidden shrink-0 flex items-center justify-center">
         {campanha.imagem_base64 ? (
           <img src={campanha.imagem_base64} alt={campanha.nome} className="w-full h-full object-cover" />
@@ -213,15 +223,12 @@ function CardCampanha({ campanha, uid }) {
         {campanha.descricao && <p className="text-xs text-mist mb-3 line-clamp-2">{campanha.descricao}</p>}
         <p className="text-xs text-mist mb-2">{(campanha.jogadores_uids || []).length} jogador(es)</p>
         {ehMestre && (
-          <button
-            onClick={(e) => { e.preventDefault(); e.stopPropagation(); copiarCodigo() }}
-            className="text-[11px] px-2 py-1 rounded border border-panel-border text-mist hover:border-white/30"
-          >
+          <button onClick={copiarCodigo} className="text-[11px] px-2 py-1 rounded border border-panel-border text-mist hover:border-white/30">
             {codigoCopiado ? 'Copiado!' : `Código: ${campanha.codigo_convite}`}
           </button>
         )}
       </div>
-    </Link>
+    </div>
   )
 }
 

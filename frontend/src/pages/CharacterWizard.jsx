@@ -1,8 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ChevronLeft } from 'lucide-react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../lib/firebase.js'
+import { useNavigate } from 'react-router-dom'
 import { api } from '../lib/api.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
@@ -39,13 +37,6 @@ function definirPassos(catalogo, escolhas) {
 export default function CharacterWizard() {
   const { usuario } = useAuth()
   const navigate = useNavigate()
-  const [searchParams] = useSearchParams()
-
-  // Quando o Wizard é aberto a partir do botão "Criar Personagem" de uma
-  // campanha (CampanhaDetalhe.jsx), a URL vem como /personagens/novo?campanha=ID
-  // -- o personagem recém-criado já nasce vinculado a essa campanha.
-  const campanhaId = searchParams.get('campanha')
-  const [campanhaNome, setCampanhaNome] = useState(null)
 
   const [passo, setPasso] = useState(0)
   const [carregando, setCarregando] = useState(true)
@@ -85,13 +76,6 @@ export default function CharacterWizard() {
     }
     carregar()
   }, [])
-
-  useEffect(() => {
-    if (!campanhaId) return
-    getDoc(doc(db, 'campanhas', campanhaId))
-      .then((snap) => setCampanhaNome(snap.exists() ? snap.data().nome : null))
-      .catch(() => setCampanhaNome(null))
-  }, [campanhaId])
 
   const raca = catalogo.racas?.[escolhas.raca_id] || null
   const linhagens = raca?.linhagens || []
@@ -261,7 +245,7 @@ export default function CharacterWizard() {
     try {
       const { dados } = await api.calcularFicha(
         { ...escolhas, nome_personagem: nomePersonagem.trim() },
-        { donoUid: usuario?.uid ?? null, campanhaId }
+        { donoUid: usuario?.uid ?? null }
       )
       if (dados?.sucesso) {
         setResultado(dados.calculado)
@@ -291,17 +275,7 @@ export default function CharacterWizard() {
         <ChevronLeft size={16} /> Voltar
       </button>
 
-      <h1 className="text-3xl mb-2">Forjar Personagem</h1>
-      {campanhaId && (
-        <p className="text-mist text-sm mb-8">
-          Este personagem será vinculado à campanha{' '}
-          <span className="text-gold">{campanhaNome || campanhaId}</span>.{' '}
-          <Link to={`/campanhas/${campanhaId}`} className="text-mist underline hover:text-white">
-            Cancelar e voltar
-          </Link>
-        </p>
-      )}
-      {!campanhaId && <div className="mb-8" />}
+      <h1 className="text-3xl mb-8">Forjar Personagem</h1>
 
       <div className="flex items-center gap-2 mb-10 overflow-x-auto">
         {passos.map((p, i) => (
@@ -562,16 +536,9 @@ export default function CharacterWizard() {
             {salvo && (
               <div className="mt-6 border border-forest/60 rounded p-4 text-sm flex items-center justify-between gap-4 flex-wrap">
                 <span className="text-forest font-display">Personagem salvo com sucesso.</span>
-                <div className="flex gap-3">
-                  {campanhaId && (
-                    <button className="btn-primary" onClick={() => navigate(`/campanhas/${campanhaId}`)}>
-                      Ver Campanha
-                    </button>
-                  )}
-                  <button className="btn-secondary" onClick={() => navigate('/personagens')}>
-                    Ver Meus Personagens
-                  </button>
-                </div>
+                <button className="btn-secondary" onClick={() => navigate('/personagens')}>
+                  Ver Meus Personagens
+                </button>
               </div>
             )}
 
