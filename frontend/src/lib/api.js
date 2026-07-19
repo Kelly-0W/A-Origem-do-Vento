@@ -58,4 +58,9 @@ export const api = {
   // e a conta do Firebase Auth. Chamar só DEPOIS de reautenticar
   // (useAuth().reautenticarComSenha/reautenticarComGoogle).
   excluirConta: (uid) => post('excluir_conta', { uid }),
+
+  // POST /api/excluir_campanha  (ver api/excluir_campanha.py)
+  // So o mestre_id de fato dessa campanha consegue -- checado no servidor.
+  excluirCampanha: ({ mestreUid, campanhaId }) =>
+    post('excluir_campanha', { mestre_uid: mestreUid, campanha_id: campanhaId }),
 }

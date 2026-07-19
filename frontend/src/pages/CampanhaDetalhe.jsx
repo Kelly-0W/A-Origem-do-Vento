@@ -14,6 +14,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
+import { api } from '../lib/api.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import ModalBase from '../components/ModalBase.jsx'
 import PainelMestre from '../components/PainelMestre.jsx'
@@ -198,6 +199,28 @@ export default function CampanhaDetalhe() {
     }
   }
 
+  async function excluirCampanha() {
+    const confirmado = window.confirm(
+      `Apagar "${campanha.nome}" pra sempre? Todos os jogadores são desvinculados dela (mas mantêm os personagens). Essa ação não pode ser desfeita.`
+    )
+    if (!confirmado) return
+    setSaindo(true)
+    setErroSair(null)
+    try {
+      const { ok, dados } = await api.excluirCampanha({ mestreUid: usuario.uid, campanhaId: id })
+      if (!ok || !dados?.sucesso) {
+        setErroSair(dados?.erros?.[0] || 'Não foi possível apagar essa campanha agora.')
+        setSaindo(false)
+        return
+      }
+      navigate('/campanhas')
+    } catch (err) {
+      console.error(err)
+      setErroSair('Não foi possível apagar essa campanha agora.')
+      setSaindo(false)
+    }
+  }
+
   if (carregando) {
     return <div className="pt-10 text-mist">Carregando campanha...</div>
   }
@@ -221,7 +244,15 @@ export default function CampanhaDetalhe() {
         <Link to="/campanhas" className="flex items-center gap-1 text-mist text-sm hover:text-white w-fit">
           <ChevronLeft size={16} /> Voltar
         </Link>
-        {!ehMestre && (
+        {ehMestre ? (
+          <button
+            onClick={excluirCampanha}
+            disabled={saindo}
+            className="text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50"
+          >
+            {saindo ? 'Apagando...' : 'Excluir campanha'}
+          </button>
+        ) : (
           <button
             onClick={sairDaCampanha}
             disabled={saindo}
