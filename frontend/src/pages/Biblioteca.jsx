@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { api } from '../lib/api.js'
 import BibliotecaDetalhe from '../components/BibliotecaDetalhe.jsx'
+import ExplicacaoPericias from '../components/ExplicacaoPericias.jsx'
 
 const ABAS = [
   { id: 'racas', label: 'Raças' },
@@ -53,6 +54,8 @@ export default function Biblioteca() {
           </button>
         ))}
       </div>
+
+      {aba === 'pericias' && !carregando && <ExplicacaoPericias pericias={itens} />}
 
       <input
         value={busca}

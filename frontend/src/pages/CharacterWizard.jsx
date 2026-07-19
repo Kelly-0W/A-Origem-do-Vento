@@ -7,6 +7,8 @@ import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
 import { nomePericia } from '../lib/formato.js'
 import ResumoEscolhas from '../components/ResumoEscolhas.jsx'
 import FichaVisual from '../components/FichaVisual.jsx'
+import ModalBase from '../components/ModalBase.jsx'
+import PoderDetalhe from '../components/PoderDetalhe.jsx'
 
 const PONTOS_ATRIBUTOS_BASE = 10
 
@@ -64,6 +66,7 @@ export default function CharacterWizard() {
   const [salvando, setSalvando] = useState(false)
   const [salvo, setSalvo] = useState(null) // { personagemId } | null
   const [avisoSalvamento, setAvisoSalvamento] = useState(null)
+  const [poderAberto, setPoderAberto] = useState(null)
 
   useEffect(() => {
     async function carregar() {
@@ -426,7 +429,18 @@ export default function CharacterWizard() {
                   <div className="font-display font-semibold mb-2">{esp.nome}</div>
                   <p className="text-xs text-mist mb-3">{(esp.bonus_transformacao || []).join(' · ')}</p>
                   {esp.poder_tribal && (
-                    <p className="text-xs text-gold">{esp.poder_tribal.nome}: <span className="text-mist">{esp.poder_tribal.descricao}</span></p>
+                    <p className="text-xs text-gold flex items-start justify-between gap-2">
+                      <span>{esp.poder_tribal.nome}: <span className="text-mist">{esp.poder_tribal.descricao}</span></span>
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        onClick={(e) => { e.stopPropagation(); setPoderAberto(esp.poder_tribal) }}
+                        onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); setPoderAberto(esp.poder_tribal) } }}
+                        className="shrink-0 text-[11px] underline hover:text-white"
+                      >
+                        Ver detalhes
+                      </span>
+                    </p>
                   )}
                 </button>
               ))}
@@ -451,9 +465,20 @@ export default function CharacterWizard() {
                   >
                     <div className="font-display font-semibold mb-2">{poder.nome}</div>
                     <p className="text-xs text-mist mb-3 line-clamp-3">{poder.descricao}</p>
-                    <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
-                      Custo: {poder.custo_arche} Arché
-                    </span>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
+                        Custo: {poder.custo_arche} Arché
+                      </span>
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        onClick={(e) => { e.stopPropagation(); setPoderAberto(poder) }}
+                        onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); setPoderAberto(poder) } }}
+                        className="text-[11px] text-mist underline hover:text-white"
+                      >
+                        Ver detalhes
+                      </span>
+                    </div>
                   </button>
                 )
               })}
@@ -581,6 +606,12 @@ export default function CharacterWizard() {
           Próximo
         </button>
       </div>
+
+      {poderAberto && (
+        <ModalBase onFechar={() => setPoderAberto(null)}>
+          <PoderDetalhe p={poderAberto} />
+        </ModalBase>
+      )}
     </div>
   )
 }
