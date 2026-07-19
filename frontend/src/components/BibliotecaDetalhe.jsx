@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import Poder from './PoderDetalhe.jsx'
 
 const NOME_ATRIBUTO = { for: 'Força', des: 'Destreza', con: 'Constituição', int: 'Inteligência', sab: 'Sabedoria', car: 'Carisma' }
@@ -435,7 +436,7 @@ export default function BibliotecaDetalhe({ colecao, item, onFechar }) {
 
   const Renderizador = RENDERIZADORES[colecao]
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 p-4 sm:p-10 overflow-y-auto animate-fade-up"
       onClick={onFechar}
@@ -456,6 +457,7 @@ export default function BibliotecaDetalhe({ colecao, item, onFechar }) {
 
         {Renderizador ? <Renderizador item={item} /> : <p className="text-sm text-mist">Sem detalhe disponível para esta coleção.</p>}
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

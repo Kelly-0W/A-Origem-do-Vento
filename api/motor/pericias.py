@@ -19,19 +19,23 @@ def calcular_pericias(
     marcos_treinamento vem de constantes_ascensao.json -> bonus_treinamento_pericia.marcos.
 
     pericias_manuais e um ajuste manual opcional (id -> {"treinada": bool,
-    "retreinada": bool}), usado pela tela de personagem pra cobrir casos
-    que o catalogo nao automatiza -- por exemplo, uma habilidade de raca
-    cuja descricao diz "torna-se treinado em Conhecimento", mas que o
-    motor nao le/aplica sozinho. Quando uma pericia aparece em
-    pericias_manuais, o valor de "treinada" ali SUBSTITUI por completo o
-    que viria de pericias_treinadas (permite tanto adicionar quanto tirar
-    um treinamento manualmente). "retreinada" so tem efeito se a pericia
-    tambem estiver treinada, e da o bonus FIXO de BONUS_PERICIA_RETREINADA
-    (nao escala com o grau, ao contrario do bonus normal de treinamento).
+    "retreinos": int}), usado pela tela de personagem pra cobrir casos que
+    o catalogo nao automatiza -- por exemplo, uma habilidade de raca cuja
+    descricao diz "torna-se treinado em Conhecimento", mas que o motor nao
+    le/aplica sozinho. Quando uma pericia aparece em pericias_manuais, o
+    valor de "treinada" ali SUBSTITUI por completo o que viria de
+    pericias_treinadas (permite tanto adicionar quanto tirar um
+    treinamento manualmente).
 
-    Retorna, para cada pericia do catalogo, se esta treinada e o bonus
-    total (modificador de atributo + bonus de treinamento + bonus de
-    retreinamento, se aplicaveis).
+    "retreinos" e a contagem de vezes que a pericia foi treinada de novo
+    depois da primeira (sem limite -- cada retreino narrativo empilha) e
+    so tem efeito se a pericia tambem estiver treinada; cada unidade da
+    o bonus FIXO de BONUS_PERICIA_RETREINADA (nao escala com o grau, ao
+    contrario do bonus normal de treinamento).
+
+    Retorna, para cada pericia do catalogo, se esta treinada, quantos
+    retreinos tem, e o bonus total (modificador de atributo + bonus de
+    treinamento + retreinos * bonus de retreino, quando aplicaveis).
     """
     treinadas_base = set(pericias_treinadas)
     manuais = pericias_manuais or {}
@@ -45,18 +49,18 @@ def calcular_pericias(
         ajuste = manuais.get(pericia_id)
         if ajuste is not None:
             treinada = bool(ajuste.get("treinada", False))
-            retreinada = treinada and bool(ajuste.get("retreinada", False))
+            retreinos = max(0, int(ajuste.get("retreinos", 0))) if treinada else 0
         else:
             treinada = pericia_id in treinadas_base
-            retreinada = False
+            retreinos = 0
 
         bonus_treinamento_aplicado = bonus_treino if treinada else 0
-        bonus_retreino_aplicado = BONUS_PERICIA_RETREINADA if retreinada else 0
+        bonus_retreino_aplicado = BONUS_PERICIA_RETREINADA * retreinos
         bonus_total = mod_atributo + bonus_treinamento_aplicado + bonus_retreino_aplicado
 
         resultado[pericia_id] = {
             "treinada": treinada,
-            "retreinada": retreinada,
+            "retreinos": retreinos,
             "atributo": atributo,
             "mod_atributo": mod_atributo,
             "bonus_treinamento": bonus_treinamento_aplicado,
@@ -79,7 +83,7 @@ if __name__ == "__main__":
     # Sem ajuste manual: so' o que veio de pericias_treinadas.
     r = calcular_pericias(["luta"], atributos_finais, 3, catalogo_pericias, marcos)
     assert r["luta"]["treinada"] is True
-    assert r["luta"]["bonus_treinamento"] == 3
+    assert r["luta"]["retreinos"] == 0
     assert r["luta"]["bonus_total"] == 3 + 3
     assert r["furtividade"]["treinada"] is False
     assert r["furtividade"]["bonus_total"] == 1
@@ -87,7 +91,7 @@ if __name__ == "__main__":
     # Ajuste manual adiciona treinamento numa pericia que nao estava na lista.
     r2 = calcular_pericias(
         ["luta"], atributos_finais, 3, catalogo_pericias, marcos,
-        pericias_manuais={"misticismo": {"treinada": True, "retreinada": False}},
+        pericias_manuais={"misticismo": {"treinada": True, "retreinos": 0}},
     )
     assert r2["misticismo"]["treinada"] is True
     assert r2["misticismo"]["bonus_total"] == 0 + 3
@@ -100,22 +104,29 @@ if __name__ == "__main__":
     assert r3["luta"]["treinada"] is False
     assert r3["luta"]["bonus_total"] == 3
 
-    # Retreinada: bonus fixo de +2, somado ao bonus normal (nao substitui).
+    # Retreino: +2 por unidade, empilhando sem limite.
     r4 = calcular_pericias(
         ["luta"], atributos_finais, 3, catalogo_pericias, marcos,
-        pericias_manuais={"luta": {"treinada": True, "retreinada": True}},
+        pericias_manuais={"luta": {"treinada": True, "retreinos": 1}},
     )
     assert r4["luta"]["bonus_retreino"] == 2
     assert r4["luta"]["bonus_total"] == 3 + 3 + 2
 
-    # "retreinada" sem "treinada" nao faz nada -- nao da pra retreinar o
-    # que nao esta nem treinado.
+    r4b = calcular_pericias(
+        ["luta"], atributos_finais, 3, catalogo_pericias, marcos,
+        pericias_manuais={"luta": {"treinada": True, "retreinos": 5}},
+    )
+    assert r4b["luta"]["bonus_retreino"] == 10
+    assert r4b["luta"]["bonus_total"] == 3 + 3 + 10
+
+    # Retreinos sem treinada nao faz nada -- nao da pra retreinar o que
+    # nao esta nem treinado.
     r5 = calcular_pericias(
         [], atributos_finais, 3, catalogo_pericias, marcos,
-        pericias_manuais={"luta": {"treinada": False, "retreinada": True}},
+        pericias_manuais={"luta": {"treinada": False, "retreinos": 3}},
     )
     assert r5["luta"]["treinada"] is False
-    assert r5["luta"]["retreinada"] is False
+    assert r5["luta"]["retreinos"] == 0
     assert r5["luta"]["bonus_total"] == 3
 
     print("pericias.py: todos os auto-testes passaram.")

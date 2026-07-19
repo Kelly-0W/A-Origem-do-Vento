@@ -76,15 +76,15 @@ export default function FichaVisual({
   }
 
   function aoClicarPericia(periciaId, p) {
-    // Alterna treinada; ao desmarcar, some junto o retreino (não existe
+    // Alterna treinada; ao desmarcar, zera junto os retreinos (não existe
     // "retreinado, mas não treinado").
-    ajustarPericia(periciaId, { treinada: !p.treinada, retreinada: p.treinada ? false : p.retreinada })
+    ajustarPericia(periciaId, { treinada: !p.treinada, retreinos: p.treinada ? 0 : p.retreinos })
   }
 
-  function aoClicarRetreino(e, periciaId, p) {
+  function aoMudarRetreino(e, periciaId, p, delta) {
     e.stopPropagation() // não deixa o clique "vazar" pro toggle de treinada por trás
     if (!p.treinada) return
-    ajustarPericia(periciaId, { treinada: true, retreinada: !p.retreinada })
+    ajustarPericia(periciaId, { treinada: true, retreinos: Math.max(0, p.retreinos + delta) })
   }
 
   return (
@@ -124,7 +124,7 @@ export default function FichaVisual({
           <div className="text-xs uppercase tracking-widest text-mist">Perícias</div>
           {interativo && (
             <div className="text-[11px] text-mist">
-              Clique pra treinar/destreinar · <span className="text-gold">+2</span> pra marcar retreino
+              Clique pra treinar/destreinar · <span className="text-gold">+</span> soma um retreino (+2 cada, sem limite)
             </div>
           )}
         </div>
@@ -136,22 +136,36 @@ export default function FichaVisual({
               <>
                 <span className="flex items-center gap-1.5">
                   {nomePericia(catalogo, id)}
-                  {p.retreinada && (
-                    <span className="text-[9px] px-1 rounded-full border border-gold/50 text-gold leading-none py-0.5">+2</span>
+                  {p.retreinos > 0 && (
+                    <span className="text-[9px] px-1 rounded-full border border-gold/50 text-gold leading-none py-0.5">
+                      +{p.retreinos * 2}
+                    </span>
                   )}
                 </span>
                 <span className="flex items-center gap-1.5">
                   {interativo && p.treinada && (
-                    <button
-                      type="button"
-                      onClick={(e) => aoClicarRetreino(e, id, p)}
-                      disabled={processando}
-                      title="Marcar/desmarcar retreino (+2 fixo)"
-                      className={`text-[10px] w-4 h-4 rounded-full border leading-none flex items-center justify-center transition-colors
-                        ${p.retreinada ? 'border-gold bg-gold/20 text-gold' : 'border-panel-border text-mist hover:border-gold/50'}`}
-                    >
-                      +
-                    </button>
+                    <span className="flex items-center gap-0.5">
+                      {p.retreinos > 0 && (
+                        <button
+                          type="button"
+                          onClick={(e) => aoMudarRetreino(e, id, p, -1)}
+                          disabled={processando}
+                          title="Remover um retreino (-2)"
+                          className="text-[10px] w-4 h-4 rounded-full border border-panel-border text-mist hover:border-blood-bright/50 hover:text-blood-bright leading-none flex items-center justify-center transition-colors"
+                        >
+                          −
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        onClick={(e) => aoMudarRetreino(e, id, p, 1)}
+                        disabled={processando}
+                        title="Adicionar um retreino (+2, sem limite)"
+                        className="text-[10px] w-4 h-4 rounded-full border border-panel-border text-mist hover:border-gold/50 hover:text-gold leading-none flex items-center justify-center transition-colors"
+                      >
+                        +
+                      </button>
+                    </span>
                   )}
                   <span>{p.bonus_total >= 0 ? '+' : ''}{p.bonus_total}</span>
                 </span>
