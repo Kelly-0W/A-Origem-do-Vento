@@ -1,3 +1,13 @@
+function LinhaDano({ rotulo, dano }) {
+  if (!dano) return null
+  return (
+    <p className="text-xs text-mist">
+      {rotulo}: <span className="text-white">{dano.dados}</span> ({dano.tipo}
+      {dano.atributo_bonus ? `, +${dano.atributo_bonus}` : ''})
+    </p>
+  )
+}
+
 export default function PoderDetalhe({ p }) {
   return (
     <div className="stat-tile">
@@ -9,15 +19,24 @@ export default function PoderDetalhe({ p }) {
       <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-widest text-mist mb-2">
         {p.execucao && <span className="border border-panel-border rounded px-1.5 py-0.5">Execução: {p.execucao}</span>}
         {p.alcance && <span className="border border-panel-border rounded px-1.5 py-0.5">Alcance: {p.alcance}</span>}
+        {p.alvo && <span className="border border-panel-border rounded px-1.5 py-0.5 capitalize">Alvo: {p.alvo}</span>}
         {p.duracao && <span className="border border-panel-border rounded px-1.5 py-0.5">Duração: {p.duracao}</span>}
         {p.pericia && <span className="border border-panel-border rounded px-1.5 py-0.5 capitalize">Perícia: {p.pericia}</span>}
       </div>
-      {p.dano && (
-        <p className="text-xs text-mist">
-          Dano: <span className="text-white">{p.dano.dados}</span> ({p.dano.tipo}
-          {p.dano.atributo_bonus ? `, +${p.dano.atributo_bonus}` : ''})
-        </p>
-      )}
+
+      <div className="flex flex-col gap-1">
+        <LinhaDano rotulo="Dano" dano={p.dano} />
+        <LinhaDano rotulo="Dano secundário" dano={p.dano_secundario} />
+        {/* Muitos poderes (escudos, controle, buffs) não causam dano numérico
+            e usam SÓ este campo pra descrever o efeito mecânico -- por
+            isso não pode ficar condicionado a existir "dano" primeiro. */}
+        {p.efeito && (
+          <p className="text-xs text-mist">
+            Efeito: <span className="text-white">{p.efeito}</span>
+          </p>
+        )}
+      </div>
+
       {Array.isArray(p.variacoes) && p.variacoes.length > 0 && (
         <div className="mt-2 border-t border-panel-border pt-2">
           <span className="text-[10px] uppercase tracking-widest text-mist">Variações por submanipulação</span>
