@@ -1933,7 +1933,7 @@
       },
       "passo-leve": {
         "nome": "Passo Leve",
-        "descricao": "Usa correntes de ar ascendentes sob os pés para impulsionar movimentos, permitindo correr sobre superfícies instáveis e aumentar a velocidade base.",
+        "descricao": "Usa correntes de ar ascendentes sob os pés para impulsionar movimentos, permitindo correr sobre superfícies instáveis e aumentar a velocidade em +3.",
         "execucao": "movimento",
         "alcance": "pessoal",
         "pericia": "luta",
