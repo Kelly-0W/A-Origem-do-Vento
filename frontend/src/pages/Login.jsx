@@ -191,7 +191,8 @@ function traduzirErro(codigo) {
     'auth/cancelled-popup-request': 'Login cancelado.',
     'auth/popup-blocked': 'O navegador bloqueou o popup de login. Permita popups pra este site e tente de novo.',
     'auth/admin-restricted-operation': 'Login anônimo desativado no momento. Tente com e-mail ou Google.',
-    'auth/operation-not-allowed': 'Essa forma de login ainda não está habilitada no projeto.',
+    'auth/operation-not-allowed': 'Essa forma de login ainda não está habilitada no projeto (verifique em Authentication → Sign-in method no Firebase Console).',
+    'auth/unauthorized-domain': 'Este site não está autorizado a fazer login com Google (verifique Authentication → Settings → Authorized domains no Firebase Console).',
   }
-  return mapa[codigo] || 'Algo deu errado. Tente novamente.'
+  return mapa[codigo] || `Algo deu errado (${codigo || 'sem código'}). Tente novamente.`
 }

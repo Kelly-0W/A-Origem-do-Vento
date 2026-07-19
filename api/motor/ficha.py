@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, Dict, Tuple
 from .atributos import aplicar_modificadores_raciais
-from .constantes import VERSAO_MOTOR
+from .constantes import VERSAO_MOTOR, BONUS_PERICIA_DUPLICATA
 from .pericias import calcular_pericias
 from .status import calcular_status
 from .validacoes import validar_escolhas_personagem
@@ -48,6 +48,21 @@ def calcular_ficha(
         .get("bonus_treinamento_pericia", {})
         .get("marcos", {})
     )
+
+    # Regra das duplicatas: se a pericia treinada fixa da CLASSE for a
+    # mesma escolhida na ORIGEM, as duas fontes "colidem" na mesma
+    # pericia e o personagem so ganharia treinamento uma vez, perdendo o
+    # benefico da segunda fonte -- em vez disso, ele recebe um bonus FIXO
+    # compensatorio (BONUS_PERICIA_DUPLICATA), que nao escala com o grau
+    # de Ascensao (por isso e passado como bonus_fixo, nao como retreino).
+    classe = catalogo["classes"][escolhas["classe_id"]]
+    pericia_fixa_classe = classe.get("pericia_treinada_fixa")
+    pericia_escolhida_origem = escolhas.get("origem_pericia_escolhida")
+
+    bonus_fixo_pericias: Dict[str, int] = {}
+    if pericia_fixa_classe and pericia_fixa_classe == pericia_escolhida_origem:
+        bonus_fixo_pericias[pericia_fixa_classe] = BONUS_PERICIA_DUPLICATA
+
     pericias_calculadas = calcular_pericias(
         escolhas.get("pericias_treinadas", []),
         atributos_finais,
@@ -55,6 +70,7 @@ def calcular_ficha(
         catalogo["pericias"],
         marcos_treinamento,
         pericias_manuais=escolhas.get("pericias_manuais", {}),
+        bonus_fixo=bonus_fixo_pericias,
     )
 
     calculado = {
@@ -144,5 +160,34 @@ if __name__ == "__main__":
     )
     assert sucesso_falho is False
     assert "erros" in resultado_falho and len(resultado_falho["erros"]) > 0
+
+    # Regra das duplicatas: origem escolhe a MESMA pericia que a classe já
+    # dá fixo ("luta") -> bonus_fixo de compensação, mesmo sem retreino
+    # manual nenhum e independente do grau de Ascensão.
+    catalogo_dup = {
+        **catalogo,
+        "origens": {"criminoso": {"pericias_opcoes": ["luta"]}},
+        "pericias": {
+            **catalogo["pericias"],
+            "acrobacia": {"atributo": "des", "requer_treinamento": True},
+        },
+    }
+    escolhas_dup = {
+        **escolhas,
+        "origem_pericia_escolhida": "luta",
+        "pericias_treinadas": ["luta"],
+    }
+    sucesso_dup, resultado_dup = calcular_ficha(escolhas_dup, catalogo_dup, grau_ascensao=0)
+    assert sucesso_dup, resultado_dup
+    luta_calc = resultado_dup["calculado"]["pericias"]["luta"]
+    assert luta_calc["bonus_fixo"] == BONUS_PERICIA_DUPLICATA
+    # for final = 2 (ver acima) + bonus de treino no grau 0 (0) + bonus_fixo (2)
+    assert luta_calc["bonus_total"] == 2 + 0 + BONUS_PERICIA_DUPLICATA
+
+    # Pericia que exige treinamento e nao esta treinada -> 0, mesmo com
+    # atributo positivo (acrobacia usa Destreza, e o personagem tem +2 de Des).
+    acrobacia_calc = resultado_dup["calculado"]["pericias"]["acrobacia"]
+    assert acrobacia_calc["bloqueada"] is True
+    assert acrobacia_calc["bonus_total"] == 0
 
     print("ficha.py: todos os auto-testes passaram.")

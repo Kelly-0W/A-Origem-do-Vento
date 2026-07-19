@@ -8,6 +8,10 @@ export const NOMES_ATRIBUTOS = {
   car: 'Carisma',
 }
 
+// Abreviação de 3 letras, usada em espaços apertados (linha de perícia,
+// seletor de troca de atributo-base) onde o nome completo não cabe.
+export const ABREV_ATRIBUTOS = { for: 'For', des: 'Des', con: 'Con', int: 'Int', sab: 'Sab', car: 'Car' }
+
 // Maior grau de Ascensão alcançável (ver marcos de bônus de treinamento em
 // api/motor/constantes.py, que vão até o grau 10).
 export const GRAU_ASCENSAO_MAXIMO = 10

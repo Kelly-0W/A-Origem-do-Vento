@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
+import { ATRIBUTOS, NOMES_ATRIBUTOS, ABREV_ATRIBUTOS } from '../lib/constantes.js'
 import { nomePericia } from '../lib/formato.js'
 import { api } from '../lib/api.js'
 import ModalBase from './ModalBase.jsx'
@@ -19,11 +19,14 @@ const NOMES_STATUS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defe
 // tela do PRÓPRIO personagem: quando `interativo` é true, cada perícia vira
 // clicável pra marcar/desmarcar treinamento manualmente (cobre casos como
 // uma habilidade de raça que "dá treinamento" mas que o motor não aplica
-// sozinho), e uma perícia já treinada ganha um botão extra "+2" pra marcar
-// que foi RETREINADA (bônus fixo, não escala com o grau). Cada clique
-// chama de novo o mesmo endpoint de cálculo (mandando `pericias_manuais`
-// dentro de `escolhas`), que já salva a ficha atualizada sozinho -- por
-// isso não precisa de nenhum updateDoc extra aqui.
+// sozinho), uma perícia já treinada ganha um botão extra "+2" pra marcar
+// que foi RETREINADA (bônus fixo, não escala com o grau), e cada perícia
+// tem um seletor de atributo-base pra cobrir habilidades que TROCAM qual
+// atributo uma perícia usa (ex.: uma habilidade de Orc que muda Guerra de
+// Inteligência pra Força -- o catálogo não tem como saber disso sozinho).
+// Cada mudança chama de novo o mesmo endpoint de cálculo (mandando
+// `pericias_manuais` dentro de `escolhas`), que já salva a ficha
+// atualizada sozinho -- por isso não precisa de nenhum updateDoc extra aqui.
 export default function FichaVisual({
   resultado,
   catalogo,
@@ -77,14 +80,26 @@ export default function FichaVisual({
 
   function aoClicarPericia(periciaId, p) {
     // Alterna treinada; ao desmarcar, zera junto os retreinos (não existe
-    // "retreinado, mas não treinado").
-    ajustarPericia(periciaId, { treinada: !p.treinada, retreinos: p.treinada ? 0 : p.retreinos })
+    // "retreinado, mas não treinado"). Preserva o override de atributo,
+    // se houver -- destreinar não deveria resetar isso silenciosamente.
+    ajustarPericia(periciaId, {
+      treinada: !p.treinada,
+      retreinos: p.treinada ? 0 : p.retreinos,
+      atributo: p.atributo !== p.atributo_padrao ? p.atributo : null,
+    })
   }
 
   function aoMudarRetreino(e, periciaId, p, delta) {
     e.stopPropagation() // não deixa o clique "vazar" pro toggle de treinada por trás
     if (!p.treinada) return
-    ajustarPericia(periciaId, { treinada: true, retreinos: Math.max(0, p.retreinos + delta) })
+    ajustarPericia(periciaId, { treinada: true, retreinos: Math.max(0, p.retreinos + delta), atributo: p.atributo !== p.atributo_padrao ? p.atributo : null })
+  }
+
+  function aoMudarAtributo(e, periciaId, p, novoAtributo) {
+    e.stopPropagation() // não deixa o clique "vazar" pro toggle de treinada por trás
+    // novoAtributo === '' significa "voltar pro padrão do catálogo" (manda
+    // null pro backend, que ignora override ausente/inválido).
+    ajustarPericia(periciaId, { treinada: p.treinada, retreinos: p.retreinos, atributo: novoAtributo || null })
   }
 
   return (
@@ -124,7 +139,8 @@ export default function FichaVisual({
           <div className="text-xs uppercase tracking-widest text-mist">Perícias</div>
           {interativo && (
             <div className="text-[11px] text-mist">
-              Clique pra treinar/destreinar · <span className="text-gold">+</span> soma um retreino (+2 cada, sem limite)
+              Clique pra treinar/destreinar · <span className="text-gold">+</span> soma um retreino (+2 cada, sem limite) ·
+              atributo é trocável (ex.: habilidades que mudam o atributo-base de uma perícia)
             </div>
           )}
         </div>
@@ -132,10 +148,37 @@ export default function FichaVisual({
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
           {periciasOrdenadas.map(([id, p]) => {
             const processando = periciaProcessando === id
+            const atributoAlterado = p.atributo !== p.atributo_padrao
             const conteudo = (
               <>
                 <span className="flex items-center gap-1.5">
                   {nomePericia(catalogo, id)}
+                  {interativo ? (
+                    <select
+                      value={p.atributo}
+                      onChange={(e) => aoMudarAtributo(e, id, p, e.target.value === p.atributo_padrao ? '' : e.target.value)}
+                      onClick={(e) => e.stopPropagation()}
+                      disabled={processando}
+                      title="Trocar o atributo-base desta perícia"
+                      className={`text-[9px] rounded border bg-transparent leading-none py-0.5 px-1 cursor-pointer
+                        ${atributoAlterado ? 'border-gold/50 text-gold' : 'border-panel-border/70 text-mist'}`}
+                    >
+                      {ATRIBUTOS.map((a) => (
+                        <option key={a} value={a} className="bg-void text-white">
+                          {ABREV_ATRIBUTOS[a]}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    atributoAlterado && (
+                      <span
+                        title={`Atributo-base trocado de ${NOMES_ATRIBUTOS[p.atributo_padrao]} pra ${NOMES_ATRIBUTOS[p.atributo]}`}
+                        className="text-[9px] px-1 rounded border border-gold/50 text-gold leading-none py-0.5"
+                      >
+                        {ABREV_ATRIBUTOS[p.atributo]}
+                      </span>
+                    )
+                  )}
                   {p.retreinos > 0 && (
                     <span className="text-[9px] px-1 rounded-full border border-gold/50 text-gold leading-none py-0.5">
                       +{p.retreinos * 2}

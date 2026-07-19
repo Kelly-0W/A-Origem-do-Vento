@@ -27,6 +27,15 @@ STATUS_BASICOS = ["vida", "sanidade", "arche", "defesa"]
 # não escala com o grau de Ascensão, ao contrário do bônus normal.
 BONUS_PERICIA_RETREINADA = 2
 
+# Quando a perícia treinada fixa da CLASSE é a mesma escolhida na ORIGEM
+# (as duas fontes "colidem" na mesma perícia), o personagem receberia
+# treinamento só uma vez e perderia o benefício da segunda fonte -- em vez
+# disso, ganha esse bônus FIXO compensatório (ver "regra das duplicatas"
+# em motor/ficha.py). Mesmo valor de BONUS_PERICIA_RETREINADA por ora
+# (mesma natureza de bônus fixo); ajuste aqui se a regra da mesa definir
+# um valor diferente pra esse caso especificamente.
+BONUS_PERICIA_DUPLICATA = 2
+
 
 def bonus_treinamento_pericia(grau_ascensao: int, marcos: Dict[str, int]) -> int:
     """
