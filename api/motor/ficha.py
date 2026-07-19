@@ -54,6 +54,7 @@ def calcular_ficha(
         grau_ascensao,
         catalogo["pericias"],
         marcos_treinamento,
+        pericias_manuais=escolhas.get("pericias_manuais", {}),
     )
 
     calculado = {

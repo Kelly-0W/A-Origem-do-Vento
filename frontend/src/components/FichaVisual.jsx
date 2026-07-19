@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
 import { nomePericia } from '../lib/formato.js'
+import { api } from '../lib/api.js'
 import ModalBase from './ModalBase.jsx'
 import PoderDetalhe from './PoderDetalhe.jsx'
 
@@ -9,10 +10,35 @@ const NOMES_STATUS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defe
 // Ficha visual pós-cálculo -- troca o JSON cru de `resultado` por blocos no
 // mesmo design system já usado no passo de Atributos (`stat-tile`). Usada
 // tanto logo após calcular no Wizard quanto na tela de detalhe do
-// personagem (a partir do `calculado` já salvo no Firestore). Cada poder é
-// clicável e abre o mesmo card de detalhe mecânico usado na Biblioteca.
-export default function FichaVisual({ resultado, catalogo, elemento, escolhas, isCaca }) {
+// personagem (a partir do `calculado` já salvo no Firestore), e também no
+// Painel do Mestre (lá, sempre como leitura -- ver prop `interativo`).
+// Cada poder é clicável e abre o mesmo card de detalhe mecânico usado na
+// Biblioteca.
+//
+// `interativo`/`personagemId`/`donoUid`/`onAtualizado` só fazem sentido na
+// tela do PRÓPRIO personagem: quando `interativo` é true, cada perícia vira
+// clicável pra marcar/desmarcar treinamento manualmente (cobre casos como
+// uma habilidade de raça que "dá treinamento" mas que o motor não aplica
+// sozinho), e uma perícia já treinada ganha um botão extra "+2" pra marcar
+// que foi RETREINADA (bônus fixo, não escala com o grau). Cada clique
+// chama de novo o mesmo endpoint de cálculo (mandando `pericias_manuais`
+// dentro de `escolhas`), que já salva a ficha atualizada sozinho -- por
+// isso não precisa de nenhum updateDoc extra aqui.
+export default function FichaVisual({
+  resultado,
+  catalogo,
+  elemento,
+  escolhas,
+  isCaca,
+  interativo = false,
+  personagemId = null,
+  donoUid = null,
+  onAtualizado = null,
+}) {
   const [poderAberto, setPoderAberto] = useState(null)
+  const [periciaProcessando, setPericiaProcessando] = useState(null)
+  const [erroPericia, setErroPericia] = useState(null)
+
   const { status, atributos_finais, pericias, grau_ascensao } = resultado
   const ataqueDesarmado = status?.ataque_desarmado
   const bonusAtaqueDesarmado = ataqueDesarmado ? (atributos_finais?.[ataqueDesarmado.atributo] ?? 0) : 0
@@ -21,6 +47,45 @@ export default function FichaVisual({ resultado, catalogo, elemento, escolhas, i
 
   const poderesResolvidos = (escolhas.poderes_escolhidos || []).map((id) => elemento?.poderes?.[id]).filter(Boolean)
   const espiritual = escolhas.espiritual_escolhido ? elemento?.espirituais?.[escolhas.espiritual_escolhido] : null
+
+  async function ajustarPericia(periciaId, ajuste) {
+    if (!interativo || periciaProcessando) return
+    setPericiaProcessando(periciaId)
+    setErroPericia(null)
+    try {
+      const novasEscolhas = {
+        ...escolhas,
+        pericias_manuais: { ...(escolhas.pericias_manuais || {}), [periciaId]: ajuste },
+      }
+      const { ok, dados } = await api.calcularFicha(novasEscolhas, {
+        grauAscensao: grau_ascensao,
+        donoUid,
+        personagemId,
+      })
+      if (!ok || !dados?.sucesso) {
+        setErroPericia(dados?.erros?.[0] || 'Não foi possível atualizar essa perícia agora.')
+        return
+      }
+      onAtualizado?.(dados.calculado, novasEscolhas)
+    } catch (err) {
+      console.error(err)
+      setErroPericia('Não foi possível atualizar essa perícia agora.')
+    } finally {
+      setPericiaProcessando(null)
+    }
+  }
+
+  function aoClicarPericia(periciaId, p) {
+    // Alterna treinada; ao desmarcar, some junto o retreino (não existe
+    // "retreinado, mas não treinado").
+    ajustarPericia(periciaId, { treinada: !p.treinada, retreinada: p.treinada ? false : p.retreinada })
+  }
+
+  function aoClicarRetreino(e, periciaId, p) {
+    e.stopPropagation() // não deixa o clique "vazar" pro toggle de treinada por trás
+    if (!p.treinada) return
+    ajustarPericia(periciaId, { treinada: true, retreinada: !p.retreinada })
+  }
 
   return (
     <div className="mt-8">
@@ -55,18 +120,58 @@ export default function FichaVisual({ resultado, catalogo, elemento, escolhas, i
       </div>
 
       <div className="mb-8">
-        <div className="text-xs uppercase tracking-widest text-mist mb-3">Perícias</div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-          {periciasOrdenadas.map(([id, p]) => (
-            <div
-              key={id}
-              className={`text-xs px-3 py-2 rounded border flex items-center justify-between
-                ${p.treinada ? 'border-gold/50 text-gold' : 'border-panel-border text-mist'}`}
-            >
-              <span>{nomePericia(catalogo, id)}</span>
-              <span>{p.bonus_total >= 0 ? '+' : ''}{p.bonus_total}</span>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-xs uppercase tracking-widest text-mist">Perícias</div>
+          {interativo && (
+            <div className="text-[11px] text-mist">
+              Clique pra treinar/destreinar · <span className="text-gold">+2</span> pra marcar retreino
             </div>
-          ))}
+          )}
+        </div>
+        {erroPericia && <p className="text-blood-bright text-xs mb-2">{erroPericia}</p>}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+          {periciasOrdenadas.map(([id, p]) => {
+            const processando = periciaProcessando === id
+            const conteudo = (
+              <>
+                <span className="flex items-center gap-1.5">
+                  {nomePericia(catalogo, id)}
+                  {p.retreinada && (
+                    <span className="text-[9px] px-1 rounded-full border border-gold/50 text-gold leading-none py-0.5">+2</span>
+                  )}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  {interativo && p.treinada && (
+                    <button
+                      type="button"
+                      onClick={(e) => aoClicarRetreino(e, id, p)}
+                      disabled={processando}
+                      title="Marcar/desmarcar retreino (+2 fixo)"
+                      className={`text-[10px] w-4 h-4 rounded-full border leading-none flex items-center justify-center transition-colors
+                        ${p.retreinada ? 'border-gold bg-gold/20 text-gold' : 'border-panel-border text-mist hover:border-gold/50'}`}
+                    >
+                      +
+                    </button>
+                  )}
+                  <span>{p.bonus_total >= 0 ? '+' : ''}{p.bonus_total}</span>
+                </span>
+              </>
+            )
+            const classeBase = `text-xs px-3 py-2 rounded border flex items-center justify-between transition-colors
+              ${p.treinada ? 'border-gold/50 text-gold' : 'border-panel-border text-mist'}
+              ${interativo ? 'hover:border-white/40 cursor-pointer' : ''}
+              ${processando ? 'opacity-50' : ''}`
+
+            return interativo ? (
+              <button key={id} type="button" onClick={() => aoClicarPericia(id, p)} disabled={processando} className={classeBase}>
+                {conteudo}
+              </button>
+            ) : (
+              <div key={id} className={classeBase}>
+                {conteudo}
+              </div>
+            )
+          })}
         </div>
       </div>
 

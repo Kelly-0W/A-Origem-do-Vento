@@ -234,6 +234,12 @@ export default function PersonagemDetalhe() {
           elemento={elemento}
           escolhas={escolhas}
           isCaca={isCaca}
+          interativo
+          personagemId={id}
+          donoUid={usuario.uid}
+          onAtualizado={(novoCalculado, novasEscolhas) =>
+            setPersonagem((prev) => ({ ...prev, calculado: novoCalculado, escolhas: novasEscolhas }))
+          }
         />
       )}
 

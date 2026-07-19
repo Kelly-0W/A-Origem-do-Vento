@@ -21,6 +21,12 @@ ATRIBUTO_MAXIMO = 3
 
 STATUS_BASICOS = ["vida", "sanidade", "arche", "defesa"]
 
+# Uma perícia já treinada que recebe treinamento de novo (ex.: uma
+# habilidade que "torna treinado" numa perícia que o personagem já era
+# treinado) ganha esse bônus FIXO, somado ao bônus normal de treinamento --
+# não escala com o grau de Ascensão, ao contrário do bônus normal.
+BONUS_PERICIA_RETREINADA = 2
+
 
 def bonus_treinamento_pericia(grau_ascensao: int, marcos: Dict[str, int]) -> int:
     """
