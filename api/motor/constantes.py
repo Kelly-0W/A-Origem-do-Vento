@@ -55,3 +55,34 @@ def faixa_dificuldade_do_grau(grau: int, faixas: Dict[str, dict]) -> Optional[st
         if grau in dados.get("graus", []):
             return nome_faixa
     return None
+
+
+def recompensas_do_grau(grau: int, graus_config: Dict[str, dict]) -> list:
+    """
+    Lista de recompensas estruturadas (`{"tipo": ..., "origem": ..., "descricao": ...}`)
+    concedidas exatamente nesse grau -- graus_config vem de
+    constantes_ascensao.json -> "graus".
+    """
+    return graus_config.get(str(grau), {}).get("recompensas", [])
+
+
+def contar_habilidades_extras_ate_grau(grau_ascensao: int, graus_config: Dict[str, dict]) -> int:
+    """
+    Quantas recompensas de tipo "habilidade" foram concedidas do Grau 1 ate
+    `grau_ascensao` (inclusive). Usado pela validacao pra saber quantas
+    habilidades de raca/classe uma ficha DEVERIA ter alem das do Grau 0
+    (ver validacoes.py) -- sem isso, a validacao rejeitaria como "excesso"
+    as habilidades que o jogador ganhou por Ascensao.
+
+    "Treinamento de Pericia" NAO entra nessa conta -- ao contrario de
+    habilidade, perícia treinada não é validada com contagem exata em
+    lugar nenhum (ver pericias_manuais em motor/pericias.py, que já
+    permite o jogador treinar/destreinar perícias livremente direto na
+    ficha), entao essa recompensa e' só informativa pro jogador.
+    """
+    total = 0
+    for grau in range(1, grau_ascensao + 1):
+        for recompensa in recompensas_do_grau(grau, graus_config):
+            if recompensa.get("tipo") == "habilidade":
+                total += 1
+    return total

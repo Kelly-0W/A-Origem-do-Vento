@@ -3,29 +3,11 @@ import json
 
 from firebase_admin import firestore
 
-from api.motor.catalogo import carregar_catalogo
-from api.motor.ficha import calcular_ficha
 from api.motor.persistencia import (
     buscar_campanha,
     buscar_personagem,
     atualizar_personagem,
 )
-
-
-def _ascensao_zerada(respondido_por_uid):
-    """Estado 'de repouso' de ascensao_em_progresso, pronto pro próximo
-    ciclo (usado tanto ao aprovar quanto, futuramente, se o jogador quiser
-    recomeçar depois de uma recusa)."""
-    return {
-        "grau_alvo": None,
-        "catalisador": False,
-        "provacao": False,
-        "ritual": False,
-        "descricao_manifestacao": "",
-        "status": "nenhuma",
-        "respondido_por_uid": respondido_por_uid,
-        "respondido_em": firestore.SERVER_TIMESTAMP,
-    }
 
 
 class handler(BaseHTTPRequestHandler):
@@ -39,12 +21,19 @@ class handler(BaseHTTPRequestHandler):
           "aprovar": true | false
         }
 
-        Aprovar: recalcula a ficha no grau_alvo (via o mesmo motor Python
-        usado na criacao), grava grau_ascensao + calculado + uma entrada
-        nova em `manifestacoes`, e zera ascensao_em_progresso pro proximo
-        ciclo. Recusar: so marca ascensao_em_progresso.status = "recusada"
-        (mantem os 3 booleans como estavam, pra o jogador ver o que foi
-        julgado), sem tocar em grau_ascensao/calculado.
+        Aprovar: NAO recalcula a ficha aqui -- so' muda
+        ascensao_em_progresso.status para "aguardando_recompensas", que
+        libera o DONO do personagem para escolher as recompensas do grau
+        (habilidade(s) de raca/classe -- ver constantes_ascensao.json;
+        "Treinamento de Pericia" nao precisa de escolha formal aqui porque
+        ja existe o toggle livre de pericia direto na ficha, ver
+        pericias_manuais em motor/pericias.py). E' so' depois que o dono
+        escolhe e chama /api/aplicar_recompensas_ascensao que a ficha e'
+        de fato recalculada e o grau_ascensao avanca.
+
+        Recusar: marca ascensao_em_progresso.status = "recusada" (mantem
+        os 3 booleans como estavam, pra o jogador ver o que foi julgado),
+        sem tocar em grau_ascensao/calculado.
 
         So o mestre_id de fato dessa campanha pode chamar isto -- checado
         aqui com o Admin SDK, nao pelas Firestore Rules (ver comentario em
@@ -100,6 +89,7 @@ class handler(BaseHTTPRequestHandler):
             if not aprovar:
                 atualizar_personagem(personagem_id, {
                     "ascensao_em_progresso": {
+                        **ascensao,
                         "status": "recusada",
                         "respondido_por_uid": mestre_uid,
                         "respondido_em": firestore.SERVER_TIMESTAMP,
@@ -109,46 +99,16 @@ class handler(BaseHTTPRequestHandler):
                 self._responder(200, {"sucesso": True, "aprovado": False})
                 return
 
-            grau_alvo = ascensao.get("grau_alvo")
-            if not isinstance(grau_alvo, int):
-                self._responder(400, {
-                    "sucesso": False,
-                    "erros": ["'grau_alvo' invalido no pedido de Ascensao deste personagem."],
-                })
-                return
-
-            catalogo = carregar_catalogo()
-            sucesso, resultado = calcular_ficha(
-                personagem.get("escolhas", {}), catalogo, grau_ascensao=grau_alvo
-            )
-            if not sucesso:
-                self._responder(400, {
-                    "sucesso": False,
-                    "erros": ["Nao foi possivel recalcular a ficha para aprovar a Ascensao."] + resultado.get("erros", []),
-                })
-                return
-
-            nova_manifestacao = {
-                "grau": grau_alvo,
-                "descricao": ascensao.get("descricao_manifestacao") or "",
-                "imagem_url": None,
-            }
-            manifestacoes = list(personagem.get("manifestacoes") or []) + [nova_manifestacao]
-
             atualizar_personagem(personagem_id, {
-                "grau_ascensao": grau_alvo,
-                "calculado": resultado["calculado"],
-                "manifestacoes": manifestacoes,
-                "ascensao_em_progresso": _ascensao_zerada(mestre_uid),
+                "ascensao_em_progresso": {
+                    **ascensao,
+                    "status": "aguardando_recompensas",
+                    "respondido_por_uid": mestre_uid,
+                    "respondido_em": firestore.SERVER_TIMESTAMP,
+                },
                 "atualizado_em": firestore.SERVER_TIMESTAMP,
             })
-
-            self._responder(200, {
-                "sucesso": True,
-                "aprovado": True,
-                "grau_ascensao": grau_alvo,
-                "calculado": resultado["calculado"],
-            })
+            self._responder(200, {"sucesso": True, "aprovado": True, "status": "aguardando_recompensas"})
 
         except Exception as e:
             self._responder(500, {"sucesso": False, "erros": [f"Erro interno no servidor: {str(e)}"]})

@@ -42,14 +42,26 @@ export const api = {
     get(`mestre_campanha_personagens?campanha_id=${campanhaId}&mestre_uid=${mestreUid}`),
 
   // POST /api/responder_ascensao  (ver api/responder_ascensao.py)
-  // aprovar=true recalcula a ficha no grau-alvo e grava; aprovar=false so
-  // marca o pedido como recusado.
+  // aprovar=true so' libera a fase de escolha de recompensas
+  // (ascensao_em_progresso.status vira "aguardando_recompensas"); quem
+  // efetiva o grau de fato e' aplicarRecompensasAscensao, chamado pelo
+  // DONO do personagem depois. aprovar=false so marca como recusado.
   responderAscensao: ({ mestreUid, campanhaId, personagemId, aprovar }) =>
     post('responder_ascensao', {
       mestre_uid: mestreUid,
       campanha_id: campanhaId,
       personagem_id: personagemId,
       aprovar,
+    }),
+
+  // POST /api/aplicar_recompensas_ascensao  (ver api/aplicar_recompensas_ascensao.py)
+  // So' funciona quando ascensao_em_progresso.status === "aguardando_recompensas".
+  // escolhasRecompensa: { habilidades: [{origem, id}] }
+  aplicarRecompensasAscensao: ({ personagemId, donoUid, escolhasRecompensa }) =>
+    post('aplicar_recompensas_ascensao', {
+      personagem_id: personagemId,
+      dono_uid: donoUid,
+      escolhas_recompensa: escolhasRecompensa,
     }),
 
   // POST /api/excluir_conta  (ver api/excluir_conta.py)

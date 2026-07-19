@@ -1,15 +1,40 @@
 {
   "graus": {
-    "1":  { "pontos_status": 3, "recompensas": ["1 Habilidade de Classe ou Raca", "1 Treinamento de Pericia"] },
-    "2":  { "pontos_status": 3, "recompensas": ["1 Habilidade de Classe ou Raca"] },
-    "3":  { "pontos_status": 3, "recompensas": ["1 Treinamento de Pericia"] },
-    "4":  { "pontos_status": 4, "recompensas": ["1 Habilidade de Classe", "1 Habilidade de Raca"] },
-    "5":  { "pontos_status": 4, "recompensas": ["1 Habilidade de Classe"] },
-    "6":  { "pontos_status": 5, "recompensas": ["1 Habilidade de Classe ou Raca"] },
-    "7":  { "pontos_status": 5, "recompensas": ["1 Habilidade de Raca", "1 Treinamento de Pericia"] },
-    "8":  { "pontos_status": 6, "recompensas": ["1 Habilidade de Raca"] },
-    "9":  { "pontos_status": 7, "recompensas": ["1 Habilidade de Classe"] },
-    "10": { "pontos_status": 8, "recompensas": ["1 Habilidade de Classe", "1 Habilidade de Raca", "1 Treinamento de Pericia"] }
+    "1":  { "pontos_status": 3, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe_ou_raca", "descricao": "1 Habilidade de Classe ou Raça" },
+      { "tipo": "pericia_treinada", "descricao": "1 Treinamento de Perícia" }
+    ] },
+    "2":  { "pontos_status": 3, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe_ou_raca", "descricao": "1 Habilidade de Classe ou Raça" }
+    ] },
+    "3":  { "pontos_status": 3, "recompensas": [
+      { "tipo": "pericia_treinada", "descricao": "1 Treinamento de Perícia" }
+    ] },
+    "4":  { "pontos_status": 4, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe", "descricao": "1 Habilidade de Classe" },
+      { "tipo": "habilidade", "origem": "raca", "descricao": "1 Habilidade de Raça" }
+    ] },
+    "5":  { "pontos_status": 4, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe", "descricao": "1 Habilidade de Classe" }
+    ] },
+    "6":  { "pontos_status": 5, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe_ou_raca", "descricao": "1 Habilidade de Classe ou Raça" }
+    ] },
+    "7":  { "pontos_status": 5, "recompensas": [
+      { "tipo": "habilidade", "origem": "raca", "descricao": "1 Habilidade de Raça" },
+      { "tipo": "pericia_treinada", "descricao": "1 Treinamento de Perícia" }
+    ] },
+    "8":  { "pontos_status": 6, "recompensas": [
+      { "tipo": "habilidade", "origem": "raca", "descricao": "1 Habilidade de Raça" }
+    ] },
+    "9":  { "pontos_status": 7, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe", "descricao": "1 Habilidade de Classe" }
+    ] },
+    "10": { "pontos_status": 8, "recompensas": [
+      { "tipo": "habilidade", "origem": "classe", "descricao": "1 Habilidade de Classe" },
+      { "tipo": "habilidade", "origem": "raca", "descricao": "1 Habilidade de Raça" },
+      { "tipo": "pericia_treinada", "descricao": "1 Treinamento de Perícia" }
+    ] }
   },
   "faixas_dificuldade": {
     "facil": { "graus": [1, 2, 3, 4] },

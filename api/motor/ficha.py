@@ -23,7 +23,7 @@ def calcular_ficha(
     Se sucesso=True, resultado = {"calculado": {...}} pronto pra gravar na
     ficha do personagem (ver docs/schema-banco-dados-personagem.md).
     """
-    valido, erros = validar_escolhas_personagem(escolhas, catalogo)
+    valido, erros = validar_escolhas_personagem(escolhas, catalogo, grau_ascensao=grau_ascensao)
     if not valido:
         return False, {"erros": erros}
 

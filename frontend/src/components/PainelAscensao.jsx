@@ -3,6 +3,7 @@ import { doc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { api } from '../lib/api.js'
 import { GRAU_ASCENSAO_MAXIMO, faixaDificuldadeDoGrau } from '../lib/constantes.js'
+import RecompensasAscensao from './RecompensasAscensao.jsx'
 
 const ASCENSAO_ZERADA = {
   grau_alvo: null,
@@ -33,8 +34,25 @@ function CheckboxPilar({ marcado, onToggle, disabled, titulo, children }) {
   )
 }
 
-export default function PainelAscensao({ personagemId, grauAscensao, ascensaoEmProgresso, classe, origem, onAtualizado }) {
-  const [faixasDificuldade, setFaixasDificuldade] = useState(null)
+// `estaEmCampanha`: personagens fora de qualquer campanha decidem sozinhos
+// quando subir de grau (pula direto pra escolha de recompensas assim que
+// os 3 pilares são cumpridos); personagens numa campanha continuam
+// dependendo da aprovação do Mestre (aguardando_mestre) antes disso.
+export default function PainelAscensao({
+  personagemId,
+  donoUid,
+  grauAscensao,
+  ascensaoEmProgresso,
+  raca,
+  linhagem,
+  classe,
+  origem,
+  escolhas,
+  estaEmCampanha,
+  onAtualizado,
+  onAscensaoEfetivada,
+}) {
+  const [constantesAscensao, setConstantesAscensao] = useState(null)
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState(null)
   const [provacaoSelecionadaId, setProvacaoSelecionadaId] = useState(null)
@@ -42,7 +60,7 @@ export default function PainelAscensao({ personagemId, grauAscensao, ascensaoEmP
 
   useEffect(() => {
     api.buscarBiblioteca('constantes_ascensao').then(({ dados }) => {
-      setFaixasDificuldade(dados?.itens?.faixas_dificuldade || {})
+      setConstantesAscensao(dados?.itens || {})
     })
   }, [])
 
@@ -52,9 +70,11 @@ export default function PainelAscensao({ personagemId, grauAscensao, ascensaoEmP
 
   const ascensao = ascensaoEmProgresso || ASCENSAO_ZERADA
   const grauAlvo = ascensao.status !== 'nenhuma' || ascensao.grau_alvo ? ascensao.grau_alvo : grauAscensao + 1
+  const faixasDificuldade = constantesAscensao?.faixas_dificuldade || null
   const faixa = faixasDificuldade ? faixaDificuldadeDoGrau(grauAlvo, faixasDificuldade) : null
   const provacoesFaixa = (faixa && classe?.provacoes?.[faixa]) || []
   const ritualFaixa = (faixa && origem?.rituais?.[faixa]) || null
+  const recompensasGrauAlvo = constantesAscensao?.graus?.[String(grauAlvo)]?.recompensas || []
 
   async function salvar(patch) {
     setSalvando(true)
@@ -88,16 +108,28 @@ export default function PainelAscensao({ personagemId, grauAscensao, ascensaoEmP
   function alternarPilar(campo, valor) {
     const proximo = { ...ascensao, [campo]: valor, descricao_manifestacao: descricaoManifestacao }
     const completo = proximo.catalisador && proximo.provacao && proximo.ritual
+    // Fora de campanha, ninguém precisa aprovar -- assim que os 3 pilares
+    // fecham, já libera a escolha de recompensas direto. Numa campanha,
+    // continua indo pro Mestre primeiro.
+    const proximoStatus = completo ? (estaEmCampanha ? 'aguardando_mestre' : 'aguardando_recompensas') : 'nenhuma'
     salvar({
       [campo]: valor,
       descricao_manifestacao: descricaoManifestacao,
-      status: completo ? 'aguardando_mestre' : 'nenhuma',
+      status: proximoStatus,
     })
   }
 
   function confirmarProvacao(marcado) {
     if (marcado && !provacaoSelecionadaId && provacoesFaixa.length > 1) return
     alternarPilar('provacao', marcado)
+  }
+
+  function aoFinalizarRecompensas(dados) {
+    onAscensaoEfetivada({
+      grau_ascensao: dados.grau_ascensao,
+      calculado: dados.calculado,
+      escolhas: dados.escolhas,
+    })
   }
 
   if (grauAscensao >= GRAU_ASCENSAO_MAXIMO) {
@@ -124,6 +156,7 @@ export default function PainelAscensao({ personagemId, grauAscensao, ascensaoEmP
           <p className="text-sm text-mist mb-4">
             Quando estiver pronto para buscar o próximo Grau de Ascensão, inicie o processo abaixo.
             Você vai precisar cumprir 3 pilares: um Catalisador, uma Provação e um Ritual.
+            {!estaEmCampanha && ' Como este personagem não está em nenhuma campanha, você mesmo decide quando os pilares foram cumpridos.'}
           </p>
           <button className="btn-primary disabled:opacity-50" onClick={iniciarAscensao} disabled={salvando}>
             Iniciar Ascensão para o Grau {grauAscensao + 1}
@@ -138,6 +171,20 @@ export default function PainelAscensao({ personagemId, grauAscensao, ascensaoEmP
             Cancelar pedido
           </button>
         </div>
+      )}
+
+      {ascensao.status === 'aguardando_recompensas' && (
+        <RecompensasAscensao
+          personagemId={personagemId}
+          donoUid={donoUid}
+          grauAlvo={grauAlvo}
+          recompensas={recompensasGrauAlvo}
+          raca={raca}
+          linhagem={linhagem}
+          classe={classe}
+          escolhas={escolhas}
+          onFinalizado={aoFinalizarRecompensas}
+        />
       )}
 
       {ascensao.status === 'recusada' && (

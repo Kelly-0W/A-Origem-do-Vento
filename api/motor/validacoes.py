@@ -13,12 +13,13 @@ import logging
 from typing import Any, Dict, List, Tuple
 
 from .atributos import validar_distribuicao_atributos
+from .constantes import contar_habilidades_extras_ate_grau
 
 logger = logging.getLogger(__name__)
 
 
 def validar_escolhas_personagem(
-    escolhas: Dict[str, Any], catalogo: Dict[str, Any]
+    escolhas: Dict[str, Any], catalogo: Dict[str, Any], grau_ascensao: int = 0
 ) -> Tuple[bool, List[str]]:
     """
     escolhas: o que o jogador escolheu na criacao. Formato esperado:
@@ -40,6 +41,12 @@ def validar_escolhas_personagem(
         {"racas": {...}, "classes": {...}, "origens": {...}, "pericias": {...},
          "elementos": {...}, "itens": {...}, "constantes_ascensao": {...}}
 
+    grau_ascensao: o grau ATUAL da ficha sendo validada (0 na criacao). O
+    total esperado de habilidades de raca+classe cresce com o grau -- cada
+    recompensa de Ascensao de tipo "habilidade" (ver constantes_ascensao.json)
+    libera mais uma escolha. Sem isso, validar uma ficha que ja passou por
+    Ascensao rejeitaria como "excesso" as habilidades ganhas de recompensa.
+
     Retorna (valido, lista_de_erros). Lista vazia == valido.
     """
     erros: List[str] = []
@@ -60,6 +67,8 @@ def validar_escolhas_personagem(
     origens = catalogo.get("origens", {})
     pericias_catalogo = catalogo.get("pericias", {})
     elementos = catalogo.get("elementos", {})
+
+    hab_escolhidas = escolhas.get("habilidades_escolhidas", {})
 
     # ---- Atributos ----
     _, erros_attr = validar_distribuicao_atributos(escolhas["atributos"])
@@ -89,17 +98,11 @@ def validar_escolhas_personagem(
         elif linhagem_id:
             erros.append(f"A raca '{raca_id}' nao possui linhagens, mas 'linhagem_id' foi enviado.")
 
-        # habilidades de raça escolhidas no Grau 0 (globais + especificas da linhagem)
-        hab_escolhidas = escolhas.get("habilidades_escolhidas", {})
+        # habilidades de raça escolhidas (globais + especificas da linhagem)
+        # -- SO a validade de cada id e checada aqui; a CONTAGEM total (que
+        # depende do grau_ascensao) e checada mais abaixo, junto com a classe.
         globais_escolhidas = hab_escolhidas.get("raca_globais", [])
         especificas_escolhidas = hab_escolhidas.get("raca_linhagem", [])
-        qtd_esperada = raca.get("qtd_habilidades_iniciais", 2)
-        total_hab_raca = len(globais_escolhidas) + len(especificas_escolhidas)
-        if total_hab_raca != qtd_esperada:
-            erros.append(
-                f"A raca '{raca_id}' exige exatamente {qtd_esperada} habilidade(s) racial(is) "
-                f"no Grau 0 (recebido: {total_hab_raca})."
-            )
 
         ids_globais_validos = {h["id"] for h in raca.get("habilidades_globais", [])}
         for hid in globais_escolhidas:
@@ -132,13 +135,7 @@ def validar_escolhas_personagem(
     if classe is None:
         erros.append(f"Classe '{classe_id}' nao existe no catalogo.")
     else:
-        hab_classe_escolhidas = escolhas.get("habilidades_escolhidas", {}).get("classe", [])
-        qtd_esperada = classe.get("qtd_habilidades_iniciais", 1)
-        if len(hab_classe_escolhidas) != qtd_esperada:
-            erros.append(
-                f"A classe '{classe_id}' exige exatamente {qtd_esperada} habilidade(s) "
-                f"no Grau 0 (recebido: {len(hab_classe_escolhidas)})."
-            )
+        hab_classe_escolhidas = hab_escolhidas.get("classe", [])
 
         ids_hab_classe_validas = {h["id"] for h in classe.get("habilidades", [])}
         for hid in hab_classe_escolhidas:
@@ -151,6 +148,32 @@ def validar_escolhas_personagem(
             erros.append(
                 "Subclasse nao pode ser escolhida na criacao do personagem "
                 "(exige 3 habilidades previas da classe normal)."
+            )
+
+    # ---- Contagem total de habilidades de raça+classe (grau-aware) ----
+    # Feita depois dos dois blocos acima (precisa de raca E classe resolvidas)
+    # porque uma recompensa "classe_ou_raca" pode entrar em qualquer uma das
+    # duas listas -- por isso o total e' checado em conjunto, nao separado
+    # por raca/classe.
+    if raca is not None and classe is not None:
+        qtd_base_raca = raca.get("qtd_habilidades_iniciais", 2)
+        qtd_base_classe = classe.get("qtd_habilidades_iniciais", 1)
+        extras_por_ascensao = contar_habilidades_extras_ate_grau(
+            grau_ascensao, catalogo.get("constantes_ascensao", {}).get("graus", {})
+        )
+        qtd_esperada_total = qtd_base_raca + qtd_base_classe + extras_por_ascensao
+
+        total_hab_escolhidas = (
+            len(hab_escolhidas.get("raca_globais", []))
+            + len(hab_escolhidas.get("raca_linhagem", []))
+            + len(hab_escolhidas.get("classe", []))
+        )
+        if total_hab_escolhidas != qtd_esperada_total:
+            erros.append(
+                f"Este personagem deveria ter exatamente {qtd_esperada_total} habilidade(s) de "
+                f"raca/classe no Grau {grau_ascensao} ({qtd_base_raca} da raca + {qtd_base_classe} "
+                f"da classe, no Grau 0, + {extras_por_ascensao} ganha(s) em Ascensoes anteriores), "
+                f"recebido: {total_hab_escolhidas}."
             )
 
     # multiclasse: no maximo 2 classes simultaneas, se o formulario usar

@@ -245,12 +245,35 @@ export default function PersonagemDetalhe() {
 
       <PainelAscensao
         personagemId={id}
+        donoUid={usuario.uid}
         grauAscensao={personagem.grau_ascensao ?? 0}
         ascensaoEmProgresso={personagem.ascensao_em_progresso}
+        raca={raca}
+        linhagem={linhagem}
         classe={classe}
         origem={origem}
+        escolhas={escolhas}
+        estaEmCampanha={(personagem.campanhas_ids || []).length > 0}
         onAtualizado={(novaAscensao) =>
           setPersonagem((prev) => ({ ...prev, ascensao_em_progresso: novaAscensao }))
+        }
+        onAscensaoEfetivada={({ grau_ascensao, calculado, escolhas: novasEscolhas }) =>
+          setPersonagem((prev) => ({
+            ...prev,
+            grau_ascensao,
+            calculado,
+            escolhas: novasEscolhas,
+            ascensao_em_progresso: {
+              grau_alvo: null,
+              catalisador: false,
+              provacao: false,
+              ritual: false,
+              descricao_manifestacao: '',
+              status: 'nenhuma',
+              respondido_por_uid: prev.ascensao_em_progresso?.respondido_por_uid ?? null,
+              respondido_em: prev.ascensao_em_progresso?.respondido_em ?? null,
+            },
+          }))
         }
       />
     </div>
