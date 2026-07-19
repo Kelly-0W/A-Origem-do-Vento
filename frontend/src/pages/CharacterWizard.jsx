@@ -552,6 +552,10 @@ export default function CharacterWizard() {
               <FichaVisual
                 resultado={resultado}
                 catalogo={catalogo}
+                raca={raca}
+                linhagem={linhagem}
+                classe={classe}
+                origem={origem}
                 elemento={elemento}
                 escolhas={escolhas}
                 isCaca={isCaca}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ATRIBUTOS, NOMES_ATRIBUTOS, ABREV_ATRIBUTOS } from '../lib/constantes.js'
-import { nomePericia } from '../lib/formato.js'
+import { nomePericia, formatarRotulo } from '../lib/formato.js'
 import { api } from '../lib/api.js'
 import ModalBase from './ModalBase.jsx'
 import PoderDetalhe from './PoderDetalhe.jsx'
@@ -12,8 +12,11 @@ const NOMES_STATUS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defe
 // tanto logo após calcular no Wizard quanto na tela de detalhe do
 // personagem (a partir do `calculado` já salvo no Firestore), e também no
 // Painel do Mestre (lá, sempre como leitura -- ver prop `interativo`).
-// Cada poder é clicável e abre o mesmo card de detalhe mecânico usado na
-// Biblioteca.
+// Mostra, nessa ordem: Sistema Racial Único (se a raça tiver um -- kaimar,
+// ocularde, fada, astara, draconato), Habilidades (de Raça e de Classe,
+// com nome+descrição completos, não só o nome escolhido no Wizard),
+// Habilidade da Origem, e por fim Poderes/Espiritual -- cada poder
+// clicável, abrindo o mesmo card de detalhe mecânico usado na Biblioteca.
 //
 // `interativo`/`personagemId`/`donoUid`/`onAtualizado` só fazem sentido na
 // tela do PRÓPRIO personagem: quando `interativo` é true, cada perícia vira
@@ -30,6 +33,10 @@ const NOMES_STATUS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defe
 export default function FichaVisual({
   resultado,
   catalogo,
+  raca,
+  linhagem,
+  classe,
+  origem,
   elemento,
   escolhas,
   isCaca,
@@ -50,6 +57,21 @@ export default function FichaVisual({
 
   const poderesResolvidos = (escolhas.poderes_escolhidos || []).map((id) => elemento?.poderes?.[id]).filter(Boolean)
   const espiritual = escolhas.espiritual_escolhido ? elemento?.espirituais?.[escolhas.espiritual_escolhido] : null
+
+  // A maioria das raças com sistema único guarda ele no nível da RAÇA
+  // (Kaimar, Ocularde, Fada, Astara, Draconato -- vale igual pra qualquer
+  // linhagem escolhida). O Demônio é a exceção: cada uma das 7 linhagens
+  // (Areiano, Asmodiano, Lokiano...) tem o PRÓPRIO Selo, então precisa
+  // checar a linhagem primeiro antes de cair pro nível de raça.
+  const sistemaUnico = linhagem?.sistema_racial_inato || raca?.sistema_racial_inato || null
+
+  const habEscolhidas = escolhas.habilidades_escolhidas || {}
+  const habilidadesRaca = [
+    ...(raca?.habilidades_globais || []).filter((h) => (habEscolhidas.raca_globais || []).includes(h.id)),
+    ...(raca?.habilidades_especificas || []).filter((h) => (habEscolhidas.raca_linhagem || []).includes(h.id)),
+  ]
+  const habilidadesClasse = (classe?.habilidades || []).filter((h) => (habEscolhidas.classe || []).includes(h.id))
+  const habilidadeOrigem = origem?.habilidade_passiva || null
 
   async function ajustarPericia(periciaId, ajuste) {
     if (!interativo || periciaProcessando) return
@@ -231,6 +253,79 @@ export default function FichaVisual({
           })}
         </div>
       </div>
+
+      {sistemaUnico && (
+        <div className="mb-8">
+          <div className="text-xs uppercase tracking-widest text-mist mb-3">Sistema Racial Único</div>
+          <div className="card-fantasy p-4">
+            <div className="font-display font-semibold mb-2">{sistemaUnico.nome}</div>
+            <p className="text-xs text-mist mb-3 leading-relaxed">{sistemaUnico.descricao}</p>
+            {sistemaUnico.parametros && Object.keys(sistemaUnico.parametros).length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(sistemaUnico.parametros).map(([chave, valor]) => (
+                  <span key={chave} className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
+                    {formatarRotulo(chave)}: {String(valor)}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {(habilidadesRaca.length > 0 || habilidadesClasse.length > 0) && (
+        <div className="mb-8">
+          <div className="text-xs uppercase tracking-widest text-mist mb-3">Habilidades</div>
+          <div className="flex flex-col gap-5">
+            {habilidadesRaca.length > 0 && (
+              <div>
+                <div className="text-[11px] uppercase tracking-widest text-mist mb-2">De Raça</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {habilidadesRaca.map((h) => (
+                    <div key={h.id} className="card-fantasy p-4">
+                      <div className="font-display font-semibold mb-1">{h.nome}</div>
+                      <p className="text-xs text-mist mb-2">{h.descricao}</p>
+                      {h.tipo && (
+                        <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold capitalize">
+                          {h.tipo}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {habilidadesClasse.length > 0 && (
+              <div>
+                <div className="text-[11px] uppercase tracking-widest text-mist mb-2">De Classe</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {habilidadesClasse.map((h) => (
+                    <div key={h.id} className="card-fantasy p-4">
+                      <div className="font-display font-semibold mb-1">{h.nome}</div>
+                      <p className="text-xs text-mist mb-2">{h.descricao}</p>
+                      {h.tipo && (
+                        <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold capitalize">
+                          {h.tipo}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {habilidadeOrigem && (
+        <div className="mb-8">
+          <div className="text-xs uppercase tracking-widest text-mist mb-3">Habilidade da Origem</div>
+          <div className="card-fantasy p-4">
+            <div className="font-display font-semibold mb-1">{habilidadeOrigem.nome}</div>
+            <p className="text-xs text-mist">{habilidadeOrigem.descricao}</p>
+          </div>
+        </div>
+      )}
 
       {isCaca ? (
         espiritual && (

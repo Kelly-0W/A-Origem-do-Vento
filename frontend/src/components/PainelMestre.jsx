@@ -46,7 +46,17 @@ function CardPersonagem({ item, catalogo, expandido, onAlternarExpandido, filho 
             isCaca={isCaca}
           />
           {item.calculado && (
-            <FichaVisual resultado={item.calculado} catalogo={catalogo} elemento={elemento} escolhas={escolhas} isCaca={isCaca} />
+            <FichaVisual
+              resultado={item.calculado}
+              catalogo={catalogo}
+              raca={raca}
+              linhagem={linhagem}
+              classe={classe}
+              origem={origem}
+              elemento={elemento}
+              escolhas={escolhas}
+              isCaca={isCaca}
+            />
           )}
         </div>
       )}

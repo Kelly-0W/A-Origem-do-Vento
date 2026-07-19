@@ -231,6 +231,10 @@ export default function PersonagemDetalhe() {
         <FichaVisual
           resultado={personagem.calculado}
           catalogo={catalogo}
+          raca={raca}
+          linhagem={linhagem}
+          classe={classe}
+          origem={origem}
           elemento={elemento}
           escolhas={escolhas}
           isCaca={isCaca}
