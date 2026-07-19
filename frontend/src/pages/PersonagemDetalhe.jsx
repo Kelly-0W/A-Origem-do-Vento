@@ -8,6 +8,7 @@ import { api } from '../lib/api.js'
 import { redimensionarImagem } from '../lib/imagem.js'
 import ResumoEscolhas from '../components/ResumoEscolhas.jsx'
 import FichaVisual from '../components/FichaVisual.jsx'
+import PainelAscensao from '../components/PainelAscensao.jsx'
 
 export default function PersonagemDetalhe() {
   const { id } = useParams()
@@ -235,6 +236,17 @@ export default function PersonagemDetalhe() {
           isCaca={isCaca}
         />
       )}
+
+      <PainelAscensao
+        personagemId={id}
+        grauAscensao={personagem.grau_ascensao ?? 0}
+        ascensaoEmProgresso={personagem.ascensao_em_progresso}
+        classe={classe}
+        origem={origem}
+        onAtualizado={(novaAscensao) =>
+          setPersonagem((prev) => ({ ...prev, ascensao_em_progresso: novaAscensao }))
+        }
+      />
     </div>
   )
 }
