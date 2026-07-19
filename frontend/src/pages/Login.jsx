@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Wind } from 'lucide-react'
+import { Wind, Chrome, Ghost } from 'lucide-react'
 import { useAuth } from '../context/AuthContext.jsx'
 
 export default function Login() {
-  const { entrar, cadastrar } = useAuth()
+  const { entrar, cadastrar, entrarComGoogle, entrarAnonimo } = useAuth()
   const navigate = useNavigate()
 
   const [modo, setModo] = useState('entrar') // 'entrar' | 'cadastrar'
@@ -24,6 +24,32 @@ export default function Login() {
       } else {
         await cadastrar(nome, email, senha)
       }
+      navigate('/')
+    } catch (err) {
+      setErro(traduzirErro(err.code))
+    } finally {
+      setEnviando(false)
+    }
+  }
+
+  async function aoClicarGoogle() {
+    setErro(null)
+    setEnviando(true)
+    try {
+      await entrarComGoogle()
+      navigate('/')
+    } catch (err) {
+      setErro(traduzirErro(err.code))
+    } finally {
+      setEnviando(false)
+    }
+  }
+
+  async function aoClicarAnonimo() {
+    setErro(null)
+    setEnviando(true)
+    try {
+      await entrarAnonimo()
       navigate('/')
     } catch (err) {
       setErro(traduzirErro(err.code))
@@ -106,6 +132,38 @@ export default function Login() {
           >
             {modo === 'entrar' ? 'Ainda não tem conta? Criar uma' : 'Já tem conta? Entrar'}
           </button>
+
+          <div className="flex items-center gap-3 my-6">
+            <div className="h-px bg-panel-border flex-1" />
+            <span className="text-[11px] uppercase tracking-widest text-mist">ou</span>
+            <div className="h-px bg-panel-border flex-1" />
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={aoClicarGoogle}
+              disabled={enviando}
+              className="btn-secondary justify-center gap-2 disabled:opacity-50"
+            >
+              <Chrome size={16} /> Continuar com Google
+            </button>
+
+            <button
+              type="button"
+              onClick={aoClicarAnonimo}
+              disabled={enviando}
+              className="btn-secondary justify-center gap-2 disabled:opacity-50"
+            >
+              <Ghost size={16} /> Testar sem criar conta
+            </button>
+          </div>
+
+          <p className="text-[11px] text-mist text-center leading-relaxed mt-4">
+            "Testar sem criar conta" cria um personagem temporário só neste navegador —
+            bom pra uma one-shot ou pra conhecer o sistema. Dá pra transformar em conta de
+            verdade depois, sem perder nada.
+          </p>
         </div>
       </div>
     </div>
@@ -129,6 +187,11 @@ function traduzirErro(codigo) {
     'auth/invalid-credential': 'E-mail ou senha incorretos.',
     'auth/email-already-in-use': 'Já existe uma conta com esse e-mail.',
     'auth/weak-password': 'A senha precisa ter pelo menos 6 caracteres.',
+    'auth/popup-closed-by-user': 'Login cancelado.',
+    'auth/cancelled-popup-request': 'Login cancelado.',
+    'auth/popup-blocked': 'O navegador bloqueou o popup de login. Permita popups pra este site e tente de novo.',
+    'auth/admin-restricted-operation': 'Login anônimo desativado no momento. Tente com e-mail ou Google.',
+    'auth/operation-not-allowed': 'Essa forma de login ainda não está habilitada no projeto.',
   }
   return mapa[codigo] || 'Algo deu errado. Tente novamente.'
 }

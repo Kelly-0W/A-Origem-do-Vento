@@ -91,6 +91,61 @@ def atualizar_personagem(personagem_id: str, dados: Dict[str, Any]) -> None:
     db.collection(NOME_COLECAO).document(personagem_id).set(dados, merge=True)
 
 
+def listar_personagens_do_dono(uid: str) -> list:
+    """Todos os personagens de que este uid é dono (não importa a campanha)."""
+    db = obter_cliente_firestore()
+    docs = db.collection(NOME_COLECAO).where("dono_uid", "==", uid).stream()
+    return [{"id": d.id, **d.to_dict()} for d in docs]
+
+
+def listar_campanhas_como_mestre(uid: str) -> list:
+    """Campanhas onde este uid é o mestre_id."""
+    db = obter_cliente_firestore()
+    docs = db.collection("campanhas").where("mestre_id", "==", uid).stream()
+    return [{"id": d.id, **d.to_dict()} for d in docs]
+
+
+def listar_campanhas_como_jogador(uid: str) -> list:
+    """Campanhas onde este uid está em jogadores_uids (não é o mestre)."""
+    db = obter_cliente_firestore()
+    docs = db.collection("campanhas").where("jogadores_uids", "array_contains", uid).stream()
+    return [{"id": d.id, **d.to_dict()} for d in docs]
+
+
+def remover_campanha_de_personagem(personagem_id: str, campanha_id: str) -> None:
+    """Tira uma campanha de campanhas_ids de um personagem (de qualquer
+    dono -- usado ao excluir/deixar uma campanha, não só pelo próprio)."""
+    db = obter_cliente_firestore()
+    db.collection(NOME_COLECAO).document(personagem_id).update({
+        "campanhas_ids": firestore.ArrayRemove([campanha_id]),
+        "atualizado_em": firestore.SERVER_TIMESTAMP,
+    })
+
+
+def remover_jogador_da_campanha(campanha_id: str, uid: str) -> None:
+    """Tira um uid de jogadores_uids de uma campanha."""
+    db = obter_cliente_firestore()
+    db.collection("campanhas").document(campanha_id).update({
+        "jogadores_uids": firestore.ArrayRemove([uid]),
+        "atualizado_em": firestore.SERVER_TIMESTAMP,
+    })
+
+
+def excluir_personagem(personagem_id: str) -> None:
+    db = obter_cliente_firestore()
+    db.collection(NOME_COLECAO).document(personagem_id).delete()
+
+
+def excluir_campanha(campanha_id: str) -> None:
+    db = obter_cliente_firestore()
+    db.collection("campanhas").document(campanha_id).delete()
+
+
+def excluir_doc_usuario(uid: str) -> None:
+    db = obter_cliente_firestore()
+    db.collection("usuarios").document(uid).delete()
+
+
 def salvar_ficha_calculada(
     escolhas: Dict[str, Any],
     calculado: Dict[str, Any],

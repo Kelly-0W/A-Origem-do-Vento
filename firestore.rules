@@ -92,15 +92,23 @@ service cloud.firestore {
         && request.resource.data.nome.size() > 0;
 
       // O mestre pode atualizar qualquer campo. Quem não é mestre só pode
-      // alterar `jogadores_uids` (e `atualizado_em` junto) e apenas para
-      // ADICIONAR o próprio uid -- nunca remover ou adicionar outra pessoa,
-      // nem tocar em nome/descrição/imagem/mestre_id/codigo_convite.
+      // alterar `jogadores_uids` (e `atualizado_em` junto), e só de duas
+      // formas: ADICIONAR o próprio uid (entrar com código) ou REMOVER
+      // o próprio uid (sair da campanha) -- nunca mexer no uid de outra
+      // pessoa, nem tocar em nome/descrição/imagem/mestre_id/codigo_convite.
       allow update: if estaAutenticado() && (
         ehDono(resource.data.mestre_id)
         || (
           request.resource.data.diff(resource.data).affectedKeys().hasOnly(['jogadores_uids', 'atualizado_em'])
           && request.resource.data.jogadores_uids.hasAll(resource.data.jogadores_uids)
           && request.resource.data.jogadores_uids.hasOnly(resource.data.jogadores_uids.concat([request.auth.uid]))
+        )
+        || (
+          // Sair da campanha: o array novo só pode ter "perdido" o próprio
+          // uid em relação ao antigo, nada mais mudou nele.
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['jogadores_uids', 'atualizado_em'])
+          && resource.data.jogadores_uids.hasAll(request.resource.data.jogadores_uids)
+          && resource.data.jogadores_uids.hasOnly(request.resource.data.jogadores_uids.concat([request.auth.uid]))
         )
       );
 

@@ -7,6 +7,8 @@ import {
   signInAnonymously,
   linkWithCredential,
   linkWithPopup,
+  reauthenticateWithCredential,
+  reauthenticateWithPopup,
   GoogleAuthProvider,
   EmailAuthProvider,
   updateProfile,
@@ -14,6 +16,7 @@ import {
 } from 'firebase/auth'
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { auth, db } from '../lib/firebase.js'
+import { api } from '../lib/api.js'
 
 const AuthContext = createContext(null)
 const provedorGoogle = new GoogleAuthProvider()
@@ -109,9 +112,46 @@ export function AuthProvider({ children }) {
     await signOut(auth)
   }
 
+  // "Confirmação de login recente" pedida pelo Firebase antes de operações
+  // sensíveis (aqui, excluir a conta). Duas formas, conforme como a pessoa
+  // entrou: senha de novo (email/senha) ou popup do Google de novo.
+  async function reautenticarComSenha(senha) {
+    if (!auth.currentUser?.email) throw new Error('Conta sem e-mail associado.')
+    const credencial = EmailAuthProvider.credential(auth.currentUser.email, senha)
+    await reauthenticateWithCredential(auth.currentUser, credencial)
+  }
+
+  async function reautenticarComGoogle() {
+    if (!auth.currentUser) throw new Error('Nenhum usuário logado.')
+    await reauthenticateWithPopup(auth.currentUser, provedorGoogle)
+  }
+
+  // Exclusão em cascata (campanhas mestradas, saída de campanhas como
+  // jogador, personagens próprios, perfil, e a conta do Firebase Auth) é
+  // toda feita no servidor com Admin SDK -- ver api/excluir_conta.py. Isso
+  // porque parte do trabalho (tirar uma campanha excluída de
+  // campanhas_ids de personagens QUE NÃO SÃO DO DONO DA CONTA) não é algo
+  // que as Security Rules do cliente permitem fazer sozinho.
+  //
+  // A confirmação de "login recente" (reautenticarComSenha/Google, feita
+  // ANTES de chamar isto) é o que garante que foi mesmo a pessoa dona da
+  // conta quem pediu a exclusão -- o endpoint em si não pede senha de novo.
+  async function excluirConta() {
+    if (!auth.currentUser) throw new Error('Nenhum usuário logado.')
+    const { ok, dados } = await api.excluirConta(auth.currentUser.uid)
+    if (!ok || !dados?.sucesso) {
+      throw new Error(dados?.erros?.[0] || 'Não foi possível excluir a conta agora.')
+    }
+    await signOut(auth)
+  }
+
   return (
     <AuthContext.Provider
-      value={{ usuario, carregando, entrar, cadastrar, entrarComGoogle, entrarAnonimo, vincularEmail, vincularGoogle, sair }}
+      value={{
+        usuario, carregando, entrar, cadastrar, entrarComGoogle, entrarAnonimo,
+        vincularEmail, vincularGoogle, reautenticarComSenha, reautenticarComGoogle,
+        excluirConta, sair,
+      }}
     >
       {children}
     </AuthContext.Provider>

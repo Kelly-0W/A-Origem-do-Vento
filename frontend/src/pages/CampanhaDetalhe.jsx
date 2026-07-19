@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChevronLeft } from 'lucide-react'
 import {
   collection,
@@ -10,6 +10,7 @@ import {
   where,
   updateDoc,
   arrayUnion,
+  arrayRemove,
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
@@ -86,6 +87,10 @@ function ModalAdicionarPersonagem({ usuario, idsNaCampanha, onFechar, onAdiciona
 export default function CampanhaDetalhe() {
   const { id } = useParams()
   const { usuario } = useAuth()
+  const navigate = useNavigate()
+
+  const [saindo, setSaindo] = useState(false)
+  const [erroSair, setErroSair] = useState(null)
 
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
@@ -160,6 +165,39 @@ export default function CampanhaDetalhe() {
     await carregar()
   }
 
+  async function sairDaCampanha() {
+    const confirmado = window.confirm(
+      `Sair de "${campanha.nome}"? Seus personagens continuam existindo, só deixam de estar vinculados a essa campanha.`
+    )
+    if (!confirmado) return
+    setSaindo(true)
+    setErroSair(null)
+    try {
+      // Desvincula cada personagem PRÓPRIO que estava nessa campanha --
+      // isso a pessoa pode fazer sozinha (é dona desses documentos).
+      await Promise.all(
+        personagensDaCampanha.map((p) =>
+          updateDoc(doc(db, 'personagens', p.id), {
+            campanhas_ids: arrayRemove(id),
+            atualizado_em: serverTimestamp(),
+          })
+        )
+      )
+      // Tira o próprio uid de jogadores_uids -- as Firestore Rules só
+      // deixam essa remoção acontecer se for exatamente o próprio uid
+      // saindo, nada mais mudando no documento.
+      await updateDoc(doc(db, 'campanhas', id), {
+        jogadores_uids: arrayRemove(usuario.uid),
+        atualizado_em: serverTimestamp(),
+      })
+      navigate('/campanhas')
+    } catch (err) {
+      console.error(err)
+      setErroSair('Não foi possível sair dessa campanha agora.')
+      setSaindo(false)
+    }
+  }
+
   if (carregando) {
     return <div className="pt-10 text-mist">Carregando campanha...</div>
   }
@@ -179,9 +217,21 @@ export default function CampanhaDetalhe() {
 
   return (
     <div className="pt-2">
-      <Link to="/campanhas" className="flex items-center gap-1 text-mist text-sm mb-6 hover:text-white w-fit">
-        <ChevronLeft size={16} /> Voltar
-      </Link>
+      <div className="flex items-center justify-between mb-6">
+        <Link to="/campanhas" className="flex items-center gap-1 text-mist text-sm hover:text-white w-fit">
+          <ChevronLeft size={16} /> Voltar
+        </Link>
+        {!ehMestre && (
+          <button
+            onClick={sairDaCampanha}
+            disabled={saindo}
+            className="text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50"
+          >
+            {saindo ? 'Saindo...' : 'Sair da campanha'}
+          </button>
+        )}
+      </div>
+      {erroSair && <p className="text-blood-bright text-xs mb-4">{erroSair}</p>}
 
       <div className="flex flex-col sm:flex-row gap-6 mb-10">
         <div className="w-24 h-24 rounded-lg border border-panel-border bg-void overflow-hidden shrink-0 flex items-center justify-center">

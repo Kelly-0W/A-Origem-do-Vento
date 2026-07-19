@@ -51,4 +51,11 @@ export const api = {
       personagem_id: personagemId,
       aprovar,
     }),
+
+  // POST /api/excluir_conta  (ver api/excluir_conta.py)
+  // Cascata completa: campanhas mestradas + jogadores expulsos delas,
+  // saída de campanhas onde só é jogador, personagens próprios, perfil,
+  // e a conta do Firebase Auth. Chamar só DEPOIS de reautenticar
+  // (useAuth().reautenticarComSenha/reautenticarComGoogle).
+  excluirConta: (uid) => post('excluir_conta', { uid }),
 }

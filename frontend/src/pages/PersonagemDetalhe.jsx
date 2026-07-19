@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ChevronLeft } from 'lucide-react'
-import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { api } from '../lib/api.js'
@@ -12,6 +12,10 @@ import FichaVisual from '../components/FichaVisual.jsx'
 export default function PersonagemDetalhe() {
   const { id } = useParams()
   const { usuario } = useAuth()
+  const navigate = useNavigate()
+
+  const [excluindo, setExcluindo] = useState(false)
+  const [erroExcluir, setErroExcluir] = useState(null)
 
   const [carregando, setCarregando] = useState(true)
   const [erroCarregamento, setErroCarregamento] = useState(null)
@@ -105,6 +109,23 @@ export default function PersonagemDetalhe() {
     }
   }
 
+  async function excluirPersonagem() {
+    const confirmado = window.confirm(
+      `Excluir "${personagem.escolhas?.nome_personagem || 'este personagem'}" pra sempre? Essa ação não pode ser desfeita.`
+    )
+    if (!confirmado) return
+    setExcluindo(true)
+    setErroExcluir(null)
+    try {
+      await deleteDoc(doc(db, 'personagens', id))
+      navigate('/personagens')
+    } catch (err) {
+      console.error(err)
+      setErroExcluir('Não foi possível excluir este personagem agora.')
+      setExcluindo(false)
+    }
+  }
+
   if (carregando) {
     return <div className="pt-10 text-mist">Carregando personagem...</div>
   }
@@ -130,9 +151,19 @@ export default function PersonagemDetalhe() {
 
   return (
     <div className="pt-2">
-      <Link to="/personagens" className="flex items-center gap-1 text-mist text-sm mb-6 hover:text-white w-fit">
-        <ChevronLeft size={16} /> Voltar
-      </Link>
+      <div className="flex items-center justify-between mb-6">
+        <Link to="/personagens" className="flex items-center gap-1 text-mist text-sm hover:text-white w-fit">
+          <ChevronLeft size={16} /> Voltar
+        </Link>
+        <button
+          onClick={excluirPersonagem}
+          disabled={excluindo}
+          className="text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50"
+        >
+          {excluindo ? 'Excluindo...' : 'Excluir personagem'}
+        </button>
+      </div>
+      {erroExcluir && <p className="text-blood-bright text-xs mb-4">{erroExcluir}</p>}
 
       <div className="flex flex-col sm:flex-row gap-6 mb-10">
         <div className="shrink-0">
