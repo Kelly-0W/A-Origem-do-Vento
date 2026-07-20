@@ -106,18 +106,14 @@ export default function PainelAscensao({
   }
 
   function alternarPilar(campo, valor) {
-    const proximo = { ...ascensao, [campo]: valor, descricao_manifestacao: descricaoManifestacao }
-    const completo = proximo.catalisador && proximo.provacao && proximo.ritual
-    // Fora de campanha, ninguém precisa aprovar -- assim que os 3 pilares
-    // fecham, já libera a escolha de recompensas direto. Numa campanha,
-    // continua indo pro Mestre primeiro.
-    const proximoStatus = completo ? (estaEmCampanha ? 'aguardando_mestre' : 'aguardando_recompensas') : 'nenhuma'
-    salvar({
-      [campo]: valor,
-      descricao_manifestacao: descricaoManifestacao,
-      status: proximoStatus,
-    })
-  }
+  const proximo = { ...ascensao, [campo]: valor, descricao_manifestacao: descricaoManifestacao }
+  const pilaresCumpridos = [proximo.catalisador, proximo.provacao, proximo.ritual].filter(Boolean).length
+  const completo = pilaresCumpridos >= 2
+  salvar({
+    [campo]: valor,
+    descricao_manifestacao: descricaoManifestacao,
+    status: completo ? 'aguardando_mestre' : 'nenhuma',})
+  } 
 
   function confirmarProvacao(marcado) {
     if (marcado && !provacaoSelecionadaId && provacoesFaixa.length > 1) return

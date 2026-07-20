@@ -2882,7 +2882,7 @@
       {
         "id": "nao-vou-cair-tao-facil",
         "nome": "Não Vou Cair Tão Fácil",
-        "descricao": "Sua resiliência tática impede que seu corpo apague antes da hora. Uma vez por combate, no exato momento em que seus pontos de Vida forem reduzidos a 0 ou menos por um ataque inimigo, você pode gastar sua Ação de Reação para recusar a queda, mantendo-se de pe com exatamente 1 ponto de Vida. Caso faca isso, seu próximo teste de ataque realizado na cena atual recebera Vantagem e, se acertar, o dano será considerado um Sucesso Critico.",
+        "descricao": "Sua resiliência tática impede que seu corpo apague antes da hora. Uma vez por combate, no exato momento em que seus pontos de Vida forem reduzidos a 0 ou menos por um ataque inimigo, você pode gastar sua Ação de Reação para recusar a queda, mantendo-se de pe com exatamente 1 ponto de Vida e removendo 1 efeito negativo a sua escolha. Caso faca isso, seu próximo teste de ataque realizado na cena atual recebera Vantagem e, se acertar, o dano será considerado um Sucesso Critico.",
         "tipo": "ativa",
         "efeitos": []
       }
