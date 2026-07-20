@@ -155,7 +155,19 @@ def validar_escolhas_personagem(
     # porque uma recompensa "classe_ou_raca" pode entrar em qualquer uma das
     # duas listas -- por isso o total e' checado em conjunto, nao separado
     # por raca/classe.
+    #
+    # Habilidades marcadas "inata": true no catalogo (ex.: Asas de Amion da
+    # Fada) sao concedidas automaticamente a todo personagem da raca/
+    # linhagem e NAO consomem uma das qtd_habilidades_iniciais escolhidas --
+    # por isso sao excluidas da contagem abaixo, quer o frontend as envie
+    # junto em habilidades_escolhidas ou nao.
     if raca is not None and classe is not None:
+        ids_inatas = {
+            h["id"] for h in raca.get("habilidades_globais", []) if h.get("inata")
+        } | {
+            h["id"] for h in raca.get("habilidades_especificas", []) if h.get("inata")
+        }
+
         qtd_base_raca = raca.get("qtd_habilidades_iniciais", 2)
         qtd_base_classe = classe.get("qtd_habilidades_iniciais", 1)
         extras_por_ascensao = contar_habilidades_extras_ate_grau(
@@ -163,9 +175,15 @@ def validar_escolhas_personagem(
         )
         qtd_esperada_total = qtd_base_raca + qtd_base_classe + extras_por_ascensao
 
+        raca_globais_contaveis = [
+            hid for hid in hab_escolhidas.get("raca_globais", []) if hid not in ids_inatas
+        ]
+        raca_linhagem_contaveis = [
+            hid for hid in hab_escolhidas.get("raca_linhagem", []) if hid not in ids_inatas
+        ]
         total_hab_escolhidas = (
-            len(hab_escolhidas.get("raca_globais", []))
-            + len(hab_escolhidas.get("raca_linhagem", []))
+            len(raca_globais_contaveis)
+            + len(raca_linhagem_contaveis)
             + len(hab_escolhidas.get("classe", []))
         )
         if total_hab_escolhidas != qtd_esperada_total:
@@ -173,7 +191,7 @@ def validar_escolhas_personagem(
                 f"Este personagem deveria ter exatamente {qtd_esperada_total} habilidade(s) de "
                 f"raca/classe no Grau {grau_ascensao} ({qtd_base_raca} da raca + {qtd_base_classe} "
                 f"da classe, no Grau 0, + {extras_por_ascensao} ganha(s) em Ascensoes anteriores), "
-                f"recebido: {total_hab_escolhidas}."
+                f"recebido: {total_hab_escolhidas} (habilidades inatas nao contam nessa conta)."
             )
 
     # multiclasse: no maximo 2 classes simultaneas, se o formulario usar

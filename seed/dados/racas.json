@@ -1831,7 +1831,8 @@
         "nome": "Asas de Amion",
         "descricao": "Seu par de asas permite que você execute voos controlados em combate. Você pode utilizar sua ação de movimento para voar, erguendo-se ate 4,5m do chão. Pode permanecer voando por ate 2 turnos consecutivos antes de precisar tocar uma superficie solida para descansar suas asas por 1 turno. (Habilidade inata, concedida automaticamente a todas as fadas, não conta entre as escolhidas no Grau 0.)",
         "tipo": "ativa",
-        "efeitos": []
+        "efeitos": [],
+        "inata": true
       },
       {
         "id": "velo-protetor",
