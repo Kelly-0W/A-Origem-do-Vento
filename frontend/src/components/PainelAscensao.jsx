@@ -150,8 +150,8 @@ export default function PainelAscensao({
       {ascensao.status === 'nenhuma' && !ascensao.grau_alvo && (
         <div className="card-fantasy p-5">
           <p className="text-sm text-mist mb-4">
-            Quando estiver pronto para buscar o próximo Grau de Ascensão, inicie o processo abaixo.
-            Você vai precisar cumprir 3 pilares: um Catalisador, uma Provação e um Ritual.
+            Quando estiver pronto para buscar o próximo Grau de Ascensão, inicie o processo abaixo. 
+            Você vai precisar cumprir 2 dos 3 pilares a seguir: Catalisador, Provação e Ritual, escolha quaisquer dois. Como este personagem não está em nenhuma campanha, você mesmo decide quando os pilares foram cumpridos.
             {!estaEmCampanha && ' Como este personagem não está em nenhuma campanha, você mesmo decide quando os pilares foram cumpridos.'}
           </p>
           <button className="btn-primary disabled:opacity-50" onClick={iniciarAscensao} disabled={salvando}>
@@ -162,7 +162,7 @@ export default function PainelAscensao({
 
       {ascensao.status === 'aguardando_mestre' && (
         <div className="card-fantasy p-5">
-          <p className="text-forest text-sm mb-3">Os 3 pilares foram cumpridos. Pedido enviado — aguardando resposta do Mestre.</p>
+          <p className="text-forest text-sm mb-3">2 dos 3 pilares foram cumpridos. Pedido enviado — aguardando resposta do Mestre.</p>
           <button className="btn-secondary text-xs disabled:opacity-50" onClick={cancelarPedido} disabled={salvando}>
             Cancelar pedido
           </button>
