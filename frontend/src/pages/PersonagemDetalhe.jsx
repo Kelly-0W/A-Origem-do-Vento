@@ -244,6 +244,14 @@ export default function PersonagemDetalhe() {
           onAtualizado={(novoCalculado, novasEscolhas) =>
             setPersonagem((prev) => ({ ...prev, calculado: novoCalculado, escolhas: novasEscolhas }))
           }
+          vidaAtual={personagem.vida_atual}
+          sanidadeAtual={personagem.sanidade_atual}
+          archeAtual={personagem.arche_atual}
+          bonusDefesa={personagem.bonus_defesa}
+          bonusDeslocamento={personagem.bonus_deslocamento}
+          onAtualizarRecurso={(campo, valor) =>
+            setPersonagem((prev) => ({ ...prev, [campo]: valor }))
+          }
         />
       )}
 

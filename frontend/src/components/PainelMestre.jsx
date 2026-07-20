@@ -56,6 +56,11 @@ function CardPersonagem({ item, catalogo, expandido, onAlternarExpandido, filho 
               elemento={elemento}
               escolhas={escolhas}
               isCaca={isCaca}
+              vidaAtual={item.vida_atual}
+              sanidadeAtual={item.sanidade_atual}
+              archeAtual={item.arche_atual}
+              bonusDefesa={item.bonus_defesa}
+              bonusDeslocamento={item.bonus_deslocamento}
             />
           )}
         </div>

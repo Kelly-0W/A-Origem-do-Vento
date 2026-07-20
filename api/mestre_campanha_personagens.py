@@ -66,6 +66,15 @@ class handler(BaseHTTPRequestHandler):
                     "calculado": p.get("calculado"),
                     "grau_ascensao": p.get("grau_ascensao", 0),
                     "ascensao_em_progresso": p.get("ascensao_em_progresso"),
+                    # Estado de jogo (ver FichaVisual.jsx) -- útil pro mestre
+                    # acompanhar vida/sanidade/arché atuais da mesa sem
+                    # precisar perguntar. Só leitura aqui: quem edita é
+                    # sempre o próprio dono, na tela do personagem.
+                    "vida_atual": p.get("vida_atual"),
+                    "sanidade_atual": p.get("sanidade_atual"),
+                    "arche_atual": p.get("arche_atual"),
+                    "bonus_defesa": p.get("bonus_defesa"),
+                    "bonus_deslocamento": p.get("bonus_deslocamento"),
                 })
 
             self._responder(200, {"sucesso": True, "campanha": {"id": campanha["id"], "nome": campanha.get("nome")}, "itens": itens})
