@@ -1,7 +1,7 @@
 {
   "artista": {
     "nome": "Artista",
-    "descricao": "Amantes das obras de teatro, escrita, pintura e ate mesmo o artesanato, artistas sao pessoas de grande intelecto e criatividade reluzente.",
+    "descricao": "Amantes das obras de teatro, escrita, pintura e ate mesmo o artesanato, artistas são pessoas de grande intelecto e criatividade reluzente.",
     "pericias_opcoes": [
       {
         "pericia_id": "conhecimento",
@@ -24,8 +24,8 @@
       "6 Bronzestuck"
     ],
     "habilidade_passiva": {
-      "nome": "Leitura de Publico",
-      "descricao": "Consegue entender as vontades e desejo de qualquer criatura de intelecto 2 ou mais que observe por mais de 1 minuto ou gastando uma acao de movimento. Recebe +2 em testes sociais."
+      "nome": "Leitura de Público",
+      "descricao": "Consegue entender as vontades e desejo de qualquer criatura de intelecto 2 ou mais que observe por mais de 1 minuto ou gastando uma ação de movimento. Recebe +2 em testes sociais."
     },
     "rituais": {
       "facil": {
@@ -47,7 +47,7 @@
   },
   "arqueologo": {
     "nome": "Arqueologo",
-    "descricao": "Curioso pelas verdades do mundo antigo e provavel inimigo de povos ditadores, os arqueologos representam o amor e o prazer pela historia e pela cultura do mundo antigo.",
+    "descricao": "Curioso pelas verdades do mundo antigo e provavel inimigo de povos ditadores, os arqueologos representam o amor e o prazer pela história e pela cultura do mundo antigo.",
     "pericias_opcoes": [
       {
         "pericia_id": "conhecimento",
@@ -68,8 +68,8 @@
       "Fragmento de objeto historico sem valor comercial"
     ],
     "habilidade_passiva": {
-      "nome": "Investigacao Antiga",
-      "descricao": "Voce tem maior facilidade de encontrar passagens secretas, armadilhas ou qualquer comodo secreto em locais antigos e abandonados. Para isso, role Investigacao ou Percepcao com CD 20."
+      "nome": "Investigação Antiga",
+      "descricao": "Você tem maior facilidade de encontrar passagens secretas, armadilhas ou qualquer comodo secreto em locais antigos e abandonados. Para isso, role Investigação ou Percepção com CD 20."
     },
     "rituais": {
       "facil": {
@@ -91,7 +91,7 @@
   },
   "criminoso": {
     "nome": "Criminoso",
-    "descricao": "Seja por nascer nas ruas em meio a podridao ou por puro desejo maligno, voce viveu em meio ao mundo mais sombrio da historia: o mundo do crime.",
+    "descricao": "Seja por nascer nas ruas em meio a podridão ou por puro desejo maligno, você viveu em meio ao mundo mais sombrio da história: o mundo do crime.",
     "pericias_opcoes": [
       {
         "pericia_id": "acrobacia",
@@ -113,7 +113,7 @@
     ],
     "habilidade_passiva": {
       "nome": "Contato das Trevas",
-      "descricao": "Voce sabe onde tem mercados negros e locais obscuros em qualquer cidade. Alem disso, enquanto estiver em locais marginalizados, recebe +1 de bonus em todos os seus testes."
+      "descricao": "Você sabe onde tem mercados negros e locais obscuros em qualquer cidade. Além disso, enquanto estiver em locais marginalizados, recebe +1 de bonus em todos os seus testes."
     },
     "rituais": {
       "facil": {
@@ -135,7 +135,7 @@
   },
   "escravo": {
     "nome": "Escravo",
-    "descricao": "A vida nem sempre e justa, nem sempre todos tem a mesma sorte e voce sabe bem disso. Mas agora livre, sente que pela primeira vez pode haver justica.",
+    "descricao": "A vida nem sempre e justa, nem sempre todos tem a mesma sorte e você sabe bem disso. Mas agora livre, sente que pela primeira vez pode haver justica.",
     "pericias_opcoes": [
       {
         "pericia_id": "atletismo",
@@ -153,11 +153,11 @@
     "kit_itens": [
       "Roupas rasgadas e gastas",
       "Corrente de pulso quebrada",
-      "Pao mofado"
+      "Pão mofado"
     ],
     "habilidade_passiva": {
       "nome": "Espirito Inabalavel",
-      "descricao": "Voce nao suporta a ideia de perder sua liberdade mais uma vez. Assim recebe +2 para todos os testes contra habilidades e poderes que restringem acoes."
+      "descricao": "Você não suporta a ideia de perder sua liberdade mais uma vez. Assim recebe +2 para todos os testes contra habilidades e poderes que restringem ações."
     },
     "rituais": {
       "facil": {
@@ -179,7 +179,7 @@
   },
   "estudioso": {
     "nome": "Estudioso",
-    "descricao": "Amante dos livros e do saber, acima das espadas e da forca bruta vem a sua mente de aco.",
+    "descricao": "Amante dos livros e do saber, acima das espadas e da força bruta vem a sua mente de aco.",
     "pericias_opcoes": [
       {
         "pericia_id": "conhecimento",
@@ -196,12 +196,12 @@
     ],
     "kit_itens": [
       "Kit de escrita (penas e papeis)",
-      "Caderno de anotacoes",
-      "Pergaminho antigo sem traducao"
+      "Caderno de anotações",
+      "Pergaminho antigo sem tradução"
     ],
     "habilidade_passiva": {
       "nome": "Mente Analitica",
-      "descricao": "Sempre que se deparar com um enigma, charada ou problema de raciocinio logico, pode fazer um teste de Inteligencia com CD 15 para receber uma dica."
+      "descricao": "Sempre que se deparar com um enigma, charada ou problema de raciocinio lógico, pode fazer um teste de Inteligência com CD 15 para receber uma dica."
     },
     "rituais": {
       "facil": {
@@ -223,7 +223,7 @@
   },
   "exilado": {
     "nome": "Exilado",
-    "descricao": "Voce foi expulso da sua terra natal, seja por qual for o motivo, tendo raiva guardada ou nao, o que de fato importa e se vai conseguir sobreviver ao amanha.",
+    "descricao": "Você foi expulso da sua terra natal, seja por qual for o motivo, tendo raiva guardada ou não, o que de fato importa e se vai conseguir sobreviver ao amanha.",
     "pericias_opcoes": [
       {
         "pericia_id": "misticismo",
@@ -240,12 +240,12 @@
     ],
     "kit_itens": [
       "Capa pesada com capuz",
-      "Mapa da antiga nacao",
-      "Conjunto de alimentos nao pereciveis (5 itens, contando comida e bebida)"
+      "Mapa da antiga nação",
+      "Conjunto de alimentos não pereciveis (5 itens, contando comida e bebida)"
     ],
     "habilidade_passiva": {
       "nome": "Perigos da Estrada",
-      "descricao": "Apos tanto tempo dormindo no meio da mata ou nos becos mais escuros das nacoes, voce tem melhor visao para ataques surpresas. Recebe +2 de bonus de percepcao. Sempre tem ciencia para onde fica o Norte."
+      "descricao": "Após tanto tempo dormindo no meio da mata ou nos becos mais escuros das nações, você tem melhor visão para ataques surpresas. Recebe +2 de bonus de percepção. Sempre tem ciência para onde fica o Norte."
     },
     "rituais": {
       "facil": {
@@ -267,7 +267,7 @@
   },
   "mercador": {
     "nome": "Mercador",
-    "descricao": "Alem da moral e da etica, tudo sempre tera um preco, e voce bem sabe disso.",
+    "descricao": "Além da moral e da etica, tudo sempre terá um preco, e você bem sabe disso.",
     "pericias_opcoes": [
       {
         "pericia_id": "diplomacia",
@@ -283,14 +283,14 @@
       }
     ],
     "kit_itens": [
-      "Balanca de precisao",
+      "Balanca de precisão",
       "Bolsa de moedas com 1d8 de Silberstuck",
       "1d12 de Bronzestuck",
       "1 item de ate 5 moedas de prata"
     ],
     "habilidade_passiva": {
       "nome": "Olho Dourado",
-      "descricao": "Voce tem bastante conhecimento comercial. Assim, sempre sabe o valor real dos itens, alem de receber +1 de bonus em testes de negociacao."
+      "descricao": "Você tem bastante conhecimento comercial. Assim, sempre sabe o valor real dos itens, além de receber +1 de bonus em testes de negociação."
     },
     "rituais": {
       "facil": {
@@ -328,13 +328,13 @@
       }
     ],
     "kit_itens": [
-      "Roupas militares (varia conforme a nacao)",
+      "Roupas militares (varia conforme a nação)",
       "Apito de comando",
-      "Brasao da unidade"
+      "Brasão da unidade"
     ],
     "habilidade_passiva": {
       "nome": "Disciplina de Ferro",
-      "descricao": "Voce pode gastar sua acao de movimento e inspirar um aliado proximo, dando +2 de bonus nos testes do proximo turno dele."
+      "descricao": "Você pode gastar sua ação de movimento e inspirar um aliado próximo, dando +2 de bonus nos testes do próximo turno dele."
     },
     "rituais": {
       "facil": {
@@ -356,7 +356,7 @@
   },
   "nobre": {
     "nome": "Nobre",
-    "descricao": "Tudo e todos estao abaixo de voce, e voce sabe disso, o sangue azul que corre em suas veias e o sinal de sua soberania.",
+    "descricao": "Tudo e todos estão abaixo de você, e você sabe disso, o sangue azul que corre em suas veias e o sinal de sua soberania.",
     "pericias_opcoes": [
       {
         "pericia_id": "conhecimento",
@@ -378,7 +378,7 @@
     ],
     "habilidade_passiva": {
       "nome": "Voz da Autoridade",
-      "descricao": "Voce conhece seu lugar na hierarquia e sempre deixa isso visivel. Uma vez por cena, pode rolar Nobreza com CD 16 e entao ordenar hospitalidade (abrigo ou comida) para um NPC."
+      "descricao": "Você conhece seu lugar na hierarquia e sempre deixa isso visível. Uma vez por cena, pode rolar Nobreza com CD 16 e então ordenar hospitalidade (abrigo ou comida) para um NPC."
     },
     "rituais": {
       "facil": {
@@ -399,8 +399,8 @@
     }
   },
   "orfao-de-guerra": {
-    "nome": "Orfao de Guerra",
-    "descricao": "Voce aprendeu desde seu nascimento algo simples: o mundo e cruel, ou voce se adapta, ou sofre.",
+    "nome": "Órfão de Guerra",
+    "descricao": "Você aprendeu desde seu nascimento algo simples: o mundo e cruel, ou você se adapta, ou sofre.",
     "pericias_opcoes": [
       {
         "pericia_id": "fortitude",
@@ -422,7 +422,7 @@
     ],
     "habilidade_passiva": {
       "nome": "Filho das Cinzas",
-      "descricao": "Voce recupera 1d6+Constituicao a mais de vida por dia de descanso. Alem disso, sofre 1d4 a menos de dano na sanidade."
+      "descricao": "Você recupera 1d6+Constituição a mais de vida por dia de descanso. Além disso, sofre 1d4 a menos de dano na sanidade."
     },
     "rituais": {
       "facil": {
@@ -466,7 +466,7 @@
     ],
     "habilidade_passiva": {
       "nome": "Caminhada da Fe",
-      "descricao": "Voce ignora desvantagens de deslocamento em terrenos dificeis e, uma vez por dia, pode orar em um descanso curto para recuperar 1d6+Sabedoria de arche."
+      "descricao": "Você ignora desvantagens de deslocamento em terrenos dificeis e, uma vez por dia, pode orar em um descanso curto para recuperar 1d6+Sabedoria de arche."
     },
     "rituais": {
       "facil": {
@@ -488,7 +488,7 @@
   },
   "selvagem": {
     "nome": "Selvagem",
-    "descricao": "Nascido na selva e entre os animais, voce compreende que as regras comuns sao feitas para os fracos sobreviverem, mas voce nao e fraco.",
+    "descricao": "Nascido na selva e entre os animais, você compreende que as regras comuns são feitas para os fracos sobreviverem, mas você não e fraco.",
     "pericias_opcoes": [
       {
         "pericia_id": "adestramento",
@@ -506,11 +506,11 @@
     "kit_itens": [
       "Pele de animal usada como roupa",
       "Colar de ossos",
-      "1 animal pequeno nao combatente"
+      "1 animal pequeno não combatente"
     ],
     "habilidade_passiva": {
       "nome": "Instinto Animal",
-      "descricao": "Voce recebe vantagem em testes de Percepcao que utilizem o olfato ou audicao. Alem disso, recebe +1 de bonus em testes contra criaturas animais."
+      "descricao": "Você recebe vantagem em testes de Percepção que utilizem o olfato ou audição. Além disso, recebe +1 de bonus em testes contra criaturas animais."
     },
     "rituais": {
       "facil": {

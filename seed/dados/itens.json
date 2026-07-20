@@ -306,7 +306,7 @@
     "conteudo": null
   },
   "guan-dao": {
-    "nome": "Guan Dao",
+    "nome": "Guan Dão",
     "categoria": "arma",
     "descricao": "Peso: 2,5 kg. Dança da Lâmina: se o usuário se mover pelo menos 3 metros antes de atacar no mesmo turno, ganha +2 de bônus na rolagem de dano desse golpe.",
     "arma": {

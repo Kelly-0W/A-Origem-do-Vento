@@ -1,7 +1,7 @@
 {
   "alquimista": {
     "nome": "Alquimista",
-    "descricao_curta": "Mente brilhante que ve o campo de batalha como um laboratorio, unindo controle de area e suporte tático atraves de quimica instavel.",
+    "descricao_curta": "Mente brilhante que ve o campo de batalha como um laboratorio, unindo controle de área e suporte tático através de química instavel.",
     "pericia_treinada_fixa": "conhecimento",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -74,7 +74,7 @@
       {
         "id": "herborista",
         "nome": "Herborista",
-        "descricao": "Especialista em suporte biologico, focado na criacao de poções potentes de cura, buffs físicos e na aplicacao do efeito Regeneração.",
+        "descricao": "Especialista em suporte biológico, focado na criação de poções potentes de cura, buffs físicos e na aplicação do efeito Regeneração.",
         "habilidades": [
           {
             "id": "alquimista-herborista-essencia-da-vida",
@@ -121,7 +121,7 @@
       {
         "id": "quimico-belico",
         "nome": "Químico Bélico",
-        "descricao": "O mestre da destruição e controle de area, especializado em manipular gases letais, ácidos corrosivos e explosivos devastadores.",
+        "descricao": "O mestre da destruição e controle de área, especializado em manipular gases letais, ácidos corrosivos e explosivos devastadores.",
         "habilidades": [
           {
             "id": "alquimista-quimico-belico-acido-dissolvente",
@@ -221,15 +221,15 @@
         },
         {
           "id": "alquimista-facil-2",
-          "descricao": "Acertar pelo menos 2 inimigos simultaneamente com a area de efeito de uma única Bomba Estilhacante."
+          "descricao": "Acertar pelo menos 2 inimigos simultaneamente com a área de efeito de uma única Bomba Estilhacante."
         },
         {
           "id": "alquimista-facil-3",
-          "descricao": "Manter pelo menos 1 inimigo sob a reducao de deslocamento da Poca Viscosa por 2 turnos consecutivos."
+          "descricao": "Manter pelo menos 1 inimigo sob a redução de deslocamento da Poca Viscosa por 2 turnos consecutivos."
         },
         {
           "id": "alquimista-facil-4",
-          "descricao": "Utilizar a ação bônus para ativar o Frasco de Fumaca nos pes de um aliado que esteja sendo alvo de ataques a distancia, concedendo camuflagem total a ele."
+          "descricao": "Utilizar a ação bônus para ativar o Frasco de Fumaca nos pes de um aliado que esteja sendo alvo de ataques a distância, concedendo camuflagem total a ele."
         }
       ],
       "medio": [
@@ -239,7 +239,7 @@
         },
         {
           "id": "alquimista-medio-2",
-          "descricao": "Utilizar a ação de reacao e 2 pontos de Arché para ativar o Catalisador Reativo 2 vezes no mesmo confronto, alterando o posicionamento dos alvos."
+          "descricao": "Utilizar a ação de reação e 2 pontos de Arché para ativar o Catalisador Reativo 2 vezes no mesmo confronto, alterando o posicionamento dos alvos."
         },
         {
           "id": "alquimista-medio-3",
@@ -249,7 +249,7 @@
       "dificil": [
         {
           "id": "alquimista-dificil-1",
-          "descricao": "Concluir uma cena de combate de no minimo 3 rodadas sem que nenhum aliado seja reduzido a 0 de Vida, utilizando apenas suas habilidades gerais de suporte e controle de area."
+          "descricao": "Concluir uma cena de combate de no mínimo 3 rodadas sem que nenhum aliado seja reduzido a 0 de Vida, utilizando apenas suas habilidades gerais de suporte e controle de área."
         },
         {
           "id": "alquimista-dificil-2",
@@ -257,7 +257,7 @@
         },
         {
           "id": "alquimista-dificil-3",
-          "descricao": "Concluir um combate inteiro contra inimigos que inflijam dano do tipo Natureza ou Toxinas sem sofrer pontos de dano desse elemento, gracas a imunidade e resistencia de sua Resiliencia Toxica."
+          "descricao": "Concluir um combate inteiro contra inimigos que inflijam dano do tipo Natureza ou Toxinas sem sofrer pontos de dano desse elemento, gracas a imunidade e resistência de sua Resiliência Toxica."
         }
       ]
     },
@@ -338,7 +338,7 @@
       {
         "id": "lamina-sombria",
         "nome": "Lâmina Sombria",
-        "descricao": "O mestre da furtividade pura e letalidade. Especializa-se em mobilidade invisivel, teleportes por sombras e ataques surpresa devastadores.",
+        "descricao": "O mestre da furtividade pura e letalidade. Especializa-se em mobilidade invisível, teleportes por sombras e ataques surpresa devastadores.",
         "habilidades": [
           {
             "id": "assassino-lamina-sombria-passo-do-veu",
@@ -481,7 +481,7 @@
       "facil": [
         {
           "id": "assassino-facil-1",
-          "descricao": "Iniciar um confronto na condição escondido atraves do Andarilho das Sombras e desferir um Ataque Furtivo bem-sucedido logo na primeira rodada."
+          "descricao": "Iniciar um confronto na condição escondido através do Andarilho das Sombras e desferir um Ataque Furtivo bem-sucedido logo na primeira rodada."
         },
         {
           "id": "assassino-facil-2",
@@ -489,11 +489,11 @@
         },
         {
           "id": "assassino-facil-3",
-          "descricao": "Ativar a Mobilidade Acrobatica pagando 1 de Arché para se mover para fora do alcance de um inimigo sem provocar nenhum Ataque de Oportunidade."
+          "descricao": "Ativar a Mobilidade Acrobática pagando 1 de Arché para se mover para fora do alcance de um inimigo sem provocar nenhum Ataque de Oportunidade."
         },
         {
           "id": "assassino-facil-4",
-          "descricao": "Desferir um Sucesso Critico com uma arma de corte ou perfuracao e aplicar a condição Sangramento atraves da propriedade passiva da Ferida Aberta."
+          "descricao": "Desferir um Sucesso Critico com uma arma de corte ou perfuração e aplicar a condição Sangramento através da propriedade passiva da Ferida Aberta."
         }
       ],
       "medio": [
@@ -503,7 +503,7 @@
         },
         {
           "id": "assassino-medio-2",
-          "descricao": "Passar com sucesso em um teste de Reflexos contra um efeito ou feitico em area e anular 100% do dano usando a propriedade passiva de Reflexos Assassinos."
+          "descricao": "Passar com sucesso em um teste de Reflexos contra um efeito ou feitico em área e anular 100% do dano usando a propriedade passiva de Reflexos Assassinos."
         },
         {
           "id": "assassino-medio-3",
@@ -521,14 +521,14 @@
         },
         {
           "id": "assassino-dificil-3",
-          "descricao": "Passar por um combate inteiro (minimo de 3 rodadas) na linha de frente sem sofrer nenhum ponto de dano físico, usando puramente furtividade e testes de Reflexos."
+          "descricao": "Passar por um combate inteiro (mínimo de 3 rodadas) na linha de frente sem sofrer nenhum ponto de dano físico, usando puramente furtividade e testes de Reflexos."
         }
       ]
     }
   },
   "barbaro": {
     "nome": "Barbaro",
-    "descricao_curta": "Forca indomavel de linha de frente que prospera na fúria e no dano bruto, com Vida massiva e roubo de vida.",
+    "descricao_curta": "Força indomavel de linha de frente que prospera na fúria e no dano bruto, com Vida massiva e roubo de vida.",
     "pericia_treinada_fixa": "atletismo",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -752,25 +752,25 @@
         },
         {
           "id": "barbaro-facil-3",
-          "descricao": "Realizar uma Ação de Movimento completa em linha reta atraves de um Terreno Dificil usando o Avanco Brutal para engajar um inimigo."
+          "descricao": "Realizar uma Ação de Movimento completa em linha reta através de um Terreno Difícil usando o Avanco Brutal para engajar um inimigo."
         },
         {
           "id": "barbaro-facil-4",
-          "descricao": "Rolar um 18, 19 ou 20 natural no dado de ataque para aplicar automaticamente a condição Sangramento atraves do Golpe Dilacerante."
+          "descricao": "Rolar um 18, 19 ou 20 natural no dado de ataque para aplicar automaticamente a condição Sangramento através do Golpe Dilacerante."
         }
       ],
       "medio": [
         {
           "id": "barbaro-medio-1",
-          "descricao": "Ativar a Resiliencia do Front ao cair para 25% ou menos de Vida Máxima e sobreviver por mais 2 rodadas completas no combate sem cair inconsciente."
+          "descricao": "Ativar a Resiliência do Front ao cair para 25% ou menos de Vida Máxima e sobreviver por mais 2 rodadas completas no combate sem cair inconsciente."
         },
         {
           "id": "barbaro-medio-2",
-          "descricao": "Atacar e causar +1d8 de dano de Impacto extra contra um oponente que possua um Escudo ativo ou a condição Fortificacao, usando o Quebrador de Escudos."
+          "descricao": "Atacar e causar +1d8 de dano de Impacto extra contra um oponente que possua um Escudo ativo ou a condição Fortificação, usando o Quebrador de Escudos."
         },
         {
           "id": "barbaro-medio-3",
-          "descricao": "Passar com sucesso em 2 testes de Reflexos ou Fortitude contra armadilhas ou efeitos de area visiveis usando a Vantagem do Instinto de Sobrevivencia."
+          "descricao": "Passar com sucesso em 2 testes de Reflexos ou Fortitude contra armadilhas ou efeitos de área visiveis usando a Vantagem do Instinto de Sobrevivência."
         }
       ],
       "dificil": [
@@ -784,14 +784,14 @@
         },
         {
           "id": "barbaro-dificil-3",
-          "descricao": "Mitigar ou absorver um total acumulado de 40 pontos de dano bruto em uma única cena usando apenas os bônus de sua Pele de Ferro e os pontos temporarios de Resiliencia do Front."
+          "descricao": "Mitigar ou absorver um total acumulado de 40 pontos de dano bruto em uma única cena usando apenas os bônus de sua Pele de Ferro e os pontos temporarios de Resiliência do Front."
         }
       ]
     }
   },
   "bardo": {
     "nome": "Bardo",
-    "descricao_curta": "Regente do campo de batalha que canaliza Arché atraves da musica, distribuindo efeitos positivos e controlando a mente inimiga.",
+    "descricao_curta": "Regente do campo de batalha que canaliza Arché através da musica, distribuindo efeitos positivos e controlando a mente inimiga.",
     "pericia_treinada_fixa": "diplomacia",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -864,7 +864,7 @@
       {
         "id": "maestro-da-guerra",
         "nome": "Maestro da Guerra",
-        "descricao": "O suporte focado na ofensiva. Suas marchas e tambores aumentam o dano da linha de frente e protegem os guerreiros atraves de escudos sonoros.",
+        "descricao": "O suporte focado na ofensiva. Suas marchas e tambores aumentam o dano da linha de frente e protegem os guerreiros através de escudos sonoros.",
         "habilidades": [
           {
             "id": "bardo-maestro-da-guerra-marcha-da-conquista",
@@ -1007,43 +1007,43 @@
       "facil": [
         {
           "id": "bardo-facil-1",
-          "descricao": "Conceder o bônus de seu modificador de Carisma para 2 aliados diferentes em rodadas alternadas usando o Acorde de Inspiracao."
+          "descricao": "Conceder o bônus de seu modificador de Carisma para 2 aliados diferentes em rodadas alternadas usando o Acorde de Inspiração."
         },
         {
           "id": "bardo-facil-2",
-          "descricao": "Aplicar com sucesso a condição Sono por 3 turnos em um inimigo atraves da Cancao de Ninar."
+          "descricao": "Aplicar com sucesso a condição Sono por 3 turnos em um inimigo através da Canção de Ninar."
         },
         {
           "id": "bardo-facil-3",
-          "descricao": "Aplicar a condição Aceleracao em dois aliados simultaneamente utilizando a habilidade Compasso Acelerado."
+          "descricao": "Aplicar a condição Aceleração em dois aliados simultaneamente utilizando a habilidade Compasso Acelerado."
         },
         {
           "id": "bardo-facil-4",
-          "descricao": "Desferir 2d6 de dano de Alma e aplicar Desvantagem em um teste de Concentracao inimigo usando a Dissonancia Cognitiva."
+          "descricao": "Desferir 2d6 de dano de Alma e aplicar Desvantagem em um teste de Concentração inimigo usando a Dissonância Cognitiva."
         }
       ],
       "medio": [
         {
           "id": "bardo-medio-1",
-          "descricao": "Evitar um ataque físico direcionado a voce utilizando sua Ação de Reacao e 1 ponto de Arché para ativar a Evasao Ritmica."
+          "descricao": "Evitar um ataque físico direcionado a você utilizando sua Ação de Reação e 1 ponto de Arché para ativar a Evasão Ritmica."
         },
         {
           "id": "bardo-medio-2",
-          "descricao": "Conceder o efeito positivo Foco para um aliado que esteja sob iminencia de sofrer um controle mental ou debuff hostil usando a Ode do Foco Absoluto."
+          "descricao": "Conceder o efeito positivo Foco para um aliado que esteja sob iminência de sofrer um controle mental ou debuff hostil usando a Ode do Foco Absoluto."
         },
         {
           "id": "bardo-medio-3",
-          "descricao": "Refazer com sucesso um teste de interacao social falhado com um NPC nao hostil gastando 1 ponto de Sanidade atraves da Labia Magnetica."
+          "descricao": "Refazer com sucesso um teste de interação social falhado com um NPC não hostil gastando 1 ponto de Sanidade através da Labia Magnetica."
         }
       ],
       "dificil": [
         {
           "id": "bardo-dificil-1",
-          "descricao": "Concluir uma cena de descanso ou acampamento recuperando o maximo de Arché e Sanidade bônus para todo o grupo com o Descanso Harmonioso."
+          "descricao": "Concluir uma cena de descanso ou acampamento recuperando o máximo de Arché e Sanidade bônus para todo o grupo com o Descanso Harmonioso."
         },
         {
           "id": "bardo-dificil-2",
-          "descricao": "Manter pelo menos 2 inimigos sob controle de grupo (Sono ou reducao de concentracao) enquanto concede bônus para 2 aliados na mesma rodada."
+          "descricao": "Manter pelo menos 2 inimigos sob controle de grupo (Sono ou redução de concentração) enquanto concede bônus para 2 aliados na mesma rodada."
         },
         {
           "id": "bardo-dificil-3",
@@ -1127,7 +1127,7 @@
       {
         "id": "acrobata-do-caos",
         "nome": "Acrobata do Caos",
-        "descricao": "Focado na evasao extrema, mobilidade e na manipulacao do posicionamento, forcando os inimigos a errarem golpes ou acertarem uns aos outros.",
+        "descricao": "Focado na evasão extrema, mobilidade e na manipulação do posicionamento, forcando os inimigos a errarem golpes ou acertarem uns aos outros.",
         "habilidades": [
           {
             "id": "bobo-da-corte-acrobata-do-caos-passos-de-mola",
@@ -1270,7 +1270,7 @@
       "facil": [
         {
           "id": "bobo-da-corte-facil-1",
-          "descricao": "Refazer um teste de dado falhado gastando 1 ponto de Sanidade (ou 3 pontos se a rolagem inicial foi uma falha critica) atraves da habilidade As na Manga."
+          "descricao": "Refazer um teste de dado falhado gastando 1 ponto de Sanidade (ou 3 pontos se a rolagem inicial foi uma falha critica) através da habilidade As na Manga."
         },
         {
           "id": "bobo-da-corte-facil-2",
@@ -1288,15 +1288,15 @@
       "medio": [
         {
           "id": "bobo-da-corte-medio-1",
-          "descricao": "Usar sua Ação de Reacao e 2 pontos de Sanidade para ativar o Gatilho do Caos, forcando um inimigo a rerrolar um Sucesso Critico obtido contra o grupo."
+          "descricao": "Usar sua Ação de Reação e 2 pontos de Sanidade para ativar o Gatilho do Caos, forcando um inimigo a rerrolar um Sucesso Critico obtido contra o grupo."
         },
         {
           "id": "bobo-da-corte-medio-2",
-          "descricao": "Substituir um teste de perícia obrigatorio por outra na qual voce seja Treinado gastando 3 pontos de Arché com a habilidade O Coringa."
+          "descricao": "Substituir um teste de perícia obrigatorio por outra na qual você seja Treinado gastando 3 pontos de Arché com a habilidade O Coringa."
         },
         {
           "id": "bobo-da-corte-medio-3",
-          "descricao": "Recuperar um total de 3 vezes a sua Sanidade perdida na mesma cena atraves do gatilho passivo do Sorriso Sadico."
+          "descricao": "Recuperar um total de 3 vezes a sua Sanidade perdida na mesma cena através do gatilho passivo do Sorriso Sadico."
         }
       ],
       "dificil": [
@@ -1317,7 +1317,7 @@
   },
   "cacador": {
     "nome": "Cacador",
-    "descricao_curta": "Mestre da distancia e da paciencia, especialista em sniping, rastreio e abate de alvos prioritarios com armas de longo alcance.",
+    "descricao_curta": "Mestre da distância e da paciência, especialista em sniping, rastreio e abate de alvos prioritarios com armas de longo alcance.",
     "pericia_treinada_fixa": "pontaria",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -1390,7 +1390,7 @@
       {
         "id": "cacador-de-recompensas",
         "nome": "Caçador de Recompensas",
-        "descricao": "O rastreador implacavel. Especialista em obter informacoes sobre o alvo e garantir que ele nao escape, penalizando alvos imobilizados.",
+        "descricao": "O rastreador implacavel. Especialista em obter informações sobre o alvo e garantir que ele não escape, penalizando alvos imobilizados.",
         "habilidades": [
           {
             "id": "cacador-cacador-de-recompensas-marca-do-rastreio",
@@ -1421,7 +1421,7 @@
       {
         "id": "franco-atirador",
         "nome": "Franco-Atirador",
-        "descricao": "O mestre da precisao absoluta. Focado em disparos de longa distancia, ignorando defesas ambientais e maximizando o dano com tempos de mira controlados.",
+        "descricao": "O mestre da precisão absoluta. Focado em disparos de longa distância, ignorando defesas ambientais e maximizando o dano com tempos de mira controlados.",
         "habilidades": [
           {
             "id": "cacador-franco-atirador-mira-telescopica",
@@ -1489,21 +1489,21 @@
         },
         {
           "id": "cacador-facil-2",
-          "descricao": "Usar a ação bônus Disparo de Foco para realizar um ataque a distancia ignorando penalidades de desvantagem por distancia ou por cobertura leve do alvo."
+          "descricao": "Usar a ação bônus Disparo de Foco para realizar um ataque a distância ignorando penalidades de desvantagem por distância ou por cobertura leve do alvo."
         },
         {
           "id": "cacador-facil-3",
-          "descricao": "Localizar com sucesso um inimigo escondido na cena superando o teste de Percepcao com a Vantagem fornecida pelo Olhar do Predador."
+          "descricao": "Localizar com sucesso um inimigo escondido na cena superando o teste de Percepção com a Vantagem fornecida pelo Olhar do Predador."
         },
         {
           "id": "cacador-facil-4",
-          "descricao": "Permanecer parado por uma Ação Padrao para ativar o bônus de +5 em Furtividade concedido por Sombra Estatica."
+          "descricao": "Permanecer parado por uma Ação Padrão para ativar o bônus de +5 em Furtividade concedido por Sombra Estática."
         }
       ],
       "medio": [
         {
           "id": "cacador-medio-1",
-          "descricao": "Reduzir a Defesa base de um inimigo em -2 pontos permanentemente ao desferir um Sucesso Critico a distancia com Ponto de Impacto."
+          "descricao": "Reduzir a Defesa base de um inimigo em -2 pontos permanentemente ao desferir um Sucesso Critico a distância com Ponto de Impacto."
         },
         {
           "id": "cacador-medio-2",
@@ -1511,17 +1511,17 @@
         },
         {
           "id": "cacador-medio-3",
-          "descricao": "Acertar um ataque a distancia que transpasse e atinja 2 inimigos posicionados em linha reta atraves da mecanica de Dano Colateral."
+          "descricao": "Acertar um ataque a distância que transpasse e atinja 2 inimigos posicionados em linha reta através da mecânica de Dano Colateral."
         }
       ],
       "dificil": [
         {
           "id": "cacador-dificil-1",
-          "descricao": "Abater 3 inimigos que estejam sob a marca de Minha Presa no mesmo combate, recuperando um total de 6 pontos de Arché via Recuperacao de Municao."
+          "descricao": "Abater 3 inimigos que estejam sob a marca de Minha Presa no mesmo combate, recuperando um total de 6 pontos de Arché via Recuperação de Munição."
         },
         {
           "id": "cacador-dificil-2",
-          "descricao": "Concluir uma cena de combate de no minimo 4 rodadas mantendo o bônus de Sombra Estatica e eliminando ao menos 2 alvos sem sofrer nenhuma retaliacao ou ser descoberto."
+          "descricao": "Concluir uma cena de combate de no mínimo 4 rodadas mantendo o bônus de Sombra Estática e eliminando ao menos 2 alvos sem sofrer nenhuma retaliação ou ser descoberto."
         },
         {
           "id": "cacador-dificil-3",
@@ -1532,7 +1532,7 @@
   },
   "clerigo": {
     "nome": "Clerigo",
-    "descricao_curta": "Porta-voz dos deuses que canaliza o Arché atraves da fe, sendo o pilar de cura e estabilizacao do grupo, capaz tambem de dizimar o profano.",
+    "descricao_curta": "Porta-voz dos deuses que canaliza o Arché através da fe, sendo o pilar de cura e estabilização do grupo, capaz também de dizimar o profano.",
     "pericia_treinada_fixa": "religiao",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -1605,7 +1605,7 @@
       {
         "id": "inquisidor",
         "nome": "Inquisidor",
-        "descricao": "O braco armado da igreja. Focado na ofensiva, utiliza o Arché divino para conjurar punicoes purificadoras e aplicar debuffs severos em hereges.",
+        "descricao": "O braco armado da igreja. Focado na ofensiva, utiliza o Arché divino para conjurar punições purificadoras e aplicar debuffs severos em hereges.",
         "habilidades": [
           {
             "id": "clerigo-inquisidor-chama-do-julgamento",
@@ -1748,11 +1748,11 @@
       "facil": [
         {
           "id": "clerigo-facil-1",
-          "descricao": "Usar os Primeiros Socorros da perícia Cura e adicionar seu modificador de Sabedoria ao resultado atraves da habilidade Bencao da Cura."
+          "descricao": "Usar os Primeiros Socorros da perícia Cura e adicionar seu modificador de Sabedoria ao resultado através da habilidade Bênção da Cura."
         },
         {
           "id": "clerigo-facil-2",
-          "descricao": "Causar dano de Alma (Luz) e bloquear totalmente as Ações de Reacao de um alvo por 1 turno com a Palavra de Condenacao."
+          "descricao": "Causar dano de Alma (Luz) e bloquear totalmente as Ações de Reação de um alvo por 1 turno com a Palavra de Condenação."
         },
         {
           "id": "clerigo-facil-3",
@@ -1760,21 +1760,21 @@
         },
         {
           "id": "clerigo-facil-4",
-          "descricao": "Ativar a sub-habilidade Prece em combate utilizando uma Ação Bônus em vez de Movimento atraves da propriedade de Devocao Inabalavel."
+          "descricao": "Ativar a sub-habilidade Prece em combate utilizando uma Ação Bônus em vez de Movimento através da propriedade de Devoção Inabalavel."
         }
       ],
       "medio": [
         {
           "id": "clerigo-medio-1",
-          "descricao": "Remover um Efeito Negativo ou aflicao sobrenatural ativa de um companheiro de grupo em combate utilizando a habilidade Purificação Divina."
+          "descricao": "Remover um Efeito Negativo ou aflição sobrenatural ativa de um companheiro de grupo em combate utilizando a habilidade Purificação Divina."
         },
         {
           "id": "clerigo-medio-2",
-          "descricao": "Manter a concentracao em uma habilidade mistica apos sofrer dano direto, sendo bem-sucedido no teste de Vontade com a Vantagem de Canalizacao Pura."
+          "descricao": "Manter a concentração em uma habilidade mistica após sofrer dano direto, sendo bem-sucedido no teste de Vontade com a Vantagem de Canalização Pura."
         },
         {
           "id": "clerigo-medio-3",
-          "descricao": "Conjurar a Luz Reveladora para expor e tornar visivel um inimigo Invisivel ou camuflado na penumbra dentro do raio de 9 metros."
+          "descricao": "Conjurar a Luz Reveladora para expor e tornar visível um inimigo Invisível ou camuflado na penumbra dentro do raio de 9 metros."
         }
       ],
       "dificil": [
@@ -1795,7 +1795,7 @@
   },
   "feiticeiro": {
     "nome": "Feiticeiro",
-    "descricao_curta": "Condutor puro do fluxo arcano que dobra a realidade atraves do Arché e do estudo de selos e runas antigas, atuando como artilharia pesada.",
+    "descricao_curta": "Condutor puro do fluxo arcano que dobra a realidade através do Arché e do estudo de selos e runas antigas, atuando como artilharia pesada.",
     "pericia_treinada_fixa": "misticismo",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -1915,7 +1915,7 @@
       {
         "id": "conjurador-primal",
         "nome": "Conjurador Primal",
-        "descricao": "A artilharia elemental pura. Molda as manipulacoes naturais para causar o maior dano magico possivel em area e ignorar resistencias.",
+        "descricao": "A artilharia elemental pura. Molda as manipulações naturais para causar o maior dano magico possível em área e ignorar resistências.",
         "habilidades": [
           {
             "id": "feiticeiro-conjurador-primal-eco-arcano",
@@ -1962,7 +1962,7 @@
       {
         "id": "arcanista-de-sangue",
         "nome": "Arcanista de Sangue",
-        "descricao": "O conjurador de alto risco. Utiliza a própria Vida em vez de Arché para superestimular feiticos, curando-se atraves do dreno vital inimigo.",
+        "descricao": "O conjurador de alto risco. Utiliza a própria Vida em vez de Arché para superestimular feiticos, curando-se através do dreno vital inimigo.",
         "habilidades": [
           {
             "id": "feiticeiro-arcanista-de-sangue-pacto-hematico",
@@ -2011,25 +2011,25 @@
       "facil": [
         {
           "id": "feiticeiro-facil-1",
-          "descricao": "Gastar pontos de Arché adicionais via Canalizacao Sobrecarregada para adicionar dados extras de d6 ao dano de uma magia elemental ofensiva."
+          "descricao": "Gastar pontos de Arché adicionais via Canalização Sobrecarregada para adicionar dados extras de d6 ao dano de uma magia elemental ofensiva."
         },
         {
           "id": "feiticeiro-facil-2",
-          "descricao": "Ativar a Barreira Arcana como reacao a um ataque direcionado a voce, frustrando o golpe inimigo e causando 1d6 de dano de ricochete."
+          "descricao": "Ativar a Barreira Arcana como reação a um ataque direcionado a você, frustrando o golpe inimigo e causando 1d6 de dano de ricochete."
         },
         {
           "id": "feiticeiro-facil-3",
-          "descricao": "Conjurar um Pulsar Elemental para causar dano e empurrar pelo menos 2 agressores corporais a 3 metros de distancia de sua posicao."
+          "descricao": "Conjurar um Pulsar Elemental para causar dano e empurrar pelo menos 2 agressores corporais a 3 metros de distância de sua posição."
         },
         {
           "id": "feiticeiro-facil-4",
-          "descricao": "Executar a habilidade Estudo de Vulnerabilidade com sucesso (CD 20) em uma criatura para revelar suas resistencias e fraquezas elementais."
+          "descricao": "Executar a habilidade Estudo de Vulnerabilidade com sucesso (CD 20) em uma criatura para revelar suas resistências e fraquezas elementais."
         }
       ],
       "medio": [
         {
           "id": "feiticeiro-medio-1",
-          "descricao": "Utilizar o Passo Etereo para se teletransportar por ate 9 metros, escapando de um terreno dificil ou cerco sem provocar nenhum ataque de oportunidade."
+          "descricao": "Utilizar o Passo Etereo para se teletransportar por ate 9 metros, escapando de um terreno difícil ou cerco sem provocar nenhum ataque de oportunidade."
         },
         {
           "id": "feiticeiro-medio-2",
@@ -2037,13 +2037,13 @@
         },
         {
           "id": "feiticeiro-medio-3",
-          "descricao": "Utilizar a habilidade Vinculo de Essencia para transferir 5 pontos de Arché de sua própria barra para um aliado necessitado no calor do combate."
+          "descricao": "Utilizar a habilidade Vinculo de Essência para transferir 5 pontos de Arché de sua própria barra para um aliado necessitado no calor do combate."
         }
       ],
       "dificil": [
         {
           "id": "feiticeiro-dificil-1",
-          "descricao": "Causar dano massivo sobrecarregando magias elementais em 3 rodadas diferentes do mesmo combate usando a Canalizacao Sobrecarregada."
+          "descricao": "Causar dano massivo sobrecarregando magias elementais em 3 rodadas diferentes do mesmo combate usando a Canalização Sobrecarregada."
         },
         {
           "id": "feiticeiro-dificil-2",
@@ -2051,7 +2051,7 @@
         },
         {
           "id": "feiticeiro-dificil-3",
-          "descricao": "Concluir uma cena de combate utilizando exclusivamente runas lapidadas atraves do bônus de tempo de Prodigio de Exousia."
+          "descricao": "Concluir uma cena de combate utilizando exclusivamente runas lapidadas através do bônus de tempo de Prodigio de Exousia."
         }
       ]
     }
@@ -2178,7 +2178,7 @@
       {
         "id": "carrasco",
         "nome": "Carrasco",
-        "descricao": "O duelista focado em alvo único. Utiliza a intimidacao e o medo para quebrar a guarda do oponente, aplicando penalidades severas e finalizacoes brutais.",
+        "descricao": "O duelista focado em alvo único. Utiliza a intimidação e o medo para quebrar a guarda do oponente, aplicando penalidades severas e finalizações brutais.",
         "habilidades": [
           {
             "id": "gladiador-carrasco-olhar-da-morte",
@@ -2225,7 +2225,7 @@
       {
         "id": "hoplita",
         "nome": "Hoplita",
-        "descricao": "O estrategista de formacao. Focado no uso tático de escudos, contra-ataques precisos e em proteger a si e aos aliados adjacentes.",
+        "descricao": "O estrategista de formação. Focado no uso tático de escudos, contra-ataques precisos e em proteger a si e aos aliados adjacentes.",
         "habilidades": [
           {
             "id": "gladiador-hoplita-postura-da-falange",
@@ -2278,11 +2278,11 @@
         },
         {
           "id": "gladiador-facil-2",
-          "descricao": "Usar a ação bônus para ativar a Intimidacao de Combate, aplicando a sub-habilidade Assustar para impor Desvantagem nas rolagens de ataque de um oponente."
+          "descricao": "Usar a ação bônus para ativar a Intimidação de Combate, aplicando a sub-habilidade Assustar para impor Desvantagem nas rolagens de ataque de um oponente."
         },
         {
           "id": "gladiador-facil-3",
-          "descricao": "Reduzir o dano de um ataque a metade e empurrar o agressor por 3 metros em linha reta usando a habilidade Empurrao Tatico."
+          "descricao": "Reduzir o dano de um ataque a metade e empurrar o agressor por 3 metros em linha reta usando a habilidade Empurrão Tático."
         },
         {
           "id": "gladiador-facil-4",
@@ -2292,15 +2292,15 @@
       "medio": [
         {
           "id": "gladiador-medio-1",
-          "descricao": "Acumular o bônus maximo de +4 nas rolagens de dano da habilidade Sangue de Arena por possuir 4 inimigos adjacentes a voce no momento do ataque."
+          "descricao": "Acumular o bônus máximo de +4 nas rolagens de dano da habilidade Sangue de Arena por possuir 4 inimigos adjacentes a você no momento do ataque."
         },
         {
           "id": "gladiador-medio-2",
-          "descricao": "Passar com sucesso no teste da sub-habilidade Desvio usando seus Reflexos de Sobrevivencia, reduzindo o dano físico sofrido em 75%."
+          "descricao": "Passar com sucesso no teste da sub-habilidade Desvio usando seus Reflexos de Sobrevivência, reduzindo o dano físico sofrido em 75%."
         },
         {
           "id": "gladiador-medio-3",
-          "descricao": "Atacar um oponente blindado segurando sua arma com as duas maos para ignorar 2 pontos de sua Resistencia Fisica via Armamento Versatil."
+          "descricao": "Atacar um oponente blindado segurando sua arma com as duas maos para ignorar 2 pontos de sua Resistência Física via Armamento Versatil."
         }
       ],
       "dificil": [
@@ -2321,7 +2321,7 @@
   },
   "monge": {
     "nome": "Monge",
-    "descricao_curta": "Disciplina em forma de arma: lutador de artes marciais de alta velocidade, mobilidade e evasao, capaz de sabotar magias com golpes de pressao.",
+    "descricao_curta": "Disciplina em forma de arma: lutador de artes marciais de alta velocidade, mobilidade e evasão, capaz de sabotar magias com golpes de pressão.",
     "pericia_treinada_fixa": "acrobacia",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -2441,7 +2441,7 @@
       {
         "id": "mestre-do-fluxo",
         "nome": "Mestre do Fluxo",
-        "descricao": "O sabotador mistico. Especialista em utilizar golpes de pressao para bloquear feiticos, drenar o Arché do inimigo e silenciar oponentes.",
+        "descricao": "O sabotador mistico. Especialista em utilizar golpes de pressão para bloquear feiticos, drenar o Arché do inimigo e silenciar oponentes.",
         "habilidades": [
           {
             "id": "monge-mestre-do-fluxo-dreno-de-essencia",
@@ -2488,7 +2488,7 @@
       {
         "id": "andarilho-astral",
         "nome": "Andarilho Astral",
-        "descricao": "O monge que transcende o físico. Focado em mobilidade espiritual, teleportes e na capacidade de desferir golpes corporais projetados a distancia.",
+        "descricao": "O monge que transcende o físico. Focado em mobilidade espiritual, teleportes e na capacidade de desferir golpes corporais projetados a distância.",
         "habilidades": [
           {
             "id": "monge-andarilho-astral-projecao-de-golpes",
@@ -2537,7 +2537,7 @@
       "facil": [
         {
           "id": "monge-facil-1",
-          "descricao": "Realizar um Ataque Padrao bem-sucedido e gastar 2 pontos de Arché para desferir um golpe adicional imediato utilizando a Rajada de Golpes."
+          "descricao": "Realizar um Ataque Padrão bem-sucedido e gastar 2 pontos de Arché para desferir um golpe adicional imediato utilizando a Rajada de Golpes."
         },
         {
           "id": "monge-facil-2",
@@ -2545,11 +2545,11 @@
         },
         {
           "id": "monge-facil-3",
-          "descricao": "Utilizar sua Ação de Reacao com a habilidade Redirecionar Forca apos um erro inimigo, deixando-o na condição Derrubado ou empurrando-o por 3 metros."
+          "descricao": "Utilizar sua Ação de Reação com a habilidade Redirecionar Força após um erro inimigo, deixando-o na condição Derrubado ou empurrando-o por 3 metros."
         },
         {
           "id": "monge-facil-4",
-          "descricao": "Pegar um projetil físico no ar (flecha, dardo, faca) e anular 100% do seu dano usando sua Ação de Reacao e a perícia Acrobacia via Aparar Projeteis."
+          "descricao": "Pegar um projetil físico no ar (flecha, dardo, faca) e anular 100% do seu dano usando sua Ação de Reação e a perícia Acrobacia via Aparar Projeteis."
         }
       ],
       "medio": [
@@ -2559,7 +2559,7 @@
         },
         {
           "id": "monge-medio-2",
-          "descricao": "Passar com sucesso em um teste de Reflexos contra uma habilidade ou feitico de area e anular completamente o dano recebido atraves de uma Evasao Perfeita."
+          "descricao": "Passar com sucesso em um teste de Reflexos contra uma habilidade ou feitico de área e anular completamente o dano recebido através de uma Evasão Perfeita."
         },
         {
           "id": "monge-medio-3",
@@ -2573,7 +2573,7 @@
         },
         {
           "id": "monge-dificil-2",
-          "descricao": "Neutralizar uma ameaca a distancia aparando e interceptando seus projeteis físicos por 2 rodadas consecutivas utilizando a habilidade Aparar Projeteis."
+          "descricao": "Neutralizar uma ameaca a distância aparando e interceptando seus projeteis físicos por 2 rodadas consecutivas utilizando a habilidade Aparar Projeteis."
         },
         {
           "id": "monge-dificil-3",
@@ -2581,7 +2581,7 @@
         }
       ]
     },
-    "restricao_classe": "Um monge e incapaz de utilizar armas comuns (espadas, machados, arcos etc.), escudos ou qualquer tipo de armadura pesada. Suas unicas armas permitidas sao o próprio corpo (ataques desarmados), Manoplas, Soqueiras ou Bastoes de Madeira. Enquanto estiver desarmado ou usando essas armas especificas, seus ataques físicos recebem bônus com base na sua Destreza do tipo Impacto."
+    "restricao_classe": "Um monge e incapaz de utilizar armas comuns (espadas, machados, arcos etc.), escudos ou qualquer tipo de armadura pesada. Suas unicas armas permitidas são o próprio corpo (ataques desarmados), Manoplas, Soqueiras ou Bastoes de Madeira. Enquanto estiver desarmado ou usando essas armas especificas, seus ataques físicos recebem bônus com base na sua Destreza do tipo Impacto."
   },
   "oraculo": {
     "nome": "Oraculo",
@@ -2705,7 +2705,7 @@
       {
         "id": "fatalista",
         "nome": "Fatalista",
-        "descricao": "O portador da ruina. Foco em amaldicoar o destino dos oponentes, forcando falhas, anulando reacoes e mostrando aos inimigos a inevitabilidade da morte.",
+        "descricao": "O portador da ruina. Foco em amaldicoar o destino dos oponentes, forcando falhas, anulando reações e mostrando aos inimigos a inevitabilidade da morte.",
         "habilidades": [
           {
             "id": "oraculo-fatalista-sussurro-da-ruina",
@@ -2801,19 +2801,19 @@
       "facil": [
         {
           "id": "oraculo-facil-1",
-          "descricao": "Ativar sua Ação de Reacao com o Vislumbre do Destino para forcar um companheiro a rerrolar um teste falhado, convertendo-o em um sucesso."
+          "descricao": "Ativar sua Ação de Reação com o Vislumbre do Destino para forcar um companheiro a rerrolar um teste falhado, convertendo-o em um sucesso."
         },
         {
           "id": "oraculo-facil-2",
-          "descricao": "Gastar 1 ponto de Arché com a Previsao de Combate para somar seu modificador de Sabedoria a Defesa contra um ataque direcionado a voce."
+          "descricao": "Gastar 1 ponto de Arché com a Previsão de Combate para somar seu modificador de Sabedoria a Defesa contra um ataque direcionado a você."
         },
         {
           "id": "oraculo-facil-3",
-          "descricao": "Conectar dois personagens com o Fio da Causalidade, garantindo o repasse de 50% de uma cura ou restauracao de Arché entre eles por 3 turnos."
+          "descricao": "Conectar dois personagens com o Fio da Causalidade, garantindo o repasse de 50% de uma cura ou restauração de Arché entre eles por 3 turnos."
         },
         {
           "id": "oraculo-facil-4",
-          "descricao": "Aplicar a maldicao Destino Inevitavel em um alvo, forcando-o a rolar seu proximo teste de resistencia com Desvantagem."
+          "descricao": "Aplicar a maldição Destino Inevitavel em um alvo, forcando-o a rolar seu próximo teste de resistência com Desvantagem."
         }
       ],
       "medio": [
@@ -2827,21 +2827,21 @@
         },
         {
           "id": "oraculo-medio-3",
-          "descricao": "Conceder um bônus numérico direto igual ao seu Nivel de Ascensao + Sabedoria para o ataque de um aliado atraves do Aviso Premonitorio."
+          "descricao": "Conceder um bônus numérico direto igual ao seu Nível de Ascensão + Sabedoria para o ataque de um aliado através do Aviso Premonitorio."
         }
       ],
       "dificil": [
         {
           "id": "oraculo-dificil-1",
-          "descricao": "Atravessar uma area complexa de Terreno Dificil e armadilhas ocultas sem sofrer nenhuma penalidade de movimento ou dano gracas aos Passos Predestinados."
+          "descricao": "Atravessar uma área complexa de Terreno Difícil e armadilhas ocultas sem sofrer nenhuma penalidade de movimento ou dano gracas aos Passos Predestinados."
         },
         {
           "id": "oraculo-dificil-2",
-          "descricao": "Utilizar o Vislumbre do Destino e a Previsao de Combate na mesma rodada para salvar um aliado de um erro e a si mesmo de um ataque direcionado."
+          "descricao": "Utilizar o Vislumbre do Destino e a Previsão de Combate na mesma rodada para salvar um aliado de um erro e a si mesmo de um ataque direcionado."
         },
         {
           "id": "oraculo-dificil-3",
-          "descricao": "Manter a conexao do Fio da Causalidade ativa durante todo o confronto, redistribuindo um valor acumulado de pelo menos 20 pontos de recursos entre os alvos conectados."
+          "descricao": "Manter a conexão do Fio da Causalidade ativa durante todo o confronto, redistribuindo um valor acumulado de pelo menos 20 pontos de recursos entre os alvos conectados."
         }
       ]
     }
@@ -2968,7 +2968,7 @@
       {
         "id": "capitao-da-frota",
         "nome": "Capitão da Frota",
-        "descricao": "O lider tático. Focado em comandar aliados, usar intimidacao e ordenar ataques coordenados, trazendo a vantagem da tripulacao para o grupo.",
+        "descricao": "O lider tático. Focado em comandar aliados, usar intimidação e ordenar ataques coordenados, trazendo a vantagem da tripulação para o grupo.",
         "habilidades": [
           {
             "id": "pirata-capitao-da-frota-voz-de-comando",
@@ -3064,7 +3064,7 @@
       "facil": [
         {
           "id": "pirata-facil-1",
-          "descricao": "Forcar um inimigo adjacente a falhar no teste de Reflexos e receber a condição Cego ate o proximo turno dele atraves do uso do Golpe Sujo."
+          "descricao": "Forcar um inimigo adjacente a falhar no teste de Reflexos e receber a condição Cego ate o próximo turno dele através do uso do Golpe Sujo."
         },
         {
           "id": "pirata-facil-2",
@@ -3072,7 +3072,7 @@
         },
         {
           "id": "pirata-facil-3",
-          "descricao": "Obter um bônus de +2 na sua proxima rolagem de Acerto contra um inimigo capitalizando um erro de ataque físico dele ou de um aliado adjacente via Oportunismo."
+          "descricao": "Obter um bônus de +2 na sua próxima rolagem de Acerto contra um inimigo capitalizando um erro de ataque físico dele ou de um aliado adjacente via Oportunismo."
         },
         {
           "id": "pirata-facil-4",
@@ -3090,17 +3090,17 @@
         },
         {
           "id": "pirata-medio-3",
-          "descricao": "Usar sua Ação de Reacao para executar uma Evasao Malandra, rolando sua perícia Ladinagem para realizar um desvio contra um ataque físico recebido."
+          "descricao": "Usar sua Ação de Reação para executar uma Evasão Malandra, rolando sua perícia Ladinagem para realizar um desvio contra um ataque físico recebido."
         }
       ],
       "dificil": [
         {
           "id": "pirata-dificil-1",
-          "descricao": "Passar com sucesso em 2 testes de resistencia contra quedas ou efeitos de derrubada usando a Vantagem passiva de Passos de Marujo."
+          "descricao": "Passar com sucesso em 2 testes de resistência contra quedas ou efeitos de derrubada usando a Vantagem passiva de Passos de Marujo."
         },
         {
           "id": "pirata-dificil-2",
-          "descricao": "Encadear duas fintas bem-sucedidas seguidas de disparos de curta distancia na mesma cena sem sofrer penalidades de retaliacao ou erro."
+          "descricao": "Encadear duas fintas bem-sucedidas seguidas de disparos de curta distância na mesma cena sem sofrer penalidades de retaliação ou erro."
         },
         {
           "id": "pirata-dificil-3",
@@ -3111,7 +3111,7 @@
   },
   "sentinela": {
     "nome": "Sentinela",
-    "descricao_curta": "A muralha intransponivel de Midgard: pilar tático de linha de frente que suporta punicoes extremas e controla a agressao inimiga.",
+    "descricao_curta": "A muralha intransponível de Midgard: pilar tático de linha de frente que suporta punições extremas e controla a agressão inimiga.",
     "pericia_treinada_fixa": "guerra",
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
@@ -3184,7 +3184,7 @@
       {
         "id": "baluarte",
         "nome": "Baluarte",
-        "descricao": "O tanque puro e inabalavel. Focado em maximizar a própria Defesa, resistir a condições debilitantes e criar zonas de protecao absolutas.",
+        "descricao": "O tanque puro e inabalavel. Focado em maximizar a própria Defesa, resistir a condições debilitantes e criar zonas de proteção absolutas.",
         "habilidades": [
           {
             "id": "sentinela-baluarte-armadura-viva",
@@ -3231,7 +3231,7 @@
       {
         "id": "vanguarda",
         "nome": "Vanguarda",
-        "descricao": "O iniciador implacavel. Especializado em investidas destrutivas, em quebrar a formacao inimiga e aplicar controle de grupo na primeira linha.",
+        "descricao": "O iniciador implacavel. Especializado em investidas destrutivas, em quebrar a formação inimiga e aplicar controle de grupo na primeira linha.",
         "habilidades": [
           {
             "id": "sentinela-vanguarda-investida-do-touro",
@@ -3278,7 +3278,7 @@
       {
         "id": "marechal",
         "nome": "Marechal",
-        "descricao": "O mestre estrategista. Focado em usar a mente brilhante para conceder bônus ofensivos e defensivos aos aliados e liderar o esquadrao a vitoria.",
+        "descricao": "O mestre estrategista. Focado em usar a mente brilhante para conceder bônus ofensivos e defensivos aos aliados e liderar o esquadrão a vitoria.",
         "habilidades": [
           {
             "id": "sentinela-marechal-genio-tatico",
@@ -3331,21 +3331,21 @@
         },
         {
           "id": "sentinela-facil-2",
-          "descricao": "Forcar a condição Provocar em um oponente por 2 turnos completos atraves do uso do Desafio do Guardiao."
+          "descricao": "Forcar a condição Provocar em um oponente por 2 turnos completos através do uso do Desafio do Guardião."
         },
         {
           "id": "sentinela-facil-3",
-          "descricao": "Utilizar sua Ação de Reacao para executar uma Intervencao Heroica, movendo-se adjacente e absorvendo 100% do dano e efeitos negativos no lugar de um aliado."
+          "descricao": "Utilizar sua Ação de Reação para executar uma Intervenção Heroica, movendo-se adjacente e absorvendo 100% do dano e efeitos negativos no lugar de um aliado."
         },
         {
           "id": "sentinela-facil-4",
-          "descricao": "Ativar o Vigor do Bastiao gastando uma Ação Padrao para receber pontos de Vida Temporaria protetores antes de sofrer um golpe."
+          "descricao": "Ativar o Vigor do Bastião gastando uma Ação Padrão para receber pontos de Vida Temporaria protetores antes de sofrer um golpe."
         }
       ],
       "medio": [
         {
           "id": "sentinela-medio-1",
-          "descricao": "Passar com sucesso em um teste de Fortitude ou Reflexos contra um efeito de deslocamento forcado (Empurrao, Puxao, Derrubada) usando a Vantagem de Postura de Ferro."
+          "descricao": "Passar com sucesso em um teste de Fortitude ou Reflexos contra um efeito de deslocamento forcado (Empurrão, Puxão, Derrubada) usando a Vantagem de Postura de Ferro."
         },
         {
           "id": "sentinela-medio-2",
@@ -3359,15 +3359,15 @@
       "dificil": [
         {
           "id": "sentinela-dificil-1",
-          "descricao": "Manter um inimigo sob a condição Provocar por 4 rodadas (alternadas ou consecutivas) na mesma cena atraves do uso continuo de Desafio do Guardiao."
+          "descricao": "Manter um inimigo sob a condição Provocar por 4 rodadas (alternadas ou consecutivas) na mesma cena através do uso continuo de Desafio do Guardião."
         },
         {
           "id": "sentinela-dificil-2",
-          "descricao": "Fornecer o bônus de +2 de Acerto da Tatica de Flanqueamento para seus aliados em pelo menos 4 ataques direcionados ao alvo que voce bloqueia corporalmente."
+          "descricao": "Fornecer o bônus de +2 de Acerto da Tática de Flanqueamento para seus aliados em pelo menos 4 ataques direcionados ao alvo que você bloqueia corporalmente."
         },
         {
           "id": "sentinela-dificil-3",
-          "descricao": "Executar duas Intervencoes Heroicas bem-sucedidas no mesmo combate, salvando dois aliados diferentes de sofrerem danos que os deixariam inconscientes."
+          "descricao": "Executar duas Intervenções Heroicas bem-sucedidas no mesmo combate, salvando dois aliados diferentes de sofrerem danos que os deixariam inconscientes."
         }
       ]
     }
