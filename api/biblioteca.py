@@ -12,6 +12,7 @@ ARQUIVO_POR_COLECAO = {
     "pericias": "pericias.json",
     "elementos": "elementos.json",
     "itens": "itens.json",
+    "bestiario": "bestiario.json",
     # Usada pelo frontend pra saber em qual faixa de dificuldade
     # (facil/medio/dificil) cai o grau-alvo de uma Ascensao, e assim
     # mostrar a Provacao/Ritual certos (ver PainelAscensao.jsx).

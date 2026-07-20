@@ -10,6 +10,7 @@ const ABAS = [
   { id: 'elementos', label: 'Poderes' },
   { id: 'itens', label: 'Itens' },
   { id: 'pericias', label: 'Perícias' },
+  { id: 'bestiario', label: 'Bestiário' },
 ]
 
 export default function Biblioteca() {
@@ -40,7 +41,7 @@ export default function Biblioteca() {
   return (
     <div className="pt-2">
       <h1 className="text-3xl mb-1">Biblioteca</h1>
-      <p className="text-mist mb-6">Catálogo de raças, classes, poderes e artefatos do mundo.</p>
+      <p className="text-mist mb-6">Catálogo de raças, classes, poderes, artefatos e criaturas do mundo.</p>
 
       <div className="flex gap-2 mb-6 flex-wrap">
         {ABAS.map((a) => (
@@ -76,8 +77,15 @@ export default function Biblioteca() {
               onClick={() => setSelecionado({ id, item })}
               className="card-fantasy p-5 text-left hover:border-gold/50 transition-colors duration-150 cursor-pointer"
             >
+              {aba === 'bestiario' && item.categoria && (
+                <span className="inline-block text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-2 py-0.5 mb-2">
+                  {item.categoria}
+                </span>
+              )}
               <div className="font-display font-semibold mb-2">{item.nome}</div>
-              <p className="text-xs text-mist line-clamp-3">{item.descricao_curta || item.descricao || ''}</p>
+              <p className="text-xs text-mist line-clamp-3">
+                {item.descricao_curta || item.descricao || item.comportamento_e_alvo_prioritario || ''}
+              </p>
             </button>
           ))}
         </div>

@@ -23,10 +23,20 @@ function Habilidade({ h }) {
     <div className="stat-tile">
       <div className="flex items-center justify-between gap-2">
         <span className="font-display text-sm text-white">{h.nome}</span>
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
           {h.inata && (
             <span className="text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-1.5 py-0.5">
               inata
+            </span>
+          )}
+          {h.suprema && (
+            <span className="text-[10px] uppercase tracking-widest text-blood-bright border border-blood-bright/40 rounded px-1.5 py-0.5">
+              suprema
+            </span>
+          )}
+          {h.grau_ascensao != null && (
+            <span className="text-[10px] uppercase tracking-widest text-mist border border-panel-border rounded px-1.5 py-0.5">
+              grau {h.grau_ascensao}
             </span>
           )}
           {h.tipo && (
@@ -37,6 +47,7 @@ function Habilidade({ h }) {
         </div>
       </div>
       <p className="text-xs text-mist leading-relaxed">{h.descricao}</p>
+      {h.condicao && <p className="text-[11px] text-gold/80 italic mt-1">{h.condicao}</p>}
     </div>
   )
 }
@@ -388,6 +399,157 @@ function DetalheItem({ item }) {
   )
 }
 
+function BlocoStatusCriatura({ status }) {
+  if (!status) return null
+  const basicos = [
+    ['Vida', status.vida],
+    ['Sanidade', status.sanidade],
+    ['Arché', status.arche],
+  ]
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {basicos.map(([label, s]) =>
+        s ? (
+          <div key={label} className="stat-tile">
+            <span className="text-[10px] uppercase tracking-widest text-mist">{label}</span>
+            <span className="text-white font-display">
+              {s.base} <span className="text-mist text-xs">+{s.mult_ascensao}×Grau</span>
+            </span>
+          </div>
+        ) : null
+      )}
+      {status.defesa && (
+        <div className="stat-tile">
+          <span className="text-[10px] uppercase tracking-widest text-mist">Defesa</span>
+          <span className="text-white font-display">{status.defesa.total ?? status.defesa.base}</span>
+          <span className="text-[10px] text-mist leading-snug">
+            {status.defesa.base} base
+            {status.defesa.bonus_atributo &&
+              ` + ${status.defesa.bonus_atributo.valor} (${NOME_ATRIBUTO[status.defesa.bonus_atributo.atributo] || status.defesa.bonus_atributo.atributo})`}
+            {status.defesa.bonus_extra &&
+              ` + ${status.defesa.bonus_extra.valor} (${status.defesa.bonus_extra.descricao})`}
+          </span>
+        </div>
+      )}
+      {status.deslocamento_m != null && (
+        <div className="stat-tile">
+          <span className="text-[10px] uppercase tracking-widest text-mist">Deslocamento</span>
+          <span className="text-white font-display">
+            {status.deslocamento_m} m{status.tipo_deslocamento ? ` (${status.tipo_deslocamento})` : ''}
+          </span>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function BlocoAtaques({ ataques }) {
+  if (!Array.isArray(ataques) || ataques.length === 0) return null
+  return (
+    <div className="grid sm:grid-cols-2 gap-3">
+      {ataques.map((a, i) => (
+        <div key={i} className="stat-tile">
+          <div className="flex items-center justify-between gap-2">
+            <span className="font-display text-sm text-white">{a.nome}</span>
+            <span className="text-[10px] uppercase tracking-widest text-gold capitalize">{a.pericia}</span>
+          </div>
+          <span className="text-xs text-mist">
+            {a.dano?.dados}{a.dano?.atributo ? ` + ${NOME_ATRIBUTO[a.dano.atributo] || a.dano.atributo}` : ''}
+          </span>
+          {a.descricao && <p className="text-xs text-mist leading-relaxed mt-1">{a.descricao}</p>}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function BlocoProgressao({ dados }) {
+  if (!dados) return null
+  return (
+    <div>
+      <p className="text-xs text-mist mb-3">
+        Começa com {dados.inicial} {dados.inicial === 1 ? 'habilidade' : 'habilidades'}, progride até {dados.maximo_progressao}.
+      </p>
+      <div className="grid sm:grid-cols-2 gap-3">
+        {(dados.lista || []).map((h) => (
+          <Habilidade key={h.id} h={h} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const NOME_CATEGORIA_CRIATURA = { comum: 'Comum', monstro: 'Monstro', chefe: 'Chefe' }
+
+function DetalheBestiario({ item }) {
+  return (
+    <>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {item.categoria && (
+          <span className="text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-2 py-1">
+            {NOME_CATEGORIA_CRIATURA[item.categoria] || item.categoria}
+          </span>
+        )}
+        {item.elemento && (
+          <span className="text-[10px] uppercase tracking-widest text-mist border border-panel-border rounded px-2 py-1 capitalize">
+            {item.elemento}
+          </span>
+        )}
+      </div>
+
+      {item.comportamento_e_alvo_prioritario && (
+        <Secao titulo="Comportamento e Alvo Prioritário">
+          <p className="text-sm text-mist leading-relaxed">{item.comportamento_e_alvo_prioritario}</p>
+        </Secao>
+      )}
+
+      {item.ponto_fraco && (
+        <Secao titulo="Ponto Fraco">
+          <p className="text-sm text-mist leading-relaxed">{item.ponto_fraco}</p>
+        </Secao>
+      )}
+
+      <Secao titulo="Atributos">
+        <BlocoModificadores modificadores_atributo={item.atributos} />
+      </Secao>
+
+      <Secao titulo="Status">
+        <BlocoStatusCriatura status={item.status} />
+      </Secao>
+
+      {Array.isArray(item.pericias_treinadas) && item.pericias_treinadas.length > 0 && (
+        <Secao titulo="Perícias Treinadas">
+          <div className="flex flex-wrap gap-2">
+            {item.pericias_treinadas.map((p) => (
+              <span key={p} className="text-xs px-2.5 py-1 rounded-md border border-panel-border text-white capitalize">
+                {p}
+              </span>
+            ))}
+          </div>
+        </Secao>
+      )}
+
+      {Array.isArray(item.ataques_basicos) && item.ataques_basicos.length > 0 && (
+        <Secao titulo="Ataques Básicos">
+          <BlocoAtaques ataques={item.ataques_basicos} />
+        </Secao>
+      )}
+
+      {item.habilidades && (
+        <Secao titulo="Habilidades">
+          <BlocoProgressao dados={item.habilidades} />
+        </Secao>
+      )}
+
+      {item.manipulacao_elemental && (
+        <Secao titulo="Manipulação Elemental">
+          <BlocoProgressao dados={item.manipulacao_elemental} />
+        </Secao>
+      )}
+    </>
+  )
+}
+
 function DetalhePericia({ item }) {
   return (
     <>
@@ -430,6 +592,7 @@ const RENDERIZADORES = {
   elementos: DetalheElemento,
   itens: DetalheItem,
   pericias: DetalhePericia,
+  bestiario: DetalheBestiario,
 }
 
 export default function BibliotecaDetalhe({ colecao, item, onFechar }) {

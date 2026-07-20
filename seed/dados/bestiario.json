@@ -1,0 +1,501 @@
+{
+  "espreitador-umbral": {
+    "nome": "Espreitador Umbral",
+    "categoria": "comum",
+    "elemento": "trevas",
+    "comportamento_e_alvo_prioritario": "Predador de emboscada rápido, mas frágil em combates diretos e prolongados. O Espreitador Umbral sempre tenta contornar a linha de frente, priorizando alvos isolados, conjuradores ou personagens com menor defesa física.",
+    "ponto_fraco": "Corpo de Fumaça Condensada. Por ser feito de trevas e névoa, ele possui alta evasão natural, mas ataques com manipulação de Vento, ou que causem fortes deslocamentos de ar, dissipam sua fumaça temporariamente. Quando isso ocorre, seus ossos ficam expostos: ele perde qualquer bônus de furtividade/esquiva e recebe dano adicional direto no seu núcleo.",
+    "atributos": {
+      "for": 1,
+      "des": 3,
+      "con": 1,
+      "int": 0,
+      "sab": 0,
+      "car": 0
+    },
+    "status": {
+      "vida": {
+        "base": 15,
+        "mult_ascensao": 4
+      },
+      "sanidade": {
+        "base": 10,
+        "mult_ascensao": 2
+      },
+      "arche": {
+        "base": 15,
+        "mult_ascensao": 3
+      },
+      "defesa": {
+        "base": 10,
+        "bonus_atributo": {
+          "atributo": "des",
+          "valor": 3
+        },
+        "bonus_extra": null,
+        "total": 13
+      },
+      "deslocamento_m": 9,
+      "tipo_deslocamento": "terrestre"
+    },
+    "pericias_treinadas": [
+      "furtividade",
+      "percepcao"
+    ],
+    "ataques_basicos": [
+      {
+        "nome": "Garras Nebulosas",
+        "pericia": "luta",
+        "dano": {
+          "dados": "1d6",
+          "atributo": "des"
+        },
+        "descricao": null
+      }
+    ],
+    "habilidades": {
+      "inicial": 1,
+      "maximo_progressao": 3,
+      "lista": [
+        {
+          "id": "passo-de-fumaca",
+          "nome": "Passo de Fumaça",
+          "descricao": "O Espreitador ignora terrenos difíceis e não provoca ataques de oportunidade ao se deslocar, desde que inicie ou termine o turno em uma área de penumbra ou escuridão.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "bote-oportunista",
+          "nome": "Bote Oportunista",
+          "descricao": "Ganha +1d4 de dano extra sempre que atacar um alvo que não tenha aliados adjacentes.",
+          "inata": false,
+          "grau_ascensao": 2,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "reflexos-sombrios",
+          "nome": "Reflexos Sombrios",
+          "descricao": "Pode usar sua Reação para tentar esquivar de um ataque físico. Se o ataque errar, ele pode se mover 3 metros imediatamente.",
+          "inata": false,
+          "grau_ascensao": 4,
+          "condicao": null,
+          "suprema": false
+        }
+      ]
+    },
+    "manipulacao_elemental": {
+      "inicial": 1,
+      "maximo_progressao": 3,
+      "lista": [
+        {
+          "id": "manto-noturno",
+          "nome": "Manto Noturno",
+          "descricao": "Pode consumir Arché como Ação Bônus para se mesclar completamente às sombras do ambiente. Ele ganha Vantagem no seu próximo teste de Furtividade e no próximo ataque de Luta que realizar no mesmo turno.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "cegueira-parcial",
+          "nome": "Cegueira Parcial",
+          "descricao": "Ao acertar um ataque crítico, consome Arché automaticamente para infundir trevas nos olhos do alvo, reduzindo a visão e o alcance de seus ataques à distância pela metade por 1 turno.",
+          "inata": false,
+          "grau_ascensao": 3,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "forma-insurgente",
+          "nome": "Forma Insurgente",
+          "descricao": "Uma vez por combate, gasta Arché para transformar seu corpo em fumaça pura. Por 1 turno, ele ganha resistência a dano físico cortante e perfurante, mas sua vulnerabilidade a Vento se torna letal (recebe o dobro de dano).",
+          "inata": false,
+          "grau_ascensao": 5,
+          "condicao": null,
+          "suprema": false
+        }
+      ]
+    }
+  },
+  "lirio-sanguineo": {
+    "nome": "Lírio-Sanguíneo",
+    "categoria": "monstro",
+    "elemento": "natureza",
+    "comportamento_e_alvo_prioritario": "Controlador de campo tático e manipulador de vitalidade. O Lírio-Sanguíneo é frágil contra dano físico maciço, então evita contato corpo a corpo. Ele foca implacavelmente nos alvos com a menor Sanidade ou Vontade do grupo, usando toxinas e parasitas para desestabilizar a equipe.",
+    "ponto_fraco": "O grande olho brilhante no centro da flor. Esse olho é o núcleo de sua percepção e conjuração. Caso seja atingido por ataques perfurantes precisos (exigindo que o jogador declare o ataque com penalidade de acerto) ou magias de Fogo/Luz intensas, a criatura entra em choque defensivo. As pétalas se fecham completamente, deixando a criatura cega e reduzindo sua resistência mágica a zero por 1 turno.",
+    "atributos": {
+      "for": 1,
+      "des": 2,
+      "con": 1,
+      "int": 2,
+      "sab": 2,
+      "car": 0
+    },
+    "status": {
+      "vida": {
+        "base": 35,
+        "mult_ascensao": 6
+      },
+      "sanidade": {
+        "base": 25,
+        "mult_ascensao": 4
+      },
+      "arche": {
+        "base": 40,
+        "mult_ascensao": 6
+      },
+      "defesa": {
+        "base": 10,
+        "bonus_atributo": {
+          "atributo": "des",
+          "valor": 2
+        },
+        "bonus_extra": {
+          "descricao": "Armadura de Quitina Vegetal",
+          "valor": 2
+        },
+        "total": 14
+      },
+      "deslocamento_m": 7.5,
+      "tipo_deslocamento": "terrestre"
+    },
+    "pericias_treinadas": [
+      "ocultismo",
+      "percepcao",
+      "vontade"
+    ],
+    "ataques_basicos": [
+      {
+        "nome": "Báculo de Espinhos",
+        "pericia": "luta",
+        "dano": {
+          "dados": "1d8",
+          "atributo": "des"
+        },
+        "descricao": null
+      },
+      {
+        "nome": "Agulhas Escarlates",
+        "pericia": "pontaria",
+        "dano": {
+          "dados": "1d6",
+          "atributo": "int"
+        },
+        "descricao": "Dispara espinhos de suas flores menores a distância."
+      }
+    ],
+    "habilidades": {
+      "inicial": 2,
+      "maximo_progressao": 5,
+      "lista": [
+        {
+          "id": "perfume-alucinogeno",
+          "nome": "Perfume Alucinógeno",
+          "descricao": "O Lírio-Sanguíneo exala esporos em uma aura constante de 3 metros. Inimigos que iniciem ou terminem o turno nessa área devem passar em um teste de Constituição; falhas causam penalidade de -2 em testes de Percepção e Vontade durante o turno.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "passo-fungico",
+          "nome": "Passo Fúngico",
+          "descricao": "Como uma Ação de Movimento, a criatura pode se desintegrar temporariamente em um redemoinho de pétalas e se teleportar para qualquer quadrado não ocupado a até 9 metros.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "raizes-parasitas",
+          "nome": "Raízes Parasitas",
+          "descricao": "Sempre que a criatura acertar um ataque físico ou mágico, o deslocamento do alvo é reduzido pela metade no próximo turno devido a trepadeiras que brotam do solo.",
+          "inata": false,
+          "grau_ascensao": 2,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "martir-do-jardim-rubro",
+          "nome": "Mártir do Jardim Rubro",
+          "descricao": "Se os Pontos de Vida do Lírio-Sanguíneo chegarem a 0, ele imediatamente explode em uma área de 5x5, forçando todos ao redor a fazerem um teste de Reflexos para reduzir o dano tóxico.",
+          "inata": false,
+          "grau_ascensao": 4,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "soberania-botanica",
+          "nome": "Soberania Botânica",
+          "descricao": "A profunda conexão simbiótica com o ambiente corrompido torna a criatura completamente imune a condições de \"Atordoado\" e a qualquer tipo de Veneno.",
+          "inata": false,
+          "grau_ascensao": 6,
+          "condicao": null,
+          "suprema": false
+        }
+      ]
+    },
+    "manipulacao_elemental": {
+      "inicial": 2,
+      "maximo_progressao": 5,
+      "lista": [
+        {
+          "id": "dreno-sedento",
+          "nome": "Dreno Sedento",
+          "descricao": "Consome Arché para lançar cipós espinhosos que drenam a vitalidade de um alvo a até 12 metros. O alvo sofre dano mágico, e o Lírio-Sanguíneo recupera Vida em um valor igual a 50% do dano causado.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "prisao-viva",
+          "nome": "Prisão Viva",
+          "descricao": "Faz brotar raízes grossas ao redor de um alvo a até 9 metros, forçando um teste de Reflexos. Se falhar, o alvo fica \"Agarramento\" pelas raízes e sofre dano contínuo de esmagamento até conseguir se soltar.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "jardim-sanguinario",
+          "nome": "Jardim Sanguinário",
+          "descricao": "Gasta Arché para corromper e acelerar o crescimento de flora em uma área de 3x3 no campo de batalha. A área se torna terreno difícil e qualquer inimigo que inicie seu turno nela recebe dano passivo de Natureza.",
+          "inata": false,
+          "grau_ascensao": 3,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "simbiose-alucinatoria",
+          "nome": "Simbiose Alucinatória",
+          "descricao": "O Lírio-Sanguíneo consome Arché para liberar um pólen denso que cria 1d4 cópias de si mesmo feitas de pétalas e cipós. As cópias se movem, mas possuem apenas 1 de Vida; ataques direcionados a elas as destroem instantaneamente, mas gastam a ação do atacante.",
+          "inata": false,
+          "grau_ascensao": 5,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "julgamento-do-lotus",
+          "nome": "Julgamento do Lótus",
+          "descricao": "Gasta uma quantidade massiva de Arché para canalizar um feixe concentrado de seiva fervente e flora apodrecida diretamente de seu núcleo. Causa dano massivo em linha reta e o alvo atingido tem sua Defesa Mágica reduzida em 5 pontos pelos próximos 2 turnos.",
+          "inata": false,
+          "grau_ascensao": 7,
+          "condicao": null,
+          "suprema": true
+        }
+      ]
+    }
+  },
+  "idolo-das-cinzas": {
+    "nome": "O Ídolo das Cinzas",
+    "categoria": "chefe",
+    "elemento": "fogo",
+    "comportamento_e_alvo_prioritario": "Inquisidor implacável e punitivo. O Ídolo mantém distância levitando pelo campo de batalha, inundando áreas com chamas. Ele foca primariamente os personagens que causam o maior dano ou que realizaram curas no turno anterior, tratando-os como \"hereges\" que devem ser purgados.",
+    "ponto_fraco": "O Halo Dourado. O corpo da criatura é feito de cinzas voláteis e tecido, possuindo alta resistência, mas o halo cravado em seu rosto é o canalizador de sua levitação e magias. Acertos críticos ou ataques pesados (com penalidade declarada de acerto) direcionados ao halo desestabilizam o Ídolo. Ao receber dano massivo no halo, ele cai no chão: seu deslocamento é zerado, sua \"Aura Crematória\" é dissipada e ele não pode conjurar magias em área por 1 turno.",
+    "atributos": {
+      "for": 1,
+      "des": 2,
+      "con": 3,
+      "int": 3,
+      "sab": 3,
+      "car": 0
+    },
+    "status": {
+      "vida": {
+        "base": 80,
+        "mult_ascensao": 12
+      },
+      "sanidade": {
+        "base": 50,
+        "mult_ascensao": 5
+      },
+      "arche": {
+        "base": 60,
+        "mult_ascensao": 8
+      },
+      "defesa": {
+        "base": 10,
+        "bonus_atributo": {
+          "atributo": "des",
+          "valor": 2
+        },
+        "bonus_extra": {
+          "descricao": "Corpo de Cinzas e Veste Sagrada",
+          "valor": 4
+        },
+        "total": 16
+      },
+      "deslocamento_m": 9,
+      "tipo_deslocamento": "voo"
+    },
+    "pericias_treinadas": [
+      "ocultismo",
+      "vontade",
+      "percepcao",
+      "intimidacao",
+      "iniciativa"
+    ],
+    "ataques_basicos": [
+      {
+        "nome": "Garras Flagelantes",
+        "pericia": "luta",
+        "dano": {
+          "dados": "1d8",
+          "atributo": "des"
+        },
+        "descricao": null
+      },
+      {
+        "nome": "Centelha Punitiva",
+        "pericia": "pontaria",
+        "dano": {
+          "dados": "1d10",
+          "atributo": "int"
+        },
+        "descricao": "Dispara um projétil de fogo superaquecido."
+      }
+    ],
+    "habilidades": {
+      "inicial": 3,
+      "maximo_progressao": 7,
+      "lista": [
+        {
+          "id": "aura-crematoria",
+          "nome": "Aura Crematória",
+          "descricao": "O calor ao redor do Ídolo é insuportável. Qualquer criatura que inicie o turno a até 1 quadrado (1,5m) dele recebe 1d6 de dano verdadeiro de queimadura.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "passo-fluido",
+          "nome": "Passo Fluido",
+          "descricao": "Por não tocar o chão, ele é imune a terrenos difíceis e armadilhas de contato físico no solo.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "manto-em-combustao",
+          "nome": "Manto em Combustão",
+          "descricao": "Quando os Pontos de Vida do Ídolo chegam a 50%, seu manto incendeia. Ele ganha uma Ação Bônus extra por turno, mas sua Defesa é reduzida em 2 pontos devido à agressividade imprudente.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": "Ativa quando a Vida do Ídolo chega a 50% (Fase 2).",
+          "suprema": false
+        },
+        {
+          "id": "repulsao-termica",
+          "nome": "Repulsão Térmica",
+          "descricao": "Pode usar sua Reação para liberar uma onda de calor quando atingido por um ataque corpo a corpo, empurrando o atacante 3 metros para trás.",
+          "inata": false,
+          "grau_ascensao": 2,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "cortejo-de-lanternas",
+          "nome": "Cortejo de Lanternas",
+          "descricao": "O Ídolo invoca lanternas flutuantes pelo mapa. Enquanto as lanternas estiverem ativas, ele tem Vantagem em testes de Ocultismo e Vontade. As lanternas podem ser destruídas pelos jogadores.",
+          "inata": false,
+          "grau_ascensao": 4,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "corpo-volatil",
+          "nome": "Corpo Volátil",
+          "descricao": "A densidade das cinzas torna o Ídolo imune a Acertos Críticos em qualquer parte do corpo, exceto no Ponto Fraco (o Halo).",
+          "inata": false,
+          "grau_ascensao": 6,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "ocaso-do-falso-deus",
+          "nome": "Ocaso do Falso Deus",
+          "descricao": "Ao chegar a 0 Pontos de Vida, a criatura implode. Todos num raio de 6 metros devem fazer um teste de Reflexos para não receberem dano massivo de queimadura de suas cinzas finais.",
+          "inata": false,
+          "grau_ascensao": 8,
+          "condicao": null,
+          "suprema": false
+        }
+      ]
+    },
+    "manipulacao_elemental": {
+      "inicial": 3,
+      "maximo_progressao": 7,
+      "lista": [
+        {
+          "id": "pilar-da-purificacao",
+          "nome": "Pilar da Purificação",
+          "descricao": "Gasta Arché para fazer um pilar de chamas irromper do chão em um raio de 3x3 quadrados, a até 12 metros de distância. Alvos na área devem passar em Reflexos ou sofrem dano de Fogo e ficam com a condição \"Em Chamas\".",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "prisao-de-escoria",
+          "nome": "Prisão de Escória",
+          "descricao": "Consome Arché para lançar vidro e cinzas derretidas em um alvo. O alvo deve passar em Força/Atletismo; se falhar, fica com os pés fundidos ao chão (\"Enraizado\") até quebrar a crosta.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "erupcao-contida",
+          "nome": "Erupção Contida",
+          "descricao": "Uma vez por turno, ao acertar a Centelha Punitiva, pode gastar Arché para fazer o projétil explodir, causando metade do dano aos alvos adjacentes ao alvo original.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "lanca-do-purgatorio",
+          "nome": "Lança do Purgatório",
+          "descricao": "Consome Arché para conjurar uma linha reta de chamas de 12 metros a partir de si. Causa dano massivo e destrói coberturas físicas normais (madeira, pedra fina).",
+          "inata": false,
+          "grau_ascensao": 3,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "fogo-fatuo",
+          "nome": "Fogo Fátuo",
+          "descricao": "O Ídolo funde chamas à própria alma. Gasta Arché para que todos os seus ataques e magias ignorem Resistência a Fogo por 2 turnos.",
+          "inata": false,
+          "grau_ascensao": 5,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "mar-de-brasas",
+          "nome": "Mar de Brasas",
+          "descricao": "Gasta Arché para derreter o próprio piso da arena em um raio de 9x9. O chão se torna terreno difícil e causa dano de Fogo a quem tentar se mover sobre ele sem proteção.",
+          "inata": false,
+          "grau_ascensao": 7,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "julgamento-do-halo",
+          "nome": "Julgamento do Halo",
+          "descricao": "A habilidade suprema do Ídolo. Ele canaliza Arché no seu halo por um turno inteiro (ficando vulnerável). No turno seguinte, dispara um raio de calor solar condensado que causa dano letal, forçando testes de Constituição para não desmaiar instantaneamente com o choque térmico.",
+          "inata": false,
+          "grau_ascensao": 9,
+          "condicao": null,
+          "suprema": true
+        }
+      ]
+    }
+  }
+}
