@@ -1918,10 +1918,10 @@
       "nome": "Sinfonia das Estações",
       "descricao": "O corpo de uma fada reage de forma direta e involuntaria ao clima e a estação atual do mundo de Midgard, alterando seus tracos fisicos e concedendo uma caracteristica mistica passiva única conforme a estação vigente: Primavera (Regeneração de 1d8+2 de Vida no inicio de cada turno durante os 2 primeiros turnos de combate), Verão (poderes de suporte que concedem Escudo ou Proteção a aliados aumentam o valor em um bonus igual ao modificador de Sabedoria), Outono (+2 de bonus em testes de Vontade ou Misticismo para resistir a controle mental ou debuffs), Inverno (Resistência Elemental a dano de Agua/frio e +1 de Defesa permanente enquanto durar o inverno).",
       "parametros": {
-        "primavera": "regeneracao_1d8_mais_2_por_2_turnos",
-        "verao": "bonus_suporte_igual_mod_sabedoria",
-        "outono": "bonus_2_vontade_misticismo_vs_controle_mental",
-        "inverno": "resistencia_agua_frio_e_1_defesa_permanente"
+        "primavera": "regeneracao: 1d8+2 por 2 turnos",
+        "verao": "bônus em habilidades de suporte (cura e escudos) igual ao modificador sabedoria",
+        "outono": "bônus de +2 de vontade e misticismo contra controle mental",
+        "inverno": "resistência contra água e +1 defesa"
       }
     },
     "catalisadores": {
