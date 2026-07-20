@@ -113,7 +113,12 @@ export default function FichaVisual({
 
   const habEscolhidas = escolhas.habilidades_escolhidas || {}
   const habilidadesRaca = [
-    ...(raca?.habilidades_globais || []).filter((h) => (habEscolhidas.raca_globais || []).includes(h.id)),
+    // Habilidades "inatas" (ex.: Asas de Amion da Fada) valem pra raça
+    // inteira, sempre -- não ficam em habilidades_escolhidas, então
+    // aparecem aqui mesmo sem estar na lista de escolhidas.
+    ...(raca?.habilidades_globais || []).filter(
+      (h) => h.inata || (habEscolhidas.raca_globais || []).includes(h.id)
+    ),
     ...(raca?.habilidades_especificas || []).filter((h) => (habEscolhidas.raca_linhagem || []).includes(h.id)),
   ]
   const habilidadesClasse = (classe?.habilidades || []).filter((h) => (habEscolhidas.classe || []).includes(h.id))

@@ -36,8 +36,13 @@ export function LinhaResumo({ rotulo, children }) {
 // (snake_case) nem a estrutura de dados crua pro jogador. Usado tanto no
 // passo de Resumo do Wizard quanto na tela de detalhe do personagem.
 export default function ResumoEscolhas({ catalogo, escolhas, raca, linhagem, classe, origem, elemento, isCaca }) {
+  // Habilidades "inatas" (ex.: Asas de Amion da Fada) são concedidas a
+  // toda a raça automaticamente -- não entram em habilidades_escolhidas e
+  // não competem com as habilidades que o jogador de fato escolhe, mas
+  // ainda assim têm que aparecer no resumo.
+  const idsInatas = new Set((raca?.habilidades_globais || []).filter((h) => h.inata).map((h) => h.id))
   const nomesHabilidadesRaca = [
-    ...escolhas.habilidades_escolhidas.raca_globais,
+    ...new Set([...escolhas.habilidades_escolhidas.raca_globais, ...idsInatas]),
     ...escolhas.habilidades_escolhidas.raca_linhagem,
   ].map((id) => nomeHabilidade([raca?.habilidades_globais, raca?.habilidades_especificas], id))
 

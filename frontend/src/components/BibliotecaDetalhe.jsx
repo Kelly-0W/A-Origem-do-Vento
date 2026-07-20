@@ -23,11 +23,18 @@ function Habilidade({ h }) {
     <div className="stat-tile">
       <div className="flex items-center justify-between gap-2">
         <span className="font-display text-sm text-white">{h.nome}</span>
-        {h.tipo && (
-          <span className="text-[10px] uppercase tracking-widest text-mist border border-panel-border rounded px-1.5 py-0.5">
-            {h.tipo}
-          </span>
-        )}
+        <div className="flex items-center gap-1.5 shrink-0">
+          {h.inata && (
+            <span className="text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-1.5 py-0.5">
+              inata
+            </span>
+          )}
+          {h.tipo && (
+            <span className="text-[10px] uppercase tracking-widest text-mist border border-panel-border rounded px-1.5 py-0.5">
+              {h.tipo}
+            </span>
+          )}
+        </div>
       </div>
       <p className="text-xs text-mist leading-relaxed">{h.descricao}</p>
     </div>

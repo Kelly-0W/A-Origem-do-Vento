@@ -324,22 +324,43 @@ export default function CharacterWizard() {
         )}
 
         {passoAtual.key === 'habilidades_raca' && (
-          <PassoHabilidades
-            titulo={`Escolha ${limiteHabilidadesRaca()} habilidade(s) de raça`}
-            grupos={[
-              { rotulo: 'Globais', habilidades: raca?.habilidades_globais || [], origemLista: 'global' },
-              ...(linhagem
-                ? [{
-                    rotulo: `Específicas — ${linhagem.nome}`,
-                    habilidades: (raca?.habilidades_especificas || []).filter((h) => h.linhagem_id === linhagem.id),
-                    origemLista: 'especifica',
-                  }]
-                : []),
-            ]}
-            selecionadas={new Set([...escolhas.habilidades_escolhidas.raca_globais, ...escolhas.habilidades_escolhidas.raca_linhagem])}
-            limite={limiteHabilidadesRaca()}
-            onToggle={toggleHabilidadeRaca}
-          />
+          <div>
+            {(raca?.habilidades_globais || []).some((h) => h.inata) && (
+              <div className="mb-8">
+                <div className="text-xs uppercase tracking-widest text-mist mb-3">
+                  Inatas — concedidas automaticamente
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {raca.habilidades_globais.filter((h) => h.inata).map((h) => (
+                    <div key={h.id} className="text-left card-fantasy p-4 border-gold/40">
+                      <div className="font-display font-semibold mb-1 text-sm">{h.nome}</div>
+                      <p className="text-xs text-mist line-clamp-3">{h.descricao}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <PassoHabilidades
+              titulo={`Escolha ${limiteHabilidadesRaca()} habilidade(s) de raça`}
+              grupos={[
+                {
+                  rotulo: 'Globais',
+                  habilidades: (raca?.habilidades_globais || []).filter((h) => !h.inata),
+                  origemLista: 'global',
+                },
+                ...(linhagem
+                  ? [{
+                      rotulo: `Específicas — ${linhagem.nome}`,
+                      habilidades: (raca?.habilidades_especificas || []).filter((h) => h.linhagem_id === linhagem.id),
+                      origemLista: 'especifica',
+                    }]
+                  : []),
+              ]}
+              selecionadas={new Set([...escolhas.habilidades_escolhidas.raca_globais, ...escolhas.habilidades_escolhidas.raca_linhagem])}
+              limite={limiteHabilidadesRaca()}
+              onToggle={toggleHabilidadeRaca}
+            />
+          </div>
         )}
 
         {passoAtual.key === 'classe' && (

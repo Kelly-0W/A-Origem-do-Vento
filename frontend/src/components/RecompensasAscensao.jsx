@@ -16,6 +16,10 @@ function candidatosParaSlot(origemExigida, { raca, linhagem, classe, idsExcluido
   }
   if (origemExigida === 'raca' || origemExigida === 'classe_ou_raca') {
     for (const h of raca?.habilidades_globais || []) {
+      // Habilidades "inatas" (ex.: Asas de Amion da Fada) já são concedidas
+      // automaticamente a toda a raça -- não podem ser "escolhidas" de novo
+      // como recompensa de Ascensão.
+      if (h.inata) continue
       if (!idsExcluidos.has(h.id)) candidatos.push({ origem: 'raca_global', id: h.id, nome: h.nome, descricao: h.descricao })
     }
     if (linhagem) {
