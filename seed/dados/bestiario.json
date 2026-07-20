@@ -435,7 +435,7 @@
         {
           "id": "pilar-da-purificacao",
           "nome": "Pilar da Purificação",
-          "descricao": "Gasta Arché para fazer um pilar de chamas irromper do chão em um raio de 3x3 quadrados, a até 12 metros de distância. Alvos na área devem passar em Reflexos ou sofrem dano de Fogo e ficam com a condição \"Em Chamas\".",
+          "descricao": "Gasta 10 de Arché para fazer um pilar de chamas irromper do chão em um raio de 3x3 quadrados, a até 12 metros de distância. Alvos na área devem passar em Reflexos ou sofrem dano de Fogo e ficam com a condição \"Em Chamas\".",
           "inata": true,
           "grau_ascensao": null,
           "condicao": null,
@@ -444,7 +444,7 @@
         {
           "id": "prisao-de-escoria",
           "nome": "Prisão de Escória",
-          "descricao": "Consome Arché para lançar vidro e cinzas derretidas em um alvo. O alvo deve passar em Força/Atletismo; se falhar, fica com os pés fundidos ao chão (\"Enraizado\") até quebrar a crosta.",
+          "descricao": "Consome 8 de Arché para lançar vidro e cinzas derretidas em um alvo. O alvo deve passar em Força/Atletismo; se falhar, fica com os pés fundidos ao chão (\"Enraizado\") até quebrar a crosta.",
           "inata": true,
           "grau_ascensao": null,
           "condicao": null,
@@ -453,7 +453,7 @@
         {
           "id": "erupcao-contida",
           "nome": "Erupção Contida",
-          "descricao": "Uma vez por turno, ao acertar a Centelha Punitiva, pode gastar Arché para fazer o projétil explodir, causando metade do dano aos alvos adjacentes ao alvo original.",
+          "descricao": "Uma vez por turno, ao acertar a Centelha Punitiva, pode gastar 5 de Arché para fazer o projétil explodir, causando metade do dano aos alvos adjacentes ao alvo original.",
           "inata": true,
           "grau_ascensao": null,
           "condicao": null,
@@ -462,7 +462,7 @@
         {
           "id": "lanca-do-purgatorio",
           "nome": "Lança do Purgatório",
-          "descricao": "Consome Arché para conjurar uma linha reta de chamas de 12 metros a partir de si. Causa dano massivo e destrói coberturas físicas normais (madeira, pedra fina).",
+          "descricao": "Consome 15 de Arché para conjurar uma linha reta de chamas de 12 metros a partir de si. Causa dano massivo e destrói coberturas físicas normais (madeira, pedra fina).",
           "inata": false,
           "grau_ascensao": 3,
           "condicao": null,
@@ -471,7 +471,7 @@
         {
           "id": "fogo-fatuo",
           "nome": "Fogo Fátuo",
-          "descricao": "O Ídolo funde chamas à própria alma. Gasta Arché para que todos os seus ataques e magias ignorem Resistência a Fogo por 2 turnos.",
+          "descricao": "O Ídolo funde chamas à própria alma. Gasta 12 de Arché para que todos os seus ataques e magias ignorem Resistência a Fogo por 2 turnos.",
           "inata": false,
           "grau_ascensao": 5,
           "condicao": null,
@@ -480,7 +480,7 @@
         {
           "id": "mar-de-brasas",
           "nome": "Mar de Brasas",
-          "descricao": "Gasta Arché para derreter o próprio piso da arena em um raio de 9x9. O chão se torna terreno difícil e causa dano de Fogo a quem tentar se mover sobre ele sem proteção.",
+          "descricao": "Gasta 20 de Arché para derreter o próprio piso da arena em um raio de 9x9. O chão se torna terreno difícil e causa dano de Fogo a quem tentar se mover sobre ele sem proteção.",
           "inata": false,
           "grau_ascensao": 7,
           "condicao": null,
@@ -489,7 +489,7 @@
         {
           "id": "julgamento-do-halo",
           "nome": "Julgamento do Halo",
-          "descricao": "A habilidade suprema do Ídolo. Ele canaliza Arché no seu halo por um turno inteiro (ficando vulnerável). No turno seguinte, dispara um raio de calor solar condensado que causa dano letal, forçando testes de Constituição para não desmaiar instantaneamente com o choque térmico.",
+          "descricao": "A habilidade suprema do Ídolo. Ele canaliza 35 de Arché no seu halo por um turno inteiro (ficando vulnerável). No turno seguinte, dispara um raio de calor solar condensado que causa dano letal, forçando testes de Constituição para não desmaiar instantaneamente com o choque térmico.",
           "inata": false,
           "grau_ascensao": 9,
           "condicao": null,
