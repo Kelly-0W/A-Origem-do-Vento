@@ -1,0 +1,550 @@
+{
+  "regra_geral": {
+    "descricao": "Alguns mortais não apenas manipulam o Arché, mas são escolhidos pelas próprias divindades para serem suas vozes, mãos e olhos em A Origem do Vento. Esses indivíduos são chamados de Sagracânticos. Ser um Arauto não é uma profissão, é um fardo cósmico e um destino inescapável.",
+    "formula_cd_teste_resistencia": "12 + Modificador da perícia utilizada",
+    "regra_de_ouro_do_panteao": {
+      "titulo": "A Regra de Ouro do Panteão",
+      "descricao": "Para que o sistema de Sagracânticos seja utilizado em uma mesa, todos os jogadores devem concordar em ser Arautos.",
+      "excecao": "Única exceção é caso alguém queira escolher ser de Oruqai e ter a manipulação da caça, por seu método especial, eles não possuem sagracânticos.",
+      "impacto_narrativo": "O poder e o peso narrativo de um Sagracântico alteram drasticamente o tom da campanha. Uma equipe de Arautos lidará com problemas de escala continental ou divina, tornando inviável que um personagem comum acompanhe o grupo sem ficar para trás na narrativa e no nível de poder."
+    },
+    "jornada_ascensao_niveis": [
+      {
+        "id": "despertar",
+        "nome": "O Despertar",
+        "nivel": 0,
+        "descricao": "O personagem recebe a sua Habilidade Chave. Ela define sua utilidade principal, estabelecendo sua ligação única com a divindade desde o primeiro dia de sua jornada."
+      },
+      {
+        "id": "ascensao_1",
+        "nome": "Ascensão I",
+        "nivel": 1,
+        "descricao": "Uma melhoria inicial, passiva ou ativa, que amplia as formas de usar a Habilidade Chave."
+      },
+      {
+        "id": "ascensao_2",
+        "nome": "Ascensão II",
+        "nivel": 3,
+        "descricao": "A habilidade começa a ganhar um impacto maior, afetando os aliados ao redor ou alterando a percepção do Arauto sobre o mundo."
+      },
+      {
+        "id": "ascensao_3",
+        "nome": "Ascensão III",
+        "nivel": 5,
+        "descricao": "A Vontade do Deus. A Habilidade Chave sofre uma evolução drástica, ganhando forte impacto na narrativa ou no controle do ambiente."
+      },
+      {
+        "id": "ascensao_4",
+        "nome": "Ascensão IV",
+        "nivel": 8,
+        "descricao": "O Domínio Sagrado. O Sagracântico torna-se uma presença quase divina. A habilidade atinge seu ápice de utilidade, permitindo feitos antes considerados impossíveis para mortais."
+      },
+      {
+        "id": "ascensao_5",
+        "nome": "Ascensão V",
+        "nivel": 10,
+        "descricao": "A transcendência da forma mortal. O Sagracântico ganha a habilidade de se transformar, brevemente, em uma versão menor de sua divindade. Durante esse estado, as regras do jogo e da realidade ao seu redor são reescritas.",
+        "apelido": "Avatar Menor"
+      }
+    ]
+  },
+  "deuses": {
+    "amion": {
+      "nome": "Amion",
+      "descricao": "Amion é o grande Deus Árvore, a divindade da paz e da vida, tendo a própria árvore como o símbolo máximo de sua magnificência. Seus Arautos são criaturas pacíficas que buscam a harmonia entre todos os povos. Eles emanam uma aura de calmaria tão intensa que os enfermos e feridos são os primeiros a se aproximar, buscando o acalento de seu toque curativo.",
+      "pericia_resistencia": "fortitude",
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Toque da Alvorada Vital",
+          "descricao": "Através da conexão direta com as raízes de Amion, sua capacidade de canalizar a vida transcende os limites normais do corpo biológico.",
+          "execucao": "padrao",
+          "alcance": "toque",
+          "dano": null,
+          "efeito_texto": "Nulo (Cura 1d8 + modificador de Misticismo)",
+          "alvo": "1 criatura",
+          "duracao": "instantaneo",
+          "custo_arche": 1,
+          "efeito_adicional": {
+            "nome": "Transbordo Vital (Efeito Passivo)",
+            "descricao": "Sempre que você curar um aliado e o valor da cura exceder os pontos de vida máximos dele, 50% desse valor excedente é convertido em Vida Bônus Momentânea (pontos de vida temporários). Essa vida bônus dura até o fim da cena."
+          }
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Casca Protetora",
+          "descricao": "A energia do transbordo vital se solidifica levemente como folhas e cascas místicas ao redor do alvo protegido.",
+          "efeito": "Enquanto um aliado possuir qualquer quantidade da Vida Bônus Momentânea gerada pelo seu Transbordo Vital, ele recebe um bônus de +2 em sua Defesa e se torna imune à condição Sangramento."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Aura de Conciliação",
+          "descricao": "A calmaria de Amion passa a se projetar além do seu toque, afetando o ambiente ao seu redor.",
+          "efeito": "Fora de combate, você recebe Vantagem em qualquer teste de Diplomacia ou Persuasão voltado a acalmar conflitos e mediar a paz. Em combate, no início do seu turno, todos os aliados em alcance Curto que possuam Vida Bônus Momentânea recuperam 2 pontos de vida limpos."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Raízes Extensas",
+          "descricao": "Sua ligação com a terra se aprofunda, permitindo que a energia vital viaje através do solo ou das correntes de ar sem a necessidade do contato físico direto.",
+          "efeito": "O alcance do seu Toque da Alvorada Vital aumenta de Toque para Curto. Além disso, uma vez por rodada, quando você converter cura em Vida Bônus Momentânea, você pode optar por dividir esses pontos de vida temporários igualmente entre dois aliados que estejam dentro do alcance."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Resguardo do Retiro Celestial",
+          "descricao": "Você é capaz de ancorar a própria essência de Amion no plano material para evitar que a vida de seus protegidos se esvaia.",
+          "efeito": "Sempre que um aliado que possua a sua Vida Bônus Momentânea sofrer um golpe que reduziria seus pontos de vida a 0, a Vida Bônus é totalmente vermelha e consumida em vez disso. O aliado ignora o nocaute e permanece de pé com 5 pontos de vida ativos. Este efeito só pode ocorrer uma vez por aliado por cena."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "Forma do Deus Árvore",
+          "descricao": "Você transcende sua biologia mortal, permitindo que um casulo de pura energia natural envolva seu corpo e o transforme temporariamente em uma miniatura viva do próprio Amion.",
+          "execucao": "completa",
+          "alcance": "pessoal",
+          "alvo": "Você mesmo",
+          "duracao": "3 rodadas",
+          "custo_arche": 4,
+          "efeitos": [
+            {
+              "nome": "Imobilidade Absoluta",
+              "descricao": "Seu deslocamento terrestre é reduzido a 0. Você não pode se mover por meios normais ou ser deslocado por empurrões ou puxões (imunidade a deslocamento forçado)."
+            },
+            {
+              "nome": "Dobra de Ações",
+              "descricao": "A sua Ação de Movimento se transforma em uma Ação Padrão adicional. Isso significa que você pode realizar duas Ações Padrão em seu turno."
+            },
+            {
+              "nome": "Estabilização de Custo",
+              "descricao": "Qualquer poder, habilidade ou poder que originalmente possuía o custo de uma Ação de Movimento passa a custar uma Ação Padrão."
+            },
+            {
+              "nome": "Florescer Coletivo",
+              "descricao": "Toda cura ativa realizada por você durante o estado de Avatar afeta automaticamente todos os aliados em alcance Médio ao mesmo tempo, gerando o Transbordo Vital individualmente para cada um deles."
+            }
+          ]
+        }
+      }
+    },
+    "arima": {
+      "nome": "Arima",
+      "descricao": "Arima é a personificação do fim inevitável, uma figura temida e encapuzada que empunha uma foice acorrentada ao próprio braço. Visto pelo mundo como um terror absoluto, o próprio Deus encara seu fardo com a frieza mecânica de um antigo funcionário cumprindo sua rotina eterna. Seus Arautos, contudo, trazem uma nova paixão e fervor à função: eles são os responsáveis por conceder um destino tranquilo, digno e gentil às criaturas, guiando-as com compaixão na hora da transição.",
+      "pericia_resistencia": "vontade",
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Visão da Alma Efêmera",
+          "descricao": "Sua conexão com o Ceifador permite que seus olhos enxerguem a camada mais externa e superficial da essência das criaturas, revelando a fragilidade da matéria.",
+          "execucao": "livre",
+          "alcance": "longo",
+          "dano": null,
+          "efeito_texto": null,
+          "alvo": "Criaturas observadas",
+          "duracao": "permanente",
+          "custo_arche": 0,
+          "efeito": "Você consegue enxergar exatamente a quantidade de pontos de vida atuais de qualquer criatura que esteja em seu campo de visão. Além disso, você recebe Vantagem em testes de Percepção ou Intuição para notar se alguém está prestes a desfalecer ou se está escondendo ferimentos mortais."
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Percepção das Vontades",
+          "descricao": "Sua visão espiritual perfura a primeira camada, permitindo que você enxergue os sentimentos e os desejos mais imediatos que agitam a alma do alvo.",
+          "efeito": "Gastando 1 de Arché como uma Ação de Movimento, você lê o estado emocional atual ou o maior medo imediato de um alvo em alcance Médio. Se o alvo for um inimigo em combate, seu próximo ataque contra ele recebe um bônus de +2, pois você compreende exatamente a hesitação em sua guarda."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Aura do Destino Gentil",
+          "descricao": "O fervor de sua missão emana como um acalento fúnebre, fazendo com que aqueles que se aproximam do fim aceitem o repouso em vez de lutar com violência.",
+          "efeito": "Criaturas inimigas que estejam com metade (50%) ou menos de seus pontos de vida máximos sofrem uma penalidade de -2 em todos os seus testes de ataque e dano enquanto estiverem em alcance Curto de você. A proximidade com o seu fervor pacifica o ímpeto agressivo delas."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Vislumbre da Ação",
+          "descricao": "Sua visão atinge um patamar místico elevado. Você passa a enxergar os reflexos e intenções da alma se movendo instantes antes do corpo físico executar qualquer movimento real.",
+          "efeito": "Uma vez por rodada, quando você for alvo de um ataque ou habilidade vinda de um inimigo que você possa ver, você pode gastar 1 de Arché como uma Ação de Reação. Ao prever o trajeto exato do golpe antes dele acontecer, você recebe +5 de bônus na Defesa ou em seu teste de Reflexos contra aquela ação específica."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Corte Descarnado",
+          "descricao": "A sintonia entre seus olhos e sua arma se torna perfeita. Ao golpear, seus ataques seguem as linhas exatas do destino que você já desvendou na alma do oponente.",
+          "efeito": "Seus ataques contra alvos que já tiveram as vontades ou sentimentos lidos por você (através da Percepção das Vontades) passam a ignorar completamente qualquer tipo de resistência a dano física ou mágica, além de impedirem o alvo de utilizar Ações de Reação defensivas contra o seu golpe."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "Ceifador do Crepúsculo",
+          "descricao": "Você transcende sua mortalidade, transfigurando-se temporariamente em uma silhueta sombria e encapuzada, com uma foice espiritual acorrentada ao seu braço, trazendo o terror de Arima aliado ao seu fervor cirúrgico.",
+          "execucao": "completa",
+          "alcance": "pessoal",
+          "alvo": "Você mesmo",
+          "duracao": "3 rodadas",
+          "custo_arche": 4,
+          "efeitos": [
+            {
+              "nome": "Manto da Inevitabilidade",
+              "descricao": "No início de cada um dos seus turnos neste estado (e imediatamente após realizar qualquer ação de ataque), você se dissolve no vácuo e se torna completamente Invisível. Seu primeiro ataque realizado enquanto estiver oculto por esta invisibilidade ganha Vantagem absoluta no teste de acerto."
+            },
+            {
+              "nome": "Gatilho de Execução",
+              "descricao": "Se você desferir um ataque físico ou elemental contra qualquer criatura cujos pontos de vida atuais estejam em 20% ou menos do total máximo dela, você corta diretamente o fio de sua existência. O alvo é Executado imediatamente (morre na hora), ignorando quaisquer habilidades passivas de sobrevivência, efeitos de regeneração por reação ou mecânicas que o fariam resistir com 1 ponto de vida."
+            }
+          ]
+        }
+      }
+    },
+    "fenix": {
+      "nome": "Fênix",
+      "descricao": "Fênix é a divindade do fogo, da justiça e da juventude. Ela se manifesta como uma majestosa ave de fogo, mostrando que as chamas são a representação máxima da energia e do esplendor, não da mera destruição, embora o fogo ainda guarde a capacidade de ferir severamente aqueles que violam a ordem. Seus Arautos são defensores fervorosos da justiça, agindo com intensidade e grande perícia social para encontrar o equilíbrio exato entre a razão e os sentimentos.",
+      "pericia_resistencia": "velocidade",
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Último Sussurro do Fulgor",
+          "descricao": "A fagulha inextinguível da Fênix reside em você, permitindo que o calor da vida lute contra o frio da morte no último instante.",
+          "execucao": "reacao",
+          "alcance": "curto",
+          "dano": null,
+          "efeito_texto": null,
+          "alvo": "Você mesmo ou 1 aliado",
+          "duracao": "1 rodada",
+          "custo_arche": 1,
+          "efeito": "Sempre que você ou um aliado em alcance Curto sofrer um dano que reduziria seus pontos de vida a 0, você pode reagir imediatamente para inflamar o espírito do alvo com energia pura. O alvo não cai inconsciente e ignora a condição Caído temporariamente; ele recebe uma Ação Padrão imediata para executar fora de seu turno antes de desabar. Qualquer dano ou cura gerado por esta ação recebe um bônus igual ao seu modificador de Misticismo."
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Elo da Razão e Fervor",
+          "descricao": "Sua presença exala o esplendor e a expertise social da deusa, permitindo desarmar conflitos ou inflamar a determinação dos justos.",
+          "efeito": "Fora de combate, você recebe Vantagem em testes de Diplomacia e Intuição ao atuar como mediador ou julgar disputas. Em combate, se o alvo afetado pelo seu Último Sussurro do Fulgor utilizar a ação bônus para atacar a criatura exata que o derrubou, ele realiza o ataque com Vantagem."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Labareda da Justiça",
+          "descricao": "O fogo que fere os culpados serve de combustível e vigor para os seus aliados.",
+          "efeito": "Sempre que você causar dano de fogo a um inimigo através de um ataque ou habilidade, a energia térmica se dispersa como esplendor. O aliado mais próximo em alcance Curto recebe +2 de bônus em seu próximo teste de ataque ou salvaguarda devido à energia radiante recebida."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Purificação Juvenil",
+          "descricao": "A vitalidade renovadora da juventude da Fênix limpa as impurezas da carne e expande os horizontes da sua técnica.",
+          "efeito": "O alcance do seu Último Sussurro do Fulgor aumenta para Médio. Além disso, quando a habilidade é ativada, a chama purificadora remove instantaneamente as condições Cego, Lentidão ou Tonto do alvo afetado antes que ele execute sua ação bônus."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Fulgor Inextinguível",
+          "descricao": "A energia transferida pelo seu sussurro final se torna tão intensa que pode reescrever o destino da derrota.",
+          "efeito": "Se o alvo do seu Último Sussurro do Fulgor conseguir nocautear ou eliminar qualquer inimigo usando a ação bônus concedida pela habilidade, a chama consome a essência do oponente derrotado. O aliado recupera a consciência imediatamente, estabiliza e se mantém de pé com pontos de vida ativos iguais ao modificador de Misticismo do Arauto."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "Magnificência da Fênix",
+          "descricao": "Você transcende sua carcaça mortal e se transfigura completamente em uma versão menor da própria Fênix, um ser de puro fogo, elegância e juventude eterna. Devido à natureza imortal da deusa ave, esta metamorfose consome mais energia, mas sustenta-se por mais tempo no plano material.",
+          "execucao": "completa",
+          "alcance": "pessoal",
+          "alvo": "Você mesmo",
+          "duracao": "5 rodadas",
+          "custo_arche": 5,
+          "efeito_base": "Enquanto estiver nesta forma, você recebe asas de chamas puras que concedem deslocamento de voo idêntico ao seu deslocamento terrestre e emana uma aura de calor que causa 1d6 de dano de fogo a inimigos adjacentes no início de seus turnos.",
+          "efeitos": [
+            {
+              "nome": "Renascimento do Avatar",
+              "descricao": "Diferente de todas as outras formas de Avatar Menor, se você sofrer dano letal ou pontos de vida negativos que causariam sua morte definitiva enquanto estiver transformado, você não morre. O corpo de fogo explode em uma onda de luz, cancelando o dano excedente, e você simplesmente reverte imediatamente ao seu estado padrão mortal com 1 ponto de vida e o efeito de Avatar se encerra."
+            }
+          ]
+        }
+      }
+    },
+    "nidhogg": {
+      "nome": "Nidhogg",
+      "descricao": "Nidhogg é o deus da destruição, do caos e dos dragões, representando o conceito máximo de ferocidade no mundo. No passado distante, ele desejava manter a manipulação da terra restrita apenas às suas criações, os draconatos. Contudo, conforme seu povo escolhido se aproximou e se misturou com os humanos, Nidhogg se isolou em profunda reclusão, passando a ser simbolizado pelo esqueleto da cabeça de um dragão feito de ossos negros.",
+      "restricao_arautos": "Ao aceitar o pacto divino para conceder bênçãos a mortais, Nidhogg impôs uma restrição amarga: nem humanos e nem draconatos podem se tornar seus Arautos. Seus Sagracânticos pertencem a outras linhagens, sendo indivíduos furiosos, de pavio curto, capazes de explodir a qualquer momento sob o peso da fúria ancestral do deus do caos.",
+      "pericia_resistencia": "luta",
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Fúria do Estopim Caótico",
+          "descricao": "A ferocidade destrutiva de Nidhogg queima em suas veias como um poder avassalador que se recusa a ser contido, cobrando um preço físico por sua liberação.",
+          "execucao": "livre",
+          "alcance": "pessoal",
+          "dano": null,
+          "efeito_texto": null,
+          "alvo": "Você mesmo",
+          "duracao": "3 rodadas",
+          "custo_arche": 1,
+          "efeito": "Você manifesta a insubmissão do caos. Seus ataques físicos ou elementais recebem um bônus de +1d10 de dano bruto. No entanto, a violência do golpe gera um refluxo em seu próprio corpo: sempre que você acertar um ataque sob este efeito, você sofre recoil igual à metade (50%) do dano bônus causado, recebendo esse valor como dano direto à sua Vida. Além disso, sua mente se torna insubmissa, concedendo +2 de bônus contra efeitos de encanto ou pacificação."
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Vontade Incomplacente",
+          "descricao": "O sofrimento causado pelo refluxo do seu próprio poder não debilita você; em vez disso, alimenta sua teimosia e obstinação em combate.",
+          "efeito": "Sempre que você sofrer dano de recoil vindo da sua Habilidade Chave, a dor enrijece seu corpo, concedendo +2 de bônus na Defesa até o início do seu próximo turno. Adicionalmente, você se torna completamente imune a habilidades narrativas ou mecânicas que tentem forçar a paz ou acalmar suas emoções à força."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Detonação por Refluxo",
+          "descricao": "A energia caótica que machuca o seu corpo não é desperdiçada, ela transborda violenta para o ambiente ao redor.",
+          "efeito": "Quando você recebe o dano de recoil provocado pela sua Fúria do Estopim Caótico, a energia excedente explode para fora de sua pele. Todas as criaturas inimigas adjacentes (alcance Toque) sofrem instantaneamente dano bruto igual ao valor exato do recoil que você acabou de sofrer."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Feracidade Desatada",
+          "descricao": "O caos encontra sua força máxima na destruição iminente. Quanto mais perto da ruína você está, mais destrutivos se tornam seus golpes.",
+          "efeito": "Para cada 10 pontos de vida que você perder abaixo do seu valor máximo (seja por ataques inimigos ou pelo recoil do seu próprio poder), o dano bônus fornecido pela sua habilidade Fúria do Estopim Caótico aumenta em +2 de dano fixo permanente enquanto a fúria estiver ativa."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Ruptura de Matéria",
+          "descricao": "Seus ataques carregam tamanha negação da ordem física que a própria estrutura da realidade se estilhaça onde seus golpes caem.",
+          "efeito": "Seus ataques realizados enquanto a Habilidade Chave estiver ativa passam a ignorar completamente qualquer tipo de resistência a dano elemental ou física dos alvos, além de reduzirem a Defesa do alvo atingido em -2 até o fim da cena (efeito cumulativo até um máximo de -6)."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "Soberano do Caos Primordial",
+          "descricao": "Você transcende sua biologia mortal, transfigurando-se temporariamente em uma manifestação colossal de ossos negros que mistura a fúria de Nidhogg com as feições dos draconatos do passado distante. Uma criatura absolutamente incomplacente que curva as leis do campo de batalha através do sofrimento.",
+          "execucao": "completa",
+          "alcance": "pessoal (aura de alcance médio)",
+          "alvo": "Você mesmo e o terreno ao redor",
+          "duracao": "3 rodadas",
+          "custo_arche": 4,
+          "efeitos": [
+            {
+              "nome": "Absorção de Refluxo",
+              "descricao": "Você se torna completamente imune ao dano de recoil gerado pela sua Habilidade Chave, retendo o bônus de dano destrutivo integralmente sem ferir a si mesmo."
+            },
+            {
+              "nome": "Incomplacência Absoluta",
+              "descricao": "Seu corpo ignora qualquer condição que tente reduzir suas ações ou sua mobilidade. Você se torna totalmente imune a Lentidão, Tonto, Atordoado ou Paralisado."
+            },
+            {
+              "nome": "Terreno da Fúria Espelhada",
+              "descricao": "O solo em um alcance Médio a partir de você racha, ferve e emana uma fumaça negra de pura agonia. Qualquer criatura inimiga que realizar um ataque ou habilidade ofensiva enquanto estiver pisando neste terreno sofre instantaneamente a dor de sua própria fúria, recebendo dano espiritual direto igual à metade (50%) do dano bruto total que ela tentou infligir ao seu alvo."
+            }
+          ]
+        }
+      }
+    },
+    "tetis": {
+      "nome": "Tétis",
+      "descricao": "Tétis é a divindade dos mares, das águas e da adaptabilidade absoluta. Na antiguidade, era reverenciada como a deusa da vida, sendo amplamente conhecida por sua profunda complacência, generosidade e carinho para com os humanos. Seus Arautos são reflexos vivos dessa essência: seres em eterna mudança que vivem e agem como um fluido, moldando suas mentes e corpos para se adaptarem perfeitamente a qualquer situação, obstáculo ou ambiente.",
+      "pericia_resistencia": "reflexos",
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Fluxo da Reversão Adaptável",
+          "descricao": "A natureza fluida de Tétis permite que você altere a polaridade de suas próprias técnicas no momento da execução, adaptando o efeito à necessidade do combate.",
+          "execucao": "bonus",
+          "alcance": "o mesmo da habilidade original",
+          "dano": null,
+          "efeito_texto": null,
+          "alvo": "1 criatura",
+          "duracao": "instantaneo",
+          "custo_arche": null,
+          "custo_arche_texto": "+1 de Arché adicional (somado ao custo da habilidade que está sendo modificada)",
+          "efeitos": [
+            {
+              "nome": "Reversão Vital (Cura para Dano)",
+              "descricao": "Uma habilidade originalmente de cura passa a causar Dano Bruto igual ao valor que seria curado contra um inimigo dentro do alcance da técnica."
+            },
+            {
+              "nome": "Reversão Complacente (Dano para Cura)",
+              "descricao": "Uma habilidade originalmente de dano passa a curar um aliado dentro do alcance da técnica. O alvo recupera pontos de vida iguais a apenas metade do valor de dano original da técnica."
+            }
+          ]
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Membrana Maleável",
+          "descricao": "Seu corpo começa a herdar as propriedades físicas da água, ajustando-se instantaneamente para repelir ameaças elementais.",
+          "efeito": "Sempre que você sofrer dano elemental (Fogo, Terra, Vento, etc.), sua estrutura molecular se adapta. Você recebe resistência a esse tipo específico de dano elemental até o início do seu próximo turno. Além disso, você ganha Vantagem em testes narrativos ou de perícia para escapar de amarras físicas, algemas ou áreas de confinamento."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Fluidez de Movimento",
+          "descricao": "A rigidez do mundo não consegue prender um Arauto que flui como o oceano. Suas técnicas invertidas passam a carregar a força das marés.",
+          "efeito": "Você se torna completamente imune a penalidades de movimento causadas por terreno difícil. Além disso, quando você utilizar a Reversão Vital (Cura para Dano), o impacto é tão violento que o inimigo atingido deve passar em um teste de Fortitude ou ser empurrado 3 metros para trás e receber a condição Lentidão até o final do turno dele."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Transparência Generosa",
+          "descricao": "A adaptabilidade do seu fluxo se expande, permitindo que suas técnicas invertidas alcancem alvos mais distantes através das correntes de ar ou do solo.",
+          "efeito": "Ao aplicar o Fluxo da Reversão Adaptável, o alcance da habilidade original que está sendo modificada aumenta em uma categoria (de Toque para Curto, ou de Curto para Médio, por exemplo) para aquela execução."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Maré de Purificação",
+          "descricao": "A generosidade antiga de Tétis flui através das suas mãos, limpando os males do corpo daqueles que você escolhe salvar.",
+          "efeito": "O limite de conversão da sua Reversão Complacente (Dano para Cura) aumenta: agora o aliado recupera pontos de vida iguais a 75% do dano original da técnica. Além disso, se a cura gerada por essa inversão restabelecer os pontos de vida do aliado até o valor máximo dele, qualquer condição negativa ativa (como Envenenado, Queimadura ou Paralisado) é purificada e removida instantaneamente."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "Manifestação da Linha Marinha",
+          "descricao": "Você transcende sua forma sólida, transfigurando-se temporariamente em uma versão menor da própria deusa Tétis, envolta por um manto marinho flutuante e translúcido. Seu corpo perde a densidade, tornando as leis da matéria obsoletas para os seus inimigos.",
+          "execucao": "completa",
+          "alcance": "pessoal",
+          "alvo": "Você mesmo",
+          "duracao": "3 rodadas",
+          "custo_arche": 4,
+          "efeitos": [
+            {
+              "nome": "Intangibilidade Marinha",
+              "descricao": "Você se torna completamente imune a dano físico não mágico (impacto, corte e perfuração). Contra ataques físicos de origem mágica ou sobrenatural, você recebe 50% de resistência a dano. Quando um inimigo tenta desferir um golpe físico contra você, seu corpo simplesmente se molda, abrindo fendas líquidas para que as lâminas e projéteis atravessem o seu torso sem causar ferimentos."
+            },
+            {
+              "nome": "Vazão Infinita",
+              "descricao": "O custo de Arché adicional para ativar o seu Fluxo da Reversão Adaptável é reduzido para 0 durante o estado de Avatar (você ainda paga o custo normal da habilidade base, mas a inversão se torna gratuita)."
+            },
+            {
+              "nome": "Gotículas de Alento",
+              "descricao": "Toda vez que um ataque físico inimigo atravessar seu corpo devido à Intangibilidade Marinha, a água dispersada pelo impacto espirra em direção aos seus companheiros. Todos os aliados em alcance Curto recuperam pontos de vida limpos iguais ao seu modificador de Misticismo."
+            }
+          ]
+        }
+      }
+    },
+    "tod": {
+      "nome": "Tod",
+      "descricao": "Tod não é um indivíduo ou uma entidade com forma definida; ele é um local, a própria essência sombria primordial. Ele é o deus das trevas, da luz e da loucura, manifestando-se como uma escuridão viva e maleável que se molda e se contorce de acordo com sua própria vontade caótica. Seus Arautos são os filhos legítimos dessa insensatez. Quase sempre sorridentes de forma macabra e mentalmente perturbados, esses Sagracânticos carregam uma mente fraturada que reflete o vazio incompreensível de seu patrono, usando o terror psicológico como sua maior arma.",
+      "pericia_resistencia": null,
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Invasão da Quimera Lunática",
+          "descricao": "A maleabilidade sombria de Tod permite que você perfure as barreiras mentais de uma criatura, projetando ilusões aterrorizantes e infligindo pura dor psicológica diretamente no âmago do alvo.",
+          "execucao": "padrao",
+          "alcance": "medio",
+          "dano": null,
+          "efeito_texto": null,
+          "alvo": "1 criatura",
+          "duracao": "Instantâneo (Dor) ou Até o fim do seu próximo turno (Ilusão)",
+          "custo_arche": 1,
+          "efeito": "Você invade a mente do alvo. A vítima deve realizar um teste de resistência de Vontade. Se falhar, ela sofre 1d6 de Dano Mental (subtraído diretamente de sua Sanidade ou Vida, conforme a regra da mesa) devido à dor agonizante e passa a enxergar uma ilusão perturbadora que distorce a realidade ao seu redor. Sob o efeito dessa ilusão, o alvo sofre uma penalidade de -2 em sua Defesa e em seu próximo teste de ataque.",
+          "efeito_adicional": {
+            "nome": "Uso Fora de Combate",
+            "descricao": "Fora de combate, você pode gastar esta habilidade sem custo de Arché para projetar pequenas ilusões visuais ou sonoras de curta duração no ambiente, alterando temporariamente a percepção de pessoas comuns."
+          }
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Sorriso Macabro do Vazio",
+          "descricao": "Sua mente já está tão despedaçada pela escuridão que tentar controlar ou ler seus pensamentos se torna um erro fatal para qualquer criatura.",
+          "efeito": "Você se torna completamente imune a efeitos mágicos ou mundanos de leitura de mente, possessão ou controle mental (sua mente já pertence à loucura). Além disso, sua natureza imprevisível e sorridente confere Vantagem em testes de Intimidação ou Enganação fora de combate, pois as pessoas não conseguem discernir suas verdadeiras intenções."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Penumbra Alucinógena",
+          "descricao": "A dualidade entre a luz e as trevas de Tod racha a percepção dos inimigos ao redor do alvo da sua invasão.",
+          "efeito": "Quando você executa a Invasão da Quimera Lunática, um flash violento de luz mística seguido por uma escuridão opaca explode ao redor do alvo. Todas as criaturas inimigas em alcance Curto do alvo principal devem passar num teste de Reflexos ou receberão a condição Tonto por 1 rodada, desorientadas pelas sombras mutáveis."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Contágio do Delírio",
+          "descricao": "A loucura de Tod é um vírus que anseia por se espalhar. Sua capacidade de invadir mentes se expande para subjugar múltiplos oponentes.",
+          "efeito": "Ao conjurar a Invasão da Quimera Lunática, você pode gastar 1 ponto de Arché adicional para estender o efeito. Em vez de afetar apenas uma criatura, a habilidade agora invade simultaneamente a mente de até 3 alvos que estejam dentro do alcance Médio. O dano e as penalidades de ilusão são aplicados individualmente para cada um que falhar no teste de resistência."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Maleabilidade Psíquica",
+          "descricao": "As ilusões criadas pela sua mente tornam-se tão densas e costuradas à realidade que a dor mental começa a deixar cicatrizes físicas nos oponentes.",
+          "efeito": "Inimigos sob o efeito da ilusão da sua Habilidade Chave passam a receber o dobro de dano de qualquer ataque ou habilidade de origem mental ou espiritual. Além disso, se um inimigo tentar gastar uma ação para tentar discernir ou dissipar voluntariamente as suas ilusões e falhar, o choque psicológico causa instantaneamente 2d6 de Dano Mental direto a ele."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "O Reino das Sombras",
+          "descricao": "Você deixa de existir como um indivíduo de carne e osso. Seu corpo se dissolve completamente no ar, e você se funde de forma absoluta com a totalidade do campo de batalha. O ambiente inteiro se torna o próprio Tod: um território de trevas inevitáveis e insanidade sussurrante.",
+          "execucao": "completa",
+          "alcance": "todo o campo de batalha (área de combate)",
+          "alvo": "O ambiente",
+          "duracao": "3 rodadas",
+          "custo_arche": 4,
+          "efeitos": [
+            {
+              "nome": "Intangibilidade Absoluta",
+              "descricao": "Como você agora é o próprio mapa, você não possui uma posição física. Você não pode ser alvo de nenhum ataque físico, elemental ou mágico direcionado, tornando-se completamente imune a qualquer dano material. Habilidades de área inimigas também não afetam você."
+            },
+            {
+              "nome": "Ataque Inevitável",
+              "descricao": "Em seus turnos, você pode conjurar suas habilidades, ataques e a Invasão da Quimera Lunática manifestando-as a partir de qualquer sombra ou ponto do campo de batalha, ignorando restrições normais de linha de visão ou cobertura. Seus ataques neste estado são considerados inevitáveis, concedendo Vantagem em todas as rolagens de acerto ou aumentando a CD de suas técnicas em +2."
+            },
+            {
+              "nome": "Asfixia Psíquica Coletiva",
+              "descricao": "No início do turno de cada inimigo dentro do campo de batalha, a escuridão viva invade seus pulmões e mentes. Todos os oponentes sofrem automaticamente 1d8 de Dano Mental e devem passar num teste de Vontade ou ficarão sob o efeito da condição Abalado enquanto o Reino das Sombras persistir."
+            }
+          ]
+        }
+      }
+    },
+    "vjetar": {
+      "nome": "Vjetar",
+      "descricao": "Vjetar é a grande Deusa Coruja, a divindade regente dos ventos e do conhecimento absoluto. Ela é comumente representada por pergaminhos, lufadas de vento ou pela silhueta de corujas vigilantes. Sendo uma criatura extremamente racional, Vjetar opera através de uma mente lógica e fria que se eleva muito além de qualquer sentimentalismo ou impulso emocional. Seus Arautos são indivíduos criteriosos, pragmáticos e cirurgicamente assertivos: para eles, não há meio-termo ou balanço de sentimentos, o que é o certo e o lógico é o que será executado, ponto final. Historicamente, devido à sua mente estratégica impecável, esses Arautos exerceram imensa influência política e militar em grandes reinos como Velmor e Caelith.",
+      "pericia_resistencia": "percepcao",
+      "jornada_ascensao": {
+        "despertar": {
+          "tipo": "habilidade_chave",
+          "nome": "Vento da Análise Assertiva",
+          "descricao": "Sua mente se alinha ao cálculo impecável de Vjetar, permitindo que você identifique o elo mais forte do seu grupo e guie os movimentos dele com correntes de ar calculadas para garantir a máxima eficiência.",
+          "execucao": "padrao",
+          "alcance": "medio",
+          "dano": null,
+          "efeito_texto": null,
+          "alvo": "1 aliado de sua escolha (que você julgue apto ou forte)",
+          "duracao": "1 rodada",
+          "custo_arche": 1,
+          "efeito": "Você traça uma rota eólica perfeita na mente e nas armas do alvo. O aliado escolhido recebe um bônus de +3 em seu próximo teste de ataque (chance de acerto) e adiciona o seu modificador de Misticismo como dano fixo adicional caso o golpe conecte.",
+          "efeito_adicional": {
+            "nome": "Uso Utilitário",
+            "descricao": "Fora de combate, a precisão acadêmica de Vjetar permite que você gaste esta habilidade sem custo de Arché para recordar instantaneamente de qualquer fato histórico, lei política ou segredo geográfico dos reinos de Velmor ou Caelith com Vantagem absoluta em testes de Investigação ou História."
+          }
+        },
+        "ascensao_1": {
+          "tipo": "melhoria",
+          "nome": "Crivo Inabalável",
+          "descricao": "O sentimentalismo do mundo não consegue dobrar a lógica fria que Vjetar instalou em sua consciência.",
+          "efeito": "Você se torna totalmente imune a condições ou habilidades que causem abalo emocional, medo, provocações mecânicas (como debuffs de provocação) ou efeitos de confusão mental. Além disso, quando você aplicar o Vento da Análise Assertiva em um aliado, o vento limpa a visão dele, tornando-o imune à condição Cego até o final do turno dele."
+        },
+        "ascensao_2": {
+          "tipo": "melhoria",
+          "nome": "Vetor de Propagação",
+          "descricao": "A assertividade de um golpe calculado se desdobra em vantagem estratégica para o restante das linhas de combate.",
+          "efeito": "Se o aliado que recebeu o bônus do seu Vento da Análise Assertiva acertar o ataque contra o inimigo, a lufada de vento da colisão ricocheteia. Você pode escolher um segundo aliado em alcance Curto daquele oponente para receber imediatamente um bônus de +2 de Defesa e +2 metros de deslocamento terrestre até o início do próximo turno dele."
+        },
+        "ascensao_3": {
+          "tipo": "melhoria",
+          "nome": "Coordenação dos Criteriosos",
+          "descricao": "Sua capacidade de processar dados em combate se expande, permitindo que sua análise guie mais de um guerreiro forte simultaneamente através das correntes de ar.",
+          "efeito": "Ao conjurar o Vento da Análise Assertiva, você pode gastar 1 de Arché adicional para selecionar até 2 aliados ao mesmo tempo dentro do alcance Médio. Ambos recebem o bônus integral de +3 no acerto e o dano adicional baseado no seu Misticismo em seus respectivos ataques."
+        },
+        "ascensao_4": {
+          "tipo": "melhoria",
+          "nome": "Trajetória Incontestável",
+          "descricao": "As rajadas de vento que guiam seus aliados tornam-se tão precisas que as leis da probabilidade e os obstáculos físicos são deixados de lado.",
+          "efeito": "Os ataques desferidos sob o efeito do seu Vento da Análise Assertiva passam a ignorar completamente qualquer tipo de cobertura (seja parcial ou total) e camuflagem que o inimigo possua. O vento curva a trajetória da flecha, da magia ou da lâmina exatamente até a brecha da armadura do oponente."
+        },
+        "ascensao_5": {
+          "tipo": "avatar_menor",
+          "nome": "Epifania da Deusa Coruja",
+          "descricao": "Você transcende sua humanidade e assume a forma imponente da própria deusa Vjetar em uma escala reduzida. Seus olhos tornam-se faróis de pura percepção arcana, suas vestes transformam-se em asas feitas de pergaminhos antigos e vento cortante. Este estado representa o ápice absoluto do poder mágico de longo alcance, onde a dúvida e a falha geométrica deixam de existir.",
+          "execucao": "completa",
+          "alcance": "pessoal (altera o alcance de suas técnicas para longo)",
+          "alvo": "Você mesmo",
+          "duracao": "3 rodadas",
+          "custo_arche": 4,
+          "efeitos": [
+            {
+              "nome": "Precisão Indefensável (Ataques Certeiros)",
+              "descricao": "Todos os seus ataques mágicos ou elementais à distância acertam os inimigos automaticamente. Você não precisa rolar dados para testar sua chance de acerto ou proficiência; a lógica da trajetória é perfeita e o golpe simplesmente se manifesta no alvo."
+            },
+            {
+              "nome": "Negação de Resistência",
+              "descricao": "Os inimigos tornam-se incapazes de se defender das suas habilidades mágicas. Qualquer criatura que seja alvo de uma técnica sua que exija um teste de resistência (como Fortitude, Reflexos ou Vontade) falha automaticamente no teste, recebendo o dano e as condições negativas de forma integral."
+            },
+            {
+              "nome": "Olhar de Papiro",
+              "descricao": "Você ganha visão total e irrestrita através de paredes, estruturas e invisibilidades em alcance Longo. Nenhum inimigo pode se esconder de você ou se beneficiar de testes de furtividade enquanto você estiver na Forma de Coruja."
+            }
+          ]
+        }
+      }
+    }
+  },
+  "notas_de_revisao": [
+    "O documento-fonte lista a CD de teste de resistência (perícia usada pelo Arauto) para Amion, Arima, Fênix, Nidhogg, Tétis e Vjetar, mas NÃO lista a de Tod -- 'pericia_resistencia' do Tod ficou null propositalmente. A própria habilidade-chave de Tod menciona 'teste de resistência de Vontade' para o ALVO resistir, mas isso é o teste do alvo, não necessariamente a perícia do Arauto que define a CD (Arima já usa Vontade para essa finalidade) -- então não dá pra simplesmente copiar Vontade para Tod sem confirmar com quem escreveu o documento.",
+    "Ascensão IV de Amion ('Resguardo do Retiro Celestial') tem a frase 'a Vida Bônus é totalmente vermelha e consumida em vez disso' -- 'vermelha' provavelmente é erro de digitação/autocorretor por outra palavra (ex: 'drenada', 'resgatada'), mas mantive o texto exatamente como está na fonte por não ter certeza da palavra pretendida.",
+    "Avatar Menor de Amion, efeito 'Estabilização de Custo', tem a frase 'Qualquer poder, habilidade ou poder que originalmente possuía o custo...' com 'poder' repetido -- também mantido verbatim da fonte pelo mesmo motivo.",
+    "Vários custos de Arché das melhorias intermediárias (Ascensão I a IV) e da Habilidade Chave de Tétis não têm valor fixo no texto-fonte (ex: Tétis usa '+1 de Arché adicional', outras dizem apenas 'gaste 1 de Arché' quando mencionado inline no efeito) -- isso já está refletido como está na fonte, sem completar nada por conta própria."
+  ]
+}
