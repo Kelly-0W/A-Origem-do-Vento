@@ -34,6 +34,7 @@ function ModalNovaCampanha({ usuario, onFechar, onCriada }) {
   const [nome, setNome] = useState('')
   const [descricao, setDescricao] = useState('')
   const [imagemBase64, setImagemBase64] = useState(null)
+  const [aceitaSagracanticos, setAceitaSagracanticos] = useState(false)
   const [processandoImagem, setProcessandoImagem] = useState(false)
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState(null)
@@ -70,6 +71,10 @@ function ModalNovaCampanha({ usuario, onFechar, onCriada }) {
         mestre_id: usuario.uid,
         jogadores_uids: [],
         codigo_convite: gerarCodigoConvite(),
+        // Flag informativa (NÃO é uma trava dura -- ver PainelAscensao/
+        // CharacterWizard): o Mestre pode topar um Sagracântico avulso
+        // mesmo com isso desmarcado, ex. um amigo extra entrando na mesa.
+        aceita_sagracanticos: aceitaSagracanticos,
         criado_em: serverTimestamp(),
         atualizado_em: serverTimestamp(),
       }
@@ -104,6 +109,19 @@ function ModalNovaCampanha({ usuario, onFechar, onCriada }) {
       <label className="flex flex-col gap-1.5 mb-5">
         <span className="text-[11px] uppercase tracking-widest text-mist">Imagem de capa</span>
         <input type="file" accept="image/*" onChange={selecionarImagem} disabled={processandoImagem} className="text-xs text-mist" />
+      </label>
+
+      <label className="flex items-start gap-2 mb-5 cursor-pointer">
+        <input
+          type="checkbox"
+          checked={aceitaSagracanticos}
+          onChange={(e) => setAceitaSagracanticos(e.target.checked)}
+          className="mt-1"
+        />
+        <span className="text-xs text-mist">
+          Esta campanha aceita Sagracânticos (Arautos de um deus). Isso é só um aviso pros jogadores — não impede
+          ninguém de trazer um Sagracântico mesmo desmarcado, ex. um amigo extra entrando na mesa depois.
+        </span>
       </label>
 
       {erro && <p className="text-blood-bright text-xs mb-4">{erro}</p>}

@@ -13,6 +13,7 @@ ARQUIVO_POR_COLECAO = {
     "elementos": "elementos.json",
     "itens": "itens.json",
     "bestiario": "bestiario.json",
+    "sagracanticos": "sagracanticos.json",
     # Usada pelo frontend pra saber em qual faixa de dificuldade
     # (facil/medio/dificil) cai o grau-alvo de uma Ascensao, e assim
     # mostrar a Provacao/Ritual certos (ver PainelAscensao.jsx).
@@ -47,7 +48,8 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Content-type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
-        self.wfile.write(json.dumps(resposta, ensure_ascii=False).encode("utf-8"))
+        self.wfile.write(json.dumps(
+            resposta, ensure_ascii=False).encode("utf-8"))
 
     def do_OPTIONS(self):
         self.send_response(204)

@@ -52,6 +52,7 @@ export default function ResumoEscolhas({ catalogo, escolhas, raca, linhagem, cla
 
   const nomesPoderes = escolhas.poderes_escolhidos.map((id) => elemento?.poderes?.[id]?.nome ?? id)
   const nomeEspiritual = escolhas.espiritual_escolhido ? elemento?.espirituais?.[escolhas.espiritual_escolhido]?.nome : null
+  const deusSagracantico = catalogo.sagracanticos?.deuses?.[escolhas.sagracantico_deus_id] || null
 
   const frase = [
     raca ? raca.nome : '(sem raça)',
@@ -60,6 +61,7 @@ export default function ResumoEscolhas({ catalogo, escolhas, raca, linhagem, cla
     classe ? classe.nome : '(sem classe)',
     origem ? `, origem ${origem.nome}${escolhas.origem_pericia_escolhida ? ` (perícia: ${nomePericia(catalogo, escolhas.origem_pericia_escolhida)})` : ''}` : '',
     elemento ? `, manipulador(a) de ${elemento.nome}` : '',
+    deusSagracantico ? `. Sagracântico de ${deusSagracantico.nome}` : '',
   ].filter(Boolean).join(' ')
 
   return (

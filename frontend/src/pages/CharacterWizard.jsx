@@ -23,6 +23,7 @@ function definirPassos(catalogo, escolhas) {
   const temLinhagem = linhagens.length > 0
 
   return [
+    { key: 'sagracantico', label: 'Sagracântico' },
     { key: 'raca', label: 'Raça' },
     { key: 'linhagem', label: 'Linhagem', condicional: () => temLinhagem },
     { key: 'habilidades_raca', label: 'Habilidades de Raça' },
@@ -42,7 +43,7 @@ export default function CharacterWizard() {
 
   const [passo, setPasso] = useState(0)
   const [carregando, setCarregando] = useState(true)
-  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {} })
+  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {} })
 
   const [nomePersonagem, setNomePersonagem] = useState('')
 
@@ -56,6 +57,7 @@ export default function CharacterWizard() {
     confirma_elegibilidade_elemento: false,
     poderes_escolhidos: [],
     espiritual_escolhido: null,
+    sagracantico_deus_id: null,
     atributos: { for: 0, des: 0, con: 0, int: 0, sab: 0, car: 0 },
     pericias_treinadas: [],
     habilidades_escolhidas: { raca_globais: [], raca_linhagem: [], classe: [] },
@@ -70,7 +72,7 @@ export default function CharacterWizard() {
 
   useEffect(() => {
     async function carregar() {
-      const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias']
+      const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos']
       const respostas = await Promise.all(colecoes.map((c) => api.buscarBiblioteca(c)))
       const novoCatalogo = {}
       colecoes.forEach((c, i) => { novoCatalogo[c] = respostas[i].dados?.itens ?? {} })
@@ -87,6 +89,16 @@ export default function CharacterWizard() {
   const origem = catalogo.origens?.[escolhas.origem_id] || null
   const elemento = catalogo.elementos?.[escolhas.elemento_id] || null
   const isCaca = escolhas.elemento_id === 'caca'
+  const deusSagracantico = catalogo.sagracanticos?.deuses?.[escolhas.sagracantico_deus_id] || null
+
+  // Raças vetadas pelo deus escolhido (ex.: Nidhogg não aceita humanos nem
+  // draconatos como Arautos -- ver seed/dados/sagracanticos.json) somem do
+  // passo de Raça antes mesmo do jogador chegar lá.
+  const racasDisponiveis = useMemo(() => {
+    const restritas = new Set(deusSagracantico?.restricao_arautos?.racas_restritas || [])
+    if (restritas.size === 0) return catalogo.racas
+    return Object.fromEntries(Object.entries(catalogo.racas || {}).filter(([id]) => !restritas.has(id)))
+  }, [catalogo.racas, deusSagracantico])
 
   const passos = useMemo(() => definirPassos(catalogo, escolhas), [catalogo, escolhas.raca_id, escolhas.elemento_id])
 
@@ -112,6 +124,17 @@ export default function CharacterWizard() {
       return { ...prev, pericias_treinadas: Array.from(new Set(garantidas)) }
     })
   }, [classe?.pericia_treinada_fixa, escolhas.origem_pericia_escolhida])
+
+  // Se a raça atual passou a ser vetada pelo deus recém-escolhido (ex.:
+  // trocou pra Nidhogg com Humano já selecionado), reseta a raça em vez de
+  // deixar uma combinação inválida parada no estado.
+  useEffect(() => {
+    const restritas = deusSagracantico?.restricao_arautos?.racas_restritas || []
+    if (escolhas.raca_id && restritas.includes(escolhas.raca_id)) {
+      selecionarRaca(null)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [escolhas.sagracantico_deus_id])
 
   function atualizar(campo, valor) {
     setEscolhas((prev) => ({ ...prev, [campo]: valor }))
@@ -146,6 +169,25 @@ export default function CharacterWizard() {
 
   function selecionarOrigem(id) {
     setEscolhas((prev) => ({ ...prev, origem_id: id, origem_pericia_escolhida: null }))
+  }
+
+  function selecionarSagracantico(deusId) {
+    setEscolhas((prev) => {
+      if (!deusId) {
+        return { ...prev, sagracantico_deus_id: null }
+      }
+      const deus = catalogo.sagracanticos?.deuses?.[deusId]
+      return {
+        ...prev,
+        sagracantico_deus_id: deusId,
+        // manipulação do elemento do deus não é escolha -- é automática e
+        // trava o passo de Elemento (ver renderização abaixo).
+        elemento_id: deus?.elemento_id || null,
+        confirma_elegibilidade_elemento: false,
+        poderes_escolhidos: [],
+        espiritual_escolhido: null,
+      }
+    })
   }
 
   function selecionarElemento(id) {
@@ -212,6 +254,8 @@ export default function CharacterWizard() {
   // isso genericamente no Resumo.
   function passoValido(key) {
     switch (key) {
+      case 'sagracantico':
+        return true
       case 'raca':
         return !!escolhas.raca_id
       case 'linhagem':
@@ -299,16 +343,65 @@ export default function CharacterWizard() {
       </div>
 
       <div className="card-fantasy p-8 min-h-[320px]">
+        {passoAtual.key === 'sagracantico' && (
+          <div>
+            <p className="text-mist text-sm mb-6">
+              Alguns mortais são escolhidos por uma divindade para serem seus Arautos — os Sagracânticos. Isso{' '}
+              <span className="text-white">não é obrigatório</span>: a maioria dos personagens é comum. Escolher um
+              deus define automaticamente qual elemento você manipula e pode restringir quais raças ficam
+              disponíveis a seguir.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <button
+                onClick={() => selecionarSagracantico(null)}
+                className={`text-left card-fantasy p-5 transition-colors
+                  ${!escolhas.sagracantico_deus_id ? 'border-gold' : 'hover:border-white/20'}`}
+              >
+                <div className="font-display font-semibold mb-2">Personagem Comum</div>
+                <p className="text-xs text-mist">
+                  Sem vínculo com nenhuma divindade. Escolhe o elemento de manipulação livremente mais adiante.
+                </p>
+              </button>
+              {Object.entries(catalogo.sagracanticos?.deuses || {}).map(([id, deus]) => (
+                <button
+                  key={id}
+                  onClick={() => selecionarSagracantico(id)}
+                  className={`text-left card-fantasy p-5 transition-colors
+                    ${escolhas.sagracantico_deus_id === id ? 'border-gold' : 'hover:border-white/20'}`}
+                >
+                  <div className="font-display font-semibold mb-2">{deus.nome}</div>
+                  <p className="text-xs text-mist mb-3 line-clamp-3">{deus.descricao}</p>
+                  <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
+                    Manipula: {catalogo.elementos?.[deus.elemento_id]?.nome ?? deus.elemento_id}
+                  </span>
+                  {(deus.restricao_arautos?.racas_restritas || []).length > 0 && (
+                    <p className="text-[11px] text-blood-bright mt-2">
+                      Não aceita: {deus.restricao_arautos.racas_restritas.map((rid) => catalogo.racas?.[rid]?.nome ?? rid).join(', ')}
+                    </p>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {passoAtual.key === 'raca' && (
-          <PassoEscolha
-            itens={catalogo.racas}
-            selecionadoId={escolhas.raca_id}
-            onSelecionar={selecionarRaca}
-            renderBadge={(item) => Object.entries(item.modificadores_atributo || {})
-              .filter(([, v]) => v !== 0)
-              .map(([k, v]) => `${v > 0 ? '+' : ''}${v} ${NOMES_ATRIBUTOS[k] ?? k}`)
-              .join(', ')}
-          />
+          <div>
+            {deusSagracantico && (
+              <p className="text-xs text-gold mb-5">
+                Como Sagracântico de {deusSagracantico.nome}, algumas raças podem não aparecer abaixo.
+              </p>
+            )}
+            <PassoEscolha
+              itens={racasDisponiveis}
+              selecionadoId={escolhas.raca_id}
+              onSelecionar={selecionarRaca}
+              renderBadge={(item) => Object.entries(item.modificadores_atributo || {})
+                .filter(([, v]) => v !== 0)
+                .map(([k, v]) => `${v > 0 ? '+' : ''}${v} ${NOMES_ATRIBUTOS[k] ?? k}`)
+                .join(', ')}
+            />
+          </div>
         )}
 
         {passoAtual.key === 'linhagem' && (
@@ -413,12 +506,25 @@ export default function CharacterWizard() {
 
         {passoAtual.key === 'elemento' && (
           <div>
-            <PassoEscolha
-              itens={catalogo.elementos}
-              selecionadoId={escolhas.elemento_id}
-              onSelecionar={selecionarElemento}
-              renderBadge={(item) => item.restricao_elegibilidade ? 'Restrição de elegibilidade' : 'Manipulação livre'}
-            />
+            {deusSagracantico ? (
+              <div className="card-fantasy p-5 border-gold/50">
+                <p className="text-[11px] uppercase tracking-widest text-mist mb-2">Definido pelo seu Sagracântico</p>
+                <div className="font-display font-semibold mb-2">
+                  {catalogo.elementos?.[escolhas.elemento_id]?.nome ?? escolhas.elemento_id}
+                </div>
+                <p className="text-xs text-mist">
+                  Sagracânticos de {deusSagracantico.nome} manipulam obrigatoriamente este elemento. Pra escolher
+                  outro, volte ao passo "Sagracântico" e selecione "Personagem Comum".
+                </p>
+              </div>
+            ) : (
+              <PassoEscolha
+                itens={catalogo.elementos}
+                selecionadoId={escolhas.elemento_id}
+                onSelecionar={selecionarElemento}
+                renderBadge={(item) => item.restricao_elegibilidade ? 'Restrição de elegibilidade' : 'Manipulação livre'}
+              />
+            )}
             {elemento?.restricao_elegibilidade && (
               <label className="mt-6 flex items-start gap-2 text-sm text-mist">
                 <input

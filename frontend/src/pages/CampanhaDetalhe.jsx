@@ -279,6 +279,13 @@ export default function CampanhaDetalhe() {
               {ehMestre ? 'Mestre' : 'Jogador'}
             </span>
           </div>
+          <p className="text-[11px] text-mist mb-2">
+            {campanha.aceita_sagracanticos ? (
+              <span className="text-gold">Aceita Sagracânticos</span>
+            ) : (
+              'Apenas personagens comuns (padrão)'
+            )}
+          </p>
           {campanha.descricao && <p className="text-mist mb-3 max-w-xl">{campanha.descricao}</p>}
           {ehMestre && (
             <button onClick={copiarCodigo} className="text-[11px] px-2 py-1 rounded border border-panel-border text-mist hover:border-white/30">
