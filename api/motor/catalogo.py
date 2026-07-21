@@ -18,8 +18,7 @@ import os
 
 # Este arquivo mora em api/motor/catalogo.py, entao a raiz do projeto (onde
 # fica seed/) esta dois niveis acima.
-PASTA_DADOS = os.path.join(os.path.dirname(
-    __file__), "..", "..", "seed", "dados")
+PASTA_DADOS = os.path.join(os.path.dirname(__file__), "..", "..", "seed", "dados")
 
 
 def carregar_catalogo():

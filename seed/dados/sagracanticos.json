@@ -122,6 +122,11 @@
             }
           ]
         }
+      },
+      "elemento_id": "natureza",
+      "restricao_arautos": {
+        "descricao": null,
+        "racas_restritas": []
       }
     },
     "arima": {
@@ -186,6 +191,11 @@
             }
           ]
         }
+      },
+      "elemento_id": "agua",
+      "restricao_arautos": {
+        "descricao": null,
+        "racas_restritas": []
       }
     },
     "fenix": {
@@ -247,12 +257,23 @@
             }
           ]
         }
+      },
+      "elemento_id": "fogo",
+      "restricao_arautos": {
+        "descricao": null,
+        "racas_restritas": []
       }
     },
     "nidhogg": {
       "nome": "Nidhogg",
       "descricao": "Nidhogg é o deus da destruição, do caos e dos dragões, representando o conceito máximo de ferocidade no mundo. No passado distante, ele desejava manter a manipulação da terra restrita apenas às suas criações, os draconatos. Contudo, conforme seu povo escolhido se aproximou e se misturou com os humanos, Nidhogg se isolou em profunda reclusão, passando a ser simbolizado pelo esqueleto da cabeça de um dragão feito de ossos negros.",
-      "restricao_arautos": "Ao aceitar o pacto divino para conceder bênçãos a mortais, Nidhogg impôs uma restrição amarga: nem humanos e nem draconatos podem se tornar seus Arautos. Seus Sagracânticos pertencem a outras linhagens, sendo indivíduos furiosos, de pavio curto, capazes de explodir a qualquer momento sob o peso da fúria ancestral do deus do caos.",
+      "restricao_arautos": {
+        "descricao": "Ao aceitar o pacto divino para conceder bênçãos a mortais, Nidhogg impôs uma restrição amarga: nem humanos e nem draconatos podem se tornar seus Arautos. Seus Sagracânticos pertencem a outras linhagens, sendo indivíduos furiosos, de pavio curto, capazes de explodir a qualquer momento sob o peso da fúria ancestral do deus do caos.",
+        "racas_restritas": [
+          "humano",
+          "draconato"
+        ]
+      },
       "pericia_resistencia": "luta",
       "jornada_ascensao": {
         "despertar": {
@@ -316,7 +337,8 @@
             }
           ]
         }
-      }
+      },
+      "elemento_id": "terra"
     },
     "tetis": {
       "nome": "Tétis",
@@ -394,6 +416,11 @@
             }
           ]
         }
+      },
+      "elemento_id": "agua",
+      "restricao_arautos": {
+        "descricao": null,
+        "racas_restritas": []
       }
     },
     "tod": {
@@ -466,6 +493,11 @@
             }
           ]
         }
+      },
+      "elemento_id": "trevas",
+      "restricao_arautos": {
+        "descricao": null,
+        "racas_restritas": []
       }
     },
     "vjetar": {
@@ -538,6 +570,11 @@
             }
           ]
         }
+      },
+      "elemento_id": "vento",
+      "restricao_arautos": {
+        "descricao": null,
+        "racas_restritas": []
       }
     }
   },

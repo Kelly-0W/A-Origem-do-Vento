@@ -88,11 +88,9 @@ def validar_escolhas_personagem(
 
         if linhagens:
             if not linhagem_id:
-                erros.append(
-                    f"A raca '{raca_id}' possui linhagens; e obrigatorio escolher uma.")
+                erros.append(f"A raca '{raca_id}' possui linhagens; e obrigatorio escolher uma.")
             else:
-                linhagem = next(
-                    (l for l in linhagens if l.get("id") == linhagem_id), None)
+                linhagem = next((l for l in linhagens if l.get("id") == linhagem_id), None)
                 if linhagem is None:
                     ids_validos = [l.get("id") for l in linhagens]
                     erros.append(
@@ -100,8 +98,7 @@ def validar_escolhas_personagem(
                         f"Opcoes: {ids_validos}."
                     )
         elif linhagem_id:
-            erros.append(
-                f"A raca '{raca_id}' nao possui linhagens, mas 'linhagem_id' foi enviado.")
+            erros.append(f"A raca '{raca_id}' nao possui linhagens, mas 'linhagem_id' foi enviado.")
 
         # habilidades de raça escolhidas (globais + especificas da linhagem)
         # -- SO a validade de cada id e checada aqui; a CONTAGEM total (que
@@ -109,12 +106,10 @@ def validar_escolhas_personagem(
         globais_escolhidas = hab_escolhidas.get("raca_globais", [])
         especificas_escolhidas = hab_escolhidas.get("raca_linhagem", [])
 
-        ids_globais_validos = {h["id"]
-                               for h in raca.get("habilidades_globais", [])}
+        ids_globais_validos = {h["id"] for h in raca.get("habilidades_globais", [])}
         for hid in globais_escolhidas:
             if hid not in ids_globais_validos:
-                erros.append(
-                    f"Habilidade global '{hid}' nao pertence a raca '{raca_id}'.")
+                erros.append(f"Habilidade global '{hid}' nao pertence a raca '{raca_id}'.")
 
         # habilidades_especificas fica achatada no nivel da RACA, cada item
         # marcado com 'linhagem_id' -- nao aninhada dentro de cada linhagem.
@@ -144,12 +139,10 @@ def validar_escolhas_personagem(
     else:
         hab_classe_escolhidas = hab_escolhidas.get("classe", [])
 
-        ids_hab_classe_validas = {h["id"]
-                                  for h in classe.get("habilidades", [])}
+        ids_hab_classe_validas = {h["id"] for h in classe.get("habilidades", [])}
         for hid in hab_classe_escolhidas:
             if hid not in ids_hab_classe_validas:
-                erros.append(
-                    f"Habilidade '{hid}' nao pertence a classe '{classe_id}'.")
+                erros.append(f"Habilidade '{hid}' nao pertence a classe '{classe_id}'.")
 
         # subclasse exige 3 habilidades da classe normal ja adquiridas -- nao
         # pode ser escolhida na criacao (Grau 0).
@@ -180,8 +173,7 @@ def validar_escolhas_personagem(
         qtd_base_raca = raca.get("qtd_habilidades_iniciais", 2)
         qtd_base_classe = classe.get("qtd_habilidades_iniciais", 1)
         extras_por_ascensao = contar_habilidades_extras_ate_grau(
-            grau_ascensao, catalogo.get(
-                "constantes_ascensao", {}).get("graus", {})
+            grau_ascensao, catalogo.get("constantes_ascensao", {}).get("graus", {})
         )
         qtd_esperada_total = qtd_base_raca + qtd_base_classe + extras_por_ascensao
 
@@ -208,8 +200,7 @@ def validar_escolhas_personagem(
     # uma lista 'classes_ids' em vez de 'classe_id' unico.
     classes_ids = escolhas.get("classes_ids")
     if classes_ids is not None and len(classes_ids) > 2:
-        erros.append(
-            f"Multiclasse permite no maximo 2 classes simultaneas (recebido: {len(classes_ids)}).")
+        erros.append(f"Multiclasse permite no maximo 2 classes simultaneas (recebido: {len(classes_ids)}).")
 
     # ---- Origem ----
     origem_id = escolhas["origem_id"]
@@ -220,8 +211,7 @@ def validar_escolhas_personagem(
         pericia_escolhida = escolhas["origem_pericia_escolhida"]
         opcoes_bruto = origem.get("pericias_opcoes", [])
         # cada opcao e um objeto {"pericia_id": ..., "nota": ...}, nao uma string direta
-        opcoes = [o["pericia_id"] if isinstance(
-            o, dict) else o for o in opcoes_bruto]
+        opcoes = [o["pericia_id"] if isinstance(o, dict) else o for o in opcoes_bruto]
         if pericia_escolhida not in opcoes:
             erros.append(
                 f"A pericia '{pericia_escolhida}' nao esta entre as opcoes da origem "
@@ -265,16 +255,14 @@ def validar_escolhas_personagem(
             espirituais_validos = set(elemento.get("espirituais", {}).keys())
             espiritual_escolhido = escolhas.get("espiritual_escolhido")
             if not espiritual_escolhido:
-                erros.append(
-                    "O elemento Caca exige a escolha de 1 espiritual em 'espiritual_escolhido'.")
+                erros.append("O elemento Caca exige a escolha de 1 espiritual em 'espiritual_escolhido'.")
             elif espiritual_escolhido not in espirituais_validos:
                 erros.append(
                     f"Espiritual '{espiritual_escolhido}' nao existe para Caca. "
                     f"Opcoes: {sorted(espirituais_validos)}."
                 )
             if escolhas.get("poderes_escolhidos"):
-                erros.append(
-                    "O elemento Caca nao usa 'poderes_escolhidos' -- use 'espiritual_escolhido'.")
+                erros.append("O elemento Caca nao usa 'poderes_escolhidos' -- use 'espiritual_escolhido'.")
         else:
             poderes_validos = set(elemento.get("poderes", {}).keys())
             poderes_escolhidos = escolhas.get("poderes_escolhidos", [])
@@ -285,8 +273,7 @@ def validar_escolhas_personagem(
                 )
             for pid in poderes_escolhidos:
                 if pid not in poderes_validos:
-                    erros.append(
-                        f"Poder '{pid}' nao pertence ao elemento '{elemento_id}'.")
+                    erros.append(f"Poder '{pid}' nao pertence ao elemento '{elemento_id}'.")
 
     # ---- Sagracântico (opcional -- None/ausente = personagem comum) ----
     # Quem e Sagracantico de um deus manipula OBRIGATORIAMENTE o elemento
@@ -309,8 +296,7 @@ def validar_escolhas_personagem(
                     f"obrigatoriamente '{elemento_esperado}' (recebido elemento: "
                     f"'{escolhas.get('elemento_id')}')."
                 )
-            racas_restritas = deus.get(
-                "restricao_arautos", {}).get("racas_restritas", [])
+            racas_restritas = deus.get("restricao_arautos", {}).get("racas_restritas", [])
             if escolhas.get("raca_id") in racas_restritas:
                 erros.append(
                     f"A raca '{escolhas.get('raca_id')}' nao pode ser Sagracantica de "
@@ -319,6 +305,5 @@ def validar_escolhas_personagem(
 
     sucesso = len(erros) == 0
     if not sucesso:
-        logger.info(
-            "Validacao de escolhas de personagem falhou com %d erro(s).", len(erros))
+        logger.info("Validacao de escolhas de personagem falhou com %d erro(s).", len(erros))
     return sucesso, erros
