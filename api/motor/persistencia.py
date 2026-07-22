@@ -146,6 +146,35 @@ def excluir_doc_usuario(uid: str) -> None:
     db.collection("usuarios").document(uid).delete()
 
 
+CAMPOS_RECURSO_PERMITIDOS = {
+    "vida_atual", "sanidade_atual", "arche_atual", "bonus_defesa", "bonus_deslocamento",
+}
+
+
+def ajustar_recurso_personagem(personagem_id: str, campo: str, novo_valor) -> None:
+    """
+    Atualiza UM campo de estado de jogo (vida/sanidade/arché atuais, bônus
+    de defesa/deslocamento) de um personagem que pode não ser do chamador.
+
+    Usado exclusivamente pelo Mestre dentro de um encontro de Combate (ver
+    api/mestre_ajustar_recurso_personagem.py e Combate.jsx). Fora de
+    combate, quem edita esses campos continua sendo sempre o próprio dono,
+    direto na tela do personagem (ver FichaVisual.jsx e o comentário em
+    mestre_campanha_personagens.py) -- isso aqui é a ÚNICA exceção
+    deliberada a essa regra, porque parar o combate pra esperar cada
+    jogador clicar no próprio +/- não é realista à mesa. A checagem de que
+    quem está chamando é de fato o mestre de uma campanha à qual esse
+    personagem pertence é feita pelo endpoint, não por aqui.
+    """
+    if campo not in CAMPOS_RECURSO_PERMITIDOS:
+        raise ValueError(f"Campo '{campo}' nao pode ser ajustado por aqui.")
+    db = obter_cliente_firestore()
+    db.collection(NOME_COLECAO).document(personagem_id).update({
+        campo: novo_valor,
+        "atualizado_em": firestore.SERVER_TIMESTAMP,
+    })
+
+
 def salvar_ficha_calculada(
     escolhas: Dict[str, Any],
     calculado: Dict[str, Any],

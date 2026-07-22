@@ -83,4 +83,17 @@ export const api = {
   // So o mestre_id de fato dessa campanha consegue -- checado no servidor.
   excluirCampanha: ({ mestreUid, campanhaId }) =>
     post('excluir_campanha', { mestre_uid: mestreUid, campanha_id: campanhaId }),
+
+  // POST /api/mestre_ajustar_recurso_personagem  (ver api/mestre_ajustar_recurso_personagem.py)
+  // Única exceção à regra de "só o dono edita vida/sanidade/arché" --
+  // usada pelo rastreador de Combate (Combate.jsx) pra participantes do
+  // tipo 'personagem'. Só funciona se esse personagem estiver numa
+  // campanha onde mestreUid é de fato o mestre_id (checado no servidor).
+  ajustarRecursoPersonagemComoMestre: (personagemId, mestreUid, campo, novoValor) =>
+    post('mestre_ajustar_recurso_personagem', {
+      personagem_id: personagemId,
+      mestre_uid: mestreUid,
+      campo,
+      novo_valor: novoValor,
+    }),
 }

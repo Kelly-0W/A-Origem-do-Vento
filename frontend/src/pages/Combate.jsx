@@ -31,6 +31,7 @@ function ModalNovoEncontro({ campanhas, onFechar, onCriado }) {
         nome: nome.trim(),
         status: 'preparando',
         participantes: [],
+        ordem: [],
         criado_em: serverTimestamp(),
         atualizado_em: serverTimestamp(),
       }
@@ -171,8 +172,10 @@ function ModalAdicionarMonstro({ encontro, onFechar, onAdicionados }) {
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
   const [bestiario, setBestiario] = useState({})
+  const [marcosTreinamento, setMarcosTreinamento] = useState(null)
   const [monstroId, setMonstroId] = useState(null)
   const [quantidade, setQuantidade] = useState(1)
+  const [grau, setGrau] = useState(0)
   const [salvando, setSalvando] = useState(false)
 
   useEffect(() => {
@@ -180,12 +183,16 @@ function ModalAdicionarMonstro({ encontro, onFechar, onAdicionados }) {
       setCarregando(true)
       setErro(null)
       try {
-        const { dados } = await api.buscarBiblioteca('bestiario')
-        if (!dados?.sucesso) {
+        const [respBestiario, respConstantes] = await Promise.all([
+          api.buscarBiblioteca('bestiario'),
+          api.buscarBiblioteca('constantes_ascensao'),
+        ])
+        if (!respBestiario.dados?.sucesso) {
           setErro('Não foi possível carregar o bestiário.')
           return
         }
-        setBestiario(dados.itens)
+        setBestiario(respBestiario.dados.itens)
+        setMarcosTreinamento(respConstantes.dados?.itens?.bonus_treinamento_pericia?.marcos || {})
       } catch (err) {
         console.error(err)
         setErro('Não foi possível carregar o bestiário.')
@@ -202,7 +209,7 @@ function ModalAdicionarMonstro({ encontro, onFechar, onAdicionados }) {
     try {
       const monstro = bestiario[monstroId]
       const novos = Array.from({ length: quantidade }, (_, i) =>
-        participanteDeMonstro(monstro, monstroId, i + 1, quantidade)
+        participanteDeMonstro(monstro, monstroId, i + 1, quantidade, grau, marcosTreinamento)
       )
       const participantes = [...encontro.participantes, ...novos]
       await updateDoc(doc(db, 'encontros', encontro.id), { participantes, atualizado_em: serverTimestamp() })
@@ -238,12 +245,18 @@ function ModalAdicionarMonstro({ encontro, onFechar, onAdicionados }) {
           </div>
 
           {monstroId && (
-            <div className="flex items-center gap-4 mb-5">
-              <span className="text-[11px] uppercase tracking-widest text-mist">Quantidade</span>
+            <div className="flex flex-wrap items-center gap-6 mb-5">
               <div className="flex items-center gap-3">
+                <span className="text-[11px] uppercase tracking-widest text-mist">Quantidade</span>
                 <button className="w-7 h-7 rounded border border-panel-border text-white" onClick={() => setQuantidade((q) => Math.max(1, q - 1))}>-</button>
                 <span className="font-display text-lg w-6 text-center">{quantidade}</span>
                 <button className="w-7 h-7 rounded border border-panel-border text-white" onClick={() => setQuantidade((q) => Math.min(20, q + 1))}>+</button>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-[11px] uppercase tracking-widest text-mist">Grau de Ascensão</span>
+                <button className="w-7 h-7 rounded border border-panel-border text-white" onClick={() => setGrau((g) => Math.max(0, g - 1))}>-</button>
+                <span className="font-display text-lg w-6 text-center">{grau}</span>
+                <button className="w-7 h-7 rounded border border-panel-border text-white" onClick={() => setGrau((g) => Math.min(10, g + 1))}>+</button>
               </div>
             </div>
           )}
@@ -257,7 +270,42 @@ function ModalAdicionarMonstro({ encontro, onFechar, onAdicionados }) {
   )
 }
 
-function CardParticipante({ participante, onRemover }) {
+function LinhaRecurso({ label, atual, max, sufixo = '', passoInicial = 1, onAjustar }) {
+  const [passoTexto, setPassoTexto] = useState(String(passoInicial))
+  const passo = Number(passoTexto) || passoInicial
+
+  return (
+    <div className="flex items-center justify-between gap-2">
+      <span className="text-[11px] text-mist shrink-0">{label}</span>
+      <div className="flex items-center gap-1">
+        <button
+          onClick={() => onAjustar(-passo)}
+          className="w-5 h-5 rounded-full border border-panel-border text-mist hover:border-gold/50 hover:text-gold text-xs leading-none flex items-center justify-center shrink-0"
+        >
+          −
+        </button>
+        <span className="text-xs text-white w-14 text-center shrink-0">
+          {atual}{max != null ? `/${max}` : ''}{sufixo}
+        </span>
+        <button
+          onClick={() => onAjustar(passo)}
+          className="w-5 h-5 rounded-full border border-panel-border text-mist hover:border-gold/50 hover:text-gold text-xs leading-none flex items-center justify-center shrink-0"
+        >
+          +
+        </button>
+        <input
+          type="number"
+          value={passoTexto}
+          onChange={(e) => setPassoTexto(e.target.value)}
+          title="Quantidade por clique"
+          className="w-10 text-[10px] bg-transparent border border-panel-border rounded px-1 py-0.5 text-center text-mist"
+        />
+      </div>
+    </div>
+  )
+}
+
+function CardParticipante({ participante, onRemover, onAjustar }) {
   return (
     <div className="card-fantasy p-4 relative">
       <button
@@ -279,14 +327,149 @@ function CardParticipante({ participante, onRemover }) {
           <div className="font-display text-sm truncate">{participante.nome}</div>
           <div className="text-[11px] text-mist">
             {ROTULO_TIPO[participante.tipo]}{participante.dono_nome ? ` · ${participante.dono_nome}` : ''}
+            {participante.tipo === 'monstro' ? ` · Grau ${participante.grau}` : ''}
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2 text-[11px] text-mist">
-        <span>Vida: <span className="text-white">{participante.vida_atual}/{participante.vida_maxima}</span></span>
-        <span>Defesa: <span className="text-white">{participante.defesa + (participante.bonus_defesa || 0)}</span></span>
-        <span>Sanidade: <span className="text-white">{participante.sanidade_atual}/{participante.sanidade_maxima}</span></span>
-        <span>Arché: <span className="text-white">{participante.arche_atual}/{participante.arche_maximo}</span></span>
+
+      <div className="flex flex-col gap-1.5">
+        <LinhaRecurso
+          label="Vida"
+          atual={participante.vida_atual}
+          max={participante.vida_maxima}
+          onAjustar={(delta) => onAjustar('vida_atual', delta, { min: 0, max: participante.vida_maxima })}
+        />
+        <LinhaRecurso
+          label="Sanidade"
+          atual={participante.sanidade_atual}
+          max={participante.sanidade_maxima}
+          onAjustar={(delta) => onAjustar('sanidade_atual', delta, { min: 0, max: participante.sanidade_maxima })}
+        />
+        <LinhaRecurso
+          label="Arché"
+          atual={participante.arche_atual}
+          max={participante.arche_maximo}
+          onAjustar={(delta) => onAjustar('arche_atual', delta, { min: 0, max: participante.arche_maximo })}
+        />
+        <LinhaRecurso
+          label="Defesa"
+          atual={participante.defesa + (participante.bonus_defesa || 0)}
+          onAjustar={(delta) => onAjustar('bonus_defesa', delta, { min: 0 })}
+        />
+        <LinhaRecurso
+          label="Deslocamento"
+          atual={participante.deslocamento_m + (participante.bonus_deslocamento || 0)}
+          sufixo="m"
+          passoInicial={1.5}
+          onAjustar={(delta) => onAjustar('bonus_deslocamento', delta, { min: 0 })}
+        />
+      </div>
+    </div>
+  )
+}
+
+function SecaoIniciativa({ encontro, onAtualizado }) {
+  const [extras, setExtras] = useState(() =>
+    Object.fromEntries(encontro.participantes.map((p) => [p.id, p.iniciativa_extra ?? '']))
+  )
+  const [salvando, setSalvando] = useState(false)
+  const [erro, setErro] = useState(null)
+
+  const ordemCalculada = encontro.ordem && encontro.ordem.length > 0
+    ? encontro.ordem
+        .map((id) => encontro.participantes.find((p) => p.id === id))
+        .filter(Boolean)
+    : []
+  const participantesForaDaOrdem = encontro.participantes.filter(
+    (p) => !encontro.ordem?.includes(p.id)
+  )
+
+  async function calcularOrdem() {
+    setSalvando(true)
+    setErro(null)
+    try {
+      const participantesAtualizados = encontro.participantes.map((p) => {
+        const extraTexto = extras[p.id]
+        const extra = p.velocidade_treinada && extraTexto !== '' && extraTexto != null ? Number(extraTexto) : null
+        const final = (p.iniciativa_bonus || 0) + (extra || 0)
+        return { ...p, iniciativa_extra: extra, iniciativa_final: final }
+      })
+      const ordem = [...participantesAtualizados]
+        .sort((a, b) => b.iniciativa_final - a.iniciativa_final)
+        .map((p) => p.id)
+
+      await updateDoc(doc(db, 'encontros', encontro.id), {
+        participantes: participantesAtualizados,
+        ordem,
+        status: 'em_andamento',
+        atualizado_em: serverTimestamp(),
+      })
+      onAtualizado(participantesAtualizados, ordem)
+    } catch (err) {
+      console.error(err)
+      setErro('Não foi possível calcular a ordem agora.')
+    } finally {
+      setSalvando(false)
+    }
+  }
+
+  if (encontro.participantes.length === 0) return null
+
+  return (
+    <div className="mt-8 border-t border-panel-border pt-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg">Ordem de Iniciativa</h3>
+        <button className="btn-secondary text-xs" onClick={calcularOrdem} disabled={salvando}>
+          {salvando ? 'Calculando...' : ordemCalculada.length > 0 ? 'Recalcular Ordem' : 'Calcular Ordem de Iniciativa'}
+        </button>
+      </div>
+
+      {erro && <p className="text-blood-bright text-xs mb-4">{erro}</p>}
+
+      {ordemCalculada.length > 0 && participantesForaDaOrdem.length > 0 && (
+        <p className="text-gold text-xs mb-4">
+          {participantesForaDaOrdem.length} participante(s) adicionados depois do cálculo — recalcule pra incluí-los.
+        </p>
+      )}
+
+      {ordemCalculada.length > 0 ? (
+        <ol className="flex flex-col gap-2 mb-6">
+          {ordemCalculada.map((p, i) => (
+            <li key={p.id} className="flex items-center justify-between p-3 rounded border border-panel-border">
+              <span className="flex items-center gap-3">
+                <span className="font-display text-gold w-5">{i + 1}º</span>
+                <span>{p.nome}</span>
+              </span>
+              <span className="text-mist text-xs">
+                Iniciativa {p.iniciativa_final}
+                {p.iniciativa_extra != null && ` (${p.iniciativa_bonus} + ${p.iniciativa_extra})`}
+              </span>
+            </li>
+          ))}
+        </ol>
+      ) : null}
+
+      <div className="flex flex-col gap-2">
+        {encontro.participantes.map((p) => (
+          <div key={p.id} className="flex items-center justify-between p-3 rounded border border-panel-border">
+            <div>
+              <div className="text-sm">{p.nome}</div>
+              <div className="text-[11px] text-mist">Bônus de Iniciativa: {p.iniciativa_bonus}</div>
+            </div>
+            {p.velocidade_treinada && (
+              <label className="flex items-center gap-2 text-xs text-mist">
+                Resultado 1d6+Velocidade
+                <input
+                  type="number"
+                  value={extras[p.id]}
+                  onChange={(e) => setExtras((prev) => ({ ...prev, [p.id]: e.target.value }))}
+                  placeholder="opcional"
+                  className="campo-input w-20 py-1"
+                />
+              </label>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -313,7 +496,7 @@ export default function Combate() {
           getDocs(query(collection(db, 'encontros'), where('mestre_id', '==', usuario.uid))),
         ])
         setCampanhas(campanhasSnap.docs.map((d) => ({ id: d.id, ...d.data() })))
-        setEncontros(encontrosSnap.docs.map((d) => ({ id: d.id, ...d.data() })))
+        setEncontros(encontrosSnap.docs.map((d) => ({ id: d.id, ordem: [], ...d.data() })))
       } catch (err) {
         console.error(err)
         setErro('Não foi possível carregar seus encontros agora.')
@@ -326,8 +509,8 @@ export default function Combate() {
 
   const encontroSelecionado = encontros.find((e) => e.id === encontroSelecionadoId) || null
 
-  function atualizarEncontroLocal(id, participantes) {
-    setEncontros((prev) => prev.map((e) => (e.id === id ? { ...e, participantes } : e)))
+  function atualizarEncontroLocal(id, alteracoes) {
+    setEncontros((prev) => prev.map((e) => (e.id === id ? { ...e, ...alteracoes } : e)))
   }
 
   function aoCriarEncontro(novo) {
@@ -336,12 +519,38 @@ export default function Combate() {
     setModalAberto(null)
   }
 
+  async function ajustarParticipante(participante, campo, delta, opcoes = {}) {
+    const { min = null, max = null } = opcoes
+    let novo = Math.round((participante[campo] + delta) * 10) / 10
+    if (min != null) novo = Math.max(min, novo)
+    if (max != null) novo = Math.min(max, novo)
+    if (novo === participante[campo]) return
+
+    const participantes = encontroSelecionado.participantes.map((p) =>
+      p.id === participante.id ? { ...p, [campo]: novo } : p
+    )
+    atualizarEncontroLocal(encontroSelecionado.id, { participantes })
+
+    try {
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, atualizado_em: serverTimestamp() })
+      if (participante.tipo === 'personagem' && participante.ref_id) {
+        const { dados } = await api.ajustarRecursoPersonagemComoMestre(participante.ref_id, usuario.uid, campo, novo)
+        if (!dados?.sucesso) {
+          console.error('Falha ao sincronizar com a ficha do personagem:', dados?.erros)
+        }
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   async function removerParticipante(participanteId) {
     if (!encontroSelecionado) return
     const participantes = encontroSelecionado.participantes.filter((p) => p.id !== participanteId)
-    atualizarEncontroLocal(encontroSelecionado.id, participantes)
+    const ordem = (encontroSelecionado.ordem || []).filter((id) => id !== participanteId)
+    atualizarEncontroLocal(encontroSelecionado.id, { participantes, ordem })
     try {
-      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, atualizado_em: serverTimestamp() })
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, ordem, atualizado_em: serverTimestamp() })
     } catch (err) {
       console.error(err)
     }
@@ -425,10 +634,20 @@ export default function Combate() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {encontroSelecionado.participantes.map((p) => (
-                  <CardParticipante key={p.id} participante={p} onRemover={() => removerParticipante(p.id)} />
+                  <CardParticipante
+                    key={p.id}
+                    participante={p}
+                    onRemover={() => removerParticipante(p.id)}
+                    onAjustar={(campo, delta, opcoes) => ajustarParticipante(p, campo, delta, opcoes)}
+                  />
                 ))}
               </div>
             )}
+
+            <SecaoIniciativa
+              encontro={encontroSelecionado}
+              onAtualizado={(participantes, ordem) => atualizarEncontroLocal(encontroSelecionado.id, { participantes, ordem, status: 'em_andamento' })}
+            />
           </div>
         )}
       </div>
@@ -442,7 +661,7 @@ export default function Combate() {
           mestreUid={usuario.uid}
           onFechar={() => setModalAberto(null)}
           onAdicionados={(participantes) => {
-            atualizarEncontroLocal(encontroSelecionado.id, participantes)
+            atualizarEncontroLocal(encontroSelecionado.id, { participantes })
             setModalAberto(null)
           }}
         />
@@ -452,7 +671,7 @@ export default function Combate() {
           encontro={encontroSelecionado}
           onFechar={() => setModalAberto(null)}
           onAdicionados={(participantes) => {
-            atualizarEncontroLocal(encontroSelecionado.id, participantes)
+            atualizarEncontroLocal(encontroSelecionado.id, { participantes })
             setModalAberto(null)
           }}
         />
