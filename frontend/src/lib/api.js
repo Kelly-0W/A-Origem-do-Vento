@@ -35,6 +35,14 @@ export const api = {
       campanha_id: campanhaId,
     }),
 
+  // GET /api/campanha_participantes?campanha_id=...&uid=...
+  // (ver api/campanha_participantes.py) -- roster LEVE da mesa (nome,
+  // retrato, raça/classe, dono), sem calculado/escolhas completos. Pra
+  // qualquer MEMBRO da campanha (mestre ou jogador comum) ver quem está
+  // participando, sem abrir a ficha inteira de ninguém além da própria.
+  buscarParticipantesCampanha: (campanhaId, uid) =>
+    get(`campanha_participantes?campanha_id=${campanhaId}&uid=${uid}`),
+
   // GET /api/mestre_campanha_personagens?campanha_id=...&mestre_uid=...
   // (ver api/mestre_campanha_personagens.py) -- lista todos os personagens
   // da mesa pro Painel do Mestre, checagem de mestre feita no servidor.
