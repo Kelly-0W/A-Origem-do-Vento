@@ -21,7 +21,7 @@ export default function PersonagemDetalhe() {
   const [carregando, setCarregando] = useState(true)
   const [erroCarregamento, setErroCarregamento] = useState(null)
   const [personagem, setPersonagem] = useState(null)
-  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {} })
+  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {} })
 
   const [nomePersonagem, setNomePersonagem] = useState('')
   const [imagemBase64, setImagemBase64] = useState(null)
@@ -37,7 +37,7 @@ export default function PersonagemDetalhe() {
       setCarregando(true)
       setErroCarregamento(null)
       try {
-        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias']
+        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos']
         const respostas = await Promise.all(colecoes.map((c) => api.buscarBiblioteca(c)))
         const novoCatalogo = {}
         colecoes.forEach((c, i) => { novoCatalogo[c] = respostas[i].dados?.itens ?? {} })

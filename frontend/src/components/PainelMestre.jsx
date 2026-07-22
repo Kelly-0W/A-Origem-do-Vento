@@ -84,7 +84,7 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
     setErro(null)
     try {
       if (!catalogo) {
-        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias']
+        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos']
         const respostas = await Promise.all(colecoes.map((c) => api.buscarBiblioteca(c)))
         const novoCatalogo = {}
         colecoes.forEach((c, i) => { novoCatalogo[c] = respostas[i].dados?.itens ?? {} })

@@ -6,6 +6,7 @@ import { nomePericia, formatarRotulo } from '../lib/formato.js'
 import { api } from '../lib/api.js'
 import ModalBase from './ModalBase.jsx'
 import PoderDetalhe from './PoderDetalhe.jsx'
+import JornadaSagracantico from './JornadaSagracantico.jsx'
 
 const NOMES_STATUS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defesa: 'Defesa' }
 
@@ -28,11 +29,15 @@ function BotaoRecurso({ onClick, disabled, title, children }) {
 // tanto logo após calcular no Wizard quanto na tela de detalhe do
 // personagem (a partir do `calculado` já salvo no Firestore), e também no
 // Painel do Mestre (lá, sempre como leitura -- ver prop `interativo`).
-// Mostra, nessa ordem: Sistema Racial Único (se a raça tiver um -- kaimar,
-// ocularde, fada, astara, draconato), Habilidades (de Raça e de Classe,
-// com nome+descrição completos, não só o nome escolhido no Wizard),
-// Habilidade da Origem, e por fim Poderes/Espiritual -- cada poder
-// clicável, abrindo o mesmo card de detalhe mecânico usado na Biblioteca.
+// Mostra, nessa ordem: Jornada do Sagracântico (se o personagem for
+// Sagracântico de algum deus -- ver seed/dados/sagracanticos.json; são
+// habilidades INATAS, ganhas automaticamente por Grau de Ascensão, sem
+// passar pelo card de "Escolher Recompensas"), Sistema Racial Único (se a
+// raça tiver um -- kaimar, ocularde, fada, astara, draconato), Habilidades
+// (de Raça e de Classe, com nome+descrição completos, não só o nome
+// escolhido no Wizard), Habilidade da Origem, e por fim Poderes/Espiritual
+// -- cada poder clicável, abrindo o mesmo card de detalhe mecânico usado
+// na Biblioteca.
 //
 // `interativo`/`personagemId`/`donoUid`/`onAtualizado` só fazem sentido na
 // tela do PRÓPRIO personagem: quando `interativo` é true, cada perícia vira
@@ -123,6 +128,7 @@ export default function FichaVisual({
   ]
   const habilidadesClasse = (classe?.habilidades || []).filter((h) => (habEscolhidas.classe || []).includes(h.id))
   const habilidadeOrigem = origem?.habilidade_passiva || null
+  const deusSagracantico = catalogo.sagracanticos?.deuses?.[escolhas.sagracantico_deus_id] || null
 
   async function ajustarPericia(periciaId, ajuste) {
     if (!interativo || periciaProcessando) return
@@ -415,6 +421,8 @@ export default function FichaVisual({
           })}
         </div>
       </div>
+
+      {deusSagracantico && <JornadaSagracantico deus={deusSagracantico} grauAscensao={grau_ascensao} />}
 
       {sistemaUnico && (
         <div className="mb-8">
