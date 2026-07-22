@@ -6,7 +6,7 @@ import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { api } from '../lib/api.js'
 import ModalBase from '../components/ModalBase.jsx'
-import { participanteDePersonagem, participanteDeMonstro } from '../lib/combate.js'
+import { participanteDePersonagem, participanteDeMonstro, efeitoAplicado } from '../lib/combate.js'
 
 const ROTULO_STATUS = { preparando: 'Preparando', em_andamento: 'Em andamento', encerrado: 'Encerrado' }
 const ROTULO_TIPO = { personagem: 'Personagem', monstro: 'Monstro', npc: 'NPC' }
@@ -305,7 +305,19 @@ function LinhaRecurso({ label, atual, max, sufixo = '', passoInicial = 1, onAjus
   )
 }
 
-function CardParticipante({ participante, onRemover, onAjustar }) {
+function ChipEfeito({ efeito, onRemover }) {
+  const cor = efeito.tipo === 'positivo' ? 'border-forest/50 text-forest' : 'border-blood-bright/50 text-blood-bright'
+  return (
+    <span className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-1 rounded border ${cor}`}>
+      {efeito.nome}
+      {efeito.duracao_tipo === 'rodadas' && efeito.rodadas_restantes != null && ` (${efeito.rodadas_restantes}r)`}
+      {efeito.acumulos != null && ` [${efeito.acumulos}]`}
+      <button onClick={onRemover} className="hover:opacity-70 leading-none" aria-label="Remover efeito">×</button>
+    </span>
+  )
+}
+
+function CardParticipante({ participante, onRemover, onAjustar, onAbrirEfeito, onRemoverEfeito }) {
   return (
     <div className="card-fantasy p-4 relative">
       <button
@@ -332,7 +344,7 @@ function CardParticipante({ participante, onRemover, onAjustar }) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1.5 mb-3">
         <LinhaRecurso
           label="Vida"
           atual={participante.vida_atual}
@@ -364,7 +376,114 @@ function CardParticipante({ participante, onRemover, onAjustar }) {
           onAjustar={(delta) => onAjustar('bonus_deslocamento', delta, { min: 0 })}
         />
       </div>
+
+      <div className="border-t border-panel-border pt-3">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[11px] uppercase tracking-widest text-mist">Efeitos</span>
+          <button onClick={onAbrirEfeito} className="text-[11px] text-gold hover:underline">+ Efeito</button>
+        </div>
+        {(participante.efeitos || []).length === 0 ? (
+          <p className="text-[11px] text-mist">Nenhum efeito ativo.</p>
+        ) : (
+          <div className="flex flex-wrap gap-1.5">
+            {participante.efeitos.map((efeito) => (
+              <ChipEfeito key={efeito.id} efeito={efeito} onRemover={() => onRemoverEfeito(efeito.id)} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
+  )
+}
+
+function ModalAdicionarEfeito({ efeitos, onFechar, onAplicar }) {
+  const [efeitoId, setEfeitoId] = useState(null)
+  const [rodadas, setRodadas] = useState('')
+
+  const efeitoSelecionado = efeitoId ? efeitos[efeitoId] : null
+  const positivos = Object.entries(efeitos).filter(([, e]) => e.tipo === 'positivo')
+  const negativos = Object.entries(efeitos).filter(([, e]) => e.tipo === 'negativo')
+
+  function selecionar(id) {
+    setEfeitoId(id)
+    const e = efeitos[id]
+    setRodadas(e.duracao_tipo === 'rodadas' ? String(e.duracao_rodadas_padrao ?? '') : '')
+  }
+
+  function aplicar() {
+    if (!efeitoSelecionado) return
+    const efeitoComDuracaoCustomizada = rodadas !== '' && efeitoSelecionado.duracao_tipo === 'rodadas'
+      ? { ...efeitoSelecionado, duracao_rodadas_padrao: Number(rodadas) }
+      : efeitoSelecionado
+    onAplicar(efeitoId, efeitoComDuracaoCustomizada)
+  }
+
+  return (
+    <ModalBase titulo="Aplicar Efeito" onFechar={onFechar}>
+      <div className="grid grid-cols-2 gap-4 mb-5 max-h-80 overflow-y-auto">
+        <div>
+          <div className="text-[11px] uppercase tracking-widest text-forest mb-2">Positivos</div>
+          <div className="flex flex-col gap-1.5">
+            {positivos.map(([id, e]) => (
+              <button
+                key={id}
+                onClick={() => selecionar(id)}
+                className={`text-left text-xs p-2 rounded border transition-colors
+                  ${efeitoId === id ? 'border-gold text-gold' : 'border-panel-border text-mist hover:border-white/20'}`}
+              >
+                {e.nome}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div className="text-[11px] uppercase tracking-widest text-blood-bright mb-2">Negativos</div>
+          <div className="flex flex-col gap-1.5">
+            {negativos.map(([id, e]) => (
+              <button
+                key={id}
+                onClick={() => selecionar(id)}
+                className={`text-left text-xs p-2 rounded border transition-colors
+                  ${efeitoId === id ? 'border-gold text-gold' : 'border-panel-border text-mist hover:border-white/20'}`}
+              >
+                {e.nome}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {efeitoSelecionado && (
+        <div className="border-t border-panel-border pt-4 mb-5">
+          <p className="text-xs text-mist mb-2">{efeitoSelecionado.descricao}</p>
+          <ul className="list-disc list-inside text-xs text-mist space-y-1 mb-3">
+            {efeitoSelecionado.mecanica.map((linha, i) => <li key={i}>{linha}</li>)}
+          </ul>
+          {efeitoSelecionado.duracao_tipo === 'rodadas' && (
+            <label className="flex items-center gap-2 text-xs text-mist">
+              Duração (rodadas)
+              <input
+                type="number"
+                value={rodadas}
+                onChange={(e) => setRodadas(e.target.value)}
+                className="campo-input w-20 py-1"
+              />
+            </label>
+          )}
+          {efeitoSelecionado.duracao_tipo !== 'rodadas' && (
+            <p className="text-[11px] text-mist italic">
+              {efeitoSelecionado.duracao_tipo === 'instantaneo'
+                ? 'Efeito instantâneo -- não fica como um estado contínuo.'
+                : 'Sem contagem de rodadas fixa -- dura até ser removido por alguma condição descrita acima.'}
+            </p>
+          )}
+        </div>
+      )}
+
+      <button className="btn-primary w-full disabled:opacity-50" onClick={aplicar} disabled={!efeitoSelecionado}>
+        Aplicar
+      </button>
+    </ModalBase>
   )
 }
 
@@ -483,6 +602,8 @@ export default function Combate() {
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
   const [modalAberto, setModalAberto] = useState(null)
+  const [participanteAlvoId, setParticipanteAlvoId] = useState(null)
+  const [catalogoEfeitos, setCatalogoEfeitos] = useState({})
 
   useEffect(() => {
     if (carregandoAuth || !usuario) return
@@ -491,12 +612,14 @@ export default function Combate() {
       setCarregando(true)
       setErro(null)
       try {
-        const [campanhasSnap, encontrosSnap] = await Promise.all([
+        const [campanhasSnap, encontrosSnap, respEfeitos] = await Promise.all([
           getDocs(query(collection(db, 'campanhas'), where('mestre_id', '==', usuario.uid))),
           getDocs(query(collection(db, 'encontros'), where('mestre_id', '==', usuario.uid))),
+          api.buscarBiblioteca('efeitos'),
         ])
         setCampanhas(campanhasSnap.docs.map((d) => ({ id: d.id, ...d.data() })))
         setEncontros(encontrosSnap.docs.map((d) => ({ id: d.id, ordem: [], ...d.data() })))
+        setCatalogoEfeitos(respEfeitos.dados?.itens?.efeitos || {})
       } catch (err) {
         console.error(err)
         setErro('Não foi possível carregar seus encontros agora.')
@@ -539,6 +662,33 @@ export default function Combate() {
           console.error('Falha ao sincronizar com a ficha do personagem:', dados?.erros)
         }
       }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function aplicarEfeito(participanteId, efeitoId, catalogoEfeito) {
+    const novoEfeito = efeitoAplicado(efeitoId, catalogoEfeito)
+    const participantes = encontroSelecionado.participantes.map((p) =>
+      p.id === participanteId ? { ...p, efeitos: [...(p.efeitos || []), novoEfeito] } : p
+    )
+    atualizarEncontroLocal(encontroSelecionado.id, { participantes })
+    setModalAberto(null)
+    setParticipanteAlvoId(null)
+    try {
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, atualizado_em: serverTimestamp() })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function removerEfeito(participanteId, efeitoInstanciaId) {
+    const participantes = encontroSelecionado.participantes.map((p) =>
+      p.id === participanteId ? { ...p, efeitos: (p.efeitos || []).filter((e) => e.id !== efeitoInstanciaId) } : p
+    )
+    atualizarEncontroLocal(encontroSelecionado.id, { participantes })
+    try {
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, atualizado_em: serverTimestamp() })
     } catch (err) {
       console.error(err)
     }
@@ -639,6 +789,8 @@ export default function Combate() {
                     participante={p}
                     onRemover={() => removerParticipante(p.id)}
                     onAjustar={(campo, delta, opcoes) => ajustarParticipante(p, campo, delta, opcoes)}
+                    onAbrirEfeito={() => { setParticipanteAlvoId(p.id); setModalAberto('aplicar_efeito') }}
+                    onRemoverEfeito={(efeitoInstanciaId) => removerEfeito(p.id, efeitoInstanciaId)}
                   />
                 ))}
               </div>
@@ -674,6 +826,13 @@ export default function Combate() {
             atualizarEncontroLocal(encontroSelecionado.id, { participantes })
             setModalAberto(null)
           }}
+        />
+      )}
+      {modalAberto === 'aplicar_efeito' && participanteAlvoId && (
+        <ModalAdicionarEfeito
+          efeitos={catalogoEfeitos}
+          onFechar={() => { setModalAberto(null); setParticipanteAlvoId(null) }}
+          onAplicar={(efeitoId, catalogoEfeito) => aplicarEfeito(participanteAlvoId, efeitoId, catalogoEfeito)}
         />
       )}
     </div>

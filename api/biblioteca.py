@@ -14,6 +14,9 @@ ARQUIVO_POR_COLECAO = {
     "itens": "itens.json",
     "bestiario": "bestiario.json",
     "sagracanticos": "sagracanticos.json",
+    # Catálogo de Efeitos Positivos/Negativos de combate (ver Combate.jsx,
+    # seção "Efeitos" de cada participante do encontro).
+    "efeitos": "efeitos.json",
     # Usada pelo frontend pra saber em qual faixa de dificuldade
     # (facil/medio/dificil) cai o grau-alvo de uma Ascensao, e assim
     # mostrar a Provacao/Ritual certos (ver PainelAscensao.jsx).

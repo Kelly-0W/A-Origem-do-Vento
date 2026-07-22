@@ -1,0 +1,501 @@
+{
+  "regras_gerais": {
+    "positivos": "Uma criatura pode possuir diversos Efeitos Positivos simultaneamente, desde que eles não sejam incompatíveis entre si. Salvo quando especificado o contrário, reaplicar um mesmo efeito apenas renova sua duração. Caso uma habilidade altere o funcionamento padrão de um efeito, essa alteração será descrita em sua própria descrição.",
+    "negativos": "Uma criatura pode sofrer diversos Efeitos Negativos simultaneamente, desde que eles não sejam incompatíveis entre si. Salvo quando especificado o contrário, reaplicar um mesmo efeito apenas renova sua duração. Caso uma habilidade altere o funcionamento padrão de um efeito, essa alteração será descrita em sua própria descrição."
+  },
+  "efeitos": {
+    "escudo": {
+      "nome": "Escudo",
+      "tipo": "positivo",
+      "descricao": "Uma barreira protetora envolve a criatura.",
+      "mecanica": [
+        "Recebe um Escudo equivalente a 20% de sua Vida Máxima.",
+        "Todo dano recebido é descontado primeiro do Escudo.",
+        "Caso o dano exceda o valor restante do Escudo, apenas o excedente será aplicado à Vida."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": "Caso um novo Escudo seja recebido enquanto já possuir um ativo, prevalecerá o maior valor (não soma).",
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "fortificacao": {
+      "nome": "Fortificação",
+      "tipo": "positivo",
+      "descricao": "A criatura reforça sua postura defensiva.",
+      "mecanica": [
+        "Recebe +2 em Defesa."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "regeneracao": {
+      "nome": "Regeneração",
+      "tipo": "positivo",
+      "descricao": "A vitalidade da criatura é restaurada continuamente.",
+      "mecanica": [
+        "Recupera 1d8+2 de Vida no início de cada turno."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "purificacao": {
+      "nome": "Purificação",
+      "tipo": "positivo",
+      "descricao": "A criatura remove instantaneamente efeitos prejudiciais.",
+      "mecanica": [
+        "Remove imediatamente todos os Efeitos Negativos."
+      ],
+      "duracao_tipo": "instantaneo",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": "Caso a habilidade que concede Purificação possua limitações ou consequências, estas serão descritas na própria habilidade (não aqui no efeito genérico).",
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "protecao_absoluta": {
+      "nome": "Proteção Absoluta",
+      "tipo": "positivo",
+      "descricao": "A criatura assume completamente a defesa de um aliado.",
+      "mecanica": [
+        "Escolha um aliado em Alcance Médio.",
+        "Todo dano proveniente de ataques ou habilidades de alvo único direcionados a esse aliado será redirecionado para você.",
+        "Ataques em área não são afetados."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 1,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "invisibilidade": {
+      "nome": "Invisibilidade",
+      "tipo": "positivo",
+      "descricao": "A criatura torna-se invisível.",
+      "mecanica": [
+        "Não pode ser alvo de ataques ou habilidades que dependam de visão direta.",
+        "O primeiro ataque realizado enquanto estiver Invisível recebe Vantagem."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 2,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": "Após realizar uma ação hostil, a Invisibilidade é encerrada imediatamente (mesmo antes do fim das rodadas)."
+    },
+    "indestrutivel": {
+      "nome": "Indestrutível",
+      "tipo": "positivo",
+      "descricao": "A criatura desafia a morte por um breve instante.",
+      "mecanica": [
+        "Sua Vida não pode ser reduzida abaixo de 1."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 1,
+      "regra_reaplicacao": "Ao término do efeito, quaisquer danos pendentes voltam a ser considerados normalmente.",
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "resistencia_fisica": {
+      "nome": "Resistência Física",
+      "tipo": "positivo",
+      "descricao": "Concede Resistência aos danos físicos.",
+      "mecanica": [
+        "Recebe Resistência aos Tipos de Dano: Corte, Impacto e Perfuração."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "resistencia_elemental": {
+      "nome": "Resistência Elemental",
+      "tipo": "positivo",
+      "descricao": "Concede Resistência aos danos elementais.",
+      "mecanica": [
+        "Recebe Resistência aos Tipos de Dano: Fogo, Água, Terra, Vento, Natureza, Eletricidade, Luz e Trevas."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "imunidade_positivo": {
+      "nome": "Imunidade",
+      "tipo": "positivo",
+      "descricao": "Torna-se completamente imune a um tipo de dano ou efeito específico.",
+      "mecanica": [
+        "Torna-se completamente imune ao tipo de dano ou efeito especificado pela habilidade que concedeu este benefício."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 1,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "aceleracao": {
+      "nome": "Aceleração",
+      "tipo": "positivo",
+      "descricao": "Os movimentos da criatura tornam-se extremamente rápidos.",
+      "mecanica": [
+        "Recebe +3 metros de Deslocamento.",
+        "Recebe +5 na Iniciativa."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "precisao": {
+      "nome": "Precisão",
+      "tipo": "positivo",
+      "descricao": "Os sentidos e a concentração da criatura tornam-se extremamente aguçados.",
+      "mecanica": [
+        "Recebe +2 em todos os testes de Acerto."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "foco": {
+      "nome": "Foco",
+      "tipo": "positivo",
+      "descricao": "A mente da criatura permanece completamente estável.",
+      "mecanica": [
+        "Recebe +2 em testes de Vontade.",
+        "Torna-se imune aos efeitos Atração e Provocar."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "atracao": {
+      "nome": "Atração",
+      "tipo": "negativo",
+      "descricao": "A criatura sente-se irresistivelmente atraída pelo causador do efeito.",
+      "mecanica": [
+        "Sempre que desejar atacar o causador deste efeito, deverá ser bem-sucedida em um teste de Vontade (DT 20).",
+        "Ao final de cada turno, deverá aproximar-se pelo menos 3 metros do causador, caso seja possível."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "atordoamento": {
+      "nome": "Atordoamento",
+      "tipo": "negativo",
+      "descricao": "A criatura perde momentaneamente sua capacidade de reação.",
+      "mecanica": [
+        "Não pode realizar Ações Padrão.",
+        "Recebe 25% de dano adicional."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": "Pode encerrar este efeito utilizando uma Ação de Movimento e sendo bem-sucedida em um teste de Vontade (DT 19)."
+    },
+    "conducao": {
+      "nome": "Condução",
+      "tipo": "negativo",
+      "descricao": "O corpo da criatura torna-se eletricamente carregado.",
+      "mecanica": [
+        "Sofre 1d4+2 de dano no início de cada turno durante 3 turnos."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [
+        {
+          "gatilho": "Dano de Fogo (Sobrecarga)",
+          "efeito": "Ao receber dano de Fogo, sofre imediatamente 2d8 + 10% da Vida atual como dano e remove os efeitos de Condução e Queimadura."
+        },
+        {
+          "gatilho": "Dano de Água (Supercondução)",
+          "efeito": "Ao receber dano de Água, o dano por turno passa para 2d4+3 durante 3 turnos. Além disso, todas as criaturas adjacentes passam a sofrer esse dano enquanto permanecerem ao lado do alvo."
+        }
+      ],
+      "condicao_encerramento": null
+    },
+    "congelamento": {
+      "nome": "Congelamento",
+      "tipo": "negativo",
+      "descricao": "O frio extremo reduz drasticamente os movimentos da criatura.",
+      "mecanica": [
+        "Seu Deslocamento é reduzido à metade.",
+        "Recebe penalidade de 50% em testes de Reflexos.",
+        "Sua Iniciativa é reduzida à metade."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 2,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "deterioracao": {
+      "nome": "Deterioração",
+      "tipo": "negativo",
+      "descricao": "As Trevas corroem lentamente corpo e equipamentos.",
+      "mecanica": [
+        "Sofre 1d10+2 de dano por turno.",
+        "Ao final de cada turno recebe 1 Acúmulo de Deterioração."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": {
+        "nome": "Acúmulo de Deterioração",
+        "limite": 5,
+        "efeito_ao_atingir_limite": "Sofre dano equivalente a 1/6 da Vida atual. Caso esteja utilizando uma arma, ela perde 1d8 de dano. Caso esteja utilizando armadura, ela perde 25% do bônus de Defesa. Após isso, todos os Acúmulos são removidos.",
+        "bloqueio_apos_estourar": "Novos Acúmulos só poderão ser aplicados após 3 turnos."
+      },
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "envenenamento": {
+      "nome": "Envenenamento",
+      "tipo": "negativo",
+      "descricao": "Um veneno percorre lentamente o organismo da criatura.",
+      "mecanica": [
+        "Sofre 1d12+2 de dano por turno.",
+        "Antes de realizar qualquer Ação de Movimento, deverá realizar um teste de Constituição (DT 18). Em caso de falha, não poderá se mover. Em caso de sucesso, o dano do próximo turno é reduzido em 2 pontos."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": "Quando o dano do Envenenamento chegar a 0 ou menos, o efeito é encerrado e a criatura torna-se imune àquele mesmo Envenenamento. Caso obtenha um 20 natural (no teste de Constituição), o efeito é encerrado imediatamente."
+    },
+    "fadiga": {
+      "nome": "Fadiga",
+      "tipo": "negativo",
+      "descricao": "A exaustão limita severamente os movimentos da criatura.",
+      "mecanica": [
+        "Seu Deslocamento torna-se 3 metros.",
+        "Passa automaticamente para a última posição da Ordem de Combate."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": "Ao término do efeito, retorna à posição anteriormente ocupada na Ordem de Combate.",
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "hemorragia": {
+      "nome": "Hemorragia",
+      "tipo": "negativo",
+      "descricao": "O rompimento de artérias ou vasos críticos causa uma perda de sangue devastadora e contínua.",
+      "mecanica": [
+        "Sofre 1d12+4 de dano no início de cada turno.",
+        "Qualquer efeito de cura ou regeneração recebido pela criatura é reduzido à metade (este efeito acumula com Quebra de Cura)."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [
+        {
+          "gatilho": "Receber Queimadura",
+          "efeito": "A Hemorragia é imediatamente encerrada devido à cauterização das chamas."
+        }
+      ],
+      "condicao_encerramento": null
+    },
+    "medo": {
+      "nome": "Medo",
+      "tipo": "negativo",
+      "descricao": "O terror absoluto paralisa a coragem e perturba severamente o foco da criatura.",
+      "mecanica": [
+        "Fica incapaz de se mover voluntariamente em direção à fonte causadora do efeito.",
+        "Todos os seus testes de ataque e testes de perícia sofrem Desvantagem caso a fonte causadora esteja em sua linha de visão."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 2,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": "Pode tentar encerrar este efeito realizando um teste de Vontade (DT 18) no início de seu turno."
+    },
+    "provocar": {
+      "nome": "Provocar",
+      "tipo": "negativo",
+      "descricao": "A atenção da criatura é totalmente voltada ao provocador.",
+      "mecanica": [
+        "Não pode atacar voluntariamente outro alvo.",
+        "Recebe apenas metade do dano causado pelas criaturas Provocadas."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": "Pode encerrar este efeito realizando um teste de Vontade (DT 16)."
+    },
+    "quebra_de_cura": {
+      "nome": "Quebra de Cura",
+      "tipo": "negativo",
+      "descricao": "A capacidade de recuperação da criatura é comprometida.",
+      "mecanica": [
+        "Toda cura recebida é reduzida à metade."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": "Este efeito só pode ser removido por Cura de Estado."
+    },
+    "queimadura": {
+      "nome": "Queimadura",
+      "tipo": "negativo",
+      "descricao": "As chamas continuam consumindo o corpo da criatura.",
+      "mecanica": [
+        "Sofre 1d4+2 de dano no início de cada turno.",
+        "Sempre que sofrer o dano da Queimadura, recebe 1 Acúmulo de Centelha."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": {
+        "nome": "Acúmulo de Centelha",
+        "limite": 6,
+        "efeito_ao_atingir_limite": "Sofre imediatamente 2d6+3 de dano e todos os Acúmulos de Centelha são removidos.",
+        "regra_extra": "Sempre que uma habilidade aplicar Queimadura em um alvo que já esteja Queimando, ela concede imediatamente 1 Acúmulo adicional de Centelha."
+      },
+      "interacoes": [
+        {
+          "gatilho": "Criatura sob efeito de Sangramento",
+          "efeito": "O Sangramento é imediatamente removido."
+        }
+      ],
+      "condicao_encerramento": null
+    },
+    "sangramento": {
+      "nome": "Sangramento",
+      "tipo": "negativo",
+      "descricao": "Ferimentos profundos fazem a criatura perder sangue continuamente.",
+      "mecanica": [
+        "Sofre 1d8+2 de dano no início de cada turno durante 3 turnos."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": "Sempre que este efeito for reaplicado, o dano fixo aumenta em +2 (em vez de só renovar a duração).",
+      "acumulo": null,
+      "interacoes": [
+        {
+          "gatilho": "Receber Queimadura",
+          "efeito": "O Sangramento é imediatamente encerrado."
+        }
+      ],
+      "condicao_encerramento": null
+    },
+    "sono": {
+      "nome": "Sono",
+      "tipo": "negativo",
+      "descricao": "A criatura entra em um estado intenso de sonolência.",
+      "mecanica": [
+        "Seu Deslocamento é reduzido em 3 metros.",
+        "Seus testes de Reflexos sofrem penalidade de 50%.",
+        "Durante os três turnos iniciais, pode realizar um teste de Vontade (DT 17) ao início de cada turno para resistir ao sono (não cai Inconsciente enquanto resistir).",
+        "Ao término desse período de 3 turnos, deverá realizar um teste de Vontade (DT 20). Caso falhe, adormecerá completamente (efeito Inconsciente) até ser despertada."
+      ],
+      "duracao_tipo": "rodadas",
+      "duracao_rodadas_padrao": 3,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "inconsciente": {
+      "nome": "Inconsciente",
+      "tipo": "negativo",
+      "descricao": "A criatura perde completamente a consciência.",
+      "mecanica": [
+        "Não pode realizar qualquer ação.",
+        "Falha automaticamente em testes de Reflexos.",
+        "Ataques corpo a corpo contra ela possuem Vantagem."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "cego": {
+      "nome": "Cego",
+      "tipo": "negativo",
+      "descricao": "A criatura perde completamente sua visão.",
+      "mecanica": [
+        "Todos os seus ataques possuem Desvantagem.",
+        "Todos os ataques contra ela possuem Vantagem.",
+        "Falha automaticamente em testes que dependam exclusivamente da visão."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "silenciado": {
+      "nome": "Silenciado",
+      "tipo": "negativo",
+      "descricao": "A criatura torna-se incapaz de utilizar sons ou palavras.",
+      "mecanica": [
+        "Não pode utilizar habilidades que exijam fala, cânticos ou comandos verbais."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": null,
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    },
+    "imobilizado": {
+      "nome": "Imobilizado",
+      "tipo": "negativo",
+      "descricao": "A criatura perde completamente sua capacidade de locomoção.",
+      "mecanica": [
+        "Seu Deslocamento torna-se 0."
+      ],
+      "duracao_tipo": "ate_removido",
+      "duracao_rodadas_padrao": null,
+      "regra_reaplicacao": "Ainda pode realizar normalmente quaisquer ações que não exijam movimentação.",
+      "acumulo": null,
+      "interacoes": [],
+      "condicao_encerramento": null
+    }
+  }
+}

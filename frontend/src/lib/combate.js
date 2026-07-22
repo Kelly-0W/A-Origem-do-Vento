@@ -45,6 +45,17 @@ export function participanteDePersonagem(item) {
   }
 }
 
+export function efeitoAplicado(efeitoId, catalogoEfeito) {
+  return {
+    id: gerarIdParticipante(),
+    efeito_id: efeitoId,
+    nome: catalogoEfeito.nome,
+    tipo: catalogoEfeito.tipo,
+    duracao_tipo: catalogoEfeito.duracao_tipo,
+    rodadas_restantes: catalogoEfeito.duracao_tipo === 'rodadas' ? catalogoEfeito.duracao_rodadas_padrao : null,
+    acumulos: catalogoEfeito.acumulo ? 0 : null,
+  }
+}
 export function participanteDeMonstro(monstro, monstroId, numero, totalNoGrupo, grau, marcosTreinamento) {
   const status = monstro.status || {}
   const vida = (status.vida?.base ?? 0) + (status.vida?.mult_ascensao ?? 0) * grau
