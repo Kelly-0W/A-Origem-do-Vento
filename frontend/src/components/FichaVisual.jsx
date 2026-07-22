@@ -104,7 +104,9 @@ export default function FichaVisual({
   const defesaTotal = status.defesa + bonusDefesaEfetivo
   const deslocamentoTotal = Math.round((status.deslocamento_m + bonusDeslocamentoEfetivo) * 10) / 10
 
-  const periciasOrdenadas = Object.entries(pericias || {}).sort(([, a], [, b]) => b.bonus_total - a.bonus_total)
+  const periciasOrdenadas = Object.entries(pericias || {}).sort(([idA], [idB]) =>
+    nomePericia(catalogo, idA).localeCompare(nomePericia(catalogo, idB), 'pt-BR')
+  )
 
   const poderesResolvidos = (escolhas.poderes_escolhidos || []).map((id) => elemento?.poderes?.[id]).filter(Boolean)
   const espiritual = escolhas.espiritual_escolhido ? elemento?.espirituais?.[escolhas.espiritual_escolhido] : null
