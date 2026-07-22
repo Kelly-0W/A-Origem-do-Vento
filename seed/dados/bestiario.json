@@ -163,7 +163,7 @@
       "tipo_deslocamento": "terrestre"
     },
     "pericias_treinadas": [
-      "ocultismo",
+      "misticismo",
       "percepcao",
       "vontade"
     ],
@@ -333,7 +333,7 @@
       "tipo_deslocamento": "voo"
     },
     "pericias_treinadas": [
-      "ocultismo",
+      "misticismo",
       "vontade",
       "percepcao",
       "intimidacao",
@@ -402,7 +402,7 @@
         {
           "id": "cortejo-de-lanternas",
           "nome": "Cortejo de Lanternas",
-          "descricao": "O Ídolo invoca lanternas flutuantes pelo mapa. Enquanto as lanternas estiverem ativas, ele tem Vantagem em testes de Ocultismo e Vontade. As lanternas podem ser destruídas pelos jogadores.",
+          "descricao": "O Ídolo invoca lanternas flutuantes pelo mapa. Enquanto as lanternas estiverem ativas, ele tem Vantagem em testes de Misticismo e Vontade. As lanternas podem ser destruídas pelos jogadores.",
           "inata": false,
           "grau_ascensao": 4,
           "condicao": null,
