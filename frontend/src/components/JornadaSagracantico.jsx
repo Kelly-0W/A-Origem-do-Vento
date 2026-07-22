@@ -43,7 +43,9 @@ function CardEtapa({ definicao, etapa, desbloqueada }) {
           <span className="text-[10px] text-mist">Desbloqueia no Grau {definicao.grauNecessario}</span>
         )}
       </div>
-      {etapa ? (
+      {!desbloqueada ? (
+        <p className="text-xs text-mist italic">Ainda não desbloqueada.</p>
+      ) : etapa ? (
         <>
           <div className="flex items-center gap-2 mb-1">
             <span className="font-display font-semibold">{etapa.nome}</span>
