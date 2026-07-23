@@ -6,7 +6,10 @@ import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { api } from '../lib/api.js'
 import ModalBase from '../components/ModalBase.jsx'
-import { participanteDePersonagem, participanteDeMonstro, efeitoAplicado } from '../lib/combate.js'
+import {
+  participanteDePersonagem, participanteDeMonstro, efeitoAplicado,
+  resolverInicioDeTurno, aplicarTickEfeito, EFEITOS_COM_TICK,
+} from '../lib/combate.js'
 
 const ROTULO_STATUS = { preparando: 'Preparando', em_andamento: 'Em andamento', encerrado: 'Encerrado' }
 const ROTULO_TIPO = { personagem: 'Personagem', monstro: 'Monstro', npc: 'NPC' }
@@ -521,6 +524,8 @@ function SecaoIniciativa({ encontro, onAtualizado }) {
         participantes: participantesAtualizados,
         ordem,
         status: 'em_andamento',
+        turno_index: null,
+        rodada_atual: 1,
         atualizado_em: serverTimestamp(),
       })
       onAtualizado(participantesAtualizados, ordem)
@@ -589,6 +594,105 @@ function SecaoIniciativa({ encontro, onAtualizado }) {
             )}
           </div>
         ))}
+      </div>
+    </div>
+  )
+}
+
+function SecaoTurno({ encontro, catalogoEfeitos, onAvancar, onConfirmarTick }) {
+  const [valores, setValores] = useState({})
+
+  if (!encontro.ordem || encontro.ordem.length === 0) return null
+
+  const indexAtual = encontro.turno_index
+  const idAtual = indexAtual != null ? encontro.ordem[indexAtual] : null
+  const participanteAtual = idAtual ? encontro.participantes.find((p) => p.id === idAtual) : null
+
+  const pendencias = participanteAtual
+    ? (participanteAtual.efeitos || [])
+        .filter((e) => EFEITOS_COM_TICK[e.efeito_id])
+        .map((e) => ({ efeitoInstanciaId: e.id, efeitoId: e.efeito_id, nome: e.nome, ...EFEITOS_COM_TICK[e.efeito_id] }))
+    : []
+
+  return (
+    <div className="mt-8 border-t border-panel-border pt-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg">Turno — Rodada {encontro.rodada_atual ?? 1}</h3>
+        <button className="btn-primary text-xs" onClick={onAvancar}>
+          {indexAtual == null ? 'Iniciar Turno 1' : 'Próximo Turno →'}
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-2 mb-6">
+        {encontro.ordem.map((id, i) => {
+          const p = encontro.participantes.find((part) => part.id === id)
+          if (!p) return null
+          return (
+            <div
+              key={id}
+              className={`flex items-center justify-between p-3 rounded border
+                ${id === idAtual ? 'border-gold bg-gold/5' : 'border-panel-border'}`}
+            >
+              <span className="flex items-center gap-3">
+                {id === idAtual && <span className="text-gold">▶</span>}
+                <span className="font-display text-mist w-5">{i + 1}º</span>
+                <span>{p.nome}</span>
+              </span>
+              <span className="text-mist text-xs">Vida {p.vida_atual}/{p.vida_maxima}</span>
+            </div>
+          )
+        })}
+      </div>
+
+      {participanteAtual && pendencias.length > 0 && (
+        <div className="mb-6">
+          <div className="text-[11px] uppercase tracking-widest text-mist mb-2">
+            Pendências de início de turno — {participanteAtual.nome}
+          </div>
+          <div className="flex flex-col gap-2">
+            {pendencias.map((pendencia) => (
+              <div
+                key={pendencia.efeitoInstanciaId}
+                className="flex items-center justify-between p-3 rounded border border-panel-border"
+              >
+                <span className="text-sm">
+                  {pendencia.nome} <span className="text-mist text-xs">({pendencia.formula}, {pendencia.tipo})</span>
+                </span>
+                <div className="flex items-center gap-2">
+                  <input
+                    type="number"
+                    value={valores[pendencia.efeitoInstanciaId] ?? ''}
+                    onChange={(e) => setValores((prev) => ({ ...prev, [pendencia.efeitoInstanciaId]: e.target.value }))}
+                    placeholder="valor rolado"
+                    className="campo-input w-24 py-1"
+                  />
+                  <button
+                    className="btn-secondary text-xs"
+                    onClick={() => {
+                      const valor = valores[pendencia.efeitoInstanciaId]
+                      if (valor === undefined || valor === '') return
+                      onConfirmarTick(pendencia, valor)
+                      setValores((prev) => ({ ...prev, [pendencia.efeitoInstanciaId]: '' }))
+                    }}
+                  >
+                    Aplicar
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div>
+        <div className="text-[11px] uppercase tracking-widest text-mist mb-2">Registro do Combate</div>
+        <div className="flex flex-col gap-1 max-h-56 overflow-y-auto text-xs text-mist">
+          {(encontro.log || []).length === 0 ? (
+            <p>Nada aconteceu ainda.</p>
+          ) : (
+            [...encontro.log].reverse().map((linha, i) => <p key={i}>{linha}</p>)
+          )}
+        </div>
       </div>
     </div>
   )
@@ -689,6 +793,73 @@ export default function Combate() {
     atualizarEncontroLocal(encontroSelecionado.id, { participantes })
     try {
       await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, atualizado_em: serverTimestamp() })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function avancarTurno() {
+    const ordem = encontroSelecionado.ordem
+    if (!ordem || ordem.length === 0) return
+
+    const indexAtual = encontroSelecionado.turno_index
+    let proximoIndex = indexAtual == null ? 0 : indexAtual + 1
+    let rodada = encontroSelecionado.rodada_atual ?? 1
+    if (proximoIndex >= ordem.length) {
+      proximoIndex = 0
+      rodada += 1
+    }
+
+    const idProximo = ordem[proximoIndex]
+    const participanteProximo = encontroSelecionado.participantes.find((p) => p.id === idProximo)
+    if (!participanteProximo) return
+
+    const { participanteAtualizado, logs } = resolverInicioDeTurno(participanteProximo)
+    const participantes = encontroSelecionado.participantes.map((p) =>
+      p.id === idProximo ? participanteAtualizado : p
+    )
+    const log = [
+      ...(encontroSelecionado.log || []),
+      `Rodada ${rodada} — início do turno de ${participanteAtualizado.nome}.`,
+      ...logs,
+    ].slice(-100)
+
+    atualizarEncontroLocal(encontroSelecionado.id, {
+      participantes, turno_index: proximoIndex, rodada_atual: rodada, log,
+    })
+    try {
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), {
+        participantes, turno_index: proximoIndex, rodada_atual: rodada, log, atualizado_em: serverTimestamp(),
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function confirmarTick(pendencia, valorDigitado) {
+    const idAtual = encontroSelecionado.ordem?.[encontroSelecionado.turno_index]
+    const participante = encontroSelecionado.participantes.find((p) => p.id === idAtual)
+    if (!participante) return
+
+    const { participanteAtualizado, logs } = aplicarTickEfeito(
+      participante, pendencia, Number(valorDigitado), catalogoEfeitos
+    )
+    const participantes = encontroSelecionado.participantes.map((p) =>
+      p.id === idAtual ? participanteAtualizado : p
+    )
+    const log = [...(encontroSelecionado.log || []), ...logs].slice(-100)
+
+    atualizarEncontroLocal(encontroSelecionado.id, { participantes, log })
+    try {
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, log, atualizado_em: serverTimestamp() })
+      if (participante.tipo === 'personagem' && participante.ref_id) {
+        const { dados } = await api.ajustarRecursoPersonagemComoMestre(
+          participante.ref_id, usuario.uid, 'vida_atual', participanteAtualizado.vida_atual
+        )
+        if (!dados?.sucesso) {
+          console.error('Falha ao sincronizar com a ficha do personagem:', dados?.erros)
+        }
+      }
     } catch (err) {
       console.error(err)
     }
@@ -798,7 +969,13 @@ export default function Combate() {
 
             <SecaoIniciativa
               encontro={encontroSelecionado}
-              onAtualizado={(participantes, ordem) => atualizarEncontroLocal(encontroSelecionado.id, { participantes, ordem, status: 'em_andamento' })}
+              onAtualizado={(participantes, ordem) => atualizarEncontroLocal(encontroSelecionado.id, { participantes, ordem, status: 'em_andamento', turno_index: null, rodada_atual: 1 })}
+            />
+            <SecaoTurno
+              encontro={encontroSelecionado}
+              catalogoEfeitos={catalogoEfeitos}
+              onAvancar={avancarTurno}
+              onConfirmarTick={confirmarTick}
             />
           </div>
         )}
