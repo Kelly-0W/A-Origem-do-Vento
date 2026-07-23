@@ -18,7 +18,8 @@
       "regra_reaplicacao": "Caso um novo Escudo seja recebido enquanto já possuir um ativo, prevalecerá o maior valor (não soma).",
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "fortificacao": {
       "nome": "Fortificação",
@@ -32,7 +33,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "regeneracao": {
       "nome": "Regeneração",
@@ -46,7 +48,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "purificacao": {
       "nome": "Purificação",
@@ -60,7 +63,8 @@
       "regra_reaplicacao": "Caso a habilidade que concede Purificação possua limitações ou consequências, estas serão descritas na própria habilidade (não aqui no efeito genérico).",
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "protecao_absoluta": {
       "nome": "Proteção Absoluta",
@@ -76,7 +80,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "invisibilidade": {
       "nome": "Invisibilidade",
@@ -91,7 +96,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Após realizar uma ação hostil, a Invisibilidade é encerrada imediatamente (mesmo antes do fim das rodadas)."
+      "condicao_encerramento": "Após realizar uma ação hostil, a Invisibilidade é encerrada imediatamente (mesmo antes do fim das rodadas).",
+      "teste_para_encerrar": null
     },
     "indestrutivel": {
       "nome": "Indestrutível",
@@ -105,7 +111,8 @@
       "regra_reaplicacao": "Ao término do efeito, quaisquer danos pendentes voltam a ser considerados normalmente.",
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "resistencia_fisica": {
       "nome": "Resistência Física",
@@ -119,7 +126,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "resistencia_elemental": {
       "nome": "Resistência Elemental",
@@ -133,7 +141,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "imunidade_positivo": {
       "nome": "Imunidade",
@@ -147,7 +156,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "aceleracao": {
       "nome": "Aceleração",
@@ -162,7 +172,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "precisao": {
       "nome": "Precisão",
@@ -176,7 +187,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "foco": {
       "nome": "Foco",
@@ -191,7 +203,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "atracao": {
       "nome": "Atração",
@@ -206,7 +219,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "atordoamento": {
       "nome": "Atordoamento",
@@ -221,7 +235,11 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Pode encerrar este efeito utilizando uma Ação de Movimento e sendo bem-sucedida em um teste de Vontade (DT 19)."
+      "condicao_encerramento": "Pode encerrar este efeito utilizando uma Ação de Movimento e sendo bem-sucedida em um teste de Vontade (DT 19).",
+      "teste_para_encerrar": {
+        "pericia": "vontade",
+        "dt": 19
+      }
     },
     "conducao": {
       "nome": "Condução",
@@ -244,7 +262,8 @@
           "efeito": "Ao receber dano de Água, o dano por turno passa para 2d4+3 durante 3 turnos. Além disso, todas as criaturas adjacentes passam a sofrer esse dano enquanto permanecerem ao lado do alvo."
         }
       ],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "congelamento": {
       "nome": "Congelamento",
@@ -260,7 +279,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "deterioracao": {
       "nome": "Deterioração",
@@ -280,7 +300,8 @@
         "bloqueio_apos_estourar": "Novos Acúmulos só poderão ser aplicados após 3 turnos."
       },
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "envenenamento": {
       "nome": "Envenenamento",
@@ -295,7 +316,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Quando o dano do Envenenamento chegar a 0 ou menos, o efeito é encerrado e a criatura torna-se imune àquele mesmo Envenenamento. Caso obtenha um 20 natural (no teste de Constituição), o efeito é encerrado imediatamente."
+      "condicao_encerramento": "Quando o dano do Envenenamento chegar a 0 ou menos, o efeito é encerrado e a criatura torna-se imune àquele mesmo Envenenamento. Caso obtenha um 20 natural (no teste de Constituição), o efeito é encerrado imediatamente.",
+      "teste_para_encerrar": null
     },
     "fadiga": {
       "nome": "Fadiga",
@@ -310,7 +332,8 @@
       "regra_reaplicacao": "Ao término do efeito, retorna à posição anteriormente ocupada na Ordem de Combate.",
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "hemorragia": {
       "nome": "Hemorragia",
@@ -330,7 +353,8 @@
           "efeito": "A Hemorragia é imediatamente encerrada devido à cauterização das chamas."
         }
       ],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "medo": {
       "nome": "Medo",
@@ -345,7 +369,11 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Pode tentar encerrar este efeito realizando um teste de Vontade (DT 18) no início de seu turno."
+      "condicao_encerramento": "Pode tentar encerrar este efeito realizando um teste de Vontade (DT 18) no início de seu turno.",
+      "teste_para_encerrar": {
+        "pericia": "vontade",
+        "dt": 18
+      }
     },
     "provocar": {
       "nome": "Provocar",
@@ -360,7 +388,11 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Pode encerrar este efeito realizando um teste de Vontade (DT 16)."
+      "condicao_encerramento": "Pode encerrar este efeito realizando um teste de Vontade (DT 16).",
+      "teste_para_encerrar": {
+        "pericia": "vontade",
+        "dt": 16
+      }
     },
     "quebra_de_cura": {
       "nome": "Quebra de Cura",
@@ -374,7 +406,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Este efeito só pode ser removido por Cura de Estado."
+      "condicao_encerramento": "Este efeito só pode ser removido por Cura de Estado.",
+      "teste_para_encerrar": null
     },
     "queimadura": {
       "nome": "Queimadura",
@@ -399,7 +432,8 @@
           "efeito": "O Sangramento é imediatamente removido."
         }
       ],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "sangramento": {
       "nome": "Sangramento",
@@ -418,7 +452,8 @@
           "efeito": "O Sangramento é imediatamente encerrado."
         }
       ],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "sono": {
       "nome": "Sono",
@@ -435,7 +470,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "inconsciente": {
       "nome": "Inconsciente",
@@ -451,7 +487,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "cego": {
       "nome": "Cego",
@@ -467,7 +504,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "silenciado": {
       "nome": "Silenciado",
@@ -481,7 +519,8 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     },
     "imobilizado": {
       "nome": "Imobilizado",
@@ -495,7 +534,8 @@
       "regra_reaplicacao": "Ainda pode realizar normalmente quaisquer ações que não exijam movimentação.",
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": null
+      "condicao_encerramento": null,
+      "teste_para_encerrar": null
     }
   }
 }

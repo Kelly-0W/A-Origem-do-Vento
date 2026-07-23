@@ -54,6 +54,8 @@ export function efeitoAplicado(efeitoId, catalogoEfeito) {
     duracao_tipo: catalogoEfeito.duracao_tipo,
     rodadas_restantes: catalogoEfeito.duracao_tipo === 'rodadas' ? catalogoEfeito.duracao_rodadas_padrao : null,
     acumulos: catalogoEfeito.acumulo ? 0 : null,
+    condicao_encerramento: catalogoEfeito.condicao_encerramento || null,
+    teste_para_encerrar: catalogoEfeito.teste_para_encerrar || null,
   }
 }
 
@@ -135,6 +137,29 @@ export function aplicarTickEfeito(participante, pendencia, valorDigitado, catalo
   return { participanteAtualizado: { ...participante, vida_atual: vidaAtual, efeitos }, logs }
 }
 
+// Pra efeitos com um teste de resistência claro (Atordoamento, Medo,
+// Provocar -- ver 'teste_para_encerrar' no catálogo): o Mestre digita o
+// resultado que o jogador rolou (dado + modificador da perícia, já
+// somados -- o site continua não rolando dados sozinho) e isso compara
+// contra a DT do próprio efeito. Sucesso remove o efeito; falha só vira
+// uma linha no log, o efeito continua ativo.
+export function tentarResistirEfeito(participante, efeitoInstanciaId, valorTeste) {
+  const efeito = (participante.efeitos || []).find((e) => e.id === efeitoInstanciaId)
+  if (!efeito || !efeito.teste_para_encerrar) return { participanteAtualizado: participante, logs: [] }
+
+  const sucesso = Number(valorTeste) >= efeito.teste_para_encerrar.dt
+  const efeitos = sucesso
+    ? participante.efeitos.filter((e) => e.id !== efeitoInstanciaId)
+    : participante.efeitos
+
+  const logs = [
+    sucesso
+      ? `${participante.nome} resistiu a ${efeito.nome} (${valorTeste} vs DT ${efeito.teste_para_encerrar.dt}) -- efeito removido.`
+      : `${participante.nome} tentou resistir a ${efeito.nome} e falhou (${valorTeste} vs DT ${efeito.teste_para_encerrar.dt}) -- efeito continua.`,
+  ]
+
+  return { participanteAtualizado: { ...participante, efeitos }, logs }
+}
 export function participanteDeMonstro(monstro, monstroId, numero, totalNoGrupo, grau, marcosTreinamento) {
   const status = monstro.status || {}
   const vida = (status.vida?.base ?? 0) + (status.vida?.mult_ascensao ?? 0) * grau

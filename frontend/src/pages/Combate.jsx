@@ -8,7 +8,7 @@ import { api } from '../lib/api.js'
 import ModalBase from '../components/ModalBase.jsx'
 import {
   participanteDePersonagem, participanteDeMonstro, efeitoAplicado,
-  resolverInicioDeTurno, aplicarTickEfeito, EFEITOS_COM_TICK,
+  resolverInicioDeTurno, aplicarTickEfeito, EFEITOS_COM_TICK, tentarResistirEfeito,
 } from '../lib/combate.js'
 
 const ROTULO_STATUS = { preparando: 'Preparando', em_andamento: 'Em andamento', encerrado: 'Encerrado' }
@@ -308,19 +308,46 @@ function LinhaRecurso({ label, atual, max, sufixo = '', passoInicial = 1, onAjus
   )
 }
 
-function ChipEfeito({ efeito, onRemover }) {
+function ChipEfeito({ efeito, onRemover, onTentarResistir }) {
+  const [valorTeste, setValorTeste] = useState('')
   const cor = efeito.tipo === 'positivo' ? 'border-forest/50 text-forest' : 'border-blood-bright/50 text-blood-bright'
+  const dica = efeito.condicao_encerramento || null
+
   return (
-    <span className={`inline-flex items-center gap-1.5 text-[10px] px-2 py-1 rounded border ${cor}`}>
-      {efeito.nome}
-      {efeito.duracao_tipo === 'rodadas' && efeito.rodadas_restantes != null && ` (${efeito.rodadas_restantes}r)`}
-      {efeito.acumulos != null && ` [${efeito.acumulos}]`}
-      <button onClick={onRemover} className="hover:opacity-70 leading-none" aria-label="Remover efeito">×</button>
-    </span>
+    <div className={`inline-flex flex-col gap-1 text-[10px] px-2 py-1 rounded border ${cor}`}>
+      <span className="inline-flex items-center gap-1.5" title={dica || undefined}>
+        {efeito.nome}
+        {efeito.duracao_tipo === 'rodadas' && efeito.rodadas_restantes != null && ` (${efeito.rodadas_restantes}r)`}
+        {efeito.acumulos != null && ` [${efeito.acumulos}]`}
+        {dica && <span className="opacity-60" aria-hidden="true">ⓘ</span>}
+        <button onClick={onRemover} className="hover:opacity-70 leading-none" aria-label="Remover efeito">×</button>
+      </span>
+      {efeito.teste_para_encerrar && (
+        <span className="flex items-center gap-1">
+          <input
+            type="number"
+            value={valorTeste}
+            onChange={(e) => setValorTeste(e.target.value)}
+            placeholder={`vs DT ${efeito.teste_para_encerrar.dt}`}
+            className="w-16 bg-transparent border border-current/40 rounded px-1 py-0.5 text-[10px]"
+          />
+          <button
+            onClick={() => {
+              if (valorTeste === '') return
+              onTentarResistir(valorTeste)
+              setValorTeste('')
+            }}
+            className="hover:opacity-70 underline"
+          >
+            Resistir
+          </button>
+        </span>
+      )}
+    </div>
   )
 }
 
-function CardParticipante({ participante, onRemover, onAjustar, onAbrirEfeito, onRemoverEfeito }) {
+function CardParticipante({ participante, onRemover, onAjustar, onAbrirEfeito, onRemoverEfeito, onTentarResistirEfeito }) {
   return (
     <div className="card-fantasy p-4 relative">
       <button
@@ -390,7 +417,12 @@ function CardParticipante({ participante, onRemover, onAjustar, onAbrirEfeito, o
         ) : (
           <div className="flex flex-wrap gap-1.5">
             {participante.efeitos.map((efeito) => (
-              <ChipEfeito key={efeito.id} efeito={efeito} onRemover={() => onRemoverEfeito(efeito.id)} />
+              <ChipEfeito
+                key={efeito.id}
+                efeito={efeito}
+                onRemover={() => onRemoverEfeito(efeito.id)}
+                onTentarResistir={(valor) => onTentarResistirEfeito(efeito.id, valor)}
+              />
             ))}
           </div>
         )}
@@ -463,7 +495,7 @@ function ModalAdicionarEfeito({ efeitos, onFechar, onAplicar }) {
             {efeitoSelecionado.mecanica.map((linha, i) => <li key={i}>{linha}</li>)}
           </ul>
           {efeitoSelecionado.duracao_tipo === 'rodadas' && (
-            <label className="flex items-center gap-2 text-xs text-mist">
+            <label className="flex items-center gap-2 text-xs text-mist mb-2">
               Duração (rodadas)
               <input
                 type="number"
@@ -473,11 +505,18 @@ function ModalAdicionarEfeito({ efeitos, onFechar, onAplicar }) {
               />
             </label>
           )}
+          {efeitoSelecionado.duracao_tipo === 'rodadas' && efeitoSelecionado.condicao_encerramento && (
+            <p className="text-[11px] text-mist italic mb-2">
+              Também pode encerrar antes, quando: {efeitoSelecionado.condicao_encerramento}
+            </p>
+          )}
           {efeitoSelecionado.duracao_tipo !== 'rodadas' && (
             <p className="text-[11px] text-mist italic">
               {efeitoSelecionado.duracao_tipo === 'instantaneo'
                 ? 'Efeito instantâneo -- não fica como um estado contínuo.'
-                : 'Sem contagem de rodadas fixa -- dura até ser removido por alguma condição descrita acima.'}
+                : efeitoSelecionado.condicao_encerramento
+                  ? `Encerra quando: ${efeitoSelecionado.condicao_encerramento}`
+                  : 'Sem condição de encerramento específica -- remova manualmente quando fizer sentido na cena.'}
             </p>
           )}
         </div>
@@ -865,6 +904,22 @@ export default function Combate() {
     }
   }
 
+  async function tentarResistir(participanteId, efeitoInstanciaId, valorTeste) {
+    const participante = encontroSelecionado.participantes.find((p) => p.id === participanteId)
+    if (!participante) return
+    const { participanteAtualizado, logs } = tentarResistirEfeito(participante, efeitoInstanciaId, valorTeste)
+    const participantes = encontroSelecionado.participantes.map((p) =>
+      p.id === participanteId ? participanteAtualizado : p
+    )
+    const log = [...(encontroSelecionado.log || []), ...logs].slice(-100)
+    atualizarEncontroLocal(encontroSelecionado.id, { participantes, log })
+    try {
+      await updateDoc(doc(db, 'encontros', encontroSelecionado.id), { participantes, log, atualizado_em: serverTimestamp() })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   async function removerParticipante(participanteId) {
     if (!encontroSelecionado) return
     const participantes = encontroSelecionado.participantes.filter((p) => p.id !== participanteId)
@@ -962,6 +1017,7 @@ export default function Combate() {
                     onAjustar={(campo, delta, opcoes) => ajustarParticipante(p, campo, delta, opcoes)}
                     onAbrirEfeito={() => { setParticipanteAlvoId(p.id); setModalAberto('aplicar_efeito') }}
                     onRemoverEfeito={(efeitoInstanciaId) => removerEfeito(p.id, efeitoInstanciaId)}
+                    onTentarResistirEfeito={(efeitoInstanciaId, valor) => tentarResistir(p.id, efeitoInstanciaId, valor)}
                   />
                 ))}
               </div>
