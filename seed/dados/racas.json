@@ -595,7 +595,7 @@
       {
         "id": "rasgar-tendoes",
         "nome": "Rasgar Tendoes",
-        "descricao": "Seus golpes buscam mutilar e incapacitar a presa para que ela não fuja do seu território. Uma vez por cena, ao causar dano de Sangramento em um alvo, você pode força-lo a realizar um teste de Fortitude (DT 10 + sua Força). Em caso de falha, o alvo recebe o efeito negativo Imobilizado por 1 turno.",
+        "descricao": "Seus golpes buscam mutilar e incapacitar a presa para que ela não fuja do seu território. Uma vez por cena, ao causar dano de Sangramento em um alvo, você pode força-lo a realizar um teste de Fortitude (CD 10 + sua Força). Em caso de falha, o alvo recebe o efeito negativo Imobilizado por 1 turno.",
         "tipo": "ativa",
         "efeitos": []
       },
@@ -1635,7 +1635,7 @@
       {
         "id": "conexao-da-flora",
         "nome": "Conexão da Flora",
-        "descricao": "Sua ligação com o deus da natureza permite que você entenda os sussurros da mata. Você se torna treinado na perícia Sobrevivência. Pode realizar um teste de Sobrevivência (DT 15) para conversar rudimentarmente com plantas locais e descobrir se alguma criatura passou por aquela região nas ultimas 24 horas.",
+        "descricao": "Sua ligação com o deus da natureza permite que você entenda os sussurros da mata. Você se torna treinado na perícia Sobrevivência. Pode realizar um teste de Sobrevivência (CD 15) para conversar rudimentarmente com plantas locais e descobrir se alguma criatura passou por aquela região nas ultimas 24 horas.",
         "tipo": "ativa",
         "efeitos": []
       },
@@ -1710,7 +1710,7 @@
       {
         "id": "aura-solar",
         "nome": "Aura Solar",
-        "descricao": "Seu corpo emite ondas de calor e luz cegante. Gaste uma Ação Padrão e 3 pontos de Arche para criar uma aura luminosa em um raio de 4,5m ao seu redor que dura 2 turnos. Todos os inimigos que iniciarem seus respectivos turnos dentro da área devem ser bem-sucedidos em um teste de Reflexos (DT 15) ou receberão o efeito negativo Cego por 1 turno.",
+        "descricao": "Seu corpo emite ondas de calor e luz cegante. Gaste uma Ação Padrão e 3 pontos de Arche para criar uma aura luminosa em um raio de 4,5m ao seu redor que dura 2 turnos. Todos os inimigos que iniciarem seus respectivos turnos dentro da área devem ser bem-sucedidos em um teste de Reflexos (CD 15) ou receberão o efeito negativo Cego por 1 turno.",
         "tipo": "ativa",
         "efeitos": [],
         "linhagem_id": "solar"
@@ -1750,7 +1750,7 @@
       {
         "id": "flecha-sombria",
         "nome": "Flecha Sombria",
-        "descricao": "A calada da noite carrega o torpor do descanso eterno em suas flechas. Quando realizar um ataque utilizando a perícia Pontaria estando sob a condição Invisível ou Escondido durante a noite, você pode pagar 2 de Arche. Se o ataque acertar, o alvo deve passar em um teste de Vontade (DT 16) ou recebera o efeito negativo Sono por 1 turno.",
+        "descricao": "A calada da noite carrega o torpor do descanso eterno em suas flechas. Quando realizar um ataque utilizando a perícia Pontaria estando sob a condição Invisível ou Escondido durante a noite, você pode pagar 2 de Arche. Se o ataque acertar, o alvo deve passar em um teste de Vontade (CD 16) ou recebera o efeito negativo Sono por 1 turno.",
         "tipo": "ativa",
         "efeitos": [],
         "linhagem_id": "lunar"

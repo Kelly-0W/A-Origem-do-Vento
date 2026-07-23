@@ -211,7 +211,7 @@
       "tipo": "negativo",
       "descricao": "A criatura sente-se irresistivelmente atraída pelo causador do efeito.",
       "mecanica": [
-        "Sempre que desejar atacar o causador deste efeito, deverá ser bem-sucedida em um teste de Vontade (DT 20).",
+        "Sempre que desejar atacar o causador deste efeito, deverá ser bem-sucedida em um teste de Vontade (CD 20).",
         "Ao final de cada turno, deverá aproximar-se pelo menos 3 metros do causador, caso seja possível."
       ],
       "duracao_tipo": "ate_removido",
@@ -235,10 +235,10 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Pode encerrar este efeito utilizando uma Ação de Movimento e sendo bem-sucedida em um teste de Vontade (DT 19).",
+      "condicao_encerramento": "Pode encerrar este efeito utilizando uma Ação de Movimento e sendo bem-sucedida em um teste de Vontade (CD 19).",
       "teste_para_encerrar": {
         "pericia": "vontade",
-        "dt": 19
+        "CD": 19
       }
     },
     "conducao": {
@@ -309,7 +309,7 @@
       "descricao": "Um veneno percorre lentamente o organismo da criatura.",
       "mecanica": [
         "Sofre 1d12+2 de dano por turno.",
-        "Antes de realizar qualquer Ação de Movimento, deverá realizar um teste de Constituição (DT 18). Em caso de falha, não poderá se mover. Em caso de sucesso, o dano do próximo turno é reduzido em 2 pontos."
+        "Antes de realizar qualquer Ação de Movimento, deverá realizar um teste de Constituição (CD 18). Em caso de falha, não poderá se mover. Em caso de sucesso, o dano do próximo turno é reduzido em 2 pontos."
       ],
       "duracao_tipo": "ate_removido",
       "duracao_rodadas_padrao": null,
@@ -369,10 +369,10 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Pode tentar encerrar este efeito realizando um teste de Vontade (DT 18) no início de seu turno.",
+      "condicao_encerramento": "Pode tentar encerrar este efeito realizando um teste de Vontade (CD 18) no início de seu turno.",
       "teste_para_encerrar": {
         "pericia": "vontade",
-        "dt": 18
+        "CD": 18
       }
     },
     "provocar": {
@@ -388,10 +388,10 @@
       "regra_reaplicacao": null,
       "acumulo": null,
       "interacoes": [],
-      "condicao_encerramento": "Pode encerrar este efeito realizando um teste de Vontade (DT 16).",
+      "condicao_encerramento": "Pode encerrar este efeito realizando um teste de Vontade (CD 16).",
       "teste_para_encerrar": {
         "pericia": "vontade",
-        "dt": 16
+        "CD": 16
       }
     },
     "quebra_de_cura": {
@@ -462,8 +462,8 @@
       "mecanica": [
         "Seu Deslocamento é reduzido em 3 metros.",
         "Seus testes de Reflexos sofrem penalidade de 50%.",
-        "Durante os três turnos iniciais, pode realizar um teste de Vontade (DT 17) ao início de cada turno para resistir ao sono (não cai Inconsciente enquanto resistir).",
-        "Ao término desse período de 3 turnos, deverá realizar um teste de Vontade (DT 20). Caso falhe, adormecerá completamente (efeito Inconsciente) até ser despertada."
+        "Durante os três turnos iniciais, pode realizar um teste de Vontade (CD 17) ao início de cada turno para resistir ao sono (não cai Inconsciente enquanto resistir).",
+        "Ao término desse período de 3 turnos, deverá realizar um teste de Vontade (CD 20). Caso falhe, adormecerá completamente (efeito Inconsciente) até ser despertada."
       ],
       "duracao_tipo": "rodadas",
       "duracao_rodadas_padrao": 3,
