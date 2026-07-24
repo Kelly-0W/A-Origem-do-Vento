@@ -31,9 +31,9 @@
       }
     ],
     "poderes": {
-      "tiro-dagua": {
-        "nome": "Tiro d'Água",
-        "descricao": "Projeta as mãos ou braços, disparando projéteis esféricos de água sob extrema pressão que causam dano ao primeiro oponente atingido em linha reta.",
+      "jato-pressurizado": {
+        "nome": "Jato Pressurizado",
+        "descricao": "Concentra um jato de água comprimida capaz de arrancar o ar dos pulmões do alvo atingido, com força suficiente para atordoá-lo se ele já estiver encharcado.",
         "execucao": "padrao",
         "alcance": "medio",
         "pericia": "misticismo",
@@ -46,16 +46,16 @@
           "tipo": "agua_impacto"
         },
         "dano_secundario": null,
-        "efeito": null,
+        "efeito": "Aplica Condução (2 turnos). Se o alvo já estiver com Condução, o jato causa Atordoamento por 1 turno em vez de dano adicional.",
         "grau_minimo": 0,
         "variacoes": [
           {
             "submanipulacao": "gelo",
-            "efeito": "O projétil solidifica em estaca cristalina: dano vira Perfuração e ignora 2 pontos de Resistência Física natural do alvo."
+            "efeito": "O jato congela ao impacto: dano vira Perfuração e ignora 2 pontos de Resistência Física natural do alvo, além de aplicar Condução normalmente."
           },
           {
             "submanipulacao": "sangue",
-            "efeito": "Manipula a umidade externa para rasgar os poros da presa: dano vira Alma (Trevas); se o alvo já estiver com Sangramento, causa dano adicional fixo."
+            "efeito": "Manipula a umidade do sangue do alvo: dano vira Alma (Trevas); se o alvo já estiver com Sangramento, o Atordoamento (quando aplicável) dura 1 turno adicional."
           }
         ]
       },
@@ -389,22 +389,22 @@
           }
         ]
       },
-      "rastro-de-chamas": {
-        "nome": "Rastro de Chamas",
-        "descricao": "Infunde as pernas com calor volátil; ao se mover, deixa trilha de fogo no chão que causa dano contínuo e Queimadura a quem a atravessar.",
+      "trilha-infernal": {
+        "nome": "Trilha Infernal",
+        "descricao": "Infunde as pernas com fogo vivo; ao se mover, deixa um rastro de brasas vivas que continua queimando quem o atravessar.",
         "execucao": "padrao",
         "alcance": "pessoal",
         "pericia": "misticismo",
         "alvo": "pessoal (afeta quadrados percorridos)",
-        "duracao": "4 rodadas",
+        "duracao": "3 rodadas",
         "custo_arche": 1,
         "dano": {
-          "dados": "1d6",
+          "dados": "1d4",
           "atributo_bonus": "misticismo",
           "tipo": "fogo_para_quem_cruzar"
         },
         "dano_secundario": null,
-        "efeito": null,
+        "efeito": "Inimigos que cruzarem a trilha sofrem Queimadura e Condução.",
         "grau_minimo": 0,
         "variacoes": [
           {
@@ -1077,23 +1077,23 @@
           }
         ]
       },
-      "entendimento-natural": {
-        "nome": "Entendimento Natural",
-        "descricao": "Sintoniza-se holisticamente com o ecossistema local: sentidos biológicos se aguçam, detecta presenças vivas escondidas e ignora penalidades de terrenos difíceis naturais.",
+      "harmonia-viva": {
+        "nome": "Harmonia Viva",
+        "descricao": "Você se torna extensão da própria terra, e ela retribui protegendo os que lutam ao seu lado.",
         "execucao": "padrao",
-        "alcance": "pessoal",
+        "alcance": "curto",
         "pericia": "misticismo",
-        "alvo": "você mesmo",
-        "duracao": "cena",
-        "custo_arche": 1,
+        "alvo": "você e aliados adjacentes",
+        "duracao": "enquanto mantiver concentração",
+        "custo_arche": 2,
         "dano": null,
         "dano_secundario": null,
-        "efeito": "Ganha percepção ambiental aprimorada e ignora restrições de terreno natural.",
+        "efeito": "Você recebe Foco e ignora Terreno Difícil. Aliados adjacentes recebem Regeneração enquanto você mantiver a concentração (quebra se sofrer dano e falhar em teste de Vontade, CD 10 + metade do dano recebido).",
         "grau_minimo": 0,
         "variacoes": [
           {
             "submanipulacao": "toxicos",
-            "efeito": "Sentidos sintonizados com impurezas: detecta venenos/gases nocivos e recebe imunidade completa a Envenenado enquanto durar."
+            "efeito": "Sentidos sintonizados com impurezas: aliados afetados também recebem imunidade a Envenenado enquanto a concentração durar."
           }
         ]
       },
@@ -1275,31 +1275,31 @@
           }
         ]
       },
-      "solo-liso": {
-        "nome": "Solo Liso",
-        "descricao": "Altera a densidade/granulação do solo sob os pés para deslizar com facilidade, ganhando bônus em testes de Reflexos.",
-        "execucao": "movimento",
+      "terreno-do-guardiao": {
+        "nome": "Terreno do Guardião",
+        "descricao": "O chão ao seu redor se levanta em placas de pedra, protegendo aliados e sobrecarregando o passo dos inimigos.",
+        "execucao": "padrao",
         "alcance": "pessoal",
         "pericia": "luta",
-        "alvo": "você mesmo",
-        "duracao": "4 rodadas",
-        "custo_arche": 1,
+        "alvo": "área (6m de raio)",
+        "duracao": "cena",
+        "custo_arche": 2,
         "dano": null,
         "dano_secundario": null,
-        "efeito": "Concede bônus em testes de Reflexos e agilidade.",
+        "efeito": "Aliados na área recebem Fortificação; inimigos na área recebem Fadiga.",
         "grau_minimo": 0,
         "variacoes": [
           {
             "submanipulacao": "areia",
-            "efeito": "Transforma o solo em dunas maleáveis: bônus de Reflexos estendido a aliados que iniciarem o turno adjacentes a você."
+            "efeito": "Transforma o solo em dunas maleáveis: a Fortificação se estende a aliados que iniciarem o turno adjacentes a você, mesmo fora da área original."
           },
           {
             "submanipulacao": "metal",
-            "efeito": "Solo com magnetismo estável: imunidade a efeitos que tentem derrubá-lo."
+            "efeito": "Solo com magnetismo estável: aliados na área também recebem imunidade a efeitos que tentem derrubá-los."
           },
           {
             "submanipulacao": "magma",
-            "efeito": "Solo amolece e irradia calor ascendente: aumenta o deslocamento terrestre na rodada."
+            "efeito": "Solo amolece e irradia calor ascendente: inimigos na área sofrem 1d4 de dano de fogo ao entrarem, além da Fadiga."
           }
         ]
       },
@@ -1505,23 +1505,23 @@
           }
         ]
       },
-      "explosao-de-sombras": {
-        "nome": "Explosão de Sombras",
-        "descricao": "Expele onda de escuridão total ao redor, criando campo que obscurece a visão; ataques dentro ou através da zona sofrem penalidade.",
+      "manto-do-abismo": {
+        "nome": "Manto do Abismo",
+        "descricao": "As sombras ao seu redor engrossam até formar um véu de escuridão absoluta.",
         "execucao": "padrao",
         "alcance": "pessoal",
         "pericia": "misticismo",
         "alvo": "área (6m de raio)",
         "duracao": "cena",
-        "custo_arche": 1,
+        "custo_arche": 2,
         "dano": null,
         "dano_secundario": null,
-        "efeito": "Cria área com -3 na pontaria de ataques inimigos.",
+        "efeito": "Você recebe Invisibilidade enquanto permanecer dentro da área. Inimigos na área sofrem Medo e Desvantagem em testes de ataque.",
         "grau_minimo": 0,
         "variacoes": [
           {
             "submanipulacao": "luz",
-            "efeito": "Explosão emite luz ofuscante: inimigos na área sofrem 2d6 + Misticismo de dano radiante e perdem Ações de Reação até o início do próximo turno."
+            "efeito": "A área se torna uma explosão de luz cegante: inimigos na área sofrem Cego por 1 turno em vez de Medo; você recebe camuflagem por luminosidade em vez de Invisibilidade."
           }
         ]
       },
@@ -1931,23 +1931,23 @@
           }
         ]
       },
-      "passo-leve": {
-        "nome": "Passo Leve",
-        "descricao": "Usa correntes de ar ascendentes sob os pés para impulsionar movimentos, permitindo correr sobre superfícies instáveis e aumentar a velocidade em +3.",
-        "execucao": "movimento",
+      "corrente-ascendente": {
+        "nome": "Corrente Ascendente",
+        "descricao": "Uma corrente de vento a favor ergue você do chão e acelera cada movimento.",
+        "execucao": "padrao",
         "alcance": "pessoal",
         "pericia": "luta",
         "alvo": "você mesmo",
         "duracao": "3 rodadas",
-        "custo_arche": 1,
+        "custo_arche": 2,
         "dano": null,
         "dano_secundario": null,
-        "efeito": "+3m de deslocamento.",
+        "efeito": "Aceleração e capacidade de voo baixo (até 4,5m de altura), ignorando Terreno Difícil enquanto estiver voando.",
         "grau_minimo": 0,
         "variacoes": [
           {
             "submanipulacao": "nevoa",
-            "efeito": "Deixa rastro de névoa fria por onde passa, dificultando que inimigos rastreiem sua posição."
+            "efeito": "Deixa rastro de névoa fria por onde voa, dificultando que inimigos rastreiem sua posição."
           }
         ]
       },
@@ -2010,7 +2010,7 @@
       "custo_arche": 1,
       "dano": null,
       "dano_secundario": null,
-      "efeito": null,
+      "efeito": "Ao se transformar, escolha um efeito para durar enquanto a Transformação estiver ativa: Aceleração ou Fortificação. Esse efeito soma-se aos bônus fixos do totem escolhido.",
       "grau_minimo": 0,
       "variacoes": []
     },
@@ -2024,16 +2024,16 @@
         ],
         "poder_tribal": {
           "nome": "Olhar do Predador",
-          "descricao": "Marca um alvo à distância; enquanto ativa, ataques seus ou de aliados contra o alvo ignoram coberturas e causam +1d4 de dano extra.",
-          "execucao": "padrao",
+          "descricao": "Uma vez fixado o olhar em sua presa, ela não escapa nem se esconde de você.",
+          "execucao": "bonus",
           "alcance": "longo",
           "pericia": null,
           "alvo": "1 alvo",
-          "duracao": "3 rodadas",
+          "duracao": "3 rodadas, ou até perder linha de visão por 1 turno completo",
           "custo_arche": 1,
           "dano": null,
           "dano_secundario": null,
-          "efeito": null,
+          "efeito": "Marca um alvo visível. Enquanto marcado, você recebe Precisão contra ele e ignora Terreno Difícil ao persegui-lo.",
           "grau_minimo": 0,
           "variacoes": []
         }

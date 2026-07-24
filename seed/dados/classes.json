@@ -87,7 +87,7 @@
           {
             "id": "alquimista-herborista-elixir-da-regeneracao",
             "nome": "Elixir da Regeneração",
-            "descricao": "Você destilou a capacidade de cicatrização das plantas em um frasco concentrado. Gaste uma Ação Bônus e 3 pontos de Arché para fazer um aliado em alcance curto beber essa mistura. O alvo recebe o efeito positivo Regeneração (recuperando 1d8+2 de Vida no início de cada turno) durante 3 turnos completos.",
+            "descricao": "Você destilou a capacidade de cicatrização das plantas em um frasco concentrado. Gaste uma Ação Bônus e 3 pontos de Arché para fazer um aliado em alcance curto beber essa mistura. O alvo recebe o efeito positivo Regeneração durante 3 turnos completos.",
             "tipo": "ativa",
             "subclasse": "herborista",
             "efeitos": []
@@ -103,7 +103,7 @@
           {
             "id": "alquimista-herborista-seiva-da-resiliencia",
             "nome": "Seiva da Resiliência",
-            "descricao": "Você criou um extrato que endurece temporariamente a epiderme humana como a casca de uma árvore ancestral. Gaste uma Ação Padrão e 2 pontos de Arché para aplicar essa seiva em um aliado. Durante 3 turnos, o aliado recebe Resistência Física (reduzindo pela metade danos de Corte, Impacto e Perfuração).",
+            "descricao": "Você criou um extrato que endurece temporariamente a epiderme humana como a casca de uma árvore ancestral. Gaste uma Ação Padrão e 2 pontos de Arché para aplicar essa seiva em um aliado. Durante 3 turnos, o aliado recebe Resistência Física.",
             "tipo": "ativa",
             "subclasse": "herborista",
             "efeitos": []
@@ -328,7 +328,7 @@
       {
         "id": "assassino-presenca-gelida",
         "nome": "Presença Gélida",
-        "descricao": "Como Ação Bônus e 2 pontos de Arché, você e aliados em alcance curto recebem o efeito positivo Foco (imunidade a Atração e Provocar) por 3 turnos.",
+        "descricao": "Como Ação Bônus e 2 pontos de Arché, você e aliados em alcance curto recebem o efeito positivo Foco por 3 turnos.",
         "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
@@ -551,7 +551,7 @@
       {
         "id": "barbaro-pele-de-tita",
         "nome": "Pele de Titã",
-        "descricao": "Enquanto estiver sob o efeito do Transe de Fúria, você recebe os efeitos positivos Resistência Física e Fortificação (+2 Defesa).",
+        "descricao": "Enquanto estiver sob o efeito do Transe de Fúria, você recebe os efeitos positivos Resistência Física e Fortificação.",
         "tipo": "passiva",
         "subclasse": null,
         "efeitos": []
@@ -814,7 +814,7 @@
       {
         "id": "bardo-compasso-acelerado",
         "nome": "Compasso Acelerado",
-        "descricao": "Você dita o ritmo da batalha, agilizando os movimentos do seu esquadrão. Ao gastar uma Ação de Movimento e 2 pontos de Arché, você emite uma nota estimulante. Até dois aliados da sua escolha a até 9 metros de distância recebem a condição Aceleração (+3m de deslocamento e +5 de Iniciativa) durante 2 turnos.",
+        "descricao": "Você dita o ritmo da batalha, agilizando os movimentos do seu esquadrão. Ao gastar uma Ação de Movimento e 2 pontos de Arché, você emite uma nota estimulante. Até dois aliados da sua escolha a até 9 metros de distância recebem a condição Aceleração durante 2 turnos.",
         "tipo": "passiva",
         "subclasse": null,
         "efeitos": []
@@ -1332,7 +1332,7 @@
       {
         "id": "cacador-visao-da-presa",
         "nome": "Visão da Presa",
-        "descricao": "Ao marcar um alvo com Minha Presa, você e aliados que possam vê-lo recebem o efeito positivo Precisão (+2 em testes de Acerto) contra ele por 3 turnos.",
+        "descricao": "Ao marcar um alvo com Minha Presa, você e aliados que possam vê-lo recebem o efeito positivo Precisão contra ele por 3 turnos.",
         "tipo": "passiva",
         "subclasse": null,
         "efeitos": []
@@ -1595,7 +1595,7 @@
       {
         "id": "clerigo-aura-da-revelacao",
         "nome": "Aura da Revelação",
-        "descricao": "Gastando uma Ação Bônus e 2 pontos de Arché, você conjura uma luz que anula Invisibilidade em um raio de 9 metros e concede o efeito positivo Precisão (+2 em testes de Acerto) para aliados dentro da área, até o final da cena.",
+        "descricao": "Gastando uma Ação Bônus e 2 pontos de Arché, você conjura uma luz que anula Invisibilidade em um raio de 9 metros e concede o efeito positivo Precisão para aliados dentro da área, até o final da cena.",
         "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
@@ -1673,7 +1673,7 @@
           {
             "id": "clerigo-sacerdote-dadiva-da-regeneracao",
             "nome": "Dádiva da Regeneração",
-            "descricao": "Os seus feitiços de cura continuam agindo mesmo após o seu turno. Sempre que você curar um aliado através da perícia Cura ou da habilidade Bênção da Cura, aquele aliado também recebe o efeito Regeneração por 2 turnos, recuperando 1d8+2 no início de cada turno dele.",
+            "descricao": "Os seus feitiços de cura continuam agindo mesmo após o seu turno. Sempre que você curar um aliado através da perícia Cura ou da habilidade Bênção da Cura, aquele aliado também recebe o efeito Regeneração por 2 turnos.",
             "tipo": "passiva",
             "subclasse": "sacerdote",
             "efeitos": []
@@ -2415,7 +2415,7 @@
           {
             "id": "monge-punho-marcial-punhos-rompe-aco",
             "nome": "Punhos Rompe-Aço",
-            "descricao": "A dureza dos seus ossos supera o metal inimigo. Todos os seus ataques físicos desarmados, ou utilizando Manoplas e Soqueiras, passam a ignorar passivamente qualquer Resistência Física (Corte, Impacto, Perfuração) que o alvo possua.",
+            "descricao": "A dureza dos seus ossos supera o metal inimigo. Todos os seus ataques físicos desarmados, ou utilizando Manoplas e Soqueiras, passam a ignorar passivamente qualquer Resistência Física que o alvo possua.",
             "tipo": "passiva",
             "subclasse": "punho-marcial",
             "efeitos": []
@@ -2757,7 +2757,7 @@
           {
             "id": "oraculo-cronoteologo-aceleracao-temporal",
             "nome": "Aceleração Temporal",
-            "descricao": "Você faz o tempo passar mais rápido apenas para os seus aliados. Gastando uma Ação Padrão e 3 pontos de Arché, você e mais dois aliados recebem a condição Aceleração (+3m de deslocamento e +5 de Iniciativa) por 3 turnos, ignorando o peso do tempo sobre seus corpos.",
+            "descricao": "Você faz o tempo passar mais rápido apenas para os seus aliados. Gastando uma Ação Padrão e 3 pontos de Arché, você e mais dois aliados recebem a condição Aceleração por 3 turnos, ignorando o peso do tempo sobre seus corpos.",
             "tipo": "ativa",
             "subclasse": "cronoteologo",
             "efeitos": []
@@ -3166,7 +3166,7 @@
       {
         "id": "sentinela-postura-do-bastiao",
         "nome": "Postura do Bastião",
-        "descricao": "Gastando uma Ação Padrão e 2 pontos de Arché, você planta o escudo no chão e ganha o efeito positivo Escudo (igual a 20% da sua Vida Máxima) e Fortificação (+2 Defesa) por 3 turnos.",
+        "descricao": "Gastando uma Ação Padrão e 2 pontos de Arché, você planta o escudo no chão e ganha os efeitos positivos Escudo e Fortificação por 3 turnos.",
         "tipo": "ativa",
         "subclasse": null,
         "efeitos": []

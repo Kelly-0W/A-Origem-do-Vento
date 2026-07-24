@@ -425,7 +425,7 @@
       {
         "id": "eco-do-veu",
         "nome": "Eco do Véu",
-        "descricao": "Sua estirpe mantém um elo tênue com o Plano Espiritual. Gastando uma Ação Bônus e 1 ponto de Arche, você desliza parcialmente para esse plano, tornando-se semitranslúcida durante 2 turnos. Enquanto durar, você ignora os efeitos de Terreno Difícil e recebe o efeito positivo Aceleração (+3 metros de Deslocamento), mas ataques corpo a corpo contra você sofrem -1 na rolagem de acerto, já que seu corpo oscila entre planos. A habilidade não pode ser reativada até 1 turno após o término do efeito anterior.",
+        "descricao": "Sua estirpe mantém um elo tênue com o Plano Espiritual. Gastando uma Ação Bônus e 1 ponto de Arche, você desliza parcialmente para esse plano, tornando-se semitranslúcida durante 2 turnos. Enquanto durar, você ignora os efeitos de Terreno Difícil e recebe o efeito positivo Aceleração, mas ataques corpo a corpo contra você sofrem -1 na rolagem de acerto, já que seu corpo oscila entre planos. A habilidade não pode ser reativada até 1 turno após o término do efeito anterior.",
         "tipo": "ativa",
         "efeitos": []
       },
@@ -453,7 +453,7 @@
       {
         "id": "brilho-lunar",
         "nome": "Brilho Lunar",
-        "descricao": "Enquanto estiver sob a luz da lua ou no Plano Espiritual, seus movimentos etéreos aguçam seus sentidos e sua pontaria. Gastando uma Ação Bônus e 2 pontos de Arche, você recebe Precisão (+2 em testes de Acerto) e Foco (+2 em testes de Vontade) durante 3 turnos.",
+        "descricao": "Enquanto estiver sob a luz da lua ou no Plano Espiritual, seus movimentos etéreos aguçam seus sentidos e sua pontaria. Gastando uma Ação Bônus e 2 pontos de Arche, você recebe Precisão e Foco durante 3 turnos.",
         "tipo": "ativa",
         "efeitos": []
       }
@@ -1758,7 +1758,7 @@
       {
         "id": "bencao-de-selene",
         "nome": "Bênção de Selene",
-        "descricao": "O luar confere a você uma postura inabalavel e rigida. Enquanto estiver lutando sob a luz da lua, você recebe automaticamente o efeito positivo Fortificação (+2 em Defesa). Além disso, sua mente se torna completamente imune a efeitos de controle mental ou medo, como as perícias Assustar ou Intimidação vindas de inimigos.",
+        "descricao": "O luar confere a você uma postura inabalavel e rigida. Enquanto estiver lutando sob a luz da lua, você recebe automaticamente o efeito positivo Fortificação. Além disso, sua mente se torna completamente imune a efeitos de controle mental ou medo, como as perícias Assustar ou Intimidação vindas de inimigos.",
         "tipo": "passiva",
         "efeitos": [],
         "linhagem_id": "lunar"
@@ -1872,14 +1872,14 @@
       {
         "id": "casulo-de-arche",
         "nome": "Casulo de Arche",
-        "descricao": "Sua energia magica envolve o corpo de um companheiro em um escudo biológico. Gastando uma Ação Padrão e 3 pontos de Arche, você concede a um aliado em alcance curto um Escudo equivalente a 20% da Vida Máxima dele que dura por ate 2 turnos.",
+        "descricao": "Sua energia magica envolve o corpo de um companheiro em um escudo biológico. Gastando uma Ação Padrão e 3 pontos de Arche, você concede a um aliado em alcance curto o efeito positivo Escudo, que dura por ate 2 turnos.",
         "tipo": "ativa",
         "efeitos": []
       },
       {
         "id": "instinto-das-asas",
         "nome": "Instinto das Asas",
-        "descricao": "Seus instintos de guardiã captam o próximo golpe antes mesmo que ele seja desferido. Inimigos Escondidos ou Invisíveis não recebem Vantagem em testes de ataque contra você. Além disso, gastando uma Ação de Reação no momento em que você ou um aliado adjacente é declarado alvo de um ataque, você concede a si mesma ou a esse aliado o efeito positivo Fortificação (+2 Defesa) contra aquele ataque específico.",
+        "descricao": "Seus instintos de guardiã captam o próximo golpe antes mesmo que ele seja desferido. Inimigos Escondidos ou Invisíveis não recebem Vantagem em testes de ataque contra você. Além disso, gastando uma Ação de Reação no momento em que você ou um aliado adjacente é declarado alvo de um ataque, você concede a si mesma ou a esse aliado o efeito positivo Fortificação contra aquele ataque específico.",
         "tipo": "ativa",
         "efeitos": []
       },
@@ -1917,7 +1917,7 @@
     "sistema_racial_inato": {
       "tipo": "sinfonia_das_estacoes",
       "nome": "Sinfonia das Estações",
-      "descricao": "O corpo de uma fada reage de forma direta e involuntaria ao clima e a estação atual do mundo de Midgard, alterando seus tracos fisicos e concedendo uma caracteristica mistica passiva única conforme a estação vigente: Primavera (Regeneração de 1d8+2 de Vida no inicio de cada turno durante os 2 primeiros turnos de combate), Verão (poderes de suporte que concedem Escudo ou Proteção a aliados aumentam o valor em um bonus igual ao modificador de Sabedoria), Outono (+2 de bonus em testes de Vontade ou Misticismo para resistir a controle mental ou debuffs), Inverno (Resistência Elemental a dano de Agua/frio e +1 de Defesa permanente enquanto durar o inverno).",
+      "descricao": "O corpo de uma fada reage de forma direta e involuntaria ao clima e a estação atual do mundo de Midgard, alterando seus tracos fisicos e concedendo uma caracteristica mistica passiva única conforme a estação vigente: Primavera (Regeneração durante os 2 primeiros turnos de combate), Verão (poderes de suporte que concedem Escudo ou Proteção a aliados aumentam o valor em um bonus igual ao modificador de Sabedoria), Outono (+2 de bonus em testes de Vontade ou Misticismo para resistir a controle mental ou debuffs), Inverno (Resistência Elemental a dano de Agua/frio e +1 de Defesa permanente enquanto durar o inverno).",
       "parametros": {
         "primavera": "regeneracao: 1d8+2 por 2 turnos",
         "verao": "bônus em habilidades de suporte (cura e escudos) igual ao modificador sabedoria",
