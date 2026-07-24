@@ -423,10 +423,10 @@
         "efeitos": []
       },
       {
-        "id": "passo-da-nebulosa",
-        "nome": "Passo da Nebulosa",
-        "descricao": "Seu corpo possui dificuldade em permanecer completamente preso ao mundo físico. Você ignora a primeira penalidade de terreno difícil que sofrer a cada turno.",
-        "tipo": "passiva",
+        "id": "eco-do-veu",
+        "nome": "Eco do Véu",
+        "descricao": "Sua estirpe mantém um elo tênue com o Plano Espiritual. Gastando uma Ação Bônus e 1 ponto de Arche, você desliza parcialmente para esse plano, tornando-se semitranslúcida durante 2 turnos. Enquanto durar, você ignora os efeitos de Terreno Difícil e recebe o efeito positivo Aceleração (+3 metros de Deslocamento), mas ataques corpo a corpo contra você sofrem -1 na rolagem de acerto, já que seu corpo oscila entre planos. A habilidade não pode ser reativada até 1 turno após o término do efeito anterior.",
+        "tipo": "ativa",
         "efeitos": []
       },
       {
@@ -451,10 +451,10 @@
         "efeitos": []
       },
       {
-        "id": "danca-da-lua",
-        "nome": "Danca da Lua",
-        "descricao": "Sob a luz da lua ou dentro do Plano Espiritual, seus movimentos tornam-se quase etereos. Recebe +2 em Acrobacia, +2 em Furtividade e +3m de Deslocamento.",
-        "tipo": "passiva",
+        "id": "brilho-lunar",
+        "nome": "Brilho Lunar",
+        "descricao": "Enquanto estiver sob a luz da lua ou no Plano Espiritual, seus movimentos etéreos aguçam seus sentidos e sua pontaria. Gastando uma Ação Bônus e 2 pontos de Arche, você recebe Precisão (+2 em testes de Acerto) e Foco (+2 em testes de Vontade) durante 3 turnos.",
+        "tipo": "ativa",
         "efeitos": []
       }
     ],
@@ -1877,10 +1877,10 @@
         "efeitos": []
       },
       {
-        "id": "sentinela-alerta",
-        "nome": "Sentinela Alerta",
-        "descricao": "Seus instintos de guardia captam as vibrações e alterações nas correntes de ar. Você recebe +2 em Percepção. Além disso, inimigos Escondidos ou Invisiveis não recebem Vantagem em testes de ataque contra você.",
-        "tipo": "passiva",
+        "id": "instinto-das-asas",
+        "nome": "Instinto das Asas",
+        "descricao": "Seus instintos de guardiã captam o próximo golpe antes mesmo que ele seja desferido. Inimigos Escondidos ou Invisíveis não recebem Vantagem em testes de ataque contra você. Além disso, gastando uma Ação de Reação no momento em que você ou um aliado adjacente é declarado alvo de um ataque, você concede a si mesma ou a esse aliado o efeito positivo Fortificação (+2 Defesa) contra aquele ataque específico.",
+        "tipo": "ativa",
         "efeitos": []
       },
       {
@@ -1898,10 +1898,10 @@
         "efeitos": []
       },
       {
-        "id": "espirito-compassivo",
-        "nome": "Espirito Compassivo",
-        "descricao": "Sua mente e blindada pela determinação de manter seu bando vivo. Você recebe treinamento na perícia Vontade. Sempre que você realizar um teste de Vontade para resistir a efeitos de medo ou pânico (como Assustar), você adiciona +2 de bonus no resultado.",
-        "tipo": "passiva",
+        "id": "aura-serenadora",
+        "nome": "Aura Serenadora",
+        "descricao": "Como Ação Bônus e 2 pontos de Arche, você emana uma aura calmante em 4,5 metros ao seu redor. Aliados na área recebem o efeito Foco por 2 turnos e ficam imunes às condições Medo e Atração enquanto permanecerem na aura, que se move com você e dura 2 turnos, ou até você ser incapacitada.",
+        "tipo": "ativa",
         "efeitos": []
       },
       {

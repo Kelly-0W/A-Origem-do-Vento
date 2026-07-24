@@ -270,9 +270,9 @@
     "qtd_habilidades_iniciais": 1,
     "habilidades": [
       {
-        "id": "assassino-andarilho-das-sombras",
-        "nome": "Andarilho das Sombras",
-        "descricao": "O breu é o seu domínio natural. Você recebe treinamento na perícia Furtividade (caso já seja treinado, recebe +2 de bônus fixo). Além disso, você pode gastar uma Ação Bônus para tentar se esconder em combate, diferentemente de outras classes que precisam de uma Ação Padrão para isso.",
+        "id": "assassino-manto-das-sombras",
+        "nome": "Manto das Sombras",
+        "descricao": "Gastando uma Ação Bônus e 2 pontos de Arché, você ganha o efeito positivo Invisibilidade por 1 turno. O efeito é quebrado imediatamente caso você realize um ataque.",
         "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
@@ -326,10 +326,10 @@
         "efeitos": []
       },
       {
-        "id": "assassino-frieza-do-executor",
-        "nome": "Frieza do Executor",
-        "descricao": "Para tirar uma vida, é preciso ter controle absoluto sobre as próprias emoções. Você recebe treinamento na perícia Vontade e se torna resistente à perturbações mentais comuns, ganhando um bônus de +3 em testes para resistir ou anular os efeitos de Medo e Provocar.",
-        "tipo": "passiva",
+        "id": "assassino-presenca-gelida",
+        "nome": "Presença Gélida",
+        "descricao": "Como Ação Bônus e 2 pontos de Arché, você e aliados em alcance curto recebem o efeito positivo Foco (imunidade a Atração e Provocar) por 3 turnos.",
+        "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
       }
@@ -481,7 +481,7 @@
       "facil": [
         {
           "id": "assassino-facil-1",
-          "descricao": "Iniciar um confronto na condição escondido através do Andarilho das Sombras e desferir um Ataque Furtivo bem-sucedido logo na primeira rodada."
+          "descricao": "Ativar o Manto das Sombras para ficar Invisível e desferir um Ataque Furtivo bem-sucedido antes que o efeito se quebre."
         },
         {
           "id": "assassino-facil-2",
@@ -507,7 +507,7 @@
         },
         {
           "id": "assassino-medio-3",
-          "descricao": "Usar a ação bônus concedida por Andarilho das Sombras para se Esconder em combate por 3 rodadas diferentes na mesma cena."
+          "descricao": "Ativar o Manto das Sombras 3 vezes diferentes na mesma cena, desferindo um Ataque Furtivo bem-sucedido em pelo menos uma delas."
         }
       ],
       "dificil": [
@@ -517,7 +517,7 @@
         },
         {
           "id": "assassino-dificil-2",
-          "descricao": "Superar um teste de Vontade contra um efeito hostil de Medo ou Provocar utilizando o bônus de +3 de Frieza do Executor e abater o conjurador do efeito na rodada seguinte."
+          "descricao": "Usar a Presença Gélida para proteger a si mesmo e um aliado contra Medo, Atração ou Provocar, e abater o conjurador responsável pelo efeito ainda durante os 3 turnos de proteção."
         },
         {
           "id": "assassino-dificil-3",
@@ -549,9 +549,9 @@
         "efeitos": []
       },
       {
-        "id": "barbaro-pele-de-ferro",
-        "nome": "Pele de Ferro",
-        "descricao": "O seu corpo calejou ao ponto de ignorar cortes superficiais. Enquanto você não estiver vestindo armaduras pesadas, a sua Defesa passará a receber um bônus igual ao seu modificador de Constituição. (Esse bônus acumula com o que a sua Raça já concede).",
+        "id": "barbaro-pele-de-tita",
+        "nome": "Pele de Titã",
+        "descricao": "Enquanto estiver sob o efeito do Transe de Fúria, você recebe os efeitos positivos Resistência Física e Fortificação (+2 Defesa).",
         "tipo": "passiva",
         "subclasse": null,
         "efeitos": []
@@ -784,7 +784,7 @@
         },
         {
           "id": "barbaro-dificil-3",
-          "descricao": "Mitigar ou absorver um total acumulado de 40 pontos de dano bruto em uma única cena usando apenas os bônus de sua Pele de Ferro e os pontos temporarios de Resiliência do Front."
+          "descricao": "Mitigar ou absorver um total acumulado de 40 pontos de dano bruto em uma única cena usando apenas a Resistência Física concedida pela Pele de Titã durante o Transe de Fúria, somados aos pontos temporarios de Resiliência do Front."
         }
       ]
     }
@@ -828,10 +828,10 @@
         "efeitos": []
       },
       {
-        "id": "bardo-labia-magnetica",
-        "nome": "Lábia Magnética",
-        "descricao": "Sua voz foi treinada para fascinar e convencer. Você recebe treinamento nas perícias Diplomacia e Atuação. Além disso, sempre que você falhar em um teste de interação social com um NPC que não seja abertamente hostil, você pode usar uma Ação Livre e 1 de Sanidade para refazer a rolagem, fingindo que foi apenas uma brincadeira.",
-        "tipo": "passiva",
+        "id": "bardo-nota-da-distracao",
+        "nome": "Nota da Distração",
+        "descricao": "Gastando uma Ação Livre, uma vez por turno, você faz um teste de Atuação contra a Vontade de um inimigo que possa ouvi-lo. Em caso de sucesso, você aplica a condição Tonto ou Provocar (à sua escolha) nele por 1 turno.",
+        "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
       },
@@ -1033,7 +1033,7 @@
         },
         {
           "id": "bardo-medio-3",
-          "descricao": "Refazer com sucesso um teste de interação social falhado com um NPC não hostil gastando 1 ponto de Sanidade através da Labia Magnetica."
+          "descricao": "Aplicar Tonto ou Provocar em um inimigo usando a Nota da Distração e conseguir que um aliado desfira um ataque bem-sucedido contra ele antes do fim do turno."
         }
       ],
       "dificil": [
@@ -1330,9 +1330,9 @@
         "efeitos": []
       },
       {
-        "id": "cacador-olhar-do-predador",
-        "nome": "Olhar do Predador",
-        "descricao": "A sua visão é treinada para detectar detalhes que passam despercebidos. Você recebe treinamento na perícia Percepção. Além disso, sempre que realizar um teste de Percepção para localizar inimigos escondidos ou rastrear pegadas, você rola com Vantagem.",
+        "id": "cacador-visao-da-presa",
+        "nome": "Visão da Presa",
+        "descricao": "Ao marcar um alvo com Minha Presa, você e aliados que possam vê-lo recebem o efeito positivo Precisão (+2 em testes de Acerto) contra ele por 3 turnos.",
         "tipo": "passiva",
         "subclasse": null,
         "efeitos": []
@@ -1493,7 +1493,7 @@
         },
         {
           "id": "cacador-facil-3",
-          "descricao": "Localizar com sucesso um inimigo escondido na cena superando o teste de Percepção com a Vantagem fornecida pelo Olhar do Predador."
+          "descricao": "Marcar um inimigo com Minha Presa e conseguir que você e pelo menos um aliado acertem ataques contra ele no mesmo turno, aproveitando o bônus de Precisão da Visão da Presa."
         },
         {
           "id": "cacador-facil-4",
@@ -1593,9 +1593,9 @@
         "efeitos": []
       },
       {
-        "id": "clerigo-luz-reveladora",
-        "nome": "Luz Reveladora",
-        "descricao": "O brilho do seu deus não permite que as trevas se escondam. Gaste uma Ação Bônus e 2 pontos de Arché para conjurar um orbe de luz acima de você. Até o final da cena, a luz ilumina um raio de 9 metros, anulando qualquer camuflagem por penumbra ou escuridão. Inimigos invisíveis que entrarem nessa área tornam-se visíveis imediatamente.",
+        "id": "clerigo-aura-da-revelacao",
+        "nome": "Aura da Revelação",
+        "descricao": "Gastando uma Ação Bônus e 2 pontos de Arché, você conjura uma luz que anula Invisibilidade em um raio de 9 metros e concede o efeito positivo Precisão (+2 em testes de Acerto) para aliados dentro da área, até o final da cena.",
         "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
@@ -1774,7 +1774,7 @@
         },
         {
           "id": "clerigo-medio-3",
-          "descricao": "Conjurar a Luz Reveladora para expor e tornar visível um inimigo Invisível ou camuflado na penumbra dentro do raio de 9 metros."
+          "descricao": "Conjurar a Aura da Revelação para expor um inimigo Invisível e conceder o bônus de Precisão a pelo menos um aliado dentro do raio de 9 metros."
         }
       ],
       "dificil": [
@@ -3164,9 +3164,9 @@
         "efeitos": []
       },
       {
-        "id": "sentinela-vigor-do-bastiao",
-        "nome": "Vigor do Bastião",
-        "descricao": "O Arché fortifica a sua fibra muscular. Gastando uma Ação Padrão e 2 pontos de Arché, você cerra os dentes e se prepara para o impacto, ganhando Pontos de Vida Temporária iguais a 10 + (2 x o seu Nível de Ascensão). Esses pontos duram até o final do combate ou até serem esgotados.",
+        "id": "sentinela-postura-do-bastiao",
+        "nome": "Postura do Bastião",
+        "descricao": "Gastando uma Ação Padrão e 2 pontos de Arché, você planta o escudo no chão e ganha o efeito positivo Escudo (igual a 20% da sua Vida Máxima) e Fortificação (+2 Defesa) por 3 turnos.",
         "tipo": "ativa",
         "subclasse": null,
         "efeitos": []
@@ -3339,7 +3339,7 @@
         },
         {
           "id": "sentinela-facil-4",
-          "descricao": "Ativar o Vigor do Bastião gastando uma Ação Padrão para receber pontos de Vida Temporaria protetores antes de sofrer um golpe."
+          "descricao": "Ativar a Postura do Bastião gastando uma Ação Padrão para receber o Escudo protetor antes de sofrer um golpe."
         }
       ],
       "medio": [
