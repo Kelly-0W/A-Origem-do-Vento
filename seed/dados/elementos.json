@@ -2036,7 +2036,8 @@
           "efeito": "Marca um alvo visível. Enquanto marcado, você recebe Precisão contra ele e ignora Terreno Difícil ao persegui-lo.",
           "grau_minimo": 0,
           "variacoes": []
-        }
+        },
+        "elemento_id": "vento"
       },
       "ignarok": {
         "nome": "Ignarok — Fogo",
@@ -2059,7 +2060,8 @@
           "efeito": null,
           "grau_minimo": 0,
           "variacoes": []
-        }
+        },
+        "elemento_id": "fogo"
       },
       "khor-azkal": {
         "nome": "Khor-Azkal — Terra",
@@ -2082,7 +2084,8 @@
           "efeito": null,
           "grau_minimo": 0,
           "variacoes": []
-        }
+        },
+        "elemento_id": "terra"
       },
       "sylvarin": {
         "nome": "Sylvarin — Natureza",
@@ -2105,7 +2108,8 @@
           "efeito": null,
           "grau_minimo": 0,
           "variacoes": []
-        }
+        },
+        "elemento_id": "natureza"
       },
       "kaze-rai": {
         "nome": "Kaze-Rai — Vento",
@@ -2128,7 +2132,8 @@
           "efeito": null,
           "grau_minimo": 0,
           "variacoes": []
-        }
+        },
+        "elemento_id": "vento"
       }
     }
   }

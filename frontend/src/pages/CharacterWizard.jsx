@@ -89,6 +89,12 @@ export default function CharacterWizard() {
   const origem = catalogo.origens?.[escolhas.origem_id] || null
   const elemento = catalogo.elementos?.[escolhas.elemento_id] || null
   const isCaca = escolhas.elemento_id === 'caca'
+  // Cada Espiritual de Caça está vinculado a um elemento diferente (ver
+  // 'elemento_id' em cada espiritual no catálogo) -- os 2 poderes iniciais
+  // da Caça vêm DESSE elemento, não de "caca" (que não tem lista de poderes
+  // própria), e só podem ser usados enquanto o personagem está Transformado.
+  const espiritualEscolhido = elemento?.espirituais?.[escolhas.espiritual_escolhido] || null
+  const elementoVinculadoCaca = catalogo.elementos?.[espiritualEscolhido?.elemento_id] || null
   const deusSagracantico = catalogo.sagracanticos?.deuses?.[escolhas.sagracantico_deus_id] || null
 
   // Raças vetadas pelo deus escolhido (ex.: Nidhogg não aceita humanos nem
@@ -230,6 +236,16 @@ export default function CharacterWizard() {
     })
   }
 
+  function selecionarEspiritual(id) {
+    setEscolhas((prev) => ({
+      ...prev,
+      espiritual_escolhido: id,
+      // cada espiritual vincula a um elemento diferente -- poderes do
+      // espiritual anterior não valem mais pro novo.
+      poderes_escolhidos: [],
+    }))
+  }
+
   function togglePoder(id) {
     setEscolhas((prev) => {
       const atual = prev.poderes_escolhidos
@@ -275,7 +291,9 @@ export default function CharacterWizard() {
         if (elemento?.restricao_elegibilidade && !escolhas.confirma_elegibilidade_elemento) return false
         return true
       case 'poderes':
-        return isCaca ? !!escolhas.espiritual_escolhido : escolhas.poderes_escolhidos.length === 2
+        return isCaca
+          ? !!escolhas.espiritual_escolhido && escolhas.poderes_escolhidos.length === 2
+          : escolhas.poderes_escolhidos.length === 2
       case 'atributos':
         return pontosGastos() === pontosDisponiveis()
       case 'resumo':
@@ -549,7 +567,7 @@ export default function CharacterWizard() {
               {Object.entries(elemento?.espirituais || {}).map(([id, esp]) => (
                 <button
                   key={id}
-                  onClick={() => atualizar('espiritual_escolhido', id)}
+                  onClick={() => selecionarEspiritual(id)}
                   className={`text-left card-fantasy p-5 transition-colors
                     ${escolhas.espiritual_escolhido === id ? 'border-gold' : 'hover:border-white/20'}`}
                 >
@@ -572,6 +590,48 @@ export default function CharacterWizard() {
                 </button>
               ))}
             </div>
+
+            {espiritualEscolhido && (
+              <div className="mt-10">
+                <p className="text-mist text-sm mb-2">
+                  Escolha 2 poderes iniciais de {elementoVinculadoCaca?.nome ?? espiritualEscolhido.elemento_id}{' '}
+                  — o elemento vinculado a {espiritualEscolhido.nome}. Selecionados: {escolhas.poderes_escolhidos.length} / 2
+                </p>
+                <p className="text-[11px] text-gold mb-6">
+                  Esses poderes só podem ser usados enquanto estiver Transformado (Transformação Animal).
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {Object.entries(elementoVinculadoCaca?.poderes || {}).map(([id, poder]) => {
+                    const selecionado = escolhas.poderes_escolhidos.includes(id)
+                    return (
+                      <button
+                        key={id}
+                        onClick={() => togglePoder(id)}
+                        className={`text-left card-fantasy p-5 transition-colors
+                          ${selecionado ? 'border-gold' : 'hover:border-white/20'}`}
+                      >
+                        <div className="font-display font-semibold mb-2">{poder.nome}</div>
+                        <p className="text-xs text-mist mb-3 line-clamp-3">{poder.descricao}</p>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
+                            Custo: {poder.custo_arche} Arché
+                          </span>
+                          <span
+                            role="button"
+                            tabIndex={0}
+                            onClick={(e) => { e.stopPropagation(); setPoderAberto(poder) }}
+                            onKeyDown={(e) => { if (e.key === 'Enter') { e.stopPropagation(); setPoderAberto(poder) } }}
+                            className="text-[11px] text-mist underline hover:text-white"
+                          >
+                            Ver detalhes
+                          </span>
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         )}
 

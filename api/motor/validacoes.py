@@ -29,7 +29,10 @@ def validar_escolhas_personagem(
           "origem_id": "artista", "origem_pericia_escolhida": "enganacao",
           "elemento_id": "agua", "poderes_escolhidos": ["tiro-dagua", "bolha-dagua"],
           "confirma_elegibilidade_elemento": False,     # so importa p/ Caca
-          "espiritual_escolhido": None,                  # so p/ Caca
+          "espiritual_escolhido": None,                  # so p/ Caca -- quando
+              # preenchido, 'poderes_escolhidos' passa a ser validado contra o
+              # elemento VINCULADO a esse espiritual (ver 'elemento_id' em
+              # cada espiritual no catalogo), nao contra "caca" diretamente.
           "sagracantico_deus_id": None,                  # opcional -- ver seed/dados/sagracanticos.json
           "atributos": {"for": 1, "des": 2, "con": 3, "int": -1, "sab": 2, "car": 3},
           "pericias_treinadas": ["enganacao", "luta"],
@@ -251,8 +254,16 @@ def validar_escolhas_personagem(
             )
 
         if elemento_id == "caca":
-            # Caça tem estrutura própria: poder universal + espirituais.
-            espirituais_validos = set(elemento.get("espirituais", {}).keys())
+            # Caça tem estrutura própria: poder universal + espirituais, e
+            # CADA espiritual está vinculado a um elemento diferente (ver
+            # 'elemento_id' em cada espiritual no catalogo). Ao escolher um
+            # espiritual, o personagem recebe a habilidade única dele (o
+            # poder tribal, automático) e AINDA precisa escolher poderes
+            # iniciais do elemento vinculado -- exatamente como qualquer
+            # outro personagem escolhe poderes do seu elemento, só que
+            # esses só podem ser usados enquanto estiver Transformado.
+            espirituais = elemento.get("espirituais", {})
+            espirituais_validos = set(espirituais.keys())
             espiritual_escolhido = escolhas.get("espiritual_escolhido")
             if not espiritual_escolhido:
                 erros.append("O elemento Caca exige a escolha de 1 espiritual em 'espiritual_escolhido'.")
@@ -261,14 +272,45 @@ def validar_escolhas_personagem(
                     f"Espiritual '{espiritual_escolhido}' nao existe para Caca. "
                     f"Opcoes: {sorted(espirituais_validos)}."
                 )
-            if escolhas.get("poderes_escolhidos"):
-                erros.append("O elemento Caca nao usa 'poderes_escolhidos' -- use 'espiritual_escolhido'.")
+            else:
+                espiritual = espirituais[espiritual_escolhido]
+                elemento_vinculado_id = espiritual.get("elemento_id")
+                elemento_vinculado = elementos.get(elemento_vinculado_id)
+                if elemento_vinculado is None:
+                    erros.append(
+                        f"Espiritual '{espiritual_escolhido}' nao tem um 'elemento_id' valido "
+                        f"vinculado no catalogo (catalogo precisa ser corrigido, nao e erro do jogador)."
+                    )
+                else:
+                    poderes_validos = set(elemento_vinculado.get("poderes", {}).keys())
+                    poderes_escolhidos = escolhas.get("poderes_escolhidos", [])
+                    # >= 2, nao == 2: subir de Ascensao nao concede poderes
+                    # novos (isso vem de treino externo, fora do motor), mas
+                    # o jogador pode ADICIONAR poderes aprendidos depois da
+                    # criacao (ver painel de Treinamento de Poderes no
+                    # personagem) -- exigir exatamente 2 pra sempre rejeitaria
+                    # essas adicoes legitimas como "excesso".
+                    if len(poderes_escolhidos) < 2:
+                        erros.append(
+                            f"E preciso escolher ao menos 2 poderes iniciais do elemento "
+                            f"'{elemento_vinculado_id}' (vinculado ao Espiritual '{espiritual_escolhido}'), "
+                            f"usaveis apenas enquanto Transformado (recebido: {len(poderes_escolhidos)})."
+                        )
+                    for pid in poderes_escolhidos:
+                        if pid not in poderes_validos:
+                            erros.append(
+                                f"Poder '{pid}' nao pertence ao elemento '{elemento_vinculado_id}' "
+                                f"(vinculado ao Espiritual '{espiritual_escolhido}')."
+                            )
         else:
             poderes_validos = set(elemento.get("poderes", {}).keys())
             poderes_escolhidos = escolhas.get("poderes_escolhidos", [])
-            if len(poderes_escolhidos) != 2:
+            # >= 2, nao == 2: mesmo motivo do ramo Caca acima -- Ascensao
+            # nao da poder novo, mas o jogador pode adicionar poderes
+            # aprendidos por treino externo depois da criacao.
+            if len(poderes_escolhidos) < 2:
                 erros.append(
-                    f"E preciso escolher exatamente 2 poderes iniciais do elemento "
+                    f"E preciso escolher ao menos 2 poderes iniciais do elemento "
                     f"'{elemento_id}' (recebido: {len(poderes_escolhidos)})."
                 )
             for pid in poderes_escolhidos:

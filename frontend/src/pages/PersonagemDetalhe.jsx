@@ -9,6 +9,7 @@ import { redimensionarImagem } from '../lib/imagem.js'
 import ResumoEscolhas from '../components/ResumoEscolhas.jsx'
 import FichaVisual from '../components/FichaVisual.jsx'
 import PainelAscensao from '../components/PainelAscensao.jsx'
+import PainelPoderesTreino from '../components/PainelPoderesTreino.jsx'
 
 export default function PersonagemDetalhe() {
   const { id } = useParams()
@@ -149,6 +150,12 @@ export default function PersonagemDetalhe() {
   const origem = catalogo.origens[escolhas.origem_id] || null
   const elemento = catalogo.elementos[escolhas.elemento_id] || null
   const isCaca = escolhas.elemento_id === 'caca'
+  // Cada Espiritual de Caça está vinculado a um elemento diferente -- os
+  // poderes da Caça (e o painel de treinamento) usam ESSE elemento, não
+  // "caca" em si (que não tem lista de poderes própria).
+  const espiritualEscolhido = elemento?.espirituais?.[escolhas.espiritual_escolhido] || null
+  const elementoPoderes = isCaca ? (catalogo.elementos[espiritualEscolhido?.elemento_id] || null) : elemento
+  const nomeElementoPoderes = isCaca ? (elementoPoderes?.nome ?? espiritualEscolhido?.elemento_id) : elemento?.nome
 
   return (
     <div className="pt-2">
@@ -288,6 +295,22 @@ export default function PersonagemDetalhe() {
           }))
         }
       />
+
+      {elementoPoderes && (
+        <PainelPoderesTreino
+          personagemId={id}
+          poderesEscolhidos={escolhas.poderes_escolhidos || []}
+          elementoPoderes={elementoPoderes}
+          nomeElemento={nomeElementoPoderes}
+          isCaca={isCaca}
+          onAtualizado={(novosPoderes) =>
+            setPersonagem((prev) => ({
+              ...prev,
+              escolhas: { ...prev.escolhas, poderes_escolhidos: novosPoderes },
+            }))
+          }
+        />
+      )}
     </div>
   )
 }
