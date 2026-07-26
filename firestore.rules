@@ -142,11 +142,21 @@ service cloud.firestore {
         && request.resource.data.uids.size() == 2
         && request.resource.data.uids.hasAll([request.auth.uid, request.resource.data.destinatario_uid]);
 
-      // Fase C (aceitar/recusar) e Fase D (desfazer amizade) vão abrir
-      // update/delete aqui, com as condições certas pra cada ação -- por
-      // enquanto, só existe a criação do pedido.
-      allow update: if false;
-      allow delete: if false;
+      // Aceitar: só quem recebeu o pedido, só enquanto ainda pendente, e só
+      // pode mudar o status (mais o carimbo de resposta) -- nada mais no
+      // documento pode ser alterado nessa ação.
+      allow update: if estaAutenticado()
+        && request.auth.uid == resource.data.destinatario_uid
+        && resource.data.status == 'pendente'
+        && request.resource.data.status == 'aceita'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'respondido_em']);
+
+      // Recusar: só quem recebeu o pedido, só enquanto ainda pendente.
+      // Desfazer uma amizade JÁ aceita é a Fase D -- essa regra não cobre
+      // isso de propósito (resource.data.status == 'pendente' trava isso).
+      allow delete: if estaAutenticado()
+        && request.auth.uid == resource.data.destinatario_uid
+        && resource.data.status == 'pendente';
     }
 
     // ---- Fichas de personagem ----
