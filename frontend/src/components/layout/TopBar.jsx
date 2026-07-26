@@ -1,5 +1,5 @@
 import { Menu, ShieldQuestion, Users } from 'lucide-react'
-import NotificacaoSino from './NotificacaoSino.jsx'
+import NotificacaoSino from '../NotificacaoSino.jsx'
 
 function IconBtn({ children }) {
   return (
