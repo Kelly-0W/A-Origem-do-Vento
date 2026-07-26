@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Bell } from 'lucide-react'
 import { collection, query, where, onSnapshot, doc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
-import { db } from '../../lib/firebase.js'
-import { useAuth } from '../../context/AuthContext.jsx'
+import { db } from '../lib/firebase.js'
+import { useAuth } from '../context/AuthContext.jsx'
 
 // Autocontido de propósito: cuida do próprio estado (aberto/fechado) e da
 // própria escuta em tempo real, então basta trocar o <IconBtn><Bell/></IconBtn>
