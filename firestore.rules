@@ -63,7 +63,25 @@ service cloud.firestore {
 
     // ---- Perfil do usuário ----
     match /usuarios/{uid} {
-      allow read, write: if ehDono(uid);
+      // Leitura aberta a qualquer autenticado -- mesmo motivo de
+      // `campanhas`: pra mandar uma solicitação de amizade por código,
+      // é preciso conseguir localizar o dono daquele `codigo_amizade`
+      // ANTES de vocês serem amigos.
+      allow read: if estaAutenticado();
+
+      allow create: if ehDono(uid);
+
+      // Só o dono escreve, e `codigo_amizade` nunca muda depois de
+      // definido -- ele é a referência que outras pessoas guardam pra
+      // mandar pedido de amizade; se pudesse ser trocado livremente,
+      // um pedido em trânsito poderia acabar indo pra pessoa errada.
+      // A exceção (`!('codigo_amizade' in resource.data)`) existe só pra
+      // contas antigas, criadas antes desse campo existir, poderem
+      // ganhar um código pela primeira vez.
+      allow update: if ehDono(uid) && (
+        !('codigo_amizade' in resource.data)
+        || request.resource.data.codigo_amizade == resource.data.codigo_amizade
+      );
     }
 
     // ---- Campanhas ----

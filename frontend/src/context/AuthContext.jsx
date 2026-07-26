@@ -14,12 +14,30 @@ import {
   updateProfile,
   signOut,
 } from 'firebase/auth'
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, getDoc, setDoc, serverTimestamp, collection, query, where, getDocs, limit } from 'firebase/firestore'
 import { auth, db } from '../lib/firebase.js'
 import { api } from '../lib/api.js'
+import { gerarCodigoConvite } from '../lib/codigoConvite.js'
 
 const AuthContext = createContext(null)
 const provedorGoogle = new GoogleAuthProvider()
+
+// Reaproveita o gerador de código de convite de campanha (mesmo alfabeto,
+// sem caracteres ambíguos) só que aqui com uma checagem extra de colisão:
+// diferente do código de campanha, um código de amizade duplicado
+// mandaria o pedido pra pessoa errada, não só ficaria "difícil de achar".
+// Poucas tentativas bastam -- com 32^6 combinações possíveis, colidir uma
+// vez já é raro; colidir 5 vezes seguidas é praticamente impossível.
+async function gerarCodigoAmizadeUnico() {
+  for (let tentativa = 0; tentativa < 5; tentativa++) {
+    const candidato = gerarCodigoConvite()
+    const snap = await getDocs(
+      query(collection(db, 'usuarios'), where('codigo_amizade', '==', candidato), limit(1))
+    )
+    if (snap.empty) return candidato
+  }
+  return gerarCodigoConvite()
+}
 
 // Cria o doc usuarios/{uid} só se ainda não existir -- assim `criado_em`
 // nunca é sobrescrito em logins/vínculos seguintes, e um mesmo uid (ex.:
@@ -28,7 +46,8 @@ async function garantirDocUsuario(user, nomePadrao) {
   const ref = doc(db, 'usuarios', user.uid)
   const existente = await getDoc(ref)
   if (!existente.exists()) {
-    await setDoc(ref, { nome: user.displayName || nomePadrao, criado_em: serverTimestamp() })
+    const codigo_amizade = await gerarCodigoAmizadeUnico()
+    await setDoc(ref, { nome: user.displayName || nomePadrao, codigo_amizade, criado_em: serverTimestamp() })
   }
 }
 
@@ -59,6 +78,7 @@ export function AuthProvider({ children }) {
 
     await setDoc(doc(db, 'usuarios', credencial.user.uid), {
       nome,
+      codigo_amizade: await gerarCodigoAmizadeUnico(),
       criado_em: serverTimestamp(),
     })
 
