@@ -126,6 +126,29 @@ service cloud.firestore {
       allow create: if ehDono(request.resource.data.mestre_id);
     }
 
+    // ---- Amizades ----
+    // Um documento por PAR de usuários (id = uids ordenados e grudados,
+    // ver lib/amizade.js) -- guarda tanto o pedido pendente quanto,
+    // depois de aceito, a amizade em si; não existem dois documentos
+    // separados pra isso.
+    match /amizades/{amizadeId} {
+      allow read: if estaAutenticado() && request.auth.uid in resource.data.uids;
+
+      allow create: if estaAutenticado()
+        && request.resource.data.solicitante_uid == request.auth.uid
+        && request.resource.data.destinatario_uid is string
+        && request.resource.data.destinatario_uid != request.auth.uid
+        && request.resource.data.status == 'pendente'
+        && request.resource.data.uids.size() == 2
+        && request.resource.data.uids.hasAll([request.auth.uid, request.resource.data.destinatario_uid]);
+
+      // Fase C (aceitar/recusar) e Fase D (desfazer amizade) vão abrir
+      // update/delete aqui, com as condições certas pra cada ação -- por
+      // enquanto, só existe a criação do pedido.
+      allow update: if false;
+      allow delete: if false;
+    }
+
     // ---- Fichas de personagem ----
     match /personagens/{personagemId} {
       allow read: if ehDono(resource.data.dono_uid);

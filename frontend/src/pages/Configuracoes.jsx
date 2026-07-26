@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore'
+import { doc, getDoc, setDoc, updateDoc, serverTimestamp, collection, query, where, getDocs, limit } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
-import { gerarCodigoConvite } from '../lib/codigoConvite.js'
+import { gerarCodigoConvite, normalizarCodigoConvite } from '../lib/codigoConvite.js'
+import { idAmizade } from '../lib/amizade.js'
 import ExcluirContaModal from '../components/ExcluirContaModal.jsx'
 
 function rotuloProvedor(usuario) {
@@ -18,6 +19,10 @@ export default function Configuracoes() {
   const [codigoAmizade, setCodigoAmizade] = useState(null)
   const [carregandoCodigo, setCarregandoCodigo] = useState(true)
   const [copiado, setCopiado] = useState(false)
+
+  const [codigoDigitado, setCodigoDigitado] = useState('')
+  const [enviandoSolicitacao, setEnviandoSolicitacao] = useState(false)
+  const [mensagemSolicitacao, setMensagemSolicitacao] = useState(null)
 
   useEffect(() => {
     async function carregarOuCriarCodigo() {
@@ -53,6 +58,61 @@ export default function Configuracoes() {
       setTimeout(() => setCopiado(false), 2000)
     } catch {
       setCopiado(false)
+    }
+  }
+
+  async function enviarSolicitacaoAmizade() {
+    const codigo = normalizarCodigoConvite(codigoDigitado)
+    if (!codigo) return
+    setEnviandoSolicitacao(true)
+    setMensagemSolicitacao(null)
+    try {
+      const snap = await getDocs(
+        query(collection(db, 'usuarios'), where('codigo_amizade', '==', codigo), limit(1))
+      )
+      if (snap.empty) {
+        setMensagemSolicitacao({ tipo: 'erro', texto: 'Nenhum jogador encontrado com esse código.' })
+        return
+      }
+
+      const destinatarioDoc = snap.docs[0]
+      const destinatarioUid = destinatarioDoc.id
+      const destinatarioNome = destinatarioDoc.data().nome || 'Aventureiro'
+
+      if (destinatarioUid === usuario.uid) {
+        setMensagemSolicitacao({ tipo: 'erro', texto: 'Esse é o seu próprio código.' })
+        return
+      }
+
+      const referencia = doc(db, 'amizades', idAmizade(usuario.uid, destinatarioUid))
+      const existente = await getDoc(referencia)
+      if (existente.exists()) {
+        const jaAmigos = existente.data().status === 'aceita'
+        setMensagemSolicitacao({
+          tipo: 'erro',
+          texto: jaAmigos ? 'Vocês já são amigos.' : 'Já existe uma solicitação pendente com essa pessoa.',
+        })
+        return
+      }
+
+      await setDoc(referencia, {
+        uids: [usuario.uid, destinatarioUid],
+        solicitante_uid: usuario.uid,
+        solicitante_nome: usuario.displayName || 'Aventureiro',
+        destinatario_uid: destinatarioUid,
+        destinatario_nome: destinatarioNome,
+        status: 'pendente',
+        criado_em: serverTimestamp(),
+        respondido_em: null,
+      })
+
+      setMensagemSolicitacao({ tipo: 'sucesso', texto: `Solicitação enviada para ${destinatarioNome}.` })
+      setCodigoDigitado('')
+    } catch (err) {
+      console.error(err)
+      setMensagemSolicitacao({ tipo: 'erro', texto: 'Não foi possível enviar a solicitação agora.' })
+    } finally {
+      setEnviandoSolicitacao(false)
     }
   }
 
@@ -95,6 +155,32 @@ export default function Configuracoes() {
           >
             {copiado ? 'Copiado!' : codigoAmizade}
           </button>
+        )}
+      </div>
+
+      <div className="card-fantasy p-6 mb-8 max-w-xl">
+        <h2 className="font-display text-lg mb-2">Adicionar amigo</h2>
+        <p className="text-mist text-sm mb-4">Cole o código de amizade de outra pessoa pra mandar um pedido.</p>
+        <div className="flex gap-3">
+          <input
+            value={codigoDigitado}
+            onChange={(e) => setCodigoDigitado(e.target.value)}
+            placeholder="Ex: 7XQ2FK"
+            maxLength={6}
+            className="campo-input uppercase tracking-widest flex-1"
+          />
+          <button
+            className="btn-primary disabled:opacity-50 whitespace-nowrap"
+            onClick={enviarSolicitacaoAmizade}
+            disabled={enviandoSolicitacao || codigoDigitado.trim().length === 0}
+          >
+            {enviandoSolicitacao ? 'Enviando...' : 'Enviar Solicitação'}
+          </button>
+        </div>
+        {mensagemSolicitacao && (
+          <p className={`text-xs mt-3 ${mensagemSolicitacao.tipo === 'erro' ? 'text-blood-bright' : 'text-forest'}`}>
+            {mensagemSolicitacao.texto}
+          </p>
         )}
       </div>
 
