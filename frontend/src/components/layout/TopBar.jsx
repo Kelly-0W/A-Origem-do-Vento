@@ -22,7 +22,13 @@ export default function TopBar({ onAbrirMenu }) {
           <Menu size={18} />
         </button>
         <div className="flex items-center gap-3">
-          <IconBtn><ShieldQuestion size={18} /></IconBtn>
+          <a
+            href="mailto:aorigemdovento@gmail.com"
+            className="w-10 h-10 rounded-md border border-panel-border flex items-center justify-center text-mist hover:text-white hover:border-white/30 transition-colors shrink-0"
+            aria-label="Suporte"
+          >
+            <ShieldQuestion size={18} />
+          </a>
           <NotificacaoSino />
           <IconBtn><Users size={18} /></IconBtn>
         </div>
