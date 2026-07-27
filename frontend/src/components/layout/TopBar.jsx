@@ -1,6 +1,6 @@
 import { Menu, ShieldQuestion } from 'lucide-react'
 import NotificacaoSino from '../NotificacaoSino.jsx'
-import ListaAmigos from './ListaAmigos.jsx'
+import ListaAmigos from '../ListaAmigos.jsx'
 
 export default function TopBar({ onAbrirMenu }) {
   return (
