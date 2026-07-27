@@ -26,6 +26,19 @@ service cloud.firestore {
       return estaAutenticado() && request.auth.uid == donoUid;
     }
 
+    // Espelha lib/amizade.js no cliente: o id do documento de amizade de um
+    // par é sempre os dois uids ordenados e grudados com '_'. Ter isso como
+    // função permite checar "esses dois são amigos?" com um único get(),
+    // sem precisar de um endpoint de backend nem de uma query composta.
+    function idAmizade(uidA, uidB) {
+      return uidA < uidB ? uidA + '_' + uidB : uidB + '_' + uidA;
+    }
+
+    function souAmigoAceito(outroUid) {
+      return estaAutenticado()
+        && get(/databases/$(database)/documents/amizades/$(idAmizade(request.auth.uid, outroUid))).data.status == 'aceita';
+    }
+
     // ---- Catálogo do sistema de regras: leitura livre, escrita só via admin/seed ----
     match /racas/{racaId} {
       allow read: if estaAutenticado();
@@ -151,17 +164,25 @@ service cloud.firestore {
         && request.resource.data.status == 'aceita'
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'respondido_em']);
 
-      // Recusar: só quem recebeu o pedido, só enquanto ainda pendente.
-      // Desfazer uma amizade JÁ aceita é a Fase D -- essa regra não cobre
-      // isso de propósito (resource.data.status == 'pendente' trava isso).
-      allow delete: if estaAutenticado()
-        && request.auth.uid == resource.data.destinatario_uid
-        && resource.data.status == 'pendente';
+      // Recusar (pendente) OU desfazer (já aceita). Recusar continua só
+      // pro destinatário; desfazer uma amizade já firmada pode ser
+      // qualquer um dos dois lados do par, já que ela não pertence a um
+      // dono só.
+      allow delete: if estaAutenticado() && request.auth.uid in resource.data.uids && (
+        (resource.data.status == 'pendente' && request.auth.uid == resource.data.destinatario_uid)
+        || resource.data.status == 'aceita'
+      );
     }
 
     // ---- Fichas de personagem ----
     match /personagens/{personagemId} {
-      allow read: if ehDono(resource.data.dono_uid);
+      // Dono sempre lê; além disso, qualquer amigo aceito pode ler ESTA
+      // ficha específica se o dono marcou `visivel: true` -- é o campo de
+      // visibilidade por personagem (não por conta) que a tela do
+      // personagem controla. Sem o campo (fichas antigas) ou com
+      // `visivel: false`, só o dono lê -- privado é o padrão.
+      allow read: if ehDono(resource.data.dono_uid)
+        || (resource.data.visivel == true && souAmigoAceito(resource.data.dono_uid));
       allow create: if ehDono(request.resource.data.dono_uid);
       allow update, delete: if ehDono(resource.data.dono_uid);
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Eye, EyeOff } from 'lucide-react'
 import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -32,6 +32,8 @@ export default function PersonagemDetalhe() {
   const [salvando, setSalvando] = useState(false)
   const [salvo, setSalvo] = useState(false)
   const [erroSalvar, setErroSalvar] = useState(null)
+  const [visivel, setVisivel] = useState(false)
+  const [alternandoVisibilidade, setAlternandoVisibilidade] = useState(false)
 
   useEffect(() => {
     async function carregar() {
@@ -55,6 +57,7 @@ export default function PersonagemDetalhe() {
         setNomePersonagem(dados.escolhas?.nome_personagem || '')
         setImagemBase64(dados.imagem_base64 || null)
         setAnotacoes(dados.anotacoes || '')
+        setVisivel(dados.visivel === true)
       } catch (err) {
         console.error(err)
         setErroCarregamento('Não foi possível carregar este personagem — ele pode não existir ou não pertencer à sua conta.')
@@ -82,6 +85,19 @@ export default function PersonagemDetalhe() {
       setErroImagem('Não foi possível processar essa imagem.')
     } finally {
       setProcessandoImagem(false)
+    }
+  }
+
+  async function alternarVisibilidade() {
+    const novoValor = !visivel
+    setAlternandoVisibilidade(true)
+    try {
+      await updateDoc(doc(db, 'personagens', id), { visivel: novoValor, atualizado_em: serverTimestamp() })
+      setVisivel(novoValor)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setAlternandoVisibilidade(false)
     }
   }
 
@@ -144,6 +160,7 @@ export default function PersonagemDetalhe() {
   }
 
   const escolhas = personagem.escolhas || {}
+  const ehDono = personagem.dono_uid === usuario.uid
   const raca = catalogo.racas[escolhas.raca_id] || null
   const linhagem = (raca?.linhagens || []).find((l) => l.id === escolhas.linhagem_id) || null
   const classe = catalogo.classes[escolhas.classe_id] || null
@@ -166,7 +183,7 @@ export default function PersonagemDetalhe() {
         <button
           onClick={excluirPersonagem}
           disabled={excluindo}
-          className="text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50"
+          className={`text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50 ${ehDono ? '' : 'invisible'}`}
         >
           {excluindo ? 'Excluindo...' : 'Excluir personagem'}
         </button>
@@ -182,45 +199,66 @@ export default function PersonagemDetalhe() {
               <span className="text-mist text-xs text-center px-2">Sem retrato</span>
             )}
           </div>
-          <label className="btn-secondary text-xs mt-3 inline-block cursor-pointer">
-            {processandoImagem ? 'Processando...' : 'Trocar retrato'}
-            <input type="file" accept="image/*" className="hidden" onChange={selecionarImagem} disabled={processandoImagem} />
-          </label>
-          {erroImagem && <p className="text-blood-bright text-xs mt-2">{erroImagem}</p>}
+          {ehDono && (
+            <>
+              <label className="btn-secondary text-xs mt-3 inline-block cursor-pointer">
+                {processandoImagem ? 'Processando...' : 'Trocar retrato'}
+                <input type="file" accept="image/*" className="hidden" onChange={selecionarImagem} disabled={processandoImagem} />
+              </label>
+              {erroImagem && <p className="text-blood-bright text-xs mt-2">{erroImagem}</p>}
+            </>
+          )}
         </div>
 
-        <div className="flex-1">
-          <label className="flex flex-col gap-1.5 mb-4 max-w-sm">
-            <span className="text-[11px] uppercase tracking-widest text-mist">Nome do personagem</span>
-            <input
-              value={nomePersonagem}
-              onChange={(e) => setNomePersonagem(e.target.value)}
-              placeholder="Como esse herói é conhecido"
-              className="campo-input"
-            />
-          </label>
+        {ehDono ? (
+          <div className="flex-1">
+            <label className="flex flex-col gap-1.5 mb-4 max-w-sm">
+              <span className="text-[11px] uppercase tracking-widest text-mist">Nome do personagem</span>
+              <input
+                value={nomePersonagem}
+                onChange={(e) => setNomePersonagem(e.target.value)}
+                placeholder="Como esse herói é conhecido"
+                className="campo-input"
+              />
+            </label>
 
-          <label className="flex flex-col gap-1.5 mb-4">
-            <span className="text-[11px] uppercase tracking-widest text-mist">Anotações</span>
-            <textarea
-              value={anotacoes}
-              onChange={(e) => setAnotacoes(e.target.value)}
-              placeholder="Histórico, ganchos de campanha, lembretes..."
-              rows={4}
-              className="campo-input resize-y"
-            />
-          </label>
+            <label className="flex flex-col gap-1.5 mb-4">
+              <span className="text-[11px] uppercase tracking-widest text-mist">Anotações</span>
+              <textarea
+                value={anotacoes}
+                onChange={(e) => setAnotacoes(e.target.value)}
+                placeholder="Histórico, ganchos de campanha, lembretes..."
+                rows={4}
+                className="campo-input resize-y"
+              />
+            </label>
 
-          <button
-            className="btn-primary disabled:opacity-50"
-            onClick={salvarCosmetico}
-            disabled={salvando || nomePersonagem.trim().length === 0}
-          >
-            {salvando ? 'Salvando...' : 'Salvar Alterações'}
-          </button>
-          {salvo && <span className="text-forest text-xs ml-3">Salvo.</span>}
-          {erroSalvar && <p className="text-blood-bright text-xs mt-2">{erroSalvar}</p>}
-        </div>
+            <div className="flex items-center gap-3 flex-wrap">
+              <button
+                className="btn-primary disabled:opacity-50"
+                onClick={salvarCosmetico}
+                disabled={salvando || nomePersonagem.trim().length === 0}
+              >
+                {salvando ? 'Salvando...' : 'Salvar Alterações'}
+              </button>
+              <button
+                onClick={alternarVisibilidade}
+                disabled={alternandoVisibilidade}
+                className="flex items-center gap-1.5 text-xs text-mist hover:text-white transition-colors disabled:opacity-50"
+                title={visivel ? 'Amigos podem ver esta ficha' : 'Só você vê esta ficha'}
+              >
+                {visivel ? <Eye size={15} /> : <EyeOff size={15} />}
+                {visivel ? 'Visível para amigos' : 'Privado'}
+              </button>
+            </div>
+            {salvo && <span className="text-forest text-xs ml-3">Salvo.</span>}
+            {erroSalvar && <p className="text-blood-bright text-xs mt-2">{erroSalvar}</p>}
+          </div>
+        ) : (
+          <div className="flex-1">
+            <h1 className="text-2xl font-display">{nomePersonagem || 'Personagem sem nome'}</h1>
+          </div>
+        )}
       </div>
 
       <ResumoEscolhas
@@ -245,9 +283,9 @@ export default function PersonagemDetalhe() {
           elemento={elemento}
           escolhas={escolhas}
           isCaca={isCaca}
-          interativo
+          interativo={ehDono}
           personagemId={id}
-          donoUid={usuario.uid}
+          donoUid={personagem.dono_uid}
           onAtualizado={(novoCalculado, novasEscolhas) =>
             setPersonagem((prev) => ({ ...prev, calculado: novoCalculado, escolhas: novasEscolhas }))
           }
@@ -262,41 +300,43 @@ export default function PersonagemDetalhe() {
         />
       )}
 
-      <PainelAscensao
-        personagemId={id}
-        donoUid={usuario.uid}
-        grauAscensao={personagem.grau_ascensao ?? 0}
-        ascensaoEmProgresso={personagem.ascensao_em_progresso}
-        raca={raca}
-        linhagem={linhagem}
-        classe={classe}
-        origem={origem}
-        escolhas={escolhas}
-        estaEmCampanha={(personagem.campanhas_ids || []).length > 0}
-        onAtualizado={(novaAscensao) =>
-          setPersonagem((prev) => ({ ...prev, ascensao_em_progresso: novaAscensao }))
-        }
-        onAscensaoEfetivada={({ grau_ascensao, calculado, escolhas: novasEscolhas }) =>
-          setPersonagem((prev) => ({
-            ...prev,
-            grau_ascensao,
-            calculado,
-            escolhas: novasEscolhas,
-            ascensao_em_progresso: {
-              grau_alvo: null,
-              catalisador: false,
-              provacao: false,
-              ritual: false,
-              descricao_manifestacao: '',
-              status: 'nenhuma',
-              respondido_por_uid: prev.ascensao_em_progresso?.respondido_por_uid ?? null,
-              respondido_em: prev.ascensao_em_progresso?.respondido_em ?? null,
-            },
-          }))
-        }
-      />
+      {ehDono && (
+        <PainelAscensao
+          personagemId={id}
+          donoUid={usuario.uid}
+          grauAscensao={personagem.grau_ascensao ?? 0}
+          ascensaoEmProgresso={personagem.ascensao_em_progresso}
+          raca={raca}
+          linhagem={linhagem}
+          classe={classe}
+          origem={origem}
+          escolhas={escolhas}
+          estaEmCampanha={(personagem.campanhas_ids || []).length > 0}
+          onAtualizado={(novaAscensao) =>
+            setPersonagem((prev) => ({ ...prev, ascensao_em_progresso: novaAscensao }))
+          }
+          onAscensaoEfetivada={({ grau_ascensao, calculado, escolhas: novasEscolhas }) =>
+            setPersonagem((prev) => ({
+              ...prev,
+              grau_ascensao,
+              calculado,
+              escolhas: novasEscolhas,
+              ascensao_em_progresso: {
+                grau_alvo: null,
+                catalisador: false,
+                provacao: false,
+                ritual: false,
+                descricao_manifestacao: '',
+                status: 'nenhuma',
+                respondido_por_uid: prev.ascensao_em_progresso?.respondido_por_uid ?? null,
+                respondido_em: prev.ascensao_em_progresso?.respondido_em ?? null,
+              },
+            }))
+          }
+        />
+      )}
 
-      {elementoPoderes && (
+      {ehDono && elementoPoderes && (
         <PainelPoderesTreino
           personagemId={id}
           poderesEscolhidos={escolhas.poderes_escolhidos || []}

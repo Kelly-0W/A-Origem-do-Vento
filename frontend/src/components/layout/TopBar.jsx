@@ -1,13 +1,6 @@
-import { Menu, ShieldQuestion, Users } from 'lucide-react'
+import { Menu, ShieldQuestion } from 'lucide-react'
 import NotificacaoSino from '../NotificacaoSino.jsx'
-
-function IconBtn({ children }) {
-  return (
-    <button className="w-10 h-10 rounded-md border border-panel-border flex items-center justify-center text-mist hover:text-white hover:border-white/30 transition-colors shrink-0">
-      {children}
-    </button>
-  )
-}
+import ListaAmigos from './ListaAmigos.jsx'
 
 export default function TopBar({ onAbrirMenu }) {
   return (
@@ -30,7 +23,7 @@ export default function TopBar({ onAbrirMenu }) {
             <ShieldQuestion size={18} />
           </a>
           <NotificacaoSino />
-          <IconBtn><Users size={18} /></IconBtn>
+          <ListaAmigos />
         </div>
       </header>
     </>
