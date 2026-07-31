@@ -18,13 +18,16 @@ export default function NotificacaoSino() {
 
   useEffect(() => {
     if (!usuario) return
-    // Só igualdade num campo só -- não precisa de índice composto (ver
-    // o mesmo cuidado tomado em Combate.jsx com dono_uid).
-    const q = query(collection(db, 'amizades'), where('destinatario_uid', '==', usuario.uid))
+    // A regra do Firestore checa participação no array `uids` -- pra uma
+    // consulta em tempo real (onSnapshot), o Firestore só libera se
+    // conseguir provar, olhando só a query, que todo resultado bate com a
+    // regra. Um `where('destinatario_uid', ...)` não prova isso (campo
+    // diferente do que a regra olha); `array-contains` em `uids` prova.
+    const q = query(collection(db, 'amizades'), where('uids', 'array-contains', usuario.uid))
     const cancelar = onSnapshot(q, (snap) => {
       const pendentes = snap.docs
         .map((d) => ({ id: d.id, ...d.data() }))
-        .filter((a) => a.status === 'pendente')
+        .filter((a) => a.status === 'pendente' && a.destinatario_uid === usuario.uid)
       setPedidos(pendentes)
     })
     return cancelar

@@ -13,6 +13,22 @@ function rotuloProvedor(usuario) {
   return 'Desconhecido'
 }
 
+// O id do documento de amizade é sempre determinístico (os dois uids
+// ordenados, ver lib/amizade.js) -- então, SE o documento existir, o
+// chamador sempre vai ser um dos dois participantes e a regra do
+// Firestore sempre vai liberar a leitura. Um erro de permissão aqui só
+// pode significar uma coisa: o documento ainda não existe (a regra nega
+// leitura de um doc que não existe, porque não tem `uids` pra checar).
+async function buscarAmizadeSeExistir(referencia) {
+  try {
+    const snap = await getDoc(referencia)
+    return snap.exists() ? snap.data() : null
+  } catch (err) {
+    if (err.code === 'permission-denied') return null
+    throw err
+  }
+}
+
 export default function Configuracoes() {
   const { usuario } = useAuth()
   const [modalExcluirAberto, setModalExcluirAberto] = useState(false)
@@ -85,9 +101,9 @@ export default function Configuracoes() {
       }
 
       const referencia = doc(db, 'amizades', idAmizade(usuario.uid, destinatarioUid))
-      const existente = await getDoc(referencia)
-      if (existente.exists()) {
-        const jaAmigos = existente.data().status === 'aceita'
+      const existente = await buscarAmizadeSeExistir(referencia)
+      if (existente) {
+        const jaAmigos = existente.status === 'aceita'
         setMensagemSolicitacao({
           tipo: 'erro',
           texto: jaAmigos ? 'Vocês já são amigos.' : 'Já existe uma solicitação pendente com essa pessoa.',
