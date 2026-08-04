@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Users } from 'lucide-react'
-import { collection, query, where, onSnapshot, getDocs, doc, deleteDoc } from 'firebase/firestore'
+import { collection, query, where, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
+import { api } from '../lib/api.js'
 import { Link } from 'react-router-dom'
 
 // Mesmo padrão do NotificacaoSino: autocontido, com a própria escuta em
@@ -58,13 +59,15 @@ export default function ListaAmigos() {
 
     setCarregandoPersonagens(amigoUid)
     try {
-      // A regra do Firestore já só devolve personagens visíveis desse
-      // amigo pra quem tem amizade aceita com ele -- não precisa filtrar
-      // 'visivel' aqui, quem não passar na regra já nem vem na resposta.
-      const snap = await getDocs(query(collection(db, 'personagens'), where('dono_uid', '==', amigoUid)))
+      // Listar (diferente de abrir UM personagem já visível) depende de
+      // checar outro documento (a amizade), e uma consulta em lista no
+      // Firestore não consegue provar essa condição só pelos filtros da
+      // query -- por isso passa pelo endpoint, com Admin SDK do lado do
+      // servidor, em vez de uma query direta como o resto deste arquivo.
+      const { dados } = await api.buscarPersonagensVisiveisDeAmigo(amigoUid, usuario.uid)
       setPersonagensPorAmigo((prev) => ({
         ...prev,
-        [amigoUid]: snap.docs.map((d) => ({ id: d.id, ...d.data() })),
+        [amigoUid]: dados?.sucesso ? dados.itens : [],
       }))
     } catch (err) {
       console.error(err)
@@ -127,7 +130,7 @@ export default function ListaAmigos() {
                               onClick={() => setAberto(false)}
                               className="text-xs text-gold hover:underline"
                             >
-                              {p.escolhas?.nome_personagem || 'Personagem sem nome'}
+                              {p.nome_personagem || 'Personagem sem nome'}
                             </Link>
                           ))
                         )}

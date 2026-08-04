@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import { Eye, EyeOff } from 'lucide-react'
+import { collection, query, where, getDocs, doc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { api } from '../lib/api.js'
@@ -45,6 +46,19 @@ export default function Personagens() {
     carregar()
   }, [usuario, carregandoAuth])
 
+  async function alternarVisibilidade(evento, personagemId, visivelAtual) {
+    evento.preventDefault()
+    evento.stopPropagation()
+    const novoValor = !visivelAtual
+    setPersonagens((prev) => prev.map((p) => (p.id === personagemId ? { ...p, visivel: novoValor } : p)))
+    try {
+      await updateDoc(doc(db, 'personagens', personagemId), { visivel: novoValor, atualizado_em: serverTimestamp() })
+    } catch (err) {
+      console.error(err)
+      setPersonagens((prev) => prev.map((p) => (p.id === personagemId ? { ...p, visivel: visivelAtual } : p)))
+    }
+  }
+
   return (
     <div className="pt-2">
       <div className="flex items-center justify-between mb-8">
@@ -86,11 +100,20 @@ export default function Personagens() {
                   <div className="text-xs text-mist mb-3">
                     {raca}{classe ? ` · ${classe}` : ''}
                   </div>
-                  {vida != null && (
-                    <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
-                      Vida {vida}
-                    </span>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {vida != null && (
+                      <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
+                        Vida {vida}
+                      </span>
+                    )}
+                    <button
+                      onClick={(e) => alternarVisibilidade(e, p.id, p.visivel === true)}
+                      title={p.visivel ? 'Visível para amigos' : 'Privado'}
+                      className="inline-flex items-center justify-center w-7 h-7 rounded border border-panel-border text-mist hover:text-white hover:border-white/30 transition-colors"
+                    >
+                      {p.visivel ? <Eye size={13} /> : <EyeOff size={13} />}
+                    </button>
+                  </div>
                 </div>
               </Link>
             )

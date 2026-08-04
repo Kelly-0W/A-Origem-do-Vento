@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeft, Eye, EyeOff } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -32,8 +32,6 @@ export default function PersonagemDetalhe() {
   const [salvando, setSalvando] = useState(false)
   const [salvo, setSalvo] = useState(false)
   const [erroSalvar, setErroSalvar] = useState(null)
-  const [visivel, setVisivel] = useState(false)
-  const [alternandoVisibilidade, setAlternandoVisibilidade] = useState(false)
 
   useEffect(() => {
     async function carregar() {
@@ -57,7 +55,6 @@ export default function PersonagemDetalhe() {
         setNomePersonagem(dados.escolhas?.nome_personagem || '')
         setImagemBase64(dados.imagem_base64 || null)
         setAnotacoes(dados.anotacoes || '')
-        setVisivel(dados.visivel === true)
       } catch (err) {
         console.error(err)
         setErroCarregamento('Não foi possível carregar este personagem — ele pode não existir ou não pertencer à sua conta.')
@@ -85,19 +82,6 @@ export default function PersonagemDetalhe() {
       setErroImagem('Não foi possível processar essa imagem.')
     } finally {
       setProcessandoImagem(false)
-    }
-  }
-
-  async function alternarVisibilidade() {
-    const novoValor = !visivel
-    setAlternandoVisibilidade(true)
-    try {
-      await updateDoc(doc(db, 'personagens', id), { visivel: novoValor, atualizado_em: serverTimestamp() })
-      setVisivel(novoValor)
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setAlternandoVisibilidade(false)
     }
   }
 
@@ -240,15 +224,6 @@ export default function PersonagemDetalhe() {
                 disabled={salvando || nomePersonagem.trim().length === 0}
               >
                 {salvando ? 'Salvando...' : 'Salvar Alterações'}
-              </button>
-              <button
-                onClick={alternarVisibilidade}
-                disabled={alternandoVisibilidade}
-                className="flex items-center gap-1.5 text-xs text-mist hover:text-white transition-colors disabled:opacity-50"
-                title={visivel ? 'Amigos podem ver esta ficha' : 'Só você vê esta ficha'}
-              >
-                {visivel ? <Eye size={15} /> : <EyeOff size={15} />}
-                {visivel ? 'Visível para amigos' : 'Privado'}
               </button>
             </div>
             {salvo && <span className="text-forest text-xs ml-3">Salvo.</span>}

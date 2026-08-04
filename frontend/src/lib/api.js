@@ -96,4 +96,11 @@ export const api = {
       campo,
       novo_valor: novoValor,
     }),
+
+  // GET /api/amigo_personagens  (ver api/amigo_personagens.py)
+  // Lista os personagens visíveis de um amigo -- checagem de amizade
+  // aceita feita no servidor, porque a listagem (diferente de abrir UM
+  // personagem já visível) não dá pra provar direto pelas Firestore Rules.
+  buscarPersonagensVisiveisDeAmigo: (amigoUid, uid) =>
+    get(`amigo_personagens?amigo_uid=${amigoUid}&uid=${uid}`),
 }

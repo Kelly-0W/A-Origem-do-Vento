@@ -98,6 +98,45 @@ def listar_personagens_do_dono(uid: str) -> list:
     return [{"id": d.id, **d.to_dict()} for d in docs]
 
 
+def id_amizade(uid_a: str, uid_b: str) -> str:
+    """
+    Espelha lib/amizade.js do frontend: os dois uids ordenados e grudados
+    com '_'. Precisa bater exatamente com o que o cliente calcula, porque
+    é assim que o documento de amizade desse par é identificado.
+    """
+    return "_".join(sorted([uid_a, uid_b]))
+
+
+def existe_amizade_aceita(uid_a: str, uid_b: str) -> bool:
+    """True se uid_a e uid_b têm uma amizade com status 'aceita' entre si."""
+    db = obter_cliente_firestore()
+    snap = db.collection("amizades").document(id_amizade(uid_a, uid_b)).get()
+    if not snap.exists:
+        return False
+    return snap.to_dict().get("status") == "aceita"
+
+
+def listar_personagens_visiveis_do_dono(uid: str) -> list:
+    """
+    Personagens deste uid marcados como visíveis (visivel == True) --
+    usado só quando quem está pedindo NÃO é o próprio dono (ver
+    api/amigo_personagens.py). O dono em si continua usando
+    listar_personagens_do_dono, que traz tudo, visível ou não.
+
+    Duas igualdades (dono_uid, visivel) numa query só -- ao contrário de
+    combinar igualdade com array-contains (ver o cuidado tomado em
+    Combate.jsx), isso NÃO exige índice composto no Firestore.
+    """
+    db = obter_cliente_firestore()
+    docs = (
+        db.collection(NOME_COLECAO)
+        .where("dono_uid", "==", uid)
+        .where("visivel", "==", True)
+        .stream()
+    )
+    return [{"id": d.id, **d.to_dict()} for d in docs]
+
+
 def listar_campanhas_como_mestre(uid: str) -> list:
     """Campanhas onde este uid é o mestre_id."""
     db = obter_cliente_firestore()
