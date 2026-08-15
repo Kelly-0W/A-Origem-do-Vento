@@ -79,6 +79,11 @@ def calcular_ficha(
         "grau_ascensao": grau_ascensao,
         "status": status_calculados,
         "pericias": pericias_calculadas,
+        # Porte Biologico vem sempre da RACA (nao muda por linhagem -- ver
+        # paginas "Biologia dos/das X" no Notion), embutido aqui pra quem
+        # consome `calculado` (ex.: PainelInventario.jsx, api/motor/inventario.py)
+        # nao precisar buscar de volta no catalogo de racas so' por isso.
+        "porte_biologico": raca.get("porte_biologico"),
         "versao_motor": VERSAO_MOTOR,
     }
     return True, {"calculado": calculado}
@@ -92,6 +97,7 @@ if __name__ == "__main__":
         "racas": {
             "humano": {
                 "linhagens": [],
+                "porte_biologico": "medio",
                 "modificadores_atributo": {"int": 1, "car": 1, "for": -1},
                 "status": {
                     "vida": {"base": 10, "atributo": "con", "mult_ascensao": 4},
@@ -152,6 +158,7 @@ if __name__ == "__main__":
     assert calculado["status"]["vida"] == 10 + 2  # base + con
     # for final, sem treino no grau 0
     assert calculado["pericias"]["luta"]["bonus_total"] == 2
+    assert calculado["porte_biologico"] == "medio"
     assert calculado["versao_motor"] == VERSAO_MOTOR
 
     # escolhas inválidas -> sucesso False com lista de erros

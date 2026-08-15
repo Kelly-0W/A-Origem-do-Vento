@@ -10,6 +10,7 @@ import ResumoEscolhas from '../components/ResumoEscolhas.jsx'
 import FichaVisual from '../components/FichaVisual.jsx'
 import PainelAscensao from '../components/PainelAscensao.jsx'
 import PainelPoderesTreino from '../components/PainelPoderesTreino.jsx'
+import PainelInventario from '../components/PainelInventario.jsx'
 
 export default function PersonagemDetalhe() {
   const { id } = useParams()
@@ -22,7 +23,7 @@ export default function PersonagemDetalhe() {
   const [carregando, setCarregando] = useState(true)
   const [erroCarregamento, setErroCarregamento] = useState(null)
   const [personagem, setPersonagem] = useState(null)
-  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {} })
+  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {}, itens: {}, materiais: {} })
 
   const [nomePersonagem, setNomePersonagem] = useState('')
   const [imagemBase64, setImagemBase64] = useState(null)
@@ -38,7 +39,7 @@ export default function PersonagemDetalhe() {
       setCarregando(true)
       setErroCarregamento(null)
       try {
-        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos']
+        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos', 'itens', 'materiais']
         const respostas = await Promise.all(colecoes.map((c) => api.buscarBiblioteca(c)))
         const novoCatalogo = {}
         colecoes.forEach((c, i) => { novoCatalogo[c] = respostas[i].dados?.itens ?? {} })
@@ -271,6 +272,22 @@ export default function PersonagemDetalhe() {
           bonusDeslocamento={personagem.bonus_deslocamento}
           onAtualizarRecurso={(campo, valor) =>
             setPersonagem((prev) => ({ ...prev, [campo]: valor }))
+          }
+        />
+      )}
+
+      {personagem.calculado && (
+        <PainelInventario
+          personagemId={id}
+          interativo={ehDono}
+          inventario={personagem.inventario}
+          catalogoItens={catalogo.itens}
+          materiais={catalogo.materiais}
+          porteBiologico={personagem.calculado.porte_biologico}
+          forcaFinal={personagem.calculado.atributos_finais?.for}
+          deslocamentoBaseM={personagem.calculado.status?.deslocamento_m}
+          onAtualizado={(novoInventario) =>
+            setPersonagem((prev) => ({ ...prev, inventario: novoInventario }))
           }
         />
       )}

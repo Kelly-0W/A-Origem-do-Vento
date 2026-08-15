@@ -12,6 +12,11 @@ ARQUIVO_POR_COLECAO = {
     "pericias": "pericias.json",
     "elementos": "elementos.json",
     "itens": "itens.json",
+    # Tabela de materiais/minérios (peso, durabilidade, limiar de desgaste,
+    # bônus ofensivo/defensivo) -- ver secção "Peso" e "Modificadores por
+    # Minério" do Catálogo de Itens no Notion, e api/motor/inventario.py,
+    # que é quem de fato aplica essa tabela nos cálculos de peso/durabilidade.
+    "materiais": "materiais.json",
     "bestiario": "bestiario.json",
     "sagracanticos": "sagracanticos.json",
     # Catálogo de Efeitos Positivos/Negativos de combate (ver Combate.jsx,

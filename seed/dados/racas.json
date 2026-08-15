@@ -2,6 +2,7 @@
   "anao": {
     "nome": "Anão",
     "descricao_curta": "Povo forjado no fogo e na pedra, dividido em tres linhagens moldadas pelas nações onde se refugiaram após a Guerra do Metal.",
+    "porte_biologico": "medio",
     "status": null,
     "modificadores_atributo": null,
     "linhagens": [
@@ -349,6 +350,7 @@
   "astara": {
     "nome": "Astara",
     "descricao_curta": "Ligadas ao Plano Espiritual, capazes de atravessar momentaneamente o limiar entre os dois mundos através da Toca do Coelho.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 7,
@@ -490,6 +492,7 @@
   "bathari": {
     "nome": "Bathari",
     "descricao_curta": "Humanoides anfibios das profundezas, com pele resistente como lixa e instintos de predadores marinhos.",
+    "porte_biologico": "grande",
     "status": {
       "vida": {
         "base": 10,
@@ -631,6 +634,7 @@
   "demonio": {
     "nome": "Demonio",
     "descricao_curta": "Criaturas espirituais de extremo poder, divididas em 7 linhagens (Daemons), cada uma marcada por um Selo único.",
+    "porte_biologico": "medio",
     "status": null,
     "modificadores_atributo": null,
     "linhagens": [
@@ -1244,6 +1248,7 @@
   "draconato": {
     "nome": "Draconato",
     "descricao_curta": "Descendentes de dragoes amaldicoados por Nidhogg com o Tormento do Tirano, divididos entre Couracos e Sutis.",
+    "porte_biologico": "grande",
     "status": null,
     "modificadores_atributo": null,
     "linhagens": [
@@ -1522,6 +1527,7 @@
   "elfo": {
     "nome": "Elfo",
     "descricao_curta": "Guardioes da Floresta-mundo Sylvaka, divididos entre Elfos Solares e Elfos Lunares após a Guerra do Metal.",
+    "porte_biologico": "medio",
     "status": null,
     "modificadores_atributo": null,
     "linhagens": [
@@ -1787,6 +1793,7 @@
   "fada": {
     "nome": "Fada",
     "descricao_curta": "Criaturas aladas cujo corpo reage diretamente as estações do ano, ganhando tracos e magias unicas conforme o clima de Midgard.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 8,
@@ -1946,6 +1953,7 @@
   "goblin": {
     "nome": "Goblin",
     "descricao_curta": "Pequenos sobreviventes urbanos, mestres da improvisação, da labia e da fuga oportunista.",
+    "porte_biologico": "pequeno",
     "status": {
       "vida": {
         "base": 8,
@@ -2079,6 +2087,7 @@
   "humano": {
     "nome": "Humano",
     "descricao_curta": "Versateis e ambiciosos, se adaptam a qualquer papel.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 10,
@@ -2219,6 +2228,7 @@
   "kaimar": {
     "nome": "Kaimar",
     "descricao_curta": "Hibridos amaldicoados pelo Frenesi do Luar, sofrendo metamorfose bestial compulsoria nas noites de lua cheia.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 10,
@@ -2359,11 +2369,13 @@
         "Presa do Antigo",
         "Espirito da Floresta"
       ]
-    }
+    },
+    "porte_biologico_observacao": "Porte Médio em forma normal; Porte Grande quando em Forma Bestial (ver Biologia dos Kaimar) -- recalcular capacidade de carga manualmente durante a transformação."
   },
   "melanthae": {
     "nome": "Melanthae",
     "descricao_curta": "Raca amaldicoada ligada a toxinas e venenos, guardando conhecimento ancestral da flora proibida de Sylvaka.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 7,
@@ -2497,6 +2509,7 @@
   "merith": {
     "nome": "Merith",
     "descricao_curta": "Povo aquático adaptado a vida nos oceanos, com cauda ativa para natação e forte ligação com Tetis.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 8,
@@ -2631,6 +2644,7 @@
   "ocularde": {
     "nome": "Ocularde",
     "descricao_curta": "Criaturas multioculares presenteadas por Tetis com o Olhar da Verdade, capazes de ler mentes ao preco da propria sanidade.",
+    "porte_biologico": "medio",
     "status": {
       "vida": {
         "base": 6,
@@ -2779,6 +2793,7 @@
   "orc": {
     "nome": "Orc",
     "descricao_curta": "Guerreiros natos, fisicamente formidaveis, movidos pela furia ancestral e pela gloria da batalha.",
+    "porte_biologico": "grande",
     "status": {
       "vida": {
         "base": 12,

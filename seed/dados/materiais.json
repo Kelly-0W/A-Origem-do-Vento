@@ -1,0 +1,68 @@
+{
+  "cobre": {
+    "nome": "Cobre",
+    "multiplicador_peso": 1.0,
+    "durabilidade_total": 20,
+    "indestrutivel": false,
+    "limiar_desgaste": 2,
+    "propriedade_fisica": "Maleável: extremamente fácil de consertar (custo de manutenção reduzido pela metade).",
+    "bonus_dano_fisico": 0,
+    "reducao_dano_fisica": 0,
+    "propriedade_especial_defensiva": null
+  },
+  "latao-de-velmor": {
+    "nome": "Latão de Velmor",
+    "multiplicador_peso": 1.2,
+    "durabilidade_total": 40,
+    "indestrutivel": false,
+    "limiar_desgaste": 4,
+    "propriedade_fisica": "Luminoso: liga metálica polida, ligeiramente mais densa e pesada que o cobre.",
+    "bonus_dano_fisico": 2,
+    "reducao_dano_fisica": 2,
+    "propriedade_especial_defensiva": "Isolante Térmico: reduz em 2 pontos qualquer dano elemental de Fogo ou Raio sofrido."
+  },
+  "ferro": {
+    "nome": "Ferro",
+    "multiplicador_peso": 1.0,
+    "durabilidade_total": 60,
+    "indestrutivel": false,
+    "limiar_desgaste": 6,
+    "propriedade_fisica": "Estrutural: o padrão metálico de resistência e peso equilibrados do continente.",
+    "bonus_dano_fisico": 4,
+    "reducao_dano_fisica": 4,
+    "propriedade_especial_defensiva": null
+  },
+  "azurita": {
+    "nome": "Azurita de Nerith",
+    "multiplicador_peso": 0.6,
+    "durabilidade_total": 80,
+    "indestrutivel": false,
+    "limiar_desgaste": 8,
+    "propriedade_fisica": "Ultraleve: reduz drasticamente o peso de transporte, ideal para combatentes ágeis.",
+    "bonus_dano_fisico": 5,
+    "reducao_dano_fisica": 5,
+    "propriedade_especial_defensiva": "Cristalização Mágica: o usuário ganha +1 em testes de resistência contra Poderes de Manipulação."
+  },
+  "gaiornite": {
+    "nome": "Gaiornite",
+    "multiplicador_peso": 1.1,
+    "durabilidade_total": 120,
+    "indestrutivel": false,
+    "limiar_desgaste": 12,
+    "propriedade_fisica": "Superdensidade: metal rígido e massivo, projetado para suportar castigo extremo.",
+    "bonus_dano_fisico": 8,
+    "reducao_dano_fisica": 8,
+    "propriedade_especial_defensiva": "Blindagem Densa: a RD da armadura não pode ser ignorada por mecânicas de armas leves."
+  },
+  "karnathite": {
+    "nome": "Karnathite",
+    "multiplicador_peso": 1.3,
+    "durabilidade_total": null,
+    "indestrutivel": true,
+    "limiar_desgaste": null,
+    "propriedade_fisica": "Eterno: não sofre desgaste, nunca perde pontos de durabilidade e ignora testes de quebra.",
+    "bonus_dano_fisico": 12,
+    "reducao_dano_fisica": 12,
+    "propriedade_especial_defensiva": "Vácuo Abissal: o usuário recebe Resistência contra dano de Alma ou de Trevas."
+  }
+}
