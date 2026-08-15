@@ -250,7 +250,7 @@ export default function FichaVisual({
         {interativo && (
           <div className="flex items-center gap-3">
             <button
-              className="text-[11px] text-mist hover:text-gold underline decoration-dotted disabled:opacity-50"
+              className="btn-secondary text-xs disabled:opacity-50"
               onClick={recalcularFicha}
               disabled={recalculando}
               title="Refaz o cálculo da ficha com a versão mais recente do catálogo (raças, itens, perícias...), sem mudar nenhuma escolha."
