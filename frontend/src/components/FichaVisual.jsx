@@ -210,9 +210,57 @@ export default function FichaVisual({
     }
   }
 
+  // Recalcula a ficha reenviando as MESMAS escolhas de novo pro motor --
+  // não muda nada do que o jogador escolheu, só força o backend a rodar
+  // de novo com a versão ATUAL do catálogo (racas.json, itens.json etc.).
+  // Existe porque `calculado` é uma FOTO congelada no momento em que foi
+  // calculado da última vez -- se o catálogo ganha um campo novo depois
+  // (ex.: porte_biologico) num personagem já existente, essa foto antiga
+  // não tem esse campo até alguém disparar um recálculo de novo.
+  const [recalculando, setRecalculando] = useState(false)
+  const [erroRecalculo, setErroRecalculo] = useState(null)
+
+  async function recalcularFicha() {
+    if (!interativo || !personagemId || recalculando) return
+    setRecalculando(true)
+    setErroRecalculo(null)
+    try {
+      const { ok, dados } = await api.calcularFicha(escolhas, {
+        grauAscensao: grau_ascensao,
+        donoUid,
+        personagemId,
+      })
+      if (!ok || !dados?.sucesso) {
+        setErroRecalculo(dados?.erros?.[0] || 'Não foi possível recalcular a ficha agora.')
+        return
+      }
+      onAtualizado?.(dados.calculado, escolhas)
+    } catch (err) {
+      console.error(err)
+      setErroRecalculo('Não foi possível recalcular a ficha agora.')
+    } finally {
+      setRecalculando(false)
+    }
+  }
+
   return (
     <div className="mt-8">
-      <div className="text-forest font-display mb-4">Ficha calculada — Grau de Ascensão {grau_ascensao}</div>
+      <div className="flex items-center justify-between flex-wrap gap-2 mb-4">
+        <div className="text-forest font-display">Ficha calculada — Grau de Ascensão {grau_ascensao}</div>
+        {interativo && (
+          <div className="flex items-center gap-3">
+            <button
+              className="text-[11px] text-mist hover:text-gold underline decoration-dotted disabled:opacity-50"
+              onClick={recalcularFicha}
+              disabled={recalculando}
+              title="Refaz o cálculo da ficha com a versão mais recente do catálogo (raças, itens, perícias...), sem mudar nenhuma escolha."
+            >
+              {recalculando ? 'Recalculando...' : 'Recalcular ficha'}
+            </button>
+            {erroRecalculo && <span className="text-blood-bright text-[11px]">{erroRecalculo}</span>}
+          </div>
+        )}
+      </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-2">
         {[
