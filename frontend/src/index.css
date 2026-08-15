@@ -75,4 +75,17 @@
     @apply bg-void border border-panel-border rounded-md px-3 py-2.5 text-sm outline-none
            focus:border-gold/50 transition-colors placeholder:text-mist/50;
   }
+
+  /* Abas horizontais (ficha do personagem: Poderes / Inventário / Background,
+     e as sub-abas escritas dentro de Background) -- mesmo espírito visual do
+     .sidebar-item.active (acento dourado), só que com indicador embaixo em
+     vez de à esquerda, por ser uma navegação horizontal. */
+  .tab-item {
+    @apply px-4 py-2 text-sm font-display tracking-wide text-mist border-b-2 border-transparent
+           hover:text-white transition-colors duration-150 cursor-pointer whitespace-nowrap;
+  }
+
+  .tab-item.active {
+    @apply text-gold border-gold;
+  }
 }
