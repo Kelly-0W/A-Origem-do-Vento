@@ -48,15 +48,26 @@ export function pesoEfetivoItem(pesoBaseKg, minerio, materiais) {
   return round3(pesoBaseKg * multiplicador);
 }
 
-/** Soma o peso efetivo x quantidade de cada entrada do inventário.
- * Entradas cujo item_id não existe mais no catálogo são ignoradas. */
+/** Soma o peso efetivo x quantidade de cada entrada do inventário. Cobre
+ * os dois formatos: catalogado (item_id aponta pra itens.json, peso via
+ * peso_base_kg x minério) e avulso/narrativo (item_id null, peso mora
+ * direto na entrada em peso_base_kg, sem minério -- ver ORIGEM dos itens
+ * de kit de Origem em entradasKitOrigem()). Entradas catalogadas cujo
+ * item_id não existe mais no catálogo são ignoradas. */
 export function pesoTotalInventario(inventario, catalogoItens, materiais) {
   let total = 0;
   for (const entrada of inventario || []) {
-    const item = catalogoItens?.[entrada.item_id];
-    if (!item) continue;
     const quantidade = Math.max(0, Number(entrada.quantidade ?? 1) || 0);
-    const pesoUnitario = pesoEfetivoItem(item.peso_base_kg || 0, entrada.minerio, materiais);
+    let pesoUnitario;
+    if (entrada.item_id) {
+      const item = catalogoItens?.[entrada.item_id];
+      if (!item) continue;
+      pesoUnitario = pesoEfetivoItem(item.peso_base_kg || 0, entrada.minerio, materiais);
+    } else if (entrada.nome_livre) {
+      pesoUnitario = round3(entrada.peso_base_kg || 0);
+    } else {
+      continue;
+    }
     total += pesoUnitario * quantidade;
   }
   return round3(total);
@@ -166,6 +177,67 @@ export function registrarAcerto(durabilidadeAtual, minerio, materiais, alvoProte
 export function repararItem(minerio, materiais) {
   const maximo = durabilidadeMaximaMaterial(minerio, materiais);
   return { durabilidadeAtual: maximo, quebrado: false, exigeTesteD12Desgaste: false };
+}
+
+// ---------------------------------------------------------------------
+// Kit inicial de Origem -> entradas de inventário
+// ---------------------------------------------------------------------
+//
+// Espelho de entradas_kit_origem()/kit_origem_faltando() em
+// api/motor/inventario.py -- ver o comentário grande lá pra entender os
+// 4 tipos de item de kit (equipamento_catalogo / equipamento / moeda /
+// companheiro) e por que moeda e companheiro nunca viram entrada de
+// inventário.
+
+function entradaDeKitItem(origemId, indice, kitItem, materiais) {
+  const tipo = kitItem.tipo;
+  if (tipo === 'moeda' || tipo === 'companheiro') return null;
+
+  const base = {
+    id: `kit-${origemId}-${indice}`,
+    origem_kit_id: `${origemId}:${indice}`,
+    quantidade: Math.max(1, Number(kitItem.quantidade ?? 1) || 1),
+    quebrado: false,
+  };
+
+  if (tipo === 'equipamento_catalogo') {
+    // "O item será, quando possível, feito de Cobre" -- Catálogo de Itens.
+    const minerio = 'cobre';
+    return {
+      ...base,
+      item_id: kitItem.item_id,
+      minerio,
+      durabilidade_atual: durabilidadeMaximaMaterial(minerio, materiais),
+    };
+  }
+  // "equipamento" -- avulso/narrativo, sem equivalente no catálogo mecânico.
+  return {
+    ...base,
+    item_id: null,
+    nome_livre: kitItem.nome,
+    peso_base_kg: kitItem.peso_base_kg || 0,
+    minerio: null,
+    durabilidade_atual: null,
+  };
+}
+
+/** Todas as entradas de inventário que o kit inicial dessa Origem
+ * produziria (ignorando o que o personagem já tem). */
+export function entradasKitOrigem(origemId, origem, materiais) {
+  const kitItens = origem?.kit_itens || [];
+  return kitItens
+    .map((kitItem, indice) => entradaDeKitItem(origemId, indice, kitItem, materiais))
+    .filter(Boolean);
+}
+
+/** Só as entradas do kit que o personagem AINDA NÃO tem -- compara pelo
+ * marcador `origem_kit_id`. Usado pelo botão "Adicionar Kit de Origem":
+ * cada clique só preenche o que falta, nunca duplica o que já foi
+ * adicionado (e um item removido de propósito pelo jogador continua
+ * "faltando" até ele clicar de novo -- é uma ação explícita). */
+export function kitOrigemFaltando(origemId, origem, inventarioAtual, materiais) {
+  const jaTem = new Set((inventarioAtual || []).map((e) => e.origem_kit_id).filter(Boolean));
+  return entradasKitOrigem(origemId, origem, materiais).filter((e) => !jaTem.has(e.origem_kit_id));
 }
 
 function round3(n) {

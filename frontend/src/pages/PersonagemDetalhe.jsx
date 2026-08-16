@@ -381,6 +381,8 @@ export default function PersonagemDetalhe() {
               porteBiologico={personagem.calculado.porte_biologico}
               forcaFinal={personagem.calculado.atributos_finais?.for}
               deslocamentoBaseM={personagem.calculado.status?.deslocamento_m}
+              origemId={escolhas.origem_id}
+              origem={origem}
               onAtualizado={(novoInventario) =>
                 setPersonagem((prev) => ({ ...prev, inventario: novoInventario }))
               }

@@ -260,7 +260,10 @@ function DetalheOrigem({ item }) {
         <Secao titulo="Kit de Itens">
           <ul className="list-disc list-inside text-sm text-mist space-y-1">
             {item.kit_itens.map((k, i) => (
-              <li key={i}>{k}</li>
+              <li key={i}>
+                {k.nome ?? k}
+                {k.tipo === 'moeda' && <span className="text-[10px] text-mist"> (moeda — role você mesmo)</span>}
+              </li>
             ))}
           </ul>
         </Secao>

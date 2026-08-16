@@ -17,11 +17,32 @@
       }
     ],
     "kit_itens": [
-      "Kit de material relacionado a sua arte",
-      "Roupas coloridas",
-      "Cachecol de seda",
-      "1 Silberstuck",
-      "6 Bronzestuck"
+      {
+        "nome": "Kit de material relacionado a sua arte",
+        "tipo": "equipamento",
+        "peso_base_kg": 1.5,
+        "quantidade": 1
+      },
+      {
+        "nome": "Roupas coloridas",
+        "tipo": "equipamento",
+        "peso_base_kg": 1.0,
+        "quantidade": 1
+      },
+      {
+        "nome": "Cachecol de seda",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.1,
+        "quantidade": 1
+      },
+      {
+        "nome": "1 Silberstuck",
+        "tipo": "moeda"
+      },
+      {
+        "nome": "6 Bronzestuck",
+        "tipo": "moeda"
+      }
     ],
     "habilidade_passiva": {
       "nome": "Leitura de Público",
@@ -63,9 +84,24 @@
       }
     ],
     "kit_itens": [
-      "Diario de campo",
-      "Conjunto de pinceis e espatulas",
-      "Fragmento de objeto historico sem valor comercial"
+      {
+        "nome": "Diario de campo",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.3,
+        "quantidade": 1
+      },
+      {
+        "nome": "Conjunto de pinceis e espatulas",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.4,
+        "quantidade": 1
+      },
+      {
+        "nome": "Fragmento de objeto historico sem valor comercial",
+        "tipo": "equipamento",
+        "peso_base_kg": 0,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Investigação Antiga",
@@ -107,9 +143,24 @@
       }
     ],
     "kit_itens": [
-      "Conjunto de gazuas",
-      "Adaga pequena (1d4+Destreza)",
-      "Baralho marcado"
+      {
+        "nome": "Conjunto de gazuas",
+        "tipo": "equipamento_catalogo",
+        "item_id": "kit-de-arrombamento",
+        "quantidade": 1
+      },
+      {
+        "nome": "Adaga pequena (1d4+Destreza)",
+        "tipo": "equipamento_catalogo",
+        "item_id": "adaga-pequena",
+        "quantidade": 1
+      },
+      {
+        "nome": "Baralho marcado",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.1,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Contato das Trevas",
@@ -151,9 +202,24 @@
       }
     ],
     "kit_itens": [
-      "Roupas rasgadas e gastas",
-      "Corrente de pulso quebrada",
-      "Pão mofado"
+      {
+        "nome": "Roupas rasgadas e gastas",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.8,
+        "quantidade": 1
+      },
+      {
+        "nome": "Corrente de pulso quebrada",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.3,
+        "quantidade": 1
+      },
+      {
+        "nome": "Pão mofado",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.2,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Espirito Inabalavel",
@@ -195,9 +261,24 @@
       }
     ],
     "kit_itens": [
-      "Kit de escrita (penas e papeis)",
-      "Caderno de anotações",
-      "Pergaminho antigo sem tradução"
+      {
+        "nome": "Kit de escrita (penas e papeis)",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.5,
+        "quantidade": 1
+      },
+      {
+        "nome": "Caderno de anotações",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.3,
+        "quantidade": 1
+      },
+      {
+        "nome": "Pergaminho antigo sem tradução",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.05,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Mente Analitica",
@@ -239,9 +320,24 @@
       }
     ],
     "kit_itens": [
-      "Capa pesada com capuz",
-      "Mapa da antiga nação",
-      "Conjunto de alimentos não pereciveis (5 itens, contando comida e bebida)"
+      {
+        "nome": "Capa pesada com capuz",
+        "tipo": "equipamento",
+        "peso_base_kg": 1.5,
+        "quantidade": 1
+      },
+      {
+        "nome": "Mapa da antiga nação",
+        "tipo": "equipamento",
+        "peso_base_kg": 0,
+        "quantidade": 1
+      },
+      {
+        "nome": "Conjunto de alimentos não pereciveis (5 itens, contando comida e bebida)",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.4,
+        "quantidade": 5
+      }
     ],
     "habilidade_passiva": {
       "nome": "Perigos da Estrada",
@@ -283,10 +379,26 @@
       }
     ],
     "kit_itens": [
-      "Balanca de precisão",
-      "Bolsa de moedas com 1d8 de Silberstuck",
-      "1d12 de Bronzestuck",
-      "1 item de ate 5 moedas de prata"
+      {
+        "nome": "Balanca de precisão",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.5,
+        "quantidade": 1
+      },
+      {
+        "nome": "Bolsa de moedas com 1d8 de Silberstuck",
+        "tipo": "moeda"
+      },
+      {
+        "nome": "1d12 de Bronzestuck",
+        "tipo": "moeda"
+      },
+      {
+        "nome": "1 item de ate 5 moedas de prata",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.3,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Olho Dourado",
@@ -328,9 +440,24 @@
       }
     ],
     "kit_itens": [
-      "Roupas militares (varia conforme a nação)",
-      "Apito de comando",
-      "Brasão da unidade"
+      {
+        "nome": "Roupas militares (varia conforme a nação)",
+        "tipo": "equipamento",
+        "peso_base_kg": 2.0,
+        "quantidade": 1
+      },
+      {
+        "nome": "Apito de comando",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.05,
+        "quantidade": 1
+      },
+      {
+        "nome": "Brasão da unidade",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.05,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Disciplina de Ferro",
@@ -372,9 +499,22 @@
       }
     ],
     "kit_itens": [
-      "Roupas de seda",
-      "Anel de sinete da casa",
-      "1d4 de Goldstuck"
+      {
+        "nome": "Roupas de seda",
+        "tipo": "equipamento",
+        "peso_base_kg": 1.0,
+        "quantidade": 1
+      },
+      {
+        "nome": "Anel de sinete da casa",
+        "tipo": "equipamento",
+        "peso_base_kg": 0,
+        "quantidade": 1
+      },
+      {
+        "nome": "1d4 de Goldstuck",
+        "tipo": "moeda"
+      }
     ],
     "habilidade_passiva": {
       "nome": "Voz da Autoridade",
@@ -416,9 +556,24 @@
       }
     ],
     "kit_itens": [
-      "Manta rasgada",
-      "Artefato que lembre a familia",
-      "Faca de ossos (1d4+Destreza)"
+      {
+        "nome": "Manta rasgada",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.8,
+        "quantidade": 1
+      },
+      {
+        "nome": "Artefato que lembre a familia",
+        "tipo": "equipamento",
+        "peso_base_kg": 0,
+        "quantidade": 1
+      },
+      {
+        "nome": "Faca de ossos (1d4+Destreza)",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.3,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Filho das Cinzas",
@@ -460,9 +615,24 @@
       }
     ],
     "kit_itens": [
-      "Cajado de caminhada (1d4+Destreza / 3m de alcance)",
-      "Simbolo sagrado",
-      "Diario de viagem"
+      {
+        "nome": "Cajado de caminhada (1d4+Destreza / 3m de alcance)",
+        "tipo": "equipamento",
+        "peso_base_kg": 1.2,
+        "quantidade": 1
+      },
+      {
+        "nome": "Simbolo sagrado",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.1,
+        "quantidade": 1
+      },
+      {
+        "nome": "Diario de viagem",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.3,
+        "quantidade": 1
+      }
     ],
     "habilidade_passiva": {
       "nome": "Caminhada da Fe",
@@ -504,9 +674,22 @@
       }
     ],
     "kit_itens": [
-      "Pele de animal usada como roupa",
-      "Colar de ossos",
-      "1 animal pequeno não combatente"
+      {
+        "nome": "Pele de animal usada como roupa",
+        "tipo": "equipamento",
+        "peso_base_kg": 1.5,
+        "quantidade": 1
+      },
+      {
+        "nome": "Colar de ossos",
+        "tipo": "equipamento",
+        "peso_base_kg": 0.1,
+        "quantidade": 1
+      },
+      {
+        "nome": "1 animal pequeno não combatente",
+        "tipo": "companheiro"
+      }
     ],
     "habilidade_passiva": {
       "nome": "Instinto Animal",

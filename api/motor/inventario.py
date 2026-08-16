@@ -78,6 +78,105 @@ def capacidade_esforco_bruto_kg(capacidade_maxima_kg: float) -> float:
 
 
 # ---------------------------------------------------------------------
+# Kit inicial de Origem -> entradas de inventario
+# ---------------------------------------------------------------------
+#
+# Cada Origem tem um `kit_itens` no catalogo (origens.json) com o
+# equipamento narrativo de partida do personagem -- ver Catalogo de
+# Origens no Notion. A maioria desses itens NAO existe no catalogo
+# mecanico de equipamentos (itens.json): sao coisas como "Cachecol de
+# seda" ou "Diario de campo", que carregam pouco ou nenhum peso e nunca
+# tiveram durabilidade. Por isso cada entrada do kit tem um `tipo`:
+#
+#   - "equipamento_catalogo": tem equivalente EXATO em itens.json (ex.: a
+#     "Adaga pequena (1d4+Destreza)" do kit do Criminoso e' literalmente o
+#     item `adaga-pequena`) -- vira uma entrada de inventario NORMAL,
+#     catalogada, com minerio/durabilidade como qualquer outro item
+#     adicionado pelo jogador.
+#   - "equipamento": nao tem equivalente no catalogo (ex.: "Roupas
+#     coloridas", ou armas narrativas unicas como a "Faca de ossos" do
+#     Orfao de Guerra) -- vira uma entrada AVULSA/narrativa (`item_id`
+#     None, nome e peso morando na propria entrada). Sem minerio, sem
+#     durabilidade -- nao sao forjadas de metal.
+#   - "moeda": dinheiro (ex.: "1d8 de Silberstuck"). O site nao rola
+#     dados sozinho, entao um valor em dado nao pode virar uma entrada
+#     concreta automaticamente -- e tambem nao faz sentido pesar moeda
+#     junto do equipamento. Fica de fora do inventario por completo,
+#     so' serve como lembrete de que o jogador tem isso pra anotar/rolar
+#     em outro lugar.
+#   - "companheiro": uma criatura (ex.: o "1 animal pequeno nao
+#     combatente" do Selvagem), nao e' equipamento. Tambem fica de fora.
+
+
+def _entrada_de_kit_item(
+    origem_id: str, indice: int, kit_item: dict, materiais: Dict[str, dict]
+) -> Optional[dict]:
+    """Constroi UMA entrada de inventario a partir de um item do kit de
+    Origem, ou None se esse item nao deve virar entrada (moeda/companheiro).
+
+    `origem_kit_id` marca a entrada como vinda desse kit especifico
+    (`"<origem_id>:<indice>"`) -- e' o que permite kit_origem_faltando()
+    detectar quais itens do kit ainda NAO foram adicionados ao inventario
+    de um personagem (pra nao duplicar se o jogador clicar de novo, e pra
+    conseguir "completar" o kit de personagens antigos, criados antes
+    dessa funcionalidade existir)."""
+    tipo = kit_item.get("tipo")
+    if tipo == "moeda" or tipo == "companheiro":
+        return None
+
+    base = {
+        "id": f"kit-{origem_id}-{indice}",
+        "origem_kit_id": f"{origem_id}:{indice}",
+        "quantidade": max(1, int(kit_item.get("quantidade", 1) or 1)),
+        "quebrado": False,
+    }
+    if tipo == "equipamento_catalogo":
+        # "O item sera, quando possivel, feito de Cobre" -- Catalogo de
+        # Itens -- mesmo padrao do fluxo normal de "Adicionar item".
+        minerio = "cobre"
+        base.update({
+            "item_id": kit_item["item_id"],
+            "minerio": minerio,
+            "durabilidade_atual": durabilidade_maxima_material(minerio, materiais),
+        })
+    else:  # "equipamento" -- avulso/narrativo, sem equivalente no catalogo
+        base.update({
+            "item_id": None,
+            "nome_livre": kit_item["nome"],
+            "peso_base_kg": kit_item.get("peso_base_kg", 0) or 0,
+            "minerio": None,
+            "durabilidade_atual": None,
+        })
+    return base
+
+
+def entradas_kit_origem(origem_id: str, origem: dict, materiais: Dict[str, dict]) -> List[dict]:
+    """Todas as entradas de inventario que o kit inicial dessa Origem
+    produziria (ignorando o que o personagem ja tem)."""
+    kit_itens = origem.get("kit_itens") or []
+    entradas = []
+    for indice, kit_item in enumerate(kit_itens):
+        entrada = _entrada_de_kit_item(origem_id, indice, kit_item, materiais)
+        if entrada is not None:
+            entradas.append(entrada)
+    return entradas
+
+
+def kit_origem_faltando(
+    origem_id: str, origem: dict, inventario_atual: List[dict], materiais: Dict[str, dict]
+) -> List[dict]:
+    """So' as entradas do kit que o personagem AINDA NAO tem -- compara
+    pelo marcador `origem_kit_id`. Usado pelo botao "Adicionar Kit de
+    Origem" (ver PainelInventario.jsx): cada clique so' preenche o que
+    falta, nunca duplica o que ja foi adicionado (inclusive itens que o
+    jogador tenha removido de proposito continuam removidos, a nao ser
+    que ele clique no botao de novo pra readiciona-los -- e' uma acao
+    explicita, nao algo que acontece sozinho)."""
+    ja_tem = {e.get("origem_kit_id") for e in inventario_atual if e.get("origem_kit_id")}
+    return [e for e in entradas_kit_origem(origem_id, origem, materiais) if e["origem_kit_id"] not in ja_tem]
+
+
+# ---------------------------------------------------------------------
 # Peso de equipamentos
 # ---------------------------------------------------------------------
 
@@ -100,19 +199,31 @@ def peso_efetivo_item(
 def peso_total_inventario(
     inventario: List[dict], catalogo_itens: Dict[str, dict], materiais: Dict[str, dict]
 ) -> float:
-    """Soma o peso efetivo (peso base x multiplicador do minerio) de cada
-    entrada do inventario, multiplicado pela quantidade. Entradas cujo
-    item_id nao existe mais no catalogo sao ignoradas silenciosamente
-    (nao derruba o calculo do resto do inventario)."""
+    """Soma o peso efetivo de cada entrada do inventario, multiplicado pela
+    quantidade. Cobre os DOIS formatos de entrada:
+      - catalogada: `item_id` aponta pra um item real de itens.json --
+        peso vem de `catalogo_itens[item_id]["peso_base_kg"]` x minerio.
+      - avulsa/narrativa (ex.: itens do kit inicial de Origem que nao tem
+        equivalente no catalogo mecanico -- ver entradas_kit_origem() mais
+        abaixo): `item_id` e None, e o peso mora direto na propria entrada
+        em `peso_base_kg` (sem multiplicador de minerio, porque esses
+        itens nao tem minerio -- nao sao forjados).
+    Entradas catalogadas cujo item_id nao existe mais no catalogo sao
+    ignoradas silenciosamente (nao derruba o calculo do resto)."""
     total = 0.0
     for entrada in inventario:
-        item = catalogo_itens.get(entrada.get("item_id"))
-        if item is None:
-            continue
         quantidade = max(0, int(entrada.get("quantidade", 1) or 1))
-        peso_unitario = peso_efetivo_item(
-            item.get("peso_base_kg", 0) or 0, entrada.get("minerio"), materiais
-        )
+        if entrada.get("item_id"):
+            item = catalogo_itens.get(entrada["item_id"])
+            if item is None:
+                continue
+            peso_unitario = peso_efetivo_item(
+                item.get("peso_base_kg", 0) or 0, entrada.get("minerio"), materiais
+            )
+        elif entrada.get("nome_livre"):
+            peso_unitario = round(entrada.get("peso_base_kg", 0) or 0, 3)
+        else:
+            continue
         total += peso_unitario * quantidade
     return round(total, 3)
 
@@ -290,6 +401,8 @@ if __name__ == "__main__":
     catalogo_itens = {
         "espada-longa": {"peso_base_kg": 2.0},
         "gambeson": {"peso_base_kg": 4.0},
+        "adaga-pequena": {"peso_base_kg": 0.4},
+        "kit-de-arrombamento": {"peso_base_kg": 0.5},
     }
     inv = [
         {"item_id": "espada-longa", "minerio": "ferro", "quantidade": 1},
@@ -299,6 +412,65 @@ if __name__ == "__main__":
     # espada-longa em ferro (x1.0) = 2.0kg + gambeson em cobre (x1.0) = 4.0kg
     # o item inexistente eh ignorado silenciosamente
     assert peso_total_inventario(inv, catalogo_itens, materiais) == 6.0
+
+    # Entrada avulsa/narrativa (sem item_id, peso na propria entrada) --
+    # ex.: itens do kit de Origem sem equivalente no catalogo mecanico.
+    inv_avulso = [
+        {"item_id": None, "nome_livre": "Cachecol de seda", "peso_base_kg": 0.1, "quantidade": 1},
+        {"item_id": None, "nome_livre": "Roupas coloridas", "peso_base_kg": 1.0, "quantidade": 1},
+    ]
+    assert peso_total_inventario(inv_avulso, catalogo_itens, materiais) == 1.1
+
+    # --- Kit inicial de Origem -> entradas de inventario ---
+    origem_criminoso = {
+        "kit_itens": [
+            {"nome": "Conjunto de gazuas", "tipo": "equipamento_catalogo", "item_id": "kit-de-arrombamento", "quantidade": 1},
+            {"nome": "Adaga pequena (1d4+Destreza)", "tipo": "equipamento_catalogo", "item_id": "adaga-pequena", "quantidade": 1},
+            {"nome": "Baralho marcado", "tipo": "equipamento", "peso_base_kg": 0.1, "quantidade": 1},
+        ]
+    }
+    entradas = entradas_kit_origem("criminoso", origem_criminoso, materiais)
+    assert len(entradas) == 3
+    assert entradas[0]["item_id"] == "kit-de-arrombamento"
+    assert entradas[0]["minerio"] == "cobre"
+    assert entradas[0]["durabilidade_atual"] == 20  # maximo do cobre
+    assert entradas[2]["item_id"] is None
+    assert entradas[2]["nome_livre"] == "Baralho marcado"
+    assert entradas[2]["peso_base_kg"] == 0.1
+    assert entradas[2]["durabilidade_atual"] is None  # avulso, sem minerio, sem durabilidade
+
+    # Moeda e companheiro nunca viram entrada de inventario.
+    origem_mercador = {
+        "kit_itens": [
+            {"nome": "Balanca de precisão", "tipo": "equipamento", "peso_base_kg": 0.5, "quantidade": 1},
+            {"nome": "Bolsa de moedas com 1d8 de Silberstuck", "tipo": "moeda"},
+        ]
+    }
+    entradas_mercador = entradas_kit_origem("mercador", origem_mercador, materiais)
+    assert len(entradas_mercador) == 1
+    assert entradas_mercador[0]["nome_livre"] == "Balanca de precisão"
+
+    origem_selvagem = {
+        "kit_itens": [
+            {"nome": "Colar de ossos", "tipo": "equipamento", "peso_base_kg": 0.1, "quantidade": 1},
+            {"nome": "1 animal pequeno não combatente", "tipo": "companheiro"},
+        ]
+    }
+    assert len(entradas_kit_origem("selvagem", origem_selvagem, materiais)) == 1
+
+    # kit_origem_faltando: so' devolve o que ainda nao esta no inventario,
+    # nunca duplica o que ja foi adicionado (comparando por origem_kit_id).
+    faltando = kit_origem_faltando("criminoso", origem_criminoso, [], materiais)
+    assert len(faltando) == 3
+    inventario_parcial = [{"origem_kit_id": "criminoso:0"}]  # ja tem as gazuas
+    faltando = kit_origem_faltando("criminoso", origem_criminoso, inventario_parcial, materiais)
+    assert len(faltando) == 2
+    assert all(e["origem_kit_id"] != "criminoso:0" for e in faltando)
+    # item removido de proposito pelo jogador (sem origem_kit_id igual)
+    # continua contando como "faltando" -- readicionar e' uma acao
+    # explicita do jogador, nao acontece sozinho.
+    faltando_tudo_de_novo = kit_origem_faltando("criminoso", origem_criminoso, [], materiais)
+    assert len(faltando_tudo_de_novo) == 3
 
     # --- Estado de carga ---
     # Exatamente na capacidade -> normal, sem penalidade.

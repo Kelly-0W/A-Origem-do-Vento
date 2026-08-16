@@ -12,6 +12,7 @@ import {
   repararItem,
   durabilidadeMaximaMaterial,
   limiarDesgasteMaterial,
+  kitOrigemFaltando,
   NIVEL_NORMAL,
   NIVEL_LIMITE_ABSOLUTO,
 } from '../lib/inventario.js'
@@ -60,6 +61,8 @@ export default function PainelInventario({
   porteBiologico,
   forcaFinal,
   deslocamentoBaseM,
+  origemId,
+  origem,
   onAtualizado,
 }) {
   const [modalAberto, setModalAberto] = useState(false)
@@ -72,6 +75,16 @@ export default function PainelInventario({
   const [erro, setErro] = useState(null)
 
   const lista = inventario || []
+
+  const kitOrigemPendente = useMemo(
+    () => (origemId && origem ? kitOrigemFaltando(origemId, origem, lista, materiais) : []),
+    [origemId, origem, lista, materiais]
+  )
+
+  async function adicionarKitOrigem() {
+    if (!interativo || kitOrigemPendente.length === 0) return
+    persistir([...lista, ...kitOrigemPendente])
+  }
 
   const porteValido = PORTES_VALIDOS.includes(porteBiologico)
   const capacidadeMaximaKg = useMemo(
@@ -188,12 +201,24 @@ export default function PainelInventario({
 
   return (
     <div className="card-fantasy p-6 mt-8">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
         <h2 className="text-xl font-display text-white">Inventário</h2>
         {interativo && (
-          <button className="btn-secondary text-xs" onClick={abrirModalAdicionar} disabled={processando}>
-            + Adicionar item
-          </button>
+          <div className="flex items-center gap-2">
+            {kitOrigemPendente.length > 0 && (
+              <button
+                className="btn-secondary text-xs"
+                onClick={adicionarKitOrigem}
+                disabled={processando}
+                title={`Adiciona ${kitOrigemPendente.length} ${kitOrigemPendente.length === 1 ? 'item' : 'itens'} do kit inicial de ${origem?.nome ?? 'Origem'} que ainda não estão no inventário.`}
+              >
+                + Kit de Origem ({kitOrigemPendente.length})
+              </button>
+            )}
+            <button className="btn-secondary text-xs" onClick={abrirModalAdicionar} disabled={processando}>
+              + Adicionar item
+            </button>
+          </div>
         )}
       </div>
 
@@ -250,6 +275,54 @@ export default function PainelInventario({
       ) : (
         <div className="space-y-2">
           {lista.map((entrada) => {
+            // Entrada avulsa/narrativa (kit de Origem sem equivalente no
+            // catálogo mecânico) -- nome e peso moram na própria entrada,
+            // não em catalogoItens. Sem minério, sem durabilidade.
+            if (!entrada.item_id) {
+              if (!entrada.nome_livre) return null // registro corrompido/antigo, nada a mostrar
+              const pesoUnitarioLivre = arredondar(entrada.peso_base_kg || 0)
+              return (
+                <div key={entrada.id} className="p-3 rounded-md border border-panel-border bg-void/40">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-white font-medium text-sm">{entrada.nome_livre}</span>
+                        <span className="text-[10px] uppercase tracking-widest text-mist">
+                          {entrada.origem_kit_id ? 'Item de Origem' : 'Item avulso'}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-mist mt-0.5">
+                        {pesoUnitarioLivre} kg
+                        {entrada.quantidade > 1
+                          ? ` x${entrada.quantidade} = ${arredondar(pesoUnitarioLivre * entrada.quantidade)} kg`
+                          : ''}
+                      </p>
+                    </div>
+                    {interativo && (
+                      <button className="text-mist hover:text-blood-bright text-xs shrink-0" onClick={() => removerEntrada(entrada.id)}>
+                        Remover
+                      </button>
+                    )}
+                  </div>
+                  {interativo && (
+                    <div className="flex items-center gap-2 mt-2">
+                      <button
+                        className="btn-secondary text-xs px-2 py-0.5"
+                        onClick={() => ajustarQuantidade(entrada.id, -1)}
+                        disabled={processando || entrada.quantidade <= 1}
+                      >
+                        −
+                      </button>
+                      <span className="text-xs text-mist">Quantidade: {entrada.quantidade}</span>
+                      <button className="btn-secondary text-xs px-2 py-0.5" onClick={() => ajustarQuantidade(entrada.id, 1)} disabled={processando}>
+                        +
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )
+            }
+
             const item = catalogoItens?.[entrada.item_id]
             if (!item) {
               return (
