@@ -102,6 +102,11 @@ export default function CampanhaDetalhe() {
   const [modalAberto, setModalAberto] = useState(false)
   const [codigoCopiado, setCodigoCopiado] = useState(false)
 
+  const [jogadoresEsperados, setJogadoresEsperados] = useState('')
+  const [salvandoNota, setSalvandoNota] = useState(false)
+  const [notaSalva, setNotaSalva] = useState(false)
+  const [erroNota, setErroNota] = useState(null)
+
   useEffect(() => {
     Promise.all([api.buscarBiblioteca('racas'), api.buscarBiblioteca('classes')]).then(
       ([racasResp, classesResp]) => {
@@ -129,6 +134,7 @@ export default function CampanhaDetalhe() {
         return
       }
       setCampanha(dadosCampanha)
+      setJogadoresEsperados(dadosCampanha.jogadores_esperados || '')
 
       // Só os personagens do PRÓPRIO jogador vinculados a essa campanha --
       // ver a ficha de outros jogadores é trabalho do Painel do Mestre
@@ -170,6 +176,25 @@ export default function CampanhaDetalhe() {
       setTimeout(() => setCodigoCopiado(false), 2000)
     } catch {
       setCodigoCopiado(false)
+    }
+  }
+
+  async function salvarJogadoresEsperados() {
+    setSalvandoNota(true)
+    setNotaSalva(false)
+    setErroNota(null)
+    try {
+      await updateDoc(doc(db, 'campanhas', id), {
+        jogadores_esperados: jogadoresEsperados,
+        atualizado_em: serverTimestamp(),
+      })
+      setCampanha((prev) => ({ ...prev, jogadores_esperados: jogadoresEsperados }))
+      setNotaSalva(true)
+    } catch (err) {
+      console.error(err)
+      setErroNota('Não foi possível salvar essa anotação agora.')
+    } finally {
+      setSalvandoNota(false)
     }
   }
 
@@ -310,6 +335,28 @@ export default function CampanhaDetalhe() {
           )}
         </div>
       </div>
+
+      {ehMestre && (
+        <div className="card-fantasy p-6 mb-10">
+          <h2 className="text-lg font-display mb-2">Jogadores Esperados</h2>
+          <p className="text-xs text-mist mb-3">
+            Anotação sua, livre — não fica vinculada a nenhuma conta. Útil pra lembrar quem ainda nem usou o código de
+            convite (o app só sabe quem já entrou e quem já criou personagem; ver "Jogadores da Mesa" mais abaixo).
+          </p>
+          <textarea
+            value={jogadoresEsperados}
+            onChange={(e) => setJogadoresEsperados(e.target.value)}
+            placeholder={'Um nome por linha, por exemplo:\nFulano\nBeltrano\nCicrano'}
+            rows={4}
+            className="campo-input w-full resize-y mb-3"
+          />
+          <button className="btn-secondary text-xs disabled:opacity-50" onClick={salvarJogadoresEsperados} disabled={salvandoNota}>
+            {salvandoNota ? 'Salvando...' : 'Salvar Anotação'}
+          </button>
+          {notaSalva && <span className="text-forest text-xs ml-3">Salvo.</span>}
+          {erroNota && <p className="text-blood-bright text-xs mt-2">{erroNota}</p>}
+        </div>
+      )}
 
       <div className="mb-10">
         <h2 className="text-xl font-display mb-6">Participantes da Campanha</h2>

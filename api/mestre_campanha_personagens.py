@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
+from typing import Dict
 import json
 
 from api.motor.persistencia import (
@@ -52,7 +53,9 @@ class handler(BaseHTTPRequestHandler):
                 return
 
             personagens = listar_personagens_da_campanha(campanha_id)
-            nomes_uid = buscar_nomes_usuarios(p.get("dono_uid") for p in personagens)
+            uids_com_personagem = [p.get("dono_uid") for p in personagens]
+            todos_uids = set(uids_com_personagem) | set(campanha.get("jogadores_uids") or [])
+            nomes_uid = buscar_nomes_usuarios(todos_uids)
 
             itens = []
             for p in personagens:
@@ -77,7 +80,36 @@ class handler(BaseHTTPRequestHandler):
                     "bonus_deslocamento": p.get("bonus_deslocamento"),
                 })
 
-            self._responder(200, {"sucesso": True, "campanha": {"id": campanha["id"], "nome": campanha.get("nome")}, "itens": itens})
+            # "Quem está na mesa": todo mundo que entrou com o código de
+            # convite (jogadores_uids), cruzado com quem já tem pelo menos
+            # um personagem NESSA campanha -- isso é o que falta pro mestre
+            # pra responder sozinho "quem entrou mas ainda não criou
+            # personagem" sem precisar perguntar um por um no chat.
+            contagem_por_uid: Dict[str, int] = {}
+            for uid in uids_com_personagem:
+                if uid:
+                    contagem_por_uid[uid] = contagem_por_uid.get(uid, 0) + 1
+
+            jogadores = []
+            for uid in campanha.get("jogadores_uids") or []:
+                quantidade = contagem_por_uid.get(uid, 0)
+                jogadores.append({
+                    "uid": uid,
+                    "nome": nomes_uid.get(uid),
+                    "quantidade_personagens": quantidade,
+                    "tem_personagem": quantidade > 0,
+                })
+
+            self._responder(200, {
+                "sucesso": True,
+                "campanha": {
+                    "id": campanha["id"],
+                    "nome": campanha.get("nome"),
+                    "jogadores_esperados": campanha.get("jogadores_esperados"),
+                },
+                "jogadores": jogadores,
+                "itens": itens,
+            })
 
         except Exception as e:
             self._responder(500, {"sucesso": False, "erros": [f"Erro interno no servidor: {str(e)}"]})

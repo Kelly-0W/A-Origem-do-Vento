@@ -25,6 +25,18 @@ const ABAS = [
 
 // Sub-abas escritas dentro de Background -- cada uma vira uma chave própria
 // no campo `background` (mapa) do documento do personagem no Firestore.
+// "Informações Pessoais" é a única que não é um texto livre -- é um
+// formuláriozinho com campos curtos e discretos (idade, altura...), então
+// fica de fora de CAMPOS_BACKGROUND e ganha tratamento próprio na hora de
+// renderizar (ver abaixo).
+const CAMPOS_INFO_PESSOAL = [
+  { chave: 'idade', rotulo: 'Idade', placeholder: 'Ex.: 27 anos, ou "cerca de 200 anos"' },
+  { chave: 'data_nascimento', rotulo: 'Data de Nascimento', placeholder: 'Ex.: 15 do mês das Cinzas, 340 D.F.' },
+  { chave: 'altura', rotulo: 'Altura', placeholder: 'Ex.: 1,75m' },
+  { chave: 'peso_corporal', rotulo: 'Peso', placeholder: 'Ex.: 68kg' },
+  { chave: 'naturalidade', rotulo: 'Naturalidade', placeholder: 'Onde nasceu, de onde veio' },
+]
+
 const CAMPOS_BACKGROUND = [
   { chave: 'historia', rotulo: 'História', placeholder: 'De onde esse personagem veio, o que o trouxe até aqui...' },
   { chave: 'personalidade', rotulo: 'Personalidade', placeholder: 'Como ele age, fala, reage sob pressão...' },
@@ -33,7 +45,17 @@ const CAMPOS_BACKGROUND = [
   { chave: 'talento', rotulo: 'Talento', placeholder: 'Aquilo que esse personagem faz melhor que ninguém...' },
 ]
 
-const BACKGROUND_VAZIO = Object.fromEntries(CAMPOS_BACKGROUND.map((c) => [c.chave, '']))
+// Ordem dos botões de sub-aba dentro de Background (Informações Pessoais
+// primeiro, por ser a mais "identidade básica" das seis).
+const SUBABAS_BACKGROUND = [
+  { chave: 'informacoes_pessoais', rotulo: 'Informações Pessoais' },
+  ...CAMPOS_BACKGROUND.map((c) => ({ chave: c.chave, rotulo: c.rotulo })),
+]
+
+const BACKGROUND_VAZIO = {
+  informacoes_pessoais: Object.fromEntries(CAMPOS_INFO_PESSOAL.map((c) => [c.chave, ''])),
+  ...Object.fromEntries(CAMPOS_BACKGROUND.map((c) => [c.chave, ''])),
+}
 
 function BotaoAba({ ativo, onClick, children, className = '' }) {
   return (
@@ -57,7 +79,7 @@ export default function PersonagemDetalhe() {
   const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {}, itens: {}, materiais: {} })
 
   const [abaAtiva, setAbaAtiva] = useState('poderes')
-  const [abaBackgroundAtiva, setAbaBackgroundAtiva] = useState('historia')
+  const [abaBackgroundAtiva, setAbaBackgroundAtiva] = useState('informacoes_pessoais')
 
   const [nomePersonagem, setNomePersonagem] = useState('')
   const [imagemBase64, setImagemBase64] = useState(null)
@@ -89,7 +111,14 @@ export default function PersonagemDetalhe() {
         setPersonagem(dados)
         setNomePersonagem(dados.escolhas?.nome_personagem || '')
         setImagemBase64(dados.imagem_base64 || null)
-        setBackground({ ...BACKGROUND_VAZIO, ...(dados.background || {}) })
+        setBackground({
+          ...BACKGROUND_VAZIO,
+          ...(dados.background || {}),
+          informacoes_pessoais: {
+            ...BACKGROUND_VAZIO.informacoes_pessoais,
+            ...(dados.background?.informacoes_pessoais || {}),
+          },
+        })
       } catch (err) {
         console.error(err)
         setErroCarregamento('Não foi possível carregar este personagem — ele pode não existir ou não pertencer à sua conta.')
@@ -396,35 +425,66 @@ export default function PersonagemDetalhe() {
       {abaAtiva === 'background' && (
         <div className="card-fantasy p-6">
           <div className="flex items-center gap-1 border-b border-panel-border mb-5 overflow-x-auto">
-            {CAMPOS_BACKGROUND.map((campo) => (
+            {SUBABAS_BACKGROUND.map((sub) => (
               <BotaoAba
-                key={campo.chave}
-                ativo={abaBackgroundAtiva === campo.chave}
-                onClick={() => setAbaBackgroundAtiva(campo.chave)}
+                key={sub.chave}
+                ativo={abaBackgroundAtiva === sub.chave}
+                onClick={() => setAbaBackgroundAtiva(sub.chave)}
                 className="text-xs px-3 py-1.5"
               >
-                {campo.rotulo}
+                {sub.rotulo}
               </BotaoAba>
             ))}
           </div>
 
-          {CAMPOS_BACKGROUND.filter((c) => c.chave === abaBackgroundAtiva).map((campo) => (
-            <div key={campo.chave}>
-              {ehDono ? (
-                <textarea
-                  value={background[campo.chave] ?? ''}
-                  onChange={(e) => setBackground((prev) => ({ ...prev, [campo.chave]: e.target.value }))}
-                  placeholder={campo.placeholder}
-                  rows={12}
-                  className="campo-input w-full resize-y"
-                />
-              ) : (
-                <p className="text-sm text-white whitespace-pre-wrap min-h-[8rem]">
-                  {background[campo.chave]?.trim() ? background[campo.chave] : <span className="text-mist">Nada escrito ainda.</span>}
-                </p>
-              )}
+          {abaBackgroundAtiva === 'informacoes_pessoais' ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {CAMPOS_INFO_PESSOAL.map((campo) => (
+                <label key={campo.chave} className="flex flex-col gap-1.5">
+                  <span className="text-[11px] uppercase tracking-widest text-mist">{campo.rotulo}</span>
+                  {ehDono ? (
+                    <input
+                      value={background.informacoes_pessoais?.[campo.chave] ?? ''}
+                      onChange={(e) =>
+                        setBackground((prev) => ({
+                          ...prev,
+                          informacoes_pessoais: { ...prev.informacoes_pessoais, [campo.chave]: e.target.value },
+                        }))
+                      }
+                      placeholder={campo.placeholder}
+                      className="campo-input"
+                    />
+                  ) : (
+                    <p className="text-sm text-white">
+                      {background.informacoes_pessoais?.[campo.chave]?.trim() ? (
+                        background.informacoes_pessoais[campo.chave]
+                      ) : (
+                        <span className="text-mist">Não informado.</span>
+                      )}
+                    </p>
+                  )}
+                </label>
+              ))}
             </div>
-          ))}
+          ) : (
+            CAMPOS_BACKGROUND.filter((c) => c.chave === abaBackgroundAtiva).map((campo) => (
+              <div key={campo.chave}>
+                {ehDono ? (
+                  <textarea
+                    value={background[campo.chave] ?? ''}
+                    onChange={(e) => setBackground((prev) => ({ ...prev, [campo.chave]: e.target.value }))}
+                    placeholder={campo.placeholder}
+                    rows={12}
+                    className="campo-input w-full resize-y"
+                  />
+                ) : (
+                  <p className="text-sm text-white whitespace-pre-wrap min-h-[8rem]">
+                    {background[campo.chave]?.trim() ? background[campo.chave] : <span className="text-mist">Nada escrito ainda.</span>}
+                  </p>
+                )}
+              </div>
+            ))
+          )}
 
           {ehDono && <BotaoSalvarCosmetico className="mt-4" />}
         </div>

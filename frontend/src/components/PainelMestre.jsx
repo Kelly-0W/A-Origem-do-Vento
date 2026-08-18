@@ -74,6 +74,7 @@ function CardPersonagem({ item, catalogo, expandido, onAlternarExpandido, filho 
 export default function PainelMestre({ campanhaId, mestreUid }) {
   const [catalogo, setCatalogo] = useState(null)
   const [itens, setItens] = useState([])
+  const [jogadores, setJogadores] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
   const [expandidoId, setExpandidoId] = useState(null)
@@ -97,6 +98,7 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
         return
       }
       setItens(dados.itens || [])
+      setJogadores(dados.jogadores || [])
     } catch (err) {
       console.error(err)
       setErro('Não foi possível carregar os personagens da mesa.')
@@ -133,6 +135,33 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
   return (
     <div className="mt-10">
       {erro && <p className="text-blood-bright text-xs mb-4">{erro}</p>}
+
+      <h2 className="text-xl font-display mb-4">Jogadores da Mesa</h2>
+      {jogadores.length === 0 ? (
+        <div className="card-fantasy p-6 text-center text-mist text-sm mb-10">
+          Ninguém entrou com o código de convite ainda.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
+          {jogadores.map((j) => (
+            <div
+              key={j.uid}
+              className={`card-fantasy p-4 flex items-center justify-between gap-3 ${
+                j.tem_personagem ? '' : 'border-gold/40'
+              }`}
+            >
+              <span className="text-sm truncate">{j.nome || 'Jogador sem nome definido'}</span>
+              {j.tem_personagem ? (
+                <span className="text-[10px] uppercase tracking-widest text-forest shrink-0">
+                  {j.quantidade_personagens > 1 ? `${j.quantidade_personagens} personagens` : '1 personagem'}
+                </span>
+              ) : (
+                <span className="text-[10px] uppercase tracking-widest text-gold shrink-0">Sem personagem</span>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
 
       <h2 className="text-xl font-display mb-4">Pedidos de Ascensão Pendentes</h2>
       {pendentes.length === 0 ? (
