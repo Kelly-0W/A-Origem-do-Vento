@@ -18,6 +18,7 @@ import { api } from '../lib/api.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import ModalBase from '../components/ModalBase.jsx'
 import PainelMestre from '../components/PainelMestre.jsx'
+import SecaoPersonagensCampanha from '../components/SecaoPersonagensCampanha.jsx'
 
 // Lista, dentro do modal, os personagens do próprio jogador que AINDA não
 // estão nessa campanha -- escolher um chama `onAdicionar`, que faz o
@@ -102,11 +103,6 @@ export default function CampanhaDetalhe() {
   const [modalAberto, setModalAberto] = useState(false)
   const [codigoCopiado, setCodigoCopiado] = useState(false)
 
-  const [jogadoresEsperados, setJogadoresEsperados] = useState('')
-  const [salvandoNota, setSalvandoNota] = useState(false)
-  const [notaSalva, setNotaSalva] = useState(false)
-  const [erroNota, setErroNota] = useState(null)
-
   useEffect(() => {
     Promise.all([api.buscarBiblioteca('racas'), api.buscarBiblioteca('classes')]).then(
       ([racasResp, classesResp]) => {
@@ -134,7 +130,6 @@ export default function CampanhaDetalhe() {
         return
       }
       setCampanha(dadosCampanha)
-      setJogadoresEsperados(dadosCampanha.jogadores_esperados || '')
 
       // Só os personagens do PRÓPRIO jogador vinculados a essa campanha --
       // ver a ficha de outros jogadores é trabalho do Painel do Mestre
@@ -176,25 +171,6 @@ export default function CampanhaDetalhe() {
       setTimeout(() => setCodigoCopiado(false), 2000)
     } catch {
       setCodigoCopiado(false)
-    }
-  }
-
-  async function salvarJogadoresEsperados() {
-    setSalvandoNota(true)
-    setNotaSalva(false)
-    setErroNota(null)
-    try {
-      await updateDoc(doc(db, 'campanhas', id), {
-        jogadores_esperados: jogadoresEsperados,
-        atualizado_em: serverTimestamp(),
-      })
-      setCampanha((prev) => ({ ...prev, jogadores_esperados: jogadoresEsperados }))
-      setNotaSalva(true)
-    } catch (err) {
-      console.error(err)
-      setErroNota('Não foi possível salvar essa anotação agora.')
-    } finally {
-      setSalvandoNota(false)
     }
   }
 
@@ -336,55 +312,7 @@ export default function CampanhaDetalhe() {
         </div>
       </div>
 
-      {ehMestre && (
-        <div className="card-fantasy p-6 mb-10">
-          <h2 className="text-lg font-display mb-2">Jogadores Esperados</h2>
-          <p className="text-xs text-mist mb-3">
-            Anotação sua, livre — não fica vinculada a nenhuma conta. Útil pra lembrar quem ainda nem usou o código de
-            convite (o app só sabe quem já entrou e quem já criou personagem; ver "Jogadores da Mesa" mais abaixo).
-          </p>
-          <textarea
-            value={jogadoresEsperados}
-            onChange={(e) => setJogadoresEsperados(e.target.value)}
-            placeholder={'Um nome por linha, por exemplo:\nFulano\nBeltrano\nCicrano'}
-            rows={4}
-            className="campo-input w-full resize-y mb-3"
-          />
-          <button className="btn-secondary text-xs disabled:opacity-50" onClick={salvarJogadoresEsperados} disabled={salvandoNota}>
-            {salvandoNota ? 'Salvando...' : 'Salvar Anotação'}
-          </button>
-          {notaSalva && <span className="text-forest text-xs ml-3">Salvo.</span>}
-          {erroNota && <p className="text-blood-bright text-xs mt-2">{erroNota}</p>}
-        </div>
-      )}
-
-      <div className="mb-10">
-        <h2 className="text-xl font-display mb-6">Participantes da Campanha</h2>
-        {participantes.length === 0 ? (
-          <div className="card-fantasy p-10 text-center text-mist">Ninguém trouxe um personagem pra essa campanha ainda.</div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {participantes.map((p) => (
-              <div key={p.id} className="card-fantasy p-5 flex gap-4">
-                <div className="w-14 h-14 rounded border border-panel-border bg-void overflow-hidden shrink-0 flex items-center justify-center">
-                  {p.imagem_base64 ? (
-                    <img src={p.imagem_base64} alt={p.nome_personagem} className="w-full h-full object-cover" />
-                  ) : (
-                    <span className="text-mist text-[10px]">Sem foto</span>
-                  )}
-                </div>
-                <div className="min-w-0">
-                  <div className="font-display font-semibold mb-1 truncate">{p.nome_personagem || 'Personagem sem nome'}</div>
-                  <p className="text-xs text-mist truncate">
-                    {catalogo.racas[p.raca_id]?.nome || p.raca_id} · {catalogo.classes[p.classe_id]?.nome || p.classe_id}
-                  </p>
-                  <p className="text-[11px] text-mist mt-1 truncate">Jogado por {p.dono_nome || 'alguém sem nome definido'}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      <SecaoPersonagensCampanha participantes={participantes} catalogo={catalogo} ehMestre={ehMestre} />
 
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <h2 className="text-xl font-display">Seus personagens nessa campanha</h2>

@@ -26,17 +26,24 @@ service cloud.firestore {
       return estaAutenticado() && request.auth.uid == donoUid;
     }
 
-    // Espelha lib/amizade.js no cliente: o id do documento de amizade de um
-    // par é sempre os dois uids ordenados e grudados com '_'. Ter isso como
-    // função permite checar "esses dois são amigos?" com um único get(),
-    // sem precisar de um endpoint de backend nem de uma query composta.
-    function idAmizade(uidA, uidB) {
-      return uidA < uidB ? uidA + '_' + uidB : uidB + '_' + uidA;
+    // Fase Campanha: o mestre de uma campanha pode LER (nunca escrever) a
+    // ficha de qualquer personagem vinculado a ela -- é o que permite o
+    // botão "abrir ficha" em Personagens da Campanha (ver
+    // CampanhaDetalhe.jsx) funcionar pro mestre. Regras do Firestore não
+    // têm loop, então checa até 3 posições de `campanhas_ids` na unha --
+    // de sobra pra como o app usa isso hoje (1 campanha por personagem,
+    // normalmente).
+    function ehMestreDaCampanha(campanhaId) {
+      return campanhaId != null &&
+        get(/databases/$(database)/documents/campanhas/$(campanhaId)).data.mestre_id == request.auth.uid;
     }
 
-    function souAmigoAceito(outroUid) {
-      return estaAutenticado()
-        && get(/databases/$(database)/documents/amizades/$(idAmizade(request.auth.uid, outroUid))).data.status == 'aceita';
+    function ehMestreDeAlgumaCampanhaDoPersonagem(campanhasIds) {
+      return estaAutenticado() && campanhasIds is list && (
+        (campanhasIds.size() > 0 && ehMestreDaCampanha(campanhasIds[0])) ||
+        (campanhasIds.size() > 1 && ehMestreDaCampanha(campanhasIds[1])) ||
+        (campanhasIds.size() > 2 && ehMestreDaCampanha(campanhasIds[2]))
+      );
     }
 
     // ---- Catálogo do sistema de regras: leitura livre, escrita só via admin/seed ----
@@ -69,6 +76,10 @@ service cloud.firestore {
       allow read: if estaAutenticado();
       allow write: if false;
     }
+    match /materiais/{materialId} {
+      allow read: if estaAutenticado();
+      allow write: if false;
+    }
     match /constantes/{constanteId} {
       allow read: if estaAutenticado();
       allow write: if false;
@@ -76,25 +87,7 @@ service cloud.firestore {
 
     // ---- Perfil do usuário ----
     match /usuarios/{uid} {
-      // Leitura aberta a qualquer autenticado -- mesmo motivo de
-      // `campanhas`: pra mandar uma solicitação de amizade por código,
-      // é preciso conseguir localizar o dono daquele `codigo_amizade`
-      // ANTES de vocês serem amigos.
-      allow read: if estaAutenticado();
-
-      allow create: if ehDono(uid);
-
-      // Só o dono escreve, e `codigo_amizade` nunca muda depois de
-      // definido -- ele é a referência que outras pessoas guardam pra
-      // mandar pedido de amizade; se pudesse ser trocado livremente,
-      // um pedido em trânsito poderia acabar indo pra pessoa errada.
-      // A exceção (`!('codigo_amizade' in resource.data)`) existe só pra
-      // contas antigas, criadas antes desse campo existir, poderem
-      // ganhar um código pela primeira vez.
-      allow update: if ehDono(uid) && (
-        !('codigo_amizade' in resource.data)
-        || request.resource.data.codigo_amizade == resource.data.codigo_amizade
-      );
+      allow read, write: if ehDono(uid);
     }
 
     // ---- Campanhas ----
@@ -126,70 +119,12 @@ service cloud.firestore {
       allow delete: if ehDono(resource.data.mestre_id);
     }
 
-    // ---- Encontros de combate ----
-    // Cada encontro pertence a UMA campanha e é de uso exclusivo do
-    // mestre_id dela -- diferente de `campanhas`, aqui não existe leitura
-    // aberta pra todo autenticado, porque não há um fluxo de "entrar por
-    // código" equivalente. Guardamos mestre_id direto no próprio documento
-    // (em vez de fazer o cliente cruzar com /campanhas/{id}) porque
-    // Firestore Rules não conseguem fazer join eficiente; isso espelha o
-    // mesmo motivo por trás de `mestre_campanha_personagens.py` no backend.
-    match /encontros/{encontroId} {
-      allow read, update, delete: if ehDono(resource.data.mestre_id);
-      allow create: if ehDono(request.resource.data.mestre_id);
-    }
-
-    // ---- Amizades ----
-    // Um documento por PAR de usuários (id = uids ordenados e grudados,
-    // ver lib/amizade.js) -- guarda tanto o pedido pendente quanto,
-    // depois de aceito, a amizade em si; não existem dois documentos
-    // separados pra isso.
-    match /amizades/{amizadeId} {
-      allow read: if estaAutenticado() && request.auth.uid in resource.data.uids;
-
-      allow create: if estaAutenticado()
-        && request.resource.data.solicitante_uid == request.auth.uid
-        && request.resource.data.destinatario_uid is string
-        && request.resource.data.destinatario_uid != request.auth.uid
-        && request.resource.data.status == 'pendente'
-        && request.resource.data.uids.size() == 2
-        && request.resource.data.uids.hasAll([request.auth.uid, request.resource.data.destinatario_uid]);
-
-      // Aceitar: só quem recebeu o pedido, só enquanto ainda pendente, e só
-      // pode mudar o status (mais o carimbo de resposta) -- nada mais no
-      // documento pode ser alterado nessa ação.
-      allow update: if estaAutenticado()
-        && request.auth.uid == resource.data.destinatario_uid
-        && resource.data.status == 'pendente'
-        && request.resource.data.status == 'aceita'
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'respondido_em']);
-
-      // Recusar (pendente) OU desfazer (já aceita). Recusar continua só
-      // pro destinatário; desfazer uma amizade já firmada pode ser
-      // qualquer um dos dois lados do par, já que ela não pertence a um
-      // dono só.
-      allow delete: if estaAutenticado() && request.auth.uid in resource.data.uids && (
-        (resource.data.status == 'pendente' && request.auth.uid == resource.data.destinatario_uid)
-        || resource.data.status == 'aceita'
-      );
-    }
-
     // ---- Fichas de personagem ----
     match /personagens/{personagemId} {
-      // Dono sempre lê; além disso, qualquer amigo aceito pode ler ESTA
-      // ficha específica se o dono marcou `visivel: true` -- é o campo de
-      // visibilidade por personagem (não por conta) que a tela do
-      // personagem controla. Sem o campo (fichas antigas) ou com
-      // `visivel: false`, só o dono lê -- privado é o padrão.
-      allow read: if ehDono(resource.data.dono_uid)
-        || (resource.data.visivel == true && souAmigoAceito(resource.data.dono_uid));
+      allow read: if ehDono(resource.data.dono_uid) || ehMestreDeAlgumaCampanhaDoPersonagem(resource.data.campanhas_ids);
       allow create: if ehDono(request.resource.data.dono_uid);
       allow update, delete: if ehDono(resource.data.dono_uid);
 
-      // TODO (fase Campanha): permitir leitura total ao mestre_id da
-      // campanha à qual este personagem pertence.
-      // TODO (fase Campanha): permitir ao mestre escrever somente em
-      // ascensao_em_progresso.status (aprovar/recusar), nada mais.
       // TODO (endurecimento): restringir escrita do dono para excluir o
       // bloco `calculado`, que deveria ser exclusivo da Cloud Function.
     }

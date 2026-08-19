@@ -65,6 +65,26 @@ function BotaoAba({ ativo, onClick, children, className = '' }) {
   )
 }
 
+// Hoisted pro topo do módulo (não dentro de PersonagemDetalhe) -- um
+// componente declarado dentro do corpo de outro é recriado a cada
+// render, perdendo identidade/estado local à toa. Recebe tudo que
+// precisa via props em vez de fechar sobre o escopo do componente pai.
+function BotaoSalvarCosmetico({ className = '', salvando, nomePersonagem, onSalvar, salvo, erroSalvar }) {
+  return (
+    <div className={className}>
+      <button
+        className="btn-primary disabled:opacity-50"
+        onClick={onSalvar}
+        disabled={salvando || nomePersonagem.trim().length === 0}
+      >
+        {salvando ? 'Salvando...' : 'Salvar Alterações'}
+      </button>
+      {salvo && <span className="text-forest text-xs ml-3">Salvo.</span>}
+      {erroSalvar && <p className="text-blood-bright text-xs mt-2">{erroSalvar}</p>}
+    </div>
+  )
+}
+
 export default function PersonagemDetalhe() {
   const { id } = useParams()
   const { usuario } = useAuth()
@@ -222,22 +242,6 @@ export default function PersonagemDetalhe() {
   const elementoPoderes = isCaca ? (catalogo.elementos[espiritualEscolhido?.elemento_id] || null) : elemento
   const nomeElementoPoderes = isCaca ? (elementoPoderes?.nome ?? espiritualEscolhido?.elemento_id) : elemento?.nome
 
-  function BotaoSalvarCosmetico({ className = '' }) {
-    return (
-      <div className={className}>
-        <button
-          className="btn-primary disabled:opacity-50"
-          onClick={salvarCosmetico}
-          disabled={salvando || nomePersonagem.trim().length === 0}
-        >
-          {salvando ? 'Salvando...' : 'Salvar Alterações'}
-        </button>
-        {salvo && <span className="text-forest text-xs ml-3">Salvo.</span>}
-        {erroSalvar && <p className="text-blood-bright text-xs mt-2">{erroSalvar}</p>}
-      </div>
-    )
-  }
-
   return (
     <div className="pt-2">
       <div className="flex items-center justify-between mb-6">
@@ -285,7 +289,13 @@ export default function PersonagemDetalhe() {
                 className="campo-input"
               />
             </label>
-            <BotaoSalvarCosmetico />
+            <BotaoSalvarCosmetico
+              salvando={salvando}
+              nomePersonagem={nomePersonagem}
+              onSalvar={salvarCosmetico}
+              salvo={salvo}
+              erroSalvar={erroSalvar}
+            />
           </div>
         ) : (
           <div className="flex-1">
@@ -486,7 +496,16 @@ export default function PersonagemDetalhe() {
             ))
           )}
 
-          {ehDono && <BotaoSalvarCosmetico className="mt-4" />}
+          {ehDono && (
+            <BotaoSalvarCosmetico
+              className="mt-4"
+              salvando={salvando}
+              nomePersonagem={nomePersonagem}
+              onSalvar={salvarCosmetico}
+              salvo={salvo}
+              erroSalvar={erroSalvar}
+            />
+          )}
         </div>
       )}
     </div>

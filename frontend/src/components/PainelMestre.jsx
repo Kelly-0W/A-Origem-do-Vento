@@ -207,23 +207,6 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
           ))}
         </div>
       )}
-
-      <h2 className="text-xl font-display mb-4">Todos os Personagens da Mesa</h2>
-      {itens.length === 0 ? (
-        <div className="card-fantasy p-6 text-center text-mist text-sm">Nenhum personagem nessa campanha ainda.</div>
-      ) : (
-        <div className="flex flex-col gap-4">
-          {itens.map((item) => (
-            <CardPersonagem
-              key={item.id}
-              item={item}
-              catalogo={catalogo}
-              expandido={expandidoId === item.id}
-              onAlternarExpandido={() => setExpandidoId((atual) => (atual === item.id ? null : item.id))}
-            />
-          ))}
-        </div>
-      )}
     </div>
   )
 }
