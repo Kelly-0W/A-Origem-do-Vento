@@ -1,27 +1,4 @@
 {
-  "_regras_globais": {
-    "escalonamento_de_dano_por_grau_da_cena": {
-      "descricao": "Multiplicador aplicado ao resultado final do dano rolado (Ataques Básicos e Manipulação Elemental/Habilidades que causam dano), com base no Grau de Ascensão da CENA/combate em jogo agora — não no grau de desbloqueio da habilidade. Existe para evitar que uma criatura zere a Vida de um PJ recém-criado (6 a 17 pontos de Vida) num único golpe, já que os dados de dano nas fichas são fixos do Grau 0 ao 10.",
-      "tabela": {
-        "grau_0": 0.5,
-        "grau_1_a_4": 0.75,
-        "grau_5_a_10": 1.0
-      },
-      "arredondamento": "para_baixo",
-      "nao_afeta": [
-        "cd_de_testes",
-        "custo_de_arche",
-        "efeitos_sem_dano_direto"
-      ],
-      "excecao": "Itens com \"suprema\": true (em habilidades.lista ou manipulacao_elemental.lista) NÃO sofrem este multiplicador — sempre valor cheio.",
-      "aplica_se_a": [
-        "ataques_basicos",
-        "habilidades.lista[].dano_se_houver",
-        "manipulacao_elemental.lista[].dano_se_houver"
-      ],
-      "referencia": "roteiro_criaturas_v2.md, Seção 4"
-    }
-  },
   "espreitador-umbral": {
     "nome": "Espreitador Umbral",
     "categoria": "comum",
