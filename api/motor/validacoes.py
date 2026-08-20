@@ -13,7 +13,8 @@ import logging
 from typing import Any, Dict, List, Tuple
 
 from .atributos import validar_distribuicao_atributos
-from .constantes import contar_habilidades_extras_ate_grau
+from .constantes import contar_habilidades_extras_ate_grau, total_pontos_status_ate_grau
+from .status import STATUS_DISTRIBUIVEIS
 
 logger = logging.getLogger(__name__)
 
@@ -197,6 +198,33 @@ def validar_escolhas_personagem(
                 f"raca/classe no Grau {grau_ascensao} ({qtd_base_raca} da raca + {qtd_base_classe} "
                 f"da classe, no Grau 0, + {extras_por_ascensao} ganha(s) em Ascensoes anteriores), "
                 f"recebido: {total_hab_escolhidas} (habilidades inatas nao contam nessa conta)."
+            )
+
+    # ---- Pontos de status distribuidos em Ascensoes anteriores ----
+    # Mesmo espirito da checagem de habilidades acima: o total gravado em
+    # escolhas["pontos_status_alocados"] tem que bater exatamente com o
+    # que a Tabela de Progressao de Ascensao concedeu ate este grau -- nem
+    # a mais (ponto inventado) nem a menos (Ascensao que "esqueceu" de
+    # aplicar os pontos). So' aceita as 4 chaves conhecidas
+    # (STATUS_DISTRIBUIVEIS) e valores inteiros nao-negativos.
+    pontos_alocados = escolhas.get("pontos_status_alocados") or {}
+    chaves_invalidas = set(pontos_alocados.keys()) - set(STATUS_DISTRIBUIVEIS)
+    if chaves_invalidas:
+        erros.append(
+            f"'pontos_status_alocados' tem chave(s) invalida(s): {sorted(chaves_invalidas)} "
+            f"(esperado apenas {list(STATUS_DISTRIBUIVEIS)})."
+        )
+    elif any((not isinstance(v, int)) or v < 0 for v in pontos_alocados.values()):
+        erros.append("'pontos_status_alocados' so' aceita valores inteiros nao-negativos.")
+    else:
+        total_pontos_esperado = total_pontos_status_ate_grau(
+            grau_ascensao, catalogo.get("constantes_ascensao", {}).get("graus", {})
+        )
+        total_pontos_alocado = sum(pontos_alocados.values())
+        if total_pontos_alocado != total_pontos_esperado:
+            erros.append(
+                f"Este personagem deveria ter exatamente {total_pontos_esperado} ponto(s) de status "
+                f"distribuido(s) ate o Grau {grau_ascensao}, recebido: {total_pontos_alocado}."
             )
 
     # multiclasse: no maximo 2 classes simultaneas, se o formulario usar

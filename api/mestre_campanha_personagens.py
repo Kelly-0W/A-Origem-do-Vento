@@ -78,6 +78,8 @@ class handler(BaseHTTPRequestHandler):
                     "arche_atual": p.get("arche_atual"),
                     "bonus_defesa": p.get("bonus_defesa"),
                     "bonus_deslocamento": p.get("bonus_deslocamento"),
+                    "bonus_vida_maxima": p.get("bonus_vida_maxima"),
+                    "vida_temporaria": p.get("vida_temporaria"),
                 })
 
             # "Quem está na mesa": todo mundo que entrou com o código de

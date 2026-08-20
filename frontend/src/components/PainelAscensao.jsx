@@ -75,6 +75,7 @@ export default function PainelAscensao({
   const provacoesFaixa = (faixa && classe?.provacoes?.[faixa]) || []
   const ritualFaixa = (faixa && origem?.rituais?.[faixa]) || null
   const recompensasGrauAlvo = constantesAscensao?.graus?.[String(grauAlvo)]?.recompensas || []
+  const pontosStatusGrauAlvo = constantesAscensao?.graus?.[String(grauAlvo)]?.pontos_status || 0
 
   async function salvar(patch) {
     setSalvando(true)
@@ -175,6 +176,7 @@ export default function PainelAscensao({
           donoUid={donoUid}
           grauAlvo={grauAlvo}
           recompensas={recompensasGrauAlvo}
+          pontosStatus={pontosStatusGrauAlvo}
           raca={raca}
           linhagem={linhagem}
           classe={classe}
