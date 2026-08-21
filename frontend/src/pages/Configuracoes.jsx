@@ -30,11 +30,16 @@ async function buscarAmizadeSeExistir(referencia) {
 }
 
 export default function Configuracoes() {
-  const { usuario } = useAuth()
+  const { usuario, atualizarNomeExibicao } = useAuth()
   const [modalExcluirAberto, setModalExcluirAberto] = useState(false)
   const [codigoAmizade, setCodigoAmizade] = useState(null)
   const [carregandoCodigo, setCarregandoCodigo] = useState(true)
   const [copiado, setCopiado] = useState(false)
+
+  const [nomeExibicao, setNomeExibicao] = useState(usuario.displayName || '')
+  const [salvandoNome, setSalvandoNome] = useState(false)
+  const [nomeSalvo, setNomeSalvo] = useState(false)
+  const [erroNome, setErroNome] = useState(null)
 
   const [codigoDigitado, setCodigoDigitado] = useState('')
   const [enviandoSolicitacao, setEnviandoSolicitacao] = useState(false)
@@ -66,6 +71,21 @@ export default function Configuracoes() {
     }
     carregarOuCriarCodigo()
   }, [usuario.uid])
+
+  async function salvarNomeExibicao() {
+    setSalvandoNome(true)
+    setNomeSalvo(false)
+    setErroNome(null)
+    try {
+      await atualizarNomeExibicao(nomeExibicao)
+      setNomeSalvo(true)
+    } catch (err) {
+      console.error(err)
+      setErroNome(err.message || 'Não foi possível salvar o nome agora.')
+    } finally {
+      setSalvandoNome(false)
+    }
+  }
 
   async function copiarCodigo() {
     try {
@@ -140,10 +160,29 @@ export default function Configuracoes() {
       <div className="card-fantasy p-6 mb-8 max-w-xl">
         <h2 className="font-display text-lg mb-4">Sua conta</h2>
         <div className="flex flex-col gap-3 text-sm">
-          <div className="flex justify-between">
-            <span className="text-mist">Nome de exibição</span>
-            <span>{usuario.displayName || '—'}</span>
-          </div>
+          <label className="flex flex-col gap-1.5">
+            <span className="text-mist text-[11px] uppercase tracking-widest">Nome de exibição</span>
+            <div className="flex gap-3">
+              <input
+                value={nomeExibicao}
+                onChange={(e) => setNomeExibicao(e.target.value)}
+                placeholder="Como as outras pessoas vão te ver"
+                className="campo-input flex-1"
+              />
+              <button
+                className="btn-secondary text-xs whitespace-nowrap disabled:opacity-50"
+                onClick={salvarNomeExibicao}
+                disabled={salvandoNome || nomeExibicao.trim().length === 0 || nomeExibicao.trim() === (usuario.displayName || '')}
+              >
+                {salvandoNome ? 'Salvando...' : 'Salvar'}
+              </button>
+            </div>
+            {nomeSalvo && <span className="text-forest text-xs">Salvo.</span>}
+            {erroNome && <span className="text-blood-bright text-xs">{erroNome}</span>}
+            <span className="text-mist text-[11px]">
+              Esse é o nome que aparece pra amigos e pro mestre nas suas campanhas.
+            </span>
+          </label>
           {usuario.email && (
             <div className="flex justify-between">
               <span className="text-mist">E-mail</span>

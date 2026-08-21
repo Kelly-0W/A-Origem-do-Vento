@@ -132,6 +132,23 @@ export function AuthProvider({ children }) {
     await signOut(auth)
   }
 
+  // Atualiza o nome de exibição em DOIS lugares, sempre juntos (mesmo
+  // padrão de cadastrar/vincularEmail/vincularGoogle acima): o
+  // `displayName` do Firebase Auth (usado localmente, ex.: cabeçalho da
+  // conta) e o campo `nome` em usuarios/{uid} no Firestore -- é ESSE
+  // segundo que o backend usa pra rotular "personagem de Fulano" em
+  // campanhas/mestre (ver buscar_nomes_usuarios em
+  // api/motor/persistencia.py) e o que o sistema de amizades mostra.
+  // Sem os dois, o nome mudaria só na tela da própria pessoa.
+  async function atualizarNomeExibicao(novoNome) {
+    if (!auth.currentUser) throw new Error('Nenhum usuário logado.')
+    const nome = novoNome.trim()
+    if (!nome) throw new Error('O nome não pode ficar em branco.')
+    await updateProfile(auth.currentUser, { displayName: nome })
+    await setDoc(doc(db, 'usuarios', auth.currentUser.uid), { nome, atualizado_em: serverTimestamp() }, { merge: true })
+    setUsuario({ ...auth.currentUser, displayName: nome })
+  }
+
   // "Confirmação de login recente" pedida pelo Firebase antes de operações
   // sensíveis (aqui, excluir a conta). Duas formas, conforme como a pessoa
   // entrou: senha de novo (email/senha) ou popup do Google de novo.
@@ -170,7 +187,7 @@ export function AuthProvider({ children }) {
       value={{
         usuario, carregando, entrar, cadastrar, entrarComGoogle, entrarAnonimo,
         vincularEmail, vincularGoogle, reautenticarComSenha, reautenticarComGoogle,
-        excluirConta, sair,
+        excluirConta, sair, atualizarNomeExibicao,
       }}
     >
       {children}
