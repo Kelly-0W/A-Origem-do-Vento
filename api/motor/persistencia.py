@@ -187,13 +187,15 @@ def excluir_doc_usuario(uid: str) -> None:
 
 CAMPOS_RECURSO_PERMITIDOS = {
     "vida_atual", "sanidade_atual", "arche_atual", "bonus_defesa", "bonus_deslocamento",
+    "bonus_vida_maxima", "vida_temporaria",
 }
 
 
 def ajustar_recurso_personagem(personagem_id: str, campo: str, novo_valor) -> None:
     """
     Atualiza UM campo de estado de jogo (vida/sanidade/arché atuais, bônus
-    de defesa/deslocamento) de um personagem que pode não ser do chamador.
+    de defesa/deslocamento/vida máxima, vida temporária) de um personagem
+    que pode não ser do chamador.
 
     Usado exclusivamente pelo Mestre dentro de um encontro de Combate (ver
     api/mestre_ajustar_recurso_personagem.py e Combate.jsx). Fora de

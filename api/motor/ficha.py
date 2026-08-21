@@ -41,7 +41,9 @@ def calcular_ficha(
     atributos_finais = aplicar_modificadores_raciais(
         escolhas["atributos"], modificadores_atributo)
     status_calculados = calcular_status(
-        formula_status, atributos_finais, grau_ascensao)
+        formula_status, atributos_finais, grau_ascensao,
+        pontos_status_alocados=escolhas.get("pontos_status_alocados"),
+    )
 
     marcos_treinamento = (
         catalogo.get("constantes_ascensao", {})

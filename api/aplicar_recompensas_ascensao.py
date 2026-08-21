@@ -4,9 +4,10 @@ import json
 from firebase_admin import firestore
 
 from api.motor.catalogo import carregar_catalogo
-from api.motor.constantes import recompensas_do_grau
+from api.motor.constantes import recompensas_do_grau, pontos_status_do_grau
 from api.motor.ficha import calcular_ficha
 from api.motor.persistencia import buscar_personagem, atualizar_personagem
+from api.motor.status import STATUS_DISTRIBUIVEIS
 
 
 def _origem_pertence_ao_pool(origem_pick: str, origem_exigida: str) -> bool:
@@ -148,6 +149,54 @@ def _aplicar_recompensas(personagem, escolhas_recompensa, grau_alvo, catalogo):
     return escolhas, []
 
 
+def _aplicar_pontos_status(escolhas, pontos_status_grau, grau_alvo, catalogo):
+    """
+    Valida o incremento de "Pontos Para Distribuir entre Status" que o
+    jogador escolheu pra ESTE grau especifico (`pontos_status_grau`, ex.:
+    {"vida": 2, "defesa": 1}) e soma em cima do total cumulativo ja salvo
+    em escolhas["pontos_status_alocados"].
+
+    O incremento tem que somar EXATAMENTE o valor de `pontos_status` desse
+    grau (ver constantes_ascensao.json) -- nem mais, nem menos, nem
+    negativo em nenhuma chave (gastar aqui e' definitivo; nao existe
+    "pontos de status" que voltem depois numa Ascensao futura).
+
+    Retorna (escolhas_atualizadas, erros).
+    """
+    esperado = pontos_status_do_grau(
+        grau_alvo, catalogo.get("constantes_ascensao", {}).get("graus", {})
+    )
+    if esperado <= 0:
+        # Grau que nao concede pontos de status (nao acontece hoje, mas a
+        # tabela poderia mudar) -- nao ha' nada pra escolher aqui.
+        return escolhas, []
+
+    pontos_grau = pontos_status_grau or {}
+    chaves_invalidas = set(pontos_grau.keys()) - set(STATUS_DISTRIBUIVEIS)
+    if chaves_invalidas:
+        return None, [
+            f"'pontos_status' tem chave(s) invalida(s): {sorted(chaves_invalidas)} "
+            f"(esperado apenas {list(STATUS_DISTRIBUIVEIS)})."
+        ]
+    if any((not isinstance(v, int)) or v < 0 for v in pontos_grau.values()):
+        return None, ["'pontos_status' so' aceita valores inteiros nao-negativos."]
+
+    total_grau = sum(pontos_grau.values())
+    if total_grau != esperado:
+        return None, [
+            f"O Grau {grau_alvo} concede exatamente {esperado} ponto(s) para distribuir entre "
+            f"Vida/Sanidade/Arché/Defesa (recebido: {total_grau})."
+        ]
+
+    acumulado = dict(escolhas.get("pontos_status_alocados") or {})
+    for status_nome in STATUS_DISTRIBUIVEIS:
+        acumulado[status_nome] = acumulado.get(status_nome, 0) + pontos_grau.get(status_nome, 0)
+
+    escolhas = dict(escolhas)
+    escolhas["pontos_status_alocados"] = acumulado
+    return escolhas, []
+
+
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         """
@@ -156,7 +205,8 @@ class handler(BaseHTTPRequestHandler):
           "personagem_id": "...",
           "dono_uid": "uid de quem esta pedindo (precisa ser o dono)",
           "escolhas_recompensa": {
-            "habilidades": [ { "origem": "classe"|"raca_global"|"raca_linhagem", "id": "..." }, ... ]
+            "habilidades": [ { "origem": "classe"|"raca_global"|"raca_linhagem", "id": "..." }, ... ],
+            "pontos_status": { "vida": 0, "sanidade": 0, "arche": 0, "defesa": 0 }
           }
         }
 
@@ -218,6 +268,13 @@ class handler(BaseHTTPRequestHandler):
             )
             if erros_recompensa:
                 self._responder(400, {"sucesso": False, "erros": erros_recompensa})
+                return
+
+            escolhas_atualizadas, erros_pontos_status = _aplicar_pontos_status(
+                escolhas_atualizadas, escolhas_recompensa.get("pontos_status"), grau_alvo, catalogo
+            )
+            if erros_pontos_status:
+                self._responder(400, {"sucesso": False, "erros": erros_pontos_status})
                 return
 
             sucesso, resultado = calcular_ficha(escolhas_atualizadas, catalogo, grau_ascensao=grau_alvo)

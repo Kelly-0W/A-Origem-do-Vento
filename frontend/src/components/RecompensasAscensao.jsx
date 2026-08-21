@@ -34,17 +34,22 @@ function candidatosParaSlot(origemExigida, { raca, linhagem, classe, idsExcluido
 }
 
 const RÓTULO_ORIGEM = { classe: 'de Classe', raca: 'de Raça', classe_ou_raca: 'de Classe ou Raça' }
+const NOMES_STATUS_DISTRIBUIVEIS = { vida: 'Vida', sanidade: 'Sanidade', arche: 'Arché', defesa: 'Defesa' }
 
 // `recompensas` e' a lista COMPLETA do grau (habilidade + pericia_treinada
 // juntas), mas so' os slots de tipo "habilidade" exigem escolha aqui --
 // "Treinamento de Pericia" so' aparece como aviso informativo, porque o
 // jogador ja pode treinar/destreinar pericias livremente direto na ficha
-// (ver o toggle interativo em FichaVisual.jsx).
+// (ver o toggle interativo em FichaVisual.jsx). Já os "Pontos Para
+// Distribuir entre Status" (`pontosStatus`, ex.: 3) SÃO uma escolha
+// obrigatória aqui -- ao contrário de perícia, não tem outro lugar na
+// ficha onde o jogador possa aplicar esses pontos manualmente.
 export default function RecompensasAscensao({
   personagemId,
   donoUid,
   grauAlvo,
   recompensas,
+  pontosStatus = 0,
   raca,
   linhagem,
   classe,
@@ -55,6 +60,7 @@ export default function RecompensasAscensao({
   const temPericiaInformativa = (recompensas || []).some((r) => r.tipo === 'pericia_treinada')
 
   const [picks, setPicks] = useState(() => slotsHabilidade.map(() => null))
+  const [pontosDistribuidos, setPontosDistribuidos] = useState({ vida: 0, sanidade: 0, arche: 0, defesa: 0 })
   const [enviando, setEnviando] = useState(false)
   const [erro, setErro] = useState(null)
 
@@ -73,7 +79,16 @@ export default function RecompensasAscensao({
     })
   }
 
-  const tudoPreenchido = picks.every(Boolean)
+  function ajustarPonto(statusNome, delta) {
+    setPontosDistribuidos((prev) => {
+      const novo = Math.max(0, prev[statusNome] + delta)
+      return { ...prev, [statusNome]: novo }
+    })
+  }
+
+  const totalDistribuido = Object.values(pontosDistribuidos).reduce((soma, n) => soma + n, 0)
+  const pontosRestantes = pontosStatus - totalDistribuido
+  const tudoPreenchido = picks.every(Boolean) && pontosRestantes === 0
 
   async function confirmar() {
     setEnviando(true)
@@ -82,7 +97,10 @@ export default function RecompensasAscensao({
       const { ok, dados } = await api.aplicarRecompensasAscensao({
         personagemId,
         donoUid,
-        escolhasRecompensa: { habilidades: picks.map((p) => ({ origem: p.origem, id: p.id })) },
+        escolhasRecompensa: {
+          habilidades: picks.map((p) => ({ origem: p.origem, id: p.id })),
+          pontos_status: pontosDistribuidos,
+        },
       })
       if (!ok || !dados?.sucesso) {
         setErro(dados?.erros?.[0] || 'Não foi possível aplicar as recompensas agora.')
@@ -113,6 +131,45 @@ export default function RecompensasAscensao({
       {erro && <p className="text-blood-bright text-xs mb-4">{erro}</p>}
 
       <div className="flex flex-col gap-5">
+        {pontosStatus > 0 && (
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[11px] uppercase tracking-widest text-mist">
+                Pontos para Distribuir entre Status
+              </span>
+              <span className={`text-xs font-display ${pontosRestantes === 0 ? 'text-forest' : 'text-gold'}`}>
+                {pontosRestantes} restante{pontosRestantes === 1 ? '' : 's'} de {pontosStatus}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {Object.entries(NOMES_STATUS_DISTRIBUIVEIS).map(([chave, rotulo]) => (
+                <div key={chave} className="stat-tile">
+                  <span className="text-xs uppercase tracking-widest text-mist">{rotulo}</span>
+                  <div className="flex items-center gap-2 mt-1">
+                    <button
+                      type="button"
+                      onClick={() => ajustarPonto(chave, -1)}
+                      disabled={enviando || pontosDistribuidos[chave] <= 0}
+                      className="w-6 h-6 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-sm leading-none"
+                    >
+                      −
+                    </button>
+                    <div className="font-display text-lg w-6 text-center">+{pontosDistribuidos[chave]}</div>
+                    <button
+                      type="button"
+                      onClick={() => ajustarPonto(chave, 1)}
+                      disabled={enviando || pontosRestantes <= 0}
+                      className="w-6 h-6 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-sm leading-none"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {slotsHabilidade.map((slot, indice) => {
           const idsPickadosEmOutrosSlots = new Set(
             picks.filter((p, i) => p && i !== indice).map((p) => p.id)

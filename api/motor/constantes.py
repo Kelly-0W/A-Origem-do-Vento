@@ -75,6 +75,26 @@ def recompensas_do_grau(grau: int, graus_config: Dict[str, dict]) -> list:
     return graus_config.get(str(grau), {}).get("recompensas", [])
 
 
+def pontos_status_do_grau(grau: int, graus_config: Dict[str, dict]) -> int:
+    """
+    Quantos "Pontos Para Distribuir entre Status" (Vida/Sanidade/Arche/
+    Defesa -- ver STATUS_DISTRIBUIVEIS em motor/status.py) esse grau
+    especifico concede, segundo a Tabela de Progressao de Ascensao.
+    """
+    return graus_config.get(str(grau), {}).get("pontos_status", 0)
+
+
+def total_pontos_status_ate_grau(grau_ascensao: int, graus_config: Dict[str, dict]) -> int:
+    """
+    Soma de "Pontos Para Distribuir entre Status" do Grau 1 ate
+    `grau_ascensao` (inclusive) -- e' quanto a ficha DEVERIA ter alocado
+    no total em escolhas["pontos_status_alocados"] nesse grau. Mesmo
+    espirito de contar_habilidades_extras_ate_grau(), so' que pra pontos
+    de status em vez de habilidades.
+    """
+    return sum(pontos_status_do_grau(g, graus_config) for g in range(1, grau_ascensao + 1))
+
+
 def contar_habilidades_extras_ate_grau(grau_ascensao: int, graus_config: Dict[str, dict]) -> int:
     """
     Quantas recompensas de tipo "habilidade" foram concedidas do Grau 1 ate
@@ -95,3 +115,25 @@ def contar_habilidades_extras_ate_grau(grau_ascensao: int, graus_config: Dict[st
             if recompensa.get("tipo") == "habilidade":
                 total += 1
     return total
+
+
+if __name__ == "__main__":
+    graus_config = {
+        "1": {"pontos_status": 3, "recompensas": [{"tipo": "habilidade", "origem": "classe_ou_raca"}, {"tipo": "pericia"}]},
+        "2": {"pontos_status": 3, "recompensas": [{"tipo": "habilidade", "origem": "classe_ou_raca"}]},
+        "3": {"pontos_status": 3, "recompensas": [{"tipo": "pericia"}]},
+        "4": {"pontos_status": 4, "recompensas": [{"tipo": "habilidade", "origem": "classe"}, {"tipo": "habilidade", "origem": "raca"}]},
+    }
+
+    assert pontos_status_do_grau(1, graus_config) == 3
+    assert pontos_status_do_grau(4, graus_config) == 4
+    assert pontos_status_do_grau(99, graus_config) == 0  # grau nao cadastrado -> 0, nao explode
+
+    assert total_pontos_status_ate_grau(0, graus_config) == 0
+    assert total_pontos_status_ate_grau(1, graus_config) == 3
+    assert total_pontos_status_ate_grau(3, graus_config) == 9  # 3+3+3
+    assert total_pontos_status_ate_grau(4, graus_config) == 13  # 3+3+3+4
+
+    assert contar_habilidades_extras_ate_grau(4, graus_config) == 4
+
+    print("constantes.py: todos os auto-testes passaram.")

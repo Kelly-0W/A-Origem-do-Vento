@@ -61,6 +61,8 @@ function CardPersonagem({ item, catalogo, expandido, onAlternarExpandido, filho 
               archeAtual={item.arche_atual}
               bonusDefesa={item.bonus_defesa}
               bonusDeslocamento={item.bonus_deslocamento}
+              bonusVidaMaxima={item.bonus_vida_maxima}
+              vidaTemporaria={item.vida_temporaria}
             />
           )}
         </div>

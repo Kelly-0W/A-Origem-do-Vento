@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../lib/firebase.js'
 import { ATRIBUTOS, NOMES_ATRIBUTOS, ABREV_ATRIBUTOS } from '../lib/constantes.js'
@@ -81,6 +81,8 @@ export default function FichaVisual({
   archeAtual = null,
   bonusDefesa = null,
   bonusDeslocamento = null,
+  bonusVidaMaxima = null,
+  vidaTemporaria = null,
   onAtualizarRecurso = null,
 }) {
   const [poderAberto, setPoderAberto] = useState(null)
@@ -96,7 +98,10 @@ export default function FichaVisual({
   // Personagens criados antes dessa funcionalidade não têm esses campos
   // ainda -- assume "totalmente descansado" (atual = máximo) e "sem bônus
   // manual" (0) até a pessoa mexer pela primeira vez.
-  const vidaAtualEfetiva = vidaAtual ?? status.vida
+  const bonusVidaMaximaEfetivo = bonusVidaMaxima ?? 0
+  const vidaMaximaTotal = status.vida + bonusVidaMaximaEfetivo
+  const vidaAtualEfetiva = vidaAtual ?? vidaMaximaTotal
+  const vidaTemporariaEfetiva = vidaTemporaria ?? 0
   const sanidadeAtualEfetiva = sanidadeAtual ?? status.sanidade
   const archeAtualEfetiva = archeAtual ?? status.arche
   const bonusDefesaEfetivo = bonusDefesa ?? 0
@@ -210,6 +215,23 @@ export default function FichaVisual({
     }
   }
 
+  // Vida Temporária não é cumulativa (ver regra padrão de Pontos de Vida
+  // Temporários -- ex.: a habilidade de Orc "Vigor em Batalha" concede
+  // 5 + Grau de Ascensão a cada abate, SEM empilhar com o que já tinha, e
+  // dura só até o fim da cena) -- por isso é sempre um valor DEFINIDO
+  // direto pelo jogador, nunca um +1/-1 incremental. Reaproveita
+  // ajustarRecurso() calculando o delta necessário pra chegar no valor
+  // digitado, em vez de duplicar a lógica de escrita/erro.
+  function definirVidaTemporaria(novoValor) {
+    const alvo = Math.max(0, Math.round(Number(novoValor) || 0))
+    ajustarRecurso('vida_temporaria', vidaTemporariaEfetiva, alvo - vidaTemporariaEfetiva)
+  }
+
+  const [rascunhoVidaTemp, setRascunhoVidaTemp] = useState(String(vidaTemporariaEfetiva))
+  useEffect(() => {
+    setRascunhoVidaTemp(String(vidaTemporariaEfetiva))
+  }, [vidaTemporariaEfetiva])
+
   // Recalcula a ficha reenviando as MESMAS escolhas de novo pro motor --
   // não muda nada do que o jogador escolheu, só força o backend a rodar
   // de novo com a versão ATUAL do catálogo (racas.json, itens.json etc.).
@@ -262,9 +284,85 @@ export default function FichaVisual({
         )}
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-2">
+        <div className="stat-tile">
+          <span className="text-xs uppercase tracking-widest text-mist">Vida</span>
+          <div className="flex items-center gap-2 mt-1">
+            {interativo && (
+              <BotaoRecurso
+                onClick={() => ajustarRecurso('vida_atual', vidaAtualEfetiva, -1, { min: 0, max: vidaMaximaTotal })}
+                disabled={recursoProcessando === 'vida_atual' || vidaAtualEfetiva <= 0}
+                title="Reduzir Vida atual"
+              >
+                −
+              </BotaoRecurso>
+            )}
+            <div className="font-display text-lg">
+              {vidaAtualEfetiva}<span className="text-mist text-sm"> / {vidaMaximaTotal}</span>
+              {bonusVidaMaximaEfetivo > 0 && <span className="text-gold text-sm"> (+{bonusVidaMaximaEfetivo})</span>}
+            </div>
+            {interativo && (
+              <BotaoRecurso
+                onClick={() => ajustarRecurso('vida_atual', vidaAtualEfetiva, 1, { min: 0, max: vidaMaximaTotal })}
+                disabled={recursoProcessando === 'vida_atual' || vidaAtualEfetiva >= vidaMaximaTotal}
+                title="Aumentar Vida atual"
+              >
+                +
+              </BotaoRecurso>
+            )}
+          </div>
+          {interativo && (
+            <div className="flex items-center gap-1.5 mt-2">
+              <span className="text-[10px] text-mist">Máx. permanente:</span>
+              <BotaoRecurso
+                onClick={() => ajustarRecurso('bonus_vida_maxima', bonusVidaMaximaEfetivo, -1, { min: 0 })}
+                disabled={recursoProcessando === 'bonus_vida_maxima' || bonusVidaMaximaEfetivo <= 0}
+                title="Remover 1 ponto de Vida Máxima permanente"
+              >
+                −
+              </BotaoRecurso>
+              <BotaoRecurso
+                onClick={() => ajustarRecurso('bonus_vida_maxima', bonusVidaMaximaEfetivo, 1)}
+                disabled={recursoProcessando === 'bonus_vida_maxima'}
+                title="Adicionar 1 ponto de Vida Máxima permanente (ex.: uma habilidade que aumenta a Vida Máxima)"
+              >
+                +
+              </BotaoRecurso>
+            </div>
+          )}
+        </div>
+
+        <div className="stat-tile">
+          <span className="text-xs uppercase tracking-widest text-mist">Vida Temporária</span>
+          <div className="flex items-center gap-2 mt-1">
+            {interativo ? (
+              <input
+                type="number"
+                min={0}
+                value={rascunhoVidaTemp}
+                onChange={(e) => setRascunhoVidaTemp(e.target.value)}
+                onBlur={() => definirVidaTemporaria(rascunhoVidaTemp)}
+                onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur() }}
+                disabled={recursoProcessando === 'vida_temporaria'}
+                title="Pontos de Vida Temporários não acumulam entre si -- digitar um novo valor SUBSTITUI o atual."
+                className="w-16 bg-void border border-panel-border rounded px-2 py-1 text-sm font-display outline-none focus:border-gold/50"
+              />
+            ) : (
+              <div className="font-display text-lg">{vidaTemporariaEfetiva}</div>
+            )}
+          </div>
+          {interativo && vidaTemporariaEfetiva > 0 && (
+            <button
+              type="button"
+              onClick={() => definirVidaTemporaria(0)}
+              className="text-[10px] text-mist hover:text-blood-bright mt-2"
+            >
+              Zerar (fim de cena)
+            </button>
+          )}
+        </div>
+
         {[
-          { chave: 'vida', atual: vidaAtualEfetiva, max: status.vida, campo: 'vida_atual' },
           { chave: 'sanidade', atual: sanidadeAtualEfetiva, max: status.sanidade, campo: 'sanidade_atual' },
           { chave: 'arche', atual: archeAtualEfetiva, max: status.arche, campo: 'arche_atual' },
         ].map(({ chave, atual, max, campo }) => (
@@ -354,7 +452,10 @@ export default function FichaVisual({
       </div>
       {interativo && (
         <p className="text-[11px] text-mist mb-4">
-          Vida/Sanidade/Arché: acompanham o jogo, sem passar do máximo. Defesa/Deslocamento: bônus manual acumulado (Deslocamento sobe de 1,5 em 1,5m).
+          Vida/Sanidade/Arché: acompanham o jogo, sem passar do máximo. Vida Máx. permanente: some ao
+          máximo de Vida pra sempre (ex.: uma habilidade que aumenta a Vida Máxima). Vida Temporária: não
+          acumula (um valor novo substitui o anterior), dura até o fim da cena -- zere manualmente
+          quando ela passar. Defesa/Deslocamento: bônus manual acumulado (Deslocamento sobe de 1,5 em 1,5m).
         </p>
       )}
       {erroRecurso && <p className="text-blood-bright text-xs mb-4">{erroRecurso}</p>}

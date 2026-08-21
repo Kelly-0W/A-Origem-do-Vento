@@ -348,6 +348,8 @@ export default function PersonagemDetalhe() {
               archeAtual={personagem.arche_atual}
               bonusDefesa={personagem.bonus_defesa}
               bonusDeslocamento={personagem.bonus_deslocamento}
+              bonusVidaMaxima={personagem.bonus_vida_maxima}
+              vidaTemporaria={personagem.vida_temporaria}
               onAtualizarRecurso={(campo, valor) =>
                 setPersonagem((prev) => ({ ...prev, [campo]: valor }))
               }
