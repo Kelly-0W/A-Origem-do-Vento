@@ -52,6 +52,42 @@ function Habilidade({ h }) {
   )
 }
 
+// Manipulação Elemental de uma criatura do bestiário tem EXATAMENTE a
+// mesma forma mecânica de um poder elemental de jogador (custo de Arché,
+// perícia, alcance, duração, dano, efeito -- ver elementos.json) --
+// reaproveita o <Poder> de verdade em vez de duplicar essa renderização,
+// só decorando por cima com os 3 metadados que só existem no bestiário
+// (inata/suprema/grau de Ascensão) e a condição/gatilho, no mesmo padrão
+// visual de badge já usado em <Habilidade> acima.
+function PoderCriatura({ h }) {
+  const temBadge = h.inata || h.suprema || h.grau_ascensao != null
+  return (
+    <div>
+      {temBadge && (
+        <div className="flex items-center gap-1.5 flex-wrap justify-end mb-1">
+          {h.inata && (
+            <span className="text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-1.5 py-0.5">
+              inata
+            </span>
+          )}
+          {h.suprema && (
+            <span className="text-[10px] uppercase tracking-widest text-blood-bright border border-blood-bright/40 rounded px-1.5 py-0.5">
+              suprema
+            </span>
+          )}
+          {h.grau_ascensao != null && (
+            <span className="text-[10px] uppercase tracking-widest text-mist border border-panel-border rounded px-1.5 py-0.5">
+              grau {h.grau_ascensao}
+            </span>
+          )}
+        </div>
+      )}
+      <Poder p={h} />
+      {h.condicao && <p className="text-[11px] text-gold/80 italic mt-1 px-1">{h.condicao}</p>}
+    </div>
+  )
+}
+
 function BlocoStatus({ status }) {
   if (!status) return null
   const linhas = [
@@ -466,8 +502,9 @@ function BlocoAtaques({ ataques }) {
   )
 }
 
-function BlocoProgressao({ dados }) {
+function BlocoProgressao({ dados, variante = 'habilidade' }) {
   if (!dados) return null
+  const ItemComponente = variante === 'poder' ? PoderCriatura : Habilidade
   return (
     <div>
       <p className="text-xs text-mist mb-3">
@@ -475,7 +512,7 @@ function BlocoProgressao({ dados }) {
       </p>
       <div className="grid sm:grid-cols-2 gap-3">
         {(dados.lista || []).map((h) => (
-          <Habilidade key={h.id} h={h} />
+          <ItemComponente key={h.id} h={h} />
         ))}
       </div>
     </div>
@@ -546,7 +583,7 @@ function DetalheBestiario({ item }) {
 
       {item.manipulacao_elemental && (
         <Secao titulo="Manipulação Elemental">
-          <BlocoProgressao dados={item.manipulacao_elemental} />
+          <BlocoProgressao dados={item.manipulacao_elemental} variante="poder" />
         </Secao>
       )}
     </>

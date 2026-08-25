@@ -97,28 +97,43 @@
         {
           "id": "manto-noturno",
           "nome": "Manto Noturno",
-          "descricao": "Pode consumir 4 de Arché como Ação Bônus para se mesclar completamente às sombras do ambiente. Ele ganha Vantagem no seu próximo teste de Furtividade e no próximo ataque de Luta que realizar no mesmo turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Pode consumir 4 de Arché como Ação Bônus para se mesclar completamente às sombras do ambiente. Ele ganha Vantagem no seu próximo teste de Furtividade e no próximo ataque de Luta que realizar no mesmo turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "cegueira-parcial",
           "nome": "Cegueira Parcial",
-          "descricao": "Ao acertar um ataque crítico, consome 5 de Arché automaticamente para infundir trevas nos olhos do alvo, reduzindo a visão e o alcance de seus ataques à distância pela metade por 1 turno.",
-          "inata": false,
+          "custo_arche": 5,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Ao acertar um ataque crítico, consome 5 de Arché automaticamente para infundir trevas nos olhos do alvo, reduzindo a visão e o alcance de seus ataques à distância pela metade por 1 turno.",
+          "condicao": "Ao acertar um ataque crítico",
           "grau_ascensao": 3,
-          "condicao": null,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "forma-insurgente",
           "nome": "Forma Insurgente",
-          "descricao": "Uma vez por combate, gasta 8 de Arché para transformar seu corpo em fumaça pura. Por 1 turno, ele ganha resistência a dano físico cortante e perfurante, mas sua vulnerabilidade a Vento se torna letal (recebe o dobro de dano).",
-          "inata": false,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Uma vez por combate, gasta 8 de Arché para transformar seu corpo em fumaça pura. Por 1 turno, ele ganha resistência a dano físico cortante e perfurante, mas sua vulnerabilidade a Vento se torna letal (recebe o dobro de dano).",
+          "condicao": "Uma vez por combate",
           "grau_ascensao": 5,
-          "condicao": null,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -225,28 +240,49 @@
         {
           "id": "esporos-anestesicos",
           "nome": "Esporos Anestésicos",
-          "descricao": "Consome 4 de Arché para liberar uma nuvem de esporos entorpecentes em um raio de 3 metros ao seu redor. Perícia: Misticismo. Alvos na área devem passar em um teste de Fortitude (CD = 12 + Misticismo do Fongi) ou ficam com -1d4 em todos os testes baseados em Sabedoria pelos próximos 2 turnos.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "raio de 3m",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 4 de Arché para liberar uma nuvem de esporos entorpecentes em um raio de 3 metros ao seu redor. Alvos na área devem passar em um teste de Fortitude (CD = 12 + Misticismo do Fongi) ou ficam com -1d4 em todos os testes baseados em Sabedoria pelos próximos 2 turnos.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "decomposicao-acelerada",
           "nome": "Decomposição Acelerada",
-          "descricao": "Ao acertar um ataque de Chicote de Esporos, pode consumir 6 de Arché para acelerar a decomposição no ponto de impacto: o alvo sofre 1d6+3 de dano contínuo de Natureza por turno (sujeito ao multiplicador de Grau da Cena) durante 2 turnos, e itens de armadura não-mágicos atingidos têm sua resistência reduzida pela metade (arredondado para baixo) até serem reparados.",
-          "inata": false,
+          "custo_arche": 6,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d6+3",
+            "tipo": "natureza"
+          },
+          "efeito": "Ao acertar um ataque de Chicote de Esporos, pode consumir 6 de Arché para acelerar a decomposição no ponto de impacto: o alvo sofre 1d6+3 de dano contínuo de Natureza por turno (sujeito ao multiplicador de Grau da Cena) durante 2 turnos, e itens de armadura não-mágicos atingidos têm sua resistência reduzida pela metade (arredondado para baixo) até serem reparados.",
+          "condicao": "Ao acertar um ataque de Chicote de Esporos",
           "grau_ascensao": 3,
-          "condicao": null,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "floracao-explosiva",
           "nome": "Floração Explosiva",
-          "descricao": "Uma vez por combate, consome 8 de Arché para fazer brotar e estourar dezenas de cogumelos ao seu redor em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Fongi) ou sofrem 2d8 de dano de Natureza (sucesso reduz à metade) e passam a tossir sem parar, sofrendo -2 em testes de Fortitude até o fim do próximo turno.",
-          "inata": false,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "natureza"
+          },
+          "efeito": "Uma vez por combate, consome 8 de Arché para fazer brotar e estourar dezenas de cogumelos ao seu redor em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Fongi) ou sofrem 2d8 de dano de Natureza (sucesso reduz à metade) e passam a tossir sem parar, sofrendo -2 em testes de Fortitude até o fim do próximo turno.",
+          "condicao": "Uma vez por combate",
           "grau_ascensao": 5,
-          "condicao": null,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -353,28 +389,46 @@
         {
           "id": "percepcao-sismica",
           "nome": "Percepção Sísmica",
-          "descricao": "Consome 4 de Arché para sentir vibrações no solo num raio de 15 metros por 5 rodadas, detectando automaticamente a posição de qualquer criatura que se mova nessa área, mesmo invisível ou enterrada.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": null,
+          "alcance": "raio de 15m",
+          "duracao": "5 rodadas",
+          "dano": null,
+          "efeito": "Consome 4 de Arché para sentir vibrações no solo num raio de 15 metros por 5 rodadas, detectando automaticamente a posição de qualquer criatura que se mova nessa área, mesmo invisível ou enterrada.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "investida-arenosa",
           "nome": "Investida Arenosa",
-          "descricao": "Consome 6 de Arché para envolver sua investida em uma nuvem densa de areia e poeira. Perícia: Luta. Alvos atingidos devem passar em um teste de Reflexos (CD = 12 + Luta do Tubarão das Areias) ou sofrem 2d8 de dano físico (sucesso reduz à metade) e ficam com a condição Cego até o fim do próximo turno. Dano sujeito ao multiplicador de Grau da Cena.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 6 de Arché para envolver sua investida em uma nuvem densa de areia e poeira. Alvos atingidos devem passar em um teste de Reflexos (CD = 12 + Luta do Tubarão das Areias) ou sofrem 2d8 de dano físico (sucesso reduz à metade) e ficam com a condição Cego até o fim do próximo turno. Dano sujeito ao multiplicador de Grau da Cena.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "furia-da-terra-rachada",
           "nome": "Fúria da Terra Rachada",
-          "descricao": "Quando sua Vida cai abaixo de 50%, consome automaticamente 8 de Arché para entrar em frenesi por 3 rodadas: ganha +3m de Deslocamento e Vantagem em testes de Luta, mas não pode recuar ou fugir voluntariamente do combate enquanto durar.",
-          "inata": false,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "3 rodadas",
+          "dano": null,
+          "efeito": "Quando sua Vida cai abaixo de 50%, consome automaticamente 8 de Arché para entrar em frenesi por 3 rodadas: ganha +3m de Deslocamento e Vantagem em testes de Luta, mas não pode recuar ou fugir voluntariamente do combate enquanto durar.",
+          "condicao": "Quando sua Vida cai abaixo de 50%",
           "grau_ascensao": 5,
-          "condicao": null,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -478,28 +532,46 @@
         {
           "id": "sussurro-insidioso",
           "nome": "Sussurro Insidioso",
-          "descricao": "Consome 4 de Arché para plantar uma frase curta e perturbadora diretamente na mente de um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Sussurrante) ou fica com Desvantagem no próximo teste que fizer.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 4 de Arché para plantar uma frase curta e perturbadora diretamente na mente de um alvo a até 9 metros. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Sussurrante) ou fica com Desvantagem no próximo teste que fizer.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "eco-da-loucura",
           "nome": "Eco da Loucura",
-          "descricao": "Consome 6 de Arché para forçar o alvo a reviver brevemente um medo íntimo. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Sussurrante) ou sofre 1d6 de dano direto na Sanidade (sucesso reduz à metade) e fica com a condição Medo por 1 turno. Dano sujeito ao multiplicador de Grau da Cena para Sanidade (mais brando que o de Vida --- Seção 4 do roteiro).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "1d6",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 6 de Arché para forçar o alvo a reviver brevemente um medo íntimo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Sussurrante) ou sofre 1d6 de dano direto na Sanidade (sucesso reduz à metade) e fica com a condição Medo por 1 turno. Dano sujeito ao multiplicador de Grau da Cena para Sanidade (mais brando que o de Vida --- Seção 4 do roteiro).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "mascara-de-vozes",
           "nome": "Máscara de Vozes",
-          "descricao": "Consome 8 de Arché para imitar perfeitamente qualquer voz que já tenha ouvido nos últimos 10 minutos --- o suficiente para enganar quem não a conheça intimamente.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 8 de Arché para imitar perfeitamente qualquer voz que já tenha ouvido nos últimos 10 minutos --- o suficiente para enganar quem não a conheça intimamente.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -606,28 +678,43 @@
         {
           "id": "chamado-dos-vaga-lumes",
           "nome": "Chamado dos Vaga-lumes",
-          "descricao": "Consome 4 de Arché para convocar as luzes flutuantes ao seu redor em um clarão súbito. Perícia: Misticismo. Um alvo a até 9 metros deve passar em um teste de Reflexos (CD = 12 + Misticismo da Sentinela Musgosa) ou fica com a condição Cego por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 4 de Arché para convocar as luzes flutuantes ao seu redor em um clarão súbito. Um alvo a até 9 metros deve passar em um teste de Reflexos (CD = 12 + Misticismo da Sentinela Musgosa) ou fica com a condição Cego por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "raizes-ocultas",
           "nome": "Raízes Ocultas",
-          "descricao": "Consome 6 de Arché para fazer raízes ocultas emergirem sob um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Sentinela Musgosa) ou fica com a condição Imobilizado por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 6 de Arché para fazer raízes ocultas emergirem sob um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Sentinela Musgosa) ou fica com a condição Imobilizado por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "bencao-da-clareira",
           "nome": "Bênção da Clareira",
-          "descricao": "Uma vez por combate, consome 8 de Arché para banhar a si mesma ou um aliado a até 9 metros com energia vital da floresta, concedendo o efeito Purificação (remove imediatamente todos os Efeitos Negativos ativos no alvo).",
-          "inata": false,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Uma vez por combate, consome 8 de Arché para banhar a si mesma ou um aliado a até 9 metros com energia vital da floresta, concedendo o efeito Purificação (remove imediatamente todos os Efeitos Negativos ativos no alvo).",
+          "condicao": "Uma vez por combate",
           "grau_ascensao": 5,
-          "condicao": null,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -734,28 +821,49 @@
         {
           "id": "turvar-as-aguas",
           "nome": "Turvar as Águas",
-          "descricao": "Consome 4 de Arché para agitar lodo e sedimentos em um raio de 3 metros ao seu redor. Perícia: Misticismo. Criaturas na área têm Desvantagem em testes de Percepção que dependam de visão dentro d'água por 2 turnos (efeito próprio, mais brando que a condição Cego --- não impede ataques nem visão fora da água).",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "raio de 3m",
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 4 de Arché para agitar lodo e sedimentos em um raio de 3 metros ao seu redor. Criaturas na área têm Desvantagem em testes de Percepção que dependam de visão dentro d'água por 2 turnos (efeito próprio, mais brando que a condição Cego --- não impede ataques nem visão fora da água).",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "emboscada-encharcada",
           "nome": "Emboscada Encharcada",
-          "descricao": "Consome 6 de Arché para atacar vindo de baixo d'água. Perícia: Luta. Um alvo a até 3 metros da água deve passar em um teste de Reflexos (CD = 12 + Luta do Toco-Traiçoeiro) ou sofre 2d8 de dano físico (sucesso reduz à metade) e é puxado 1,5 metro na direção da água mais próxima.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "luta",
+          "alcance": "3m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 6 de Arché para atacar vindo de baixo d'água. Um alvo a até 3 metros da água deve passar em um teste de Reflexos (CD = 12 + Luta do Toco-Traiçoeiro) ou sofre 2d8 de dano físico (sucesso reduz à metade) e é puxado 1,5 metro na direção da água mais próxima.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "correnteza-traicoeira",
           "nome": "Correnteza Traiçoeira",
-          "descricao": "Consome 8 de Arché para criar uma correnteza súbita na água ao seu redor, empurrando até 2 inimigos a até 9 metros por 3 metros na direção que escolher. Uma criatura empurrada contra um obstáculo sólido sofre 1d6 de dano físico adicional.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d6",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 8 de Arché para criar uma correnteza súbita na água ao seu redor, empurrando até 2 inimigos a até 9 metros por 3 metros na direção que escolher. Uma criatura empurrada contra um obstáculo sólido sofre 1d6 de dano físico adicional.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -862,28 +970,46 @@
         {
           "id": "tremor-de-cascos",
           "nome": "Tremor de Cascos",
-          "descricao": "Consome 4 de Arché para bater os cascos com força no chão. Perícia: Luta. Criaturas em um raio de 3 metros devem passar em um teste de Reflexos (CD = 12 + Luta do Auroque Ancestral) ou ficam Derrubadas por 1 turno (Desvantagem em testes de Reflexos e ataques corpo a corpo contra elas têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "luta",
+          "alcance": "raio de 3m",
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 4 de Arché para bater os cascos com força no chão. Criaturas em um raio de 3 metros devem passar em um teste de Reflexos (CD = 12 + Luta do Auroque Ancestral) ou ficam Derrubadas por 1 turno (Desvantagem em testes de Reflexos e ataques corpo a corpo contra elas têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "chifre-perfurante",
           "nome": "Chifre Perfurante",
-          "descricao": "Consome 6 de Arché para carregar o próximo golpe com força bruta concentrada. Perícia: Luta. Um alvo atingido sofre 2d8 de dano físico e ignora metade de qualquer Resistência Física que o alvo possua nesse golpe.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 6 de Arché para carregar o próximo golpe com força bruta concentrada. Um alvo atingido sofre 2d8 de dano físico e ignora metade de qualquer Resistência Física que o alvo possua nesse golpe.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "estampida-solitaria",
           "nome": "Estampida Solitária",
-          "descricao": "Consome 8 de Arché para entrar em disparada por 2 turnos: qualquer movimento em linha reta antes de atacar ganha +3 metros adicionais, e caso a Investida Brutal erre o alvo original, pode imediatamente atingir um segundo alvo na mesma linha reta com o mesmo ataque.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 8 de Arché para entrar em disparada por 2 turnos: qualquer movimento em linha reta antes de atacar ganha +3 metros adicionais, e caso a Investida Brutal erre o alvo original, pode imediatamente atingir um segundo alvo na mesma linha reta com o mesmo ataque.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -990,28 +1116,49 @@
         {
           "id": "grito-espectral",
           "nome": "Grito Espectral",
-          "descricao": "Consome 4 de Arché para soltar um grito agudo e antinatural. Perícia: Misticismo. Um alvo a até 9 metros deve passar em um teste de Vontade (CD = 12 + Misticismo da Coruja-Fantasma) ou sofre 1d4 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "1d4",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 4 de Arché para soltar um grito agudo e antinatural. Um alvo a até 9 metros deve passar em um teste de Vontade (CD = 12 + Misticismo da Coruja-Fantasma) ou sofre 1d4 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "voo-fantasma",
           "nome": "Voo Fantasma",
-          "descricao": "Consome 6 de Arché para se tornar parcialmente incorpórea por 1 turno: pode atravessar obstáculos sólidos finos (paredes de madeira, cercas, vegetação densa) e ataques físicos contra ela têm Desvantagem, mas ela não pode atacar nesse mesmo turno.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 6 de Arché para se tornar parcialmente incorpórea por 1 turno: pode atravessar obstáculos sólidos finos (paredes de madeira, cercas, vegetação densa) e ataques físicos contra ela têm Desvantagem, mas ela não pode atacar nesse mesmo turno.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "presagio-da-morte",
           "nome": "Presságio da Morte",
-          "descricao": "Consome 8 de Arché para fitar um alvo a até 18 metros com seus olhos vazios, mesmo sem linha de visão direta dele. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Coruja-Fantasma) ou sofre 1d6 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "18m",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "1d6",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 8 de Arché para fitar um alvo a até 18 metros com seus olhos vazios, mesmo sem linha de visão direta dele. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Coruja-Fantasma) ou sofre 1d6 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -1115,28 +1262,52 @@
         {
           "id": "rajada-de-asas",
           "nome": "Rajada de Asas",
-          "descricao": "Consome 4 de Arché para bater as asas com força repentina. Perícia: Luta. Um alvo a até 3 metros deve passar em um teste de Reflexos (CD = 12 + Luta da Harpia Risonha) ou é empurrado 3 metros para trás e sofre 1d6 de dano físico.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "luta",
+          "alcance": "3m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d6",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 4 de Arché para bater as asas com força repentina. Um alvo a até 3 metros deve passar em um teste de Reflexos (CD = 12 + Luta da Harpia Risonha) ou é empurrado 3 metros para trás e sofre 1d6 de dano físico.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "investida-aerea",
           "nome": "Investida Aérea",
-          "descricao": "Consome 6 de Arché para mergulhar sobre um alvo (exige o espaço aéreo livre do seu Ponto Fraco). Perícia: Luta. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta da Harpia Risonha) ou sofre 2d8 de dano físico (sucesso reduz à metade). Se o mergulho começou a pelo menos 6 metros de altura, o ataque tem Vantagem.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 6 de Arché para mergulhar sobre um alvo (exige o espaço aéreo livre do seu Ponto Fraco). O alvo deve passar em um teste de Reflexos (CD = 12 + Luta da Harpia Risonha) ou sofre 2d8 de dano físico (sucesso reduz à metade). Se o mergulho começou a pelo menos 6 metros de altura, o ataque tem Vantagem.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "redemoinho-cortante",
           "nome": "Redemoinho Cortante",
-          "descricao": "Consome 8 de Arché para criar um redemoinho de vento cortante em uma área de 3x3. Perícia: Luta. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Luta da Harpia Risonha) ou sofrem 1d8+2 de dano de Vento e ficam Derrubados por 1 turno (Desvantagem em testes de Reflexos e ataques corpo a corpo contra eles têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 8,
+          "pericia": "luta",
+          "alcance": "área 3x3",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "1d8+2",
+            "tipo": "vento"
+          },
+          "efeito": "Consome 8 de Arché para criar um redemoinho de vento cortante em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Luta da Harpia Risonha) ou sofrem 1d8+2 de dano de Vento e ficam Derrubados por 1 turno (Desvantagem em testes de Reflexos e ataques corpo a corpo contra eles têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -1240,28 +1411,49 @@
         {
           "id": "sussurro-do-medo-primal",
           "nome": "Sussurro do Medo Primal",
-          "descricao": "Consome 4 de Arché automaticamente na primeira vez que expõe a Boca Oculta em um combate. Perícia: Misticismo. Quem estiver olhando diretamente para o Coelho Devorador em um raio de 4,5 metros deve passar em um teste de Vontade (CD = 12 + Misticismo do Coelho Devorador) ou fica com a condição Medo por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "raio de 4,5m",
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 4 de Arché automaticamente na primeira vez que expõe a Boca Oculta em um combate. Quem estiver olhando diretamente para o Coelho Devorador em um raio de 4,5 metros deve passar em um teste de Vontade (CD = 12 + Misticismo do Coelho Devorador) ou fica com a condição Medo por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "voraz",
           "nome": "Voraz",
-          "descricao": "Consome 6 de Arché ao acertar um ataque de Mordida da Boca Oculta. Perícia: Luta. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Coelho Devorador) ou sofre 1d8 de dano adicional de Trevas, e o Coelho Devorador recupera Vida igual à metade desse dano extra causado.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 6,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d8",
+            "tipo": "trevas"
+          },
+          "efeito": "Consome 6 de Arché ao acertar um ataque de Mordida da Boca Oculta. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Coelho Devorador) ou sofre 1d8 de dano adicional de Trevas, e o Coelho Devorador recupera Vida igual à metade desse dano extra causado.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "multiplicacao-das-feridas",
           "nome": "Multiplicação das Feridas",
-          "descricao": "Consome 8 de Arché para abrir todas as feridas-olho espalhadas por seu corpo, cada uma soltando um gemido baixo. Cria uma aura de horror em um raio de 3 metros por 2 turnos: qualquer inimigo que termine o turno dentro da área deve passar em um teste de Vontade (CD = 12 + Misticismo do Coelho Devorador) ou sofre 1d4 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade).",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "raio de 3m",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "1d4",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 8 de Arché para abrir todas as feridas-olho espalhadas por seu corpo, cada uma soltando um gemido baixo. Cria uma aura de horror em um raio de 3 metros por 2 turnos: qualquer inimigo que termine o turno dentro da área deve passar em um teste de Vontade (CD = 12 + Misticismo do Coelho Devorador) ou sofre 1d4 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade).",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         }
       ]
@@ -1396,46 +1588,83 @@
         {
           "id": "dreno-sedento",
           "nome": "Dreno Sedento",
-          "descricao": "Consome 6 de Arché para lançar cipós espinhosos que drenam a vitalidade de um alvo a até 12 metros (1d20 + Misticismo contra a Defesa do alvo). Se acertar, o alvo sofre 2d8 de dano mágico, e o Lírio-Sanguíneo recupera Vida em um valor igual a 50% do dano causado.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": null,
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "magico"
+          },
+          "efeito": "Consome 6 de Arché para lançar cipós espinhosos que drenam a vitalidade de um alvo a até 12 metros (1d20 + Misticismo contra a Defesa do alvo). Se acertar, o alvo sofre 2d8 de dano mágico, e o Lírio-Sanguíneo recupera Vida em um valor igual a 50% do dano causado.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "prisao-viva",
           "nome": "Prisão Viva",
-          "descricao": "Consome 6 de Arché para fazer brotar raízes grossas ao redor de um alvo a até 9 metros, forçando um teste de Reflexos (CD = 12 + Misticismo do Lírio-Sanguíneo). Se falhar, o alvo fica \"Imobilizado\" pelas raízes e sofre 1d8+2 de dano contínuo de esmagamento por turno até conseguir se soltar.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d8+2",
+            "tipo": "esmagamento"
+          },
+          "efeito": "Consome 6 de Arché para fazer brotar raízes grossas ao redor de um alvo a até 9 metros, forçando um teste de Reflexos (CD = 12 + Misticismo do Lírio-Sanguíneo). Se falhar, o alvo fica \"Imobilizado\" pelas raízes e sofre 1d8+2 de dano contínuo de esmagamento por turno até conseguir se soltar.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "jardim-sanguinario",
           "nome": "Jardim Sanguinário",
-          "descricao": "Gasta 10 de Arché para corromper e acelerar o crescimento de flora em uma área de 3x3 no campo de batalha. A área se torna terreno difícil e qualquer inimigo que inicie seu turno nela recebe 1d6+3 de dano passivo de Natureza.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": null,
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d6+3",
+            "tipo": "natureza"
+          },
+          "efeito": "Gasta 10 de Arché para corromper e acelerar o crescimento de flora em uma área de 3x3 no campo de batalha. A área se torna terreno difícil e qualquer inimigo que inicie seu turno nela recebe 1d6+3 de dano passivo de Natureza.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "simbiose-alucinatoria",
           "nome": "Simbiose Alucinatória",
-          "descricao": "O Lírio-Sanguíneo consome 12 de Arché para liberar um pólen denso que cria 1d4 cópias de si mesmo feitas de pétalas e cipós. As cópias se movem, mas possuem apenas 1 de Vida; ataques direcionados a elas as destroem instantaneamente, mas gastam a ação do atacante.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 12,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "O Lírio-Sanguíneo consome 12 de Arché para liberar um pólen denso que cria 1d4 cópias de si mesmo feitas de pétalas e cipós. As cópias se movem, mas possuem apenas 1 de Vida; ataques direcionados a elas as destroem instantaneamente, mas gastam a ação do atacante.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "julgamento-do-lotus",
           "nome": "Julgamento do Lótus",
-          "descricao": "Gasta 25 de Arché para canalizar um feixe concentrado de seiva fervente e flora apodrecida diretamente de seu núcleo. Alvos na linha devem passar em um teste de Reflexos (CD = 12 + Misticismo do Lírio-Sanguíneo) ou sofrem 4d10+8 de dano mágico (sucesso reduz à metade); o alvo diretamente atingido também tem sua Defesa reduzida em 5 pontos pelos próximos 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 7,
+          "custo_arche": 25,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d10+8",
+            "tipo": "magico"
+          },
+          "efeito": "Gasta 25 de Arché para canalizar um feixe concentrado de seiva fervente e flora apodrecida diretamente de seu núcleo. Alvos na linha devem passar em um teste de Reflexos (CD = 12 + Misticismo do Lírio-Sanguíneo) ou sofrem 4d10+8 de dano mágico (sucesso reduz à metade); o alvo diretamente atingido também tem sua Defesa reduzida em 5 pontos pelos próximos 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 7,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -1561,46 +1790,86 @@
         {
           "id": "sopro-de-brasas",
           "nome": "Sopro de Brasas",
-          "descricao": "Consome 6 de Arché para exalar um cone de brasas de 4,5 metros. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticise Hefesto) ou sofrem 2d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 6 de Arché para exalar um cone de brasas de 4,5 metros. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Gárgula de Hefesto) ou sofrem 2d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "maos-em-chamas",
           "nome": "Mãos em Chamas",
-          "descricao": "Consome 5 de Arché para envolver as próprias mãos em fogo por 2 turnos: seus ataques de Punho Flamejante passam a causar +1d4 de dano de Fogo adicional (sujeito ao multiplicador de Grau da Cena).",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "1d4",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 5 de Arché para envolver as próprias mãos em fogo por 2 turnos: seus ataques de Punho Flamejante passam a causar +1d4 de dano de Fogo adicional (sujeito ao multiplicador de Grau da Cena).",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "marreta-sismica",
           "nome": "Marreta Sísmica",
-          "descricao": "Consome 10 de Arché para golpear o chão com toda sua força. Perícia: Luta. Criaturas em uma área de 3x3 devem passar em um teste de Reflexos (CD = 12 + Lue Hefesto) ou sofrem 3d8 de dano físico (sucesso reduz à metade) e ficam Derrubadas (Desvantagem em testes de Reflexos e ataques corpo a corpo contra elas têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": "luta",
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "fisico"
+          },
+          "efeito": "Consome 10 de Arché para golpear o chão com toda sua força. Criaturas em uma área de 3x3 devem passar em um teste de Reflexos (CD = 12 + Luta da Gárgula de Hefesto) ou sofrem 3d8 de dano físico (sucesso reduz à metade) e ficam Derrubadas (Desvantagem em testes de Reflexos e ataques corpo a corpo contra elas têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "erupcao-vulcanica",
           "nome": "Erupção Vulcânica",
-          "descricao": "Consome 16 de Arché para abrir uma fissura incandescente num raio de 4,5 metros ao seu redor. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticise Hefesto) ou sofrem 4d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 16,
+          "pericia": "misticismo",
+          "alcance": "raio de 4,5m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 16 de Arché para abrir uma fissura incandescente num raio de 4,5 metros ao seu redor. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Gárgula de Hefesto) ou sofrem 4d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "coracao-da-forja",
           "nome": "Coração da Forja",
-          "descricao": "A habilidade suprema da Gárgula. Consome 22 de Arché para concentrar todo o calor de seu núcleo em um único golpe. Um alvo a até 3 metros deve passar em um teste de Reflexos (CD = 12 + Misticise Hefesto) ou sofre 5d8+5 de dano de Fogo (sucesso reduz à metade) e fica com a condição Queimadura.",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": "misticismo",
+          "alcance": "3m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 22 de Arché para concentrar todo o calor de seu núcleo em um único golpe. Um alvo a até 3 metros deve passar em um teste de Reflexos (CD = 12 + Misticismo da Gárgula de Hefesto) ou sofre 5d8+5 de dano de Fogo (sucesso reduz à metade) e fica com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -1726,46 +1995,80 @@
         {
           "id": "esporos-adesivos",
           "nome": "Esporos Adesivos",
-          "descricao": "Consome 5 de Arché para cuspir uma massa pegajosa em um alvo a até 6 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Melaço Vivo) ou fica com a condição Imobilizado (mesma regra de escape da Investida Pegajosa).",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": "misticismo",
+          "alcance": "6m",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 5 de Arché para cuspir uma massa pegajosa em um alvo a até 6 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Melaço Vivo) ou fica com a condição Imobilizado (mesma regra de escape da Investida Pegajosa).",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "lodo-explosivo",
           "nome": "Lodo Explosivo",
-          "descricao": "Consome 6 de Arché para estourar uma bolha de lodo contra um alvo adjacente. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Melaço Vivo) ou sofre 2d8 de dano de Natureza (sucesso reduz à metade) e tem seu Deslocamento reduzido à metade por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 6 de Arché para estourar uma bolha de lodo contra um alvo adjacente. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Melaço Vivo) ou sofre 2d8 de dano de Natureza (sucesso reduz à metade) e tem seu Deslocamento reduzido à metade por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "onda-viscosa",
           "nome": "Onda Viscosa",
-          "descricao": "Consome 10 de Arché para expelir uma onda de resina em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Melaço Vivo) ou sofrem 3d8 de dano de Natureza (sucesso reduz à metade) e têm o Deslocamento reduzido à metade por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 10 de Arché para expelir uma onda de resina em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Melaço Vivo) ou sofrem 3d8 de dano de Natureza (sucesso reduz à metade) e têm o Deslocamento reduzido à metade por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "engolfar",
           "nome": "Engolfar",
-          "descricao": "Consome 14 de Arché para tentar engolfar um alvo adjacente por completo. Perícia: Luta. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Melaço Vivo) ou fica com as condições Imobilizado e Cego enquanto permanecer engolfado (mesma regra de escape da Investida Pegajosa).",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 14,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 14 de Arché para tentar engolfar um alvo adjacente por completo. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Melaço Vivo) ou fica com as condições Imobilizado e Cego enquanto permanecer engolfado (mesma regra de escape da Investida Pegajosa).",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "dissolucao-total",
           "nome": "Dissolução Total",
-          "descricao": "A habilidade suprema do Melaço Vivo. Consome 22 de Arché para acelerar drasticamente sua digestão ácida: qualquer criatura com a condição Imobilizado por ele sofre 2d10+5 de dano de Natureza (sujeito ao multiplicador de Grau da Cena) no início de cada um dos turnos dela, enquanto o efeito durar (2 turnos).",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d10+5",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 22 de Arché para acelerar drasticamente sua digestão ácida: qualquer criatura com a condição Imobilizado por ele sofre 2d10+5 de dano de Natureza (sujeito ao multiplicador de Grau da Cena) no início de cada um dos turnos dela, enquanto o efeito durar (2 turnos).",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -1891,46 +2194,77 @@
         {
           "id": "uivo-sombrio",
           "nome": "Uivo Sombrio",
-          "descricao": "Consome 5 de Arché para soltar um uivo grave e antinatural. Perícia: Misticismo. Um alvo a até 9 metros deve passar em um teste de Vontade (CD = 12 + Misticismo do Cão da Tríade) ou fica com a condição Medo por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 5 de Arché para soltar um uivo grave e antinatural. Um alvo a até 9 metros deve passar em um teste de Vontade (CD = 12 + Misticismo do Cão da Tríade) ou fica com a condição Medo por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "presas-corruptoras",
           "nome": "Presas Corruptoras",
-          "descricao": "Pode consumir 6 de Arché ao acertar um ataque de Mordida para que o ferimento também aplique a condição Sangramento no alvo.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Pode consumir 6 de Arché ao acertar um ataque de Mordida para que o ferimento também aplique a condição Sangramento no alvo.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "passos-nas-sombras",
           "nome": "Passos nas Sombras",
-          "descricao": "Consome 10 de Arché para se tornar parcialmente sombria por 1 turno: pode se mover através de obstáculos sólidos finos (paredes de madeira, cercas, vegetação densa) sem sofrer penalidade de terreno.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 10 de Arché para se tornar parcialmente sombria por 1 turno: pode se mover através de obstáculos sólidos finos (paredes de madeira, cercas, vegetação densa) sem sofrer penalidade de terreno.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "cerco-das-tres-cabecas",
           "nome": "Cerco das Três Cabeças",
-          "descricao": "Consome 14 de Arché para cercar um alvo a até 9 metros com ilusões sombrias das três cabeças simultaneamente. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo do Cão da Tríade) ou sofre 1d8 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 14,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "1d8",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 14 de Arché para cercar um alvo a até 9 metros com ilusões sombrias das três cabeças simultaneamente. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo do Cão da Tríade) ou sofre 1d8 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "latido-do-abismo",
           "nome": "Latido do Abismo",
-          "descricao": "A habilidade suprema do Cão da Tríade. Consome 22 de Arché para que as três cabeças uivem como uma só, abrindo uma fenda sombria. Todos em um raio de 6 metros devem passar em um teste de Vontade (CD = 12 + Misticismo do Cão da Tríade) ou sofrem 2d8 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e ficam com a condição Medo por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": "misticismo",
+          "alcance": "raio de 6m",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 22 de Arché para que as três cabeças uivem como uma só, abrindo uma fenda sombria. Todos em um raio de 6 metros devem passar em um teste de Vontade (CD = 12 + Misticismo do Cão da Tríade) ou sofrem 2d8 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e ficam com a condição Medo por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -2056,46 +2390,83 @@
         {
           "id": "onda-de-escombros",
           "nome": "Onda de Escombros",
-          "descricao": "Consome 6 de Arché para erguer uma onda repentina de pedras e detritos contra um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofre 2d8 de dano de Terra (sucesso reduz à metade) e é empurrado 3 metros.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "terra"
+          },
+          "efeito": "Consome 6 de Arché para erguer uma onda repentina de pedras e detritos contra um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofre 2d8 de dano de Terra (sucesso reduz à metade) e é empurrado 3 metros.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "veu-de-poeira-e-silte",
           "nome": "Véu de Poeira e Silte",
-          "descricao": "Consome 5 de Arché para levantar uma nuvem espessa de poeira e sedimento em um raio de 6 metros por 2 turnos. Aliados dentro da área ganham Vantagem em testes de Furtividade.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": null,
+          "alcance": "raio de 6m",
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 5 de Arché para levantar uma nuvem espessa de poeira e sedimento em um raio de 6 metros por 2 turnos. Aliados dentro da área ganham Vantagem em testes de Furtividade.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "vortice-de-pedra-e-lama",
           "nome": "Vórtice de Pedra e Lama",
-          "descricao": "Consome 10 de Arché para abrir um vórtice de pedra e lama em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofrem 3d8 de dano de Terra (sucesso reduz à metade) e ficam com a condição Imobilizado por 1 turno, afundando na lama.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "terra"
+          },
+          "efeito": "Consome 10 de Arché para abrir um vórtice de pedra e lama em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofrem 3d8 de dano de Terra (sucesso reduz à metade) e ficam com a condição Imobilizado por 1 turno, afundando na lama.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "furia-do-leito-rochoso",
           "nome": "Fúria do Leito Rochoso",
-          "descricao": "Consome 16 de Arché para arremessar uma coluna de pedra afiada contra um alvo a até 12 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofre 4d8 de dano de Terra (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 16,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "terra"
+          },
+          "efeito": "Consome 16 de Arché para arremessar uma coluna de pedra afiada contra um alvo a até 12 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofre 4d8 de dano de Terra (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "terremoto-das-aguas-sagradas",
           "nome": "Terremoto das Águas Sagradas",
-          "descricao": "A habilidade suprema da Makara Ancestral. Consome 22 de Arché para sacudir o leito rochoso sob as águas que guarda, em um raio de 6 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofrem 5d8+5 de dano de Terra (sucesso reduz à metade) e têm o Deslocamento reduzido à metade por 2 turnos, com o chão rachando sob seus pés.",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": "misticismo",
+          "alcance": "raio de 6m",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "terra"
+          },
+          "efeito": "Consome 22 de Arché para sacudir o leito rochoso sob as águas que guarda, em um raio de 6 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Makara Ancestral) ou sofrem 5d8+5 de dano de Terra (sucesso reduz à metade) e têm o Deslocamento reduzido à metade por 2 turnos, com o chão rachando sob seus pés.",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -2221,46 +2592,80 @@
         {
           "id": "correntes-amaldicoadas",
           "nome": "Correntes Amaldiçoadas",
-          "descricao": "Consome 6 de Arché para invocar correntes de sombra e água em torno de um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Runa Afogada) ou fica com a condição Imobilizado.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 6 de Arché para invocar correntes de sombra e água em torno de um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Runa Afogada) ou fica com a condição Imobilizado.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "sussurro-afogante",
           "nome": "Sussurro Afogante",
-          "descricao": "Consome 5 de Arché para implantar na mente de um alvo a até 9 metros a sensação de estar se afogando. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Runa Afogada) ou fica com a condição Medo por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 5 de Arché para implantar na mente de um alvo a até 9 metros a sensação de estar se afogando. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Runa Afogada) ou fica com a condição Medo por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "voragem-sombria",
           "nome": "Voragem Sombria",
-          "descricao": "Consome 10 de Arché para abrir uma voragem de água escura em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Runa Afogada) ou sofrem 3d8 de dano de Trevas (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "trevas"
+          },
+          "efeito": "Consome 10 de Arché para abrir uma voragem de água escura em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Runa Afogada) ou sofrem 3d8 de dano de Trevas (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "selo-da-perdicao",
           "nome": "Selo da Perdição",
-          "descricao": "Consome 16 de Arché para marcar um alvo a até 12 metros com tinta rúnica escura. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Runa Afogada) ou sofre 4d8 de dano de Trevas (sucesso reduz à metade) e fica com a condição Cego por 1 turno.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 16,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "trevas"
+          },
+          "efeito": "Consome 16 de Arché para marcar um alvo a até 12 metros com tinta rúnica escura. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Runa Afogada) ou sofre 4d8 de dano de Trevas (sucesso reduz à metade) e fica com a condição Cego por 1 turno.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "afogamento-eterno",
           "nome": "Afogamento Eterno",
-          "descricao": "A habilidade suprema da Runa Afogada. Consome 22 de Arché para atacar a mente de um alvo a até 9 metros com uma visão de afogamento sem fim. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Runa Afogada) ou sofre 5d8+5 de dano de Trevas e fica com a condição Medo por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "trevas"
+          },
+          "efeito": "Consome 22 de Arché para atacar a mente de um alvo a até 9 metros com uma visão de afogamento sem fim. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Runa Afogada) ou sofre 5d8+5 de dano de Trevas e fica com a condição Medo por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -2386,46 +2791,83 @@
         {
           "id": "rugido-espectral",
           "nome": "Rugido Espectral",
-          "descricao": "Consome 6 de Arché para soltar um rugido que ecoa entre mundos. Perícia: Misticismo. Um alvo a até 9 metros deve passar em um teste de Vontade (CD = 12 + Misticismo do Guardião do Inferno) ou sofre 1d6 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "1d6",
+            "tipo": "sanidade"
+          },
+          "efeito": "Consome 6 de Arché para soltar um rugido que ecoa entre mundos. Um alvo a até 9 metros deve passar em um teste de Vontade (CD = 12 + Misticismo do Guardião do Inferno) ou sofre 1d6 de dano direto na Sanidade (sujeito ao multiplicador de Grau da Cena para Sanidade) e fica com a condição Medo por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "passos-entre-mundos",
           "nome": "Passos Entre Mundos",
-          "descricao": "Consome 5 de Arché para se tornar parcialmente etérea por 1 turno: ataques físicos contra ela têm Desvantagem.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 5 de Arché para se tornar parcialmente etérea por 1 turno: ataques físicos contra ela têm Desvantagem.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "garras-do-alem",
           "nome": "Garras do Além",
-          "descricao": "Consome 10 de Arché para golpear com garras espectrais que ultrapassam a matéria. Perícia: Luta. Um alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Guardião do Inferno) ou sofre 3d8 de dano de Alma (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "alma"
+          },
+          "efeito": "Consome 10 de Arché para golpear com garras espectrais que ultrapassam a matéria. Um alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Guardião do Inferno) ou sofre 3d8 de dano de Alma (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "chamado-dos-espiritos-felinos",
           "nome": "Chamado dos Espíritos Felinos",
-          "descricao": "Consome 14 de Arché para invocar 1d4 espíritos-sombra de felinos menores por 2 turnos. Cada um tem 1 ponto de Vida e pode fazer um ataque simples de 1d4 de dano contra um inimigo adjacente, desaparecendo ao atacar.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 14,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "1d4",
+            "tipo": null
+          },
+          "efeito": "Consome 14 de Arché para invocar 1d4 espíritos-sombra de felinos menores por 2 turnos. Cada um tem 1 ponto de Vida e pode fazer um ataque simples de 1d4 de dano contra um inimigo adjacente, desaparecendo ao atacar.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "furia-do-Guardião do Inferno-ancestral",
           "nome": "Fúria do Guardião do Inferno Ancestral",
-          "descricao": "A habilidade suprema do Guardião do Inferno. Consome 22 de Arché para se transformar completamente por 2 turnos: seus ataques de Garras Espirituais passam a causar +2d6 de dano de Alma adicional, mas não pode usar nenhum outro poder de Manipulação Elemental enquanto durar.",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "2d6",
+            "tipo": "alma"
+          },
+          "efeito": "Consome 22 de Arché para se transformar completamente por 2 turnos: seus ataques de Garras Espirituais passam a causar +2d6 de dano de Alma adicional, mas não pode usar nenhum outro poder de Manipulação Elemental enquanto durar.",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -2551,46 +2993,83 @@
         {
           "id": "espinhos-repentinos",
           "nome": "Espinhos Repentinos",
-          "descricao": "Consome 6 de Arché para fazer espinhos brotarem do chão ao redor de um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofre 2d8 de dano de Natureza (sucesso reduz à metade) e fica com a condição Imobilizado por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 6,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 6 de Arché para fazer espinhos brotarem do chão ao redor de um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofre 2d8 de dano de Natureza (sucesso reduz à metade) e fica com a condição Imobilizado por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "manto-de-folhas",
           "nome": "Manto de Folhas",
-          "descricao": "Consome 5 de Arché para envolver o próprio corpo em folhagem reforçada por 2 turnos, recebendo Resistência Física.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 5,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 5 de Arché para envolver o próprio corpo em folhagem reforçada por 2 turnos, recebendo Resistência Física.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "investida-de-raizes",
           "nome": "Investida de Raízes",
-          "descricao": "Consome 10 de Arché para fazer raízes grossas emergirem em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofrem 3d8 de dano de Natureza (sucesso reduz à metade) e ficam Derrubados (Desvantagem em testes de Reflexos e ataques corpo a corpo contra eles têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 10 de Arché para fazer raízes grossas emergirem em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofrem 3d8 de dano de Natureza (sucesso reduz à metade) e ficam Derrubados (Desvantagem em testes de Reflexos e ataques corpo a corpo contra eles têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "furia-da-copa",
           "nome": "Fúria da Copa",
-          "descricao": "Consome 16 de Arché para arremessar uma rajada de galhos e cascas afiadas contra um alvo a até 12 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofre 4d8 de dano de Natureza (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 16,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 16 de Arché para arremessar uma rajada de galhos e cascas afiadas contra um alvo a até 12 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofre 4d8 de dano de Natureza (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "despertar-da-floresta-ancestral",
           "nome": "Despertar da Floresta Ancestral",
-          "descricao": "A habilidade suprema do Guardião de Amion. Consome 22 de Arché para despertar todas as raízes num raio de 6 metros ao seu redor. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofrem 5d8+5 de dano de Natureza (sucesso reduz à metade) e ficam com a condição Imobilizado por 1 turno.",
-          "inata": false,
-          "grau_ascensao": 8,
+          "custo_arche": 22,
+          "pericia": "misticismo",
+          "alcance": "raio de 6m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "natureza"
+          },
+          "efeito": "Consome 22 de Arché para despertar todas as raízes num raio de 6 metros ao seu redor. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Guardião de Amion) ou sofrem 5d8+5 de dano de Natureza (sucesso reduz à metade) e ficam com a condição Imobilizado por 1 turno.",
           "condicao": null,
+          "grau_ascensao": 8,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -2745,64 +3224,111 @@
         {
           "id": "pilar-da-purificacao",
           "nome": "Pilar da Purificação",
-          "descricao": "Gasta 10 de Arché para fazer um pilar de chamas irromper do chão em um raio de 3x3 quadrados, a até 12 metros de distância. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Ídolo) ou sofrem 3d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição \"Queimadura\".",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Gasta 10 de Arché para fazer um pilar de chamas irromper do chão em um raio de 3x3 quadrados, a até 12 metros de distância. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Ídolo) ou sofrem 3d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição \"Queimadura\".",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "prisao-de-escoria",
           "nome": "Prisão de Escória",
-          "descricao": "Consome 8 de Arché para lançar vidro e cinzas derretidas em um alvo. O alvo deve passar em um teste de Força (Atletismo) CD 15; se falhar, fica \"Imobilizado\" (pés fundidos ao chão) até quebrar a crosta.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 8 de Arché para lançar vidro e cinzas derretidas em um alvo. O alvo deve passar em um teste de Força (Atletismo) CD 15; se falhar, fica \"Imobilizado\" (pés fundidos ao chão) até quebrar a crosta.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "erupcao-contida",
           "nome": "Erupção Contida",
-          "descricao": "Uma vez por turno, ao acertar a Centelha Punitiva, pode gastar 5 de Arché para fazer o projétil explodir, causando metade do dano aos alvos adjacentes ao alvo original.",
-          "inata": true,
+          "custo_arche": 5,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Uma vez por turno, ao acertar a Centelha Punitiva, pode gastar 5 de Arché para fazer o projétil explodir, causando metade do dano aos alvos adjacentes ao alvo original.",
+          "condicao": "Uma vez por turno",
           "grau_ascensao": null,
-          "condicao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "lanca-do-purgatorio",
           "nome": "Lança do Purgatório",
-          "descricao": "Consome 15 de Arché para conjurar uma linha reta de chamas de 12 metros a partir de si. Alvos na linha devem passar em um teste de Reflexos (CD = 12 + Misticismo do Ídolo) ou sofrem 4d8 de dano de Fogo (sucesso reduz à metade); a linha destrói coberturas físicas normais (madeira, pedra fina) independentemente do teste.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 15,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 15 de Arché para conjurar uma linha reta de chamas de 12 metros a partir de si. Alvos na linha devem passar em um teste de Reflexos (CD = 12 + Misticismo do Ídolo) ou sofrem 4d8 de dano de Fogo (sucesso reduz à metade); a linha destrói coberturas físicas normais (madeira, pedra fina) independentemente do teste.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "fogo-fatuo",
           "nome": "Fogo Fátuo",
-          "descricao": "O Ídolo funde chamas à própria alma. Gasta 12 de Arché para que todos os seus ataques e magias ignorem Resistência a Fogo por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 12,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "O Ídolo funde chamas à própria alma. Gasta 12 de Arché para que todos os seus ataques e magias ignorem Resistência a Fogo por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "mar-de-brasas",
           "nome": "Mar de Brasas",
-          "descricao": "Gasta 20 de Arché para derreter o próprio piso da arena em um raio de 9x9. O chão se torna terreno difícil e causa 2d8+4 de dano de Fogo a quem tentar se mover sobre ele sem proteção.",
-          "inata": false,
-          "grau_ascensao": 7,
+          "custo_arche": 20,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8+4",
+            "tipo": "fogo"
+          },
+          "efeito": "Gasta 20 de Arché para derreter o próprio piso da arena em um raio de 9x9. O chão se torna terreno difícil e causa 2d8+4 de dano de Fogo a quem tentar se mover sobre ele sem proteção.",
           "condicao": null,
+          "grau_ascensao": 7,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "julgamento-do-halo",
           "nome": "Julgamento do Halo",
-          "descricao": "A habilidade suprema do Ídolo. Ele canaliza 35 de Arché no seu halo por um turno inteiro (ficando vulnerável). No turno seguinte, dispara um raio de calor solar condensado que causa 8d10+15 de dano verdadeiro, forçando um teste de Constituição (CD = 12 + Misticismo do Ídolo) para não desmaiar instantaneamente com o choque térmico.",
-          "inata": false,
-          "grau_ascensao": 9,
+          "custo_arche": 35,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "8d10+15",
+            "tipo": "verdadeiro"
+          },
+          "efeito": "Ele canaliza 35 de Arché no seu halo por um turno inteiro (ficando vulnerável). No turno seguinte, dispara um raio de calor solar condensado que causa 8d10+15 de dano verdadeiro, forçando um teste de Constituição (CD = 12 + Misticismo do Ídolo) para não desmaiar instantaneamente com o choque térmico.",
           "condicao": null,
+          "grau_ascensao": 9,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -2948,64 +3474,117 @@
         {
           "id": "lamina-fluida",
           "nome": "Lâmina Fluida",
-          "descricao": "Pode consumir 8 de Arché ao acertar um ataque de Espada das Marés para causar +2d6 de dano de Água adicional.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d6",
+            "tipo": "agua"
+          },
+          "efeito": "Pode consumir 8 de Arché ao acertar um ataque de Espada das Marés para causar +2d6 de dano de Água adicional.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "correnteza-repentina",
           "nome": "Correnteza Repentina",
-          "descricao": "Consome 8 de Arché para erguer uma onda súbita contra um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofre 2d8 de dano de Água (sucesso reduz à metade) e é empurrado 3 metros.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 8 de Arché para erguer uma onda súbita contra um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofre 2d8 de dano de Água (sucesso reduz à metade) e é empurrado 3 metros.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "nevoa-protetora",
           "nome": "Névoa Protetora",
-          "descricao": "Consome 10 de Arché para gerar uma névoa densa ao seu redor por 2 turnos, recebendo Resistência Física e Vantagem em testes de Furtividade.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 10,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 10 de Arché para gerar uma névoa densa ao seu redor por 2 turnos, recebendo Resistência Física e Vantagem em testes de Furtividade.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "pilar-de-agua-pressurizada",
           "nome": "Pilar de Água Pressurizada",
-          "descricao": "Consome 14 de Arché para erguer um pilar de água pressurizada sob um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofre 3d8 de dano de Água (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 14,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 14 de Arché para erguer um pilar de água pressurizada sob um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofre 3d8 de dano de Água (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "maremoto-direcionado",
           "nome": "Maremoto Direcionado",
-          "descricao": "Consome 18 de Arché para liberar um maremoto em um raio de 4,5 metros. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofrem 4d8 de dano de Água (sucesso reduz à metade) e ficam com a condição Imobilizado por 1 turno.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 18,
+          "pericia": "misticismo",
+          "alcance": "raio de 4,5m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 18 de Arché para liberar um maremoto em um raio de 4,5 metros. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofrem 4d8 de dano de Água (sucesso reduz à metade) e ficam com a condição Imobilizado por 1 turno.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "prisao-abissal",
           "nome": "Prisão Abissal",
-          "descricao": "Consome 20 de Arché para prender um alvo a até 12 metros em uma coluna de água comprimida. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofre 5d8+5 de dano de Água (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 7,
+          "custo_arche": 20,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 20 de Arché para prender um alvo a até 12 metros em uma coluna de água comprimida. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofre 5d8+5 de dano de Água (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 7,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "ressurgimento-do-abismo-ancestral",
           "nome": "Ressurgimento do Abismo Ancestral",
-          "descricao": "A habilidade suprema do O Punho de Pontus. Consome 32 de Arché para liberar toda a água ancestral em seu núcleo em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofrem 8d10+15 de dano de Água (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 9,
+          "custo_arche": 32,
+          "pericia": "misticismo",
+          "alcance": "raio de 9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "8d10+15",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 32 de Arché para liberar toda a água ancestral em seu núcleo em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do O Punho de Pontus) ou sofrem 8d10+15 de dano de Água (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 9,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -3160,64 +3739,111 @@
         {
           "id": "correntes-prendedoras",
           "nome": "Correntes Prendedoras",
-          "descricao": "Consome 8 de Arché para invocar correntes de água ao redor de um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou fica com a condição Imobilizado.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 8 de Arché para invocar correntes de água ao redor de um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou fica com a condição Imobilizado.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "nevoa-gelida",
           "nome": "Névoa Gélida",
-          "descricao": "Consome 8 de Arché para espalhar uma névoa congelante em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Fortitude (CD = 12 + Misticismo do Amikuk) ou ficam com a condição Congelamento.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": null,
+          "efeito": "Consome 8 de Arché para espalhar uma névoa congelante em uma área de 3x3. Alvos na área devem passar em um teste de Fortitude (CD = 12 + Misticismo do Amikuk) ou ficam com a condição Congelamento.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "pele-escorregadia",
           "nome": "Pele Escorregadia",
-          "descricao": "Consome 10 de Arché para cobrir a própria pele de muco por 2 turnos: ataques corpo a corpo contra ele têm Desvantagem.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 10,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 10 de Arché para cobrir a própria pele de muco por 2 turnos: ataques corpo a corpo contra ele têm Desvantagem.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "jato-de-agua-congelante",
           "nome": "Jato de Água Congelante",
-          "descricao": "Consome 14 de Arché para disparar um jato de água congelante contra um alvo a até 12 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou sofre 3d8 de dano de Água (sucesso reduz à metade) e fica com a condição Congelamento.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 14,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 14 de Arché para disparar um jato de água congelante contra um alvo a até 12 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou sofre 3d8 de dano de Água (sucesso reduz à metade) e fica com a condição Congelamento.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "voragem-das-profundezas",
           "nome": "Voragem das Profundezas",
-          "descricao": "Consome 18 de Arché para abrir uma voragem em uma área de 4,5 metros de raio. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou sofrem 4d8 de dano de Água (sucesso reduz à metade) e ficam com a condição Imobilizado.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 18,
+          "pericia": "misticismo",
+          "alcance": "raio de 4,5m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 18 de Arché para abrir uma voragem em uma área de 4,5 metros de raio. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou sofrem 4d8 de dano de Água (sucesso reduz à metade) e ficam com a condição Imobilizado.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "abraco-do-kraken",
           "nome": "Abraço do Kraken",
-          "descricao": "Consome 20 de Arché para envolver um alvo com todos os tentáculos de uma vez. Perícia: Luta. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Amikuk) ou sofre 5d8+5 de dano de Água (sucesso reduz à metade) e fica com a condição Imobilizado por 2 turnos.",
-          "inata": false,
-          "grau_ascensao": 7,
+          "custo_arche": 20,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 20 de Arché para envolver um alvo com todos os tentáculos de uma vez. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta do Amikuk) ou sofre 5d8+5 de dano de Água (sucesso reduz à metade) e fica com a condição Imobilizado por 2 turnos.",
           "condicao": null,
+          "grau_ascensao": 7,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "fome-ancestral-do-gelo-eterno",
           "nome": "Fome Ancestral do Gelo Eterno",
-          "descricao": "A habilidade suprema do Amikuk. Consome 32 de Arché para conjurar as profundezas árticas ancestrais em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou sofrem 8d10+15 de dano de Água (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 9,
+          "custo_arche": 32,
+          "pericia": "misticismo",
+          "alcance": "raio de 9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "8d10+15",
+            "tipo": "agua"
+          },
+          "efeito": "Consome 32 de Arché para conjurar as profundezas árticas ancestrais em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo do Amikuk) ou sofrem 8d10+15 de dano de Água (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 9,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -3372,64 +3998,120 @@
         {
           "id": "pena-incandescente",
           "nome": "Pena Incandescente",
-          "descricao": "Consome 8 de Arché para arremessar uma pena em chamas contra um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofre 2d8 de dano de Fogo (sucesso reduz à metade) e fica com a condição Queimadura.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 8 de Arché para arremessar uma pena em chamas contra um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofre 2d8 de dano de Fogo (sucesso reduz à metade) e fica com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "redemoinho-de-fagulhas",
           "nome": "Redemoinho de Fagulhas",
-          "descricao": "Consome 8 de Arché para liberar um redemoinho de fagulhas em uma área de 3 metros. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofrem 1d6 de dano de Fogo e são empurrados 3 metros.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d6",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 8 de Arché para liberar um redemoinho de fagulhas em uma área de 3 metros. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofrem 1d6 de dano de Fogo e são empurrados 3 metros.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "aura-ardente",
           "nome": "Aura Ardente",
-          "descricao": "Consome 10 de Arché para ativar uma aura de calor por 3 turnos: qualquer inimigo adjacente a ela no início do turno dela sofre automaticamente 1d4 de dano de Fogo.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 10,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "3 turnos",
+          "dano": {
+            "dados": "1d4",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 10 de Arché para ativar uma aura de calor por 3 turnos: qualquer inimigo adjacente a ela no início do turno dela sofre automaticamente 1d4 de dano de Fogo.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "investida-flamejante",
           "nome": "Investida Flamejante",
-          "descricao": "Consome 14 de Arché para mergulhar em chamas sobre um alvo. Perícia: Luta. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta da Brasa Eterna) ou sofre 3d8 de dano de Fogo (sucesso reduz à metade) e fica com a condição Queimadura.",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 14,
+          "pericia": "luta",
+          "alcance": null,
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 14 de Arché para mergulhar em chamas sobre um alvo. O alvo deve passar em um teste de Reflexos (CD = 12 + Luta da Brasa Eterna) ou sofre 3d8 de dano de Fogo (sucesso reduz à metade) e fica com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "tempestade-de-brasas",
           "nome": "Tempestade de Brasas",
-          "descricao": "Consome 18 de Arché para invocar uma tempestade de brasas em um raio de 4,5 metros. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofrem 4d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 18,
+          "pericia": "misticismo",
+          "alcance": "raio de 4,5m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 18 de Arché para invocar uma tempestade de brasas em um raio de 4,5 metros. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofrem 4d8 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "chama-purificadora",
           "nome": "Chama Purificadora",
-          "descricao": "Consome 20 de Arché para atingir um alvo a até 12 metros com fogo que ignora qualquer Resistência a Fogo que possua. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofre 5d8+5 de dano de Fogo (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 7,
+          "custo_arche": 20,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 20 de Arché para atingir um alvo a até 12 metros com fogo que ignora qualquer Resistência a Fogo que possua. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofre 5d8+5 de dano de Fogo (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 7,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "ressurreicao-em-fogo-absoluto",
           "nome": "Ressurreição em Fogo Absoluto",
-          "descricao": "A habilidade suprema da Brasa Eterna. Consome 32 de Arché para explodir em chamas absolutas em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofrem 8d10+15 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
-          "inata": false,
-          "grau_ascensao": 9,
+          "custo_arche": 32,
+          "pericia": "misticismo",
+          "alcance": "raio de 9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "8d10+15",
+            "tipo": "fogo"
+          },
+          "efeito": "Consome 32 de Arché para explodir em chamas absolutas em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Brasa Eterna) ou sofrem 8d10+15 de dano de Fogo (sucesso reduz à metade) e ficam com a condição Queimadura.",
           "condicao": null,
+          "grau_ascensao": 9,
+          "inata": false,
           "suprema": true
         }
       ]
@@ -3584,64 +4266,114 @@
         {
           "id": "rajada-cortante",
           "nome": "Rajada Cortante",
-          "descricao": "Consome 8 de Arché para lançar uma rajada afiada contra um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofre 2d8 de dano de Vento (sucesso reduz à metade) e é empurrado 3 metros.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "2d8",
+            "tipo": "vento"
+          },
+          "efeito": "Consome 8 de Arché para lançar uma rajada afiada contra um alvo a até 9 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofre 2d8 de dano de Vento (sucesso reduz à metade) e é empurrado 3 metros.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "veu-de-nevoa",
           "nome": "Véu de Névoa",
-          "descricao": "Consome 8 de Arché para se envolver em névoa espiritual por 2 turnos: ataques físicos contra ela têm Desvantagem.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 8,
+          "pericia": null,
+          "alcance": null,
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Consome 8 de Arché para se envolver em névoa espiritual por 2 turnos: ataques físicos contra ela têm Desvantagem.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "sussurro-do-vendaval",
           "nome": "Sussurro do Vendaval",
-          "descricao": "Consome 10 de Arché para fazer uma voz assombrada ecoar no vento ao redor de um alvo a até 9 metros. Perícia: Misticismo. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Kitsuval) ou fica com a condição Medo por 1 turno.",
-          "inata": true,
-          "grau_ascensao": null,
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "9m",
+          "duracao": "1 turno",
+          "dano": null,
+          "efeito": "Consome 10 de Arché para fazer uma voz assombrada ecoar no vento ao redor de um alvo a até 9 metros. O alvo deve passar em um teste de Vontade (CD = 12 + Misticismo da Kitsuval) ou fica com a condição Medo por 1 turno.",
           "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
           "suprema": false
         },
         {
           "id": "laminas-de-vento",
           "nome": "Lâminas de Vento",
-          "descricao": "Consome 14 de Arché para liberar lâminas de vento cortante em uma área de 3x3. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofrem 3d8 de dano de Vento (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 3,
+          "custo_arche": 14,
+          "pericia": "misticismo",
+          "alcance": "área 3x3",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8",
+            "tipo": "vento"
+          },
+          "efeito": "Consome 14 de Arché para liberar lâminas de vento cortante em uma área de 3x3. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofrem 3d8 de dano de Vento (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "tornado-espiritual",
           "nome": "Tornado Espiritual",
-          "descricao": "Consome 18 de Arché para invocar um tornado em um raio de 4,5 metros. Perícia: Misticismo. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofrem 4d8 de dano de Vento (sucesso reduz à metade) e ficam Derrubados (Desvantagem em testes de Reflexos e ataques corpo a corpo contra eles têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
-          "inata": false,
-          "grau_ascensao": 5,
+          "custo_arche": 18,
+          "pericia": "misticismo",
+          "alcance": "raio de 4,5m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "4d8",
+            "tipo": "vento"
+          },
+          "efeito": "Consome 18 de Arché para invocar um tornado em um raio de 4,5 metros. Alvos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofrem 4d8 de dano de Vento (sucesso reduz à metade) e ficam Derrubados (Desvantagem em testes de Reflexos e ataques corpo a corpo contra eles têm Vantagem, até se levantarem gastando uma Ação de Movimento).",
           "condicao": null,
+          "grau_ascensao": 5,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "fenda-no-veu",
           "nome": "Fenda no Véu",
-          "descricao": "Consome 20 de Arché para rasgar o ar ao redor de um alvo a até 12 metros. Perícia: Misticismo. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofre 5d8+5 de dano de Vento (sucesso reduz à metade) e fica com a condição Cego por 1 turno.",
-          "inata": false,
-          "grau_ascensao": 7,
+          "custo_arche": 20,
+          "pericia": "misticismo",
+          "alcance": "12m",
+          "duracao": "1 turno",
+          "dano": {
+            "dados": "5d8+5",
+            "tipo": "vento"
+          },
+          "efeito": "Consome 20 de Arché para rasgar o ar ao redor de um alvo a até 12 metros. O alvo deve passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofre 5d8+5 de dano de Vento (sucesso reduz à metade) e fica com a condição Cego por 1 turno.",
           "condicao": null,
+          "grau_ascensao": 7,
+          "inata": false,
           "suprema": false
         },
         {
           "id": "ira-das-nove-caudas-corrompidas",
           "nome": "Ira das Nove Caudas Corrompidas",
-          "descricao": "A habilidade suprema da Kitsuval, disponível apenas em sua forma corrompida. Consome 32 de Arché para liberar toda sua fúria espiritual em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofrem 8d10+15 de dano de Vento (sucesso reduz à metade).",
-          "inata": false,
-          "grau_ascensao": 9,
+          "custo_arche": 32,
+          "pericia": "misticismo",
+          "alcance": "raio de 9m",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "8d10+15",
+            "tipo": "vento"
+          },
+          "efeito": "disponível apenas em sua forma corrompida. Consome 32 de Arché para liberar toda sua fúria espiritual em um raio de 9 metros. Todos na área devem passar em um teste de Reflexos (CD = 12 + Misticismo da Kitsuval) ou sofrem 8d10+15 de dano de Vento (sucesso reduz à metade).",
           "condicao": null,
+          "grau_ascensao": 9,
+          "inata": false,
           "suprema": true
         }
       ]
