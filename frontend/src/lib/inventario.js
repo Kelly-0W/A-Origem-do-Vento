@@ -240,6 +240,69 @@ export function kitOrigemFaltando(origemId, origem, inventarioAtual, materiais) 
   return entradasKitOrigem(origemId, origem, materiais).filter((e) => !jaTem.has(e.origem_kit_id));
 }
 
+// ---------------------------------------------------------------------
+// Relíquias
+// ---------------------------------------------------------------------
+//
+// Uma relíquia vira uma entrada de inventário "avulsa" (mesmo mecanismo
+// já usado pelos itens de kit de Origem sem equivalente no catálogo:
+// `item_id: null`, nome e peso morando na própria entrada) -- MARCADA
+// com `eh_reliquia: true` pra ganhar a renderização própria (Pontos de
+// Forja por vertente) em vez da renderização genérica de item avulso.
+//
+// Regras do sistema de Forja (ver o .md de regras): Acessórios nunca
+// recebem o Minério Indestrutível de Karnath; Armas e Armaduras/Escudos
+// SEMPRE são forjadas em Karnathite fixo, sem escolha do jogador -- por
+// isso o peso final já sai calculado aqui (multiplicador do Karnathite
+// aplicado uma vez, na hora de adicionar), em vez de ficar recalculando
+// contra um `minerio` escolhível como um item comum faria.
+
+/** true se já existe alguma relíquia no inventário -- por regra, só se
+ * pode carregar 1 relíquia por vez (referência de design: Akuma no Mi). */
+export function temReliquiaNoInventario(inventario) {
+  return (inventario || []).some((e) => e.eh_reliquia);
+}
+
+/** Peso final de uma relíquia, já considerando o Karnathite fixo quando
+ * a relíquia tem chassi físico (arma/armadura_escudo). */
+export function pesoEfetivoReliquia(reliquia, materiais) {
+  const pesoBase = reliquia.peso_base_kg;
+  if (pesoBase == null) return 0; // "Desprezível" (ex.: Anéis de Hécate, Iragarpena)
+  if (!reliquia.recebe_minerio_karnathite) return round3(pesoBase);
+  const multiplicador = materiais?.karnathite?.multiplicador_peso ?? 1.3;
+  return round3(pesoBase * multiplicador);
+}
+
+/** Constrói a entrada de inventário pra uma relíquia recém-equipada --
+ * pontos_forja começa zerado em toda vertente que a relíquia definir
+ * (a maioria tem 2: geralmente "ativa"/"passiva", mas alguns catálogos
+ * usam outros nomes, como "apollo"/"artemis" da Espada Gêmea). */
+export function entradaDeReliquia(reliquia, materiais) {
+  const pontosForja = {};
+  for (const v of reliquia.vertentes || []) {
+    pontosForja[v.id] = 0;
+  }
+  return {
+    id: crypto.randomUUID?.() ?? `reliquia-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    eh_reliquia: true,
+    reliquia_id: reliquia.id,
+    item_id: null,
+    nome_livre: reliquia.nome,
+    quantidade: 1,
+    peso_base_kg: pesoEfetivoReliquia(reliquia, materiais),
+    minerio: reliquia.recebe_minerio_karnathite ? 'karnathite' : null,
+    durabilidade_atual: null, // Karnathite é indestrutível; acessórios sem chassi não têm durabilidade
+    quebrado: false,
+    pontos_forja: pontosForja,
+  };
+}
+
+/** Total de Pontos de Forja já investidos (soma de todas as vertentes)
+ * -- toda relíquia tem 5 no total, vindos dos 5 Marcos de Forja. */
+export function totalPontosForjaInvestidos(pontosForja) {
+  return Object.values(pontosForja || {}).reduce((soma, n) => soma + (Number(n) || 0), 0);
+}
+
 function round3(n) {
   return Math.round((n + Number.EPSILON) * 1000) / 1000;
 }

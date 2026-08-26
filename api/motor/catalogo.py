@@ -35,6 +35,7 @@ def carregar_catalogo():
         "elementos": ler("elementos.json"),
         "itens": ler("itens.json"),
         "materiais": ler("materiais.json"),
+        "reliquias": ler("reliquias.json"),
         "constantes_ascensao": ler("constantes_ascensao.json"),
         "sagracanticos": ler("sagracanticos.json"),
     }

@@ -9,6 +9,7 @@ const ABAS = [
   { id: 'origens', label: 'Origens' },
   { id: 'elementos', label: 'Poderes' },
   { id: 'itens', label: 'Itens' },
+  { id: 'reliquias', label: 'Relíquias' },
   { id: 'pericias', label: 'Perícias' },
   { id: 'bestiario', label: 'Bestiário' },
 ]
@@ -82,9 +83,17 @@ export default function Biblioteca() {
                   {item.categoria}
                 </span>
               )}
+              {aba === 'reliquias' && item.categoria && (
+                <span className="inline-block text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-2 py-0.5 mb-2">
+                  {item.categoria.replace('_', '/')}
+                </span>
+              )}
               <div className="font-display font-semibold mb-2">{item.nome}</div>
+              {aba === 'reliquias' && item.epiteto && (
+                <p className="text-[11px] text-mist italic mb-1">{item.epiteto}</p>
+              )}
               <p className="text-xs text-mist line-clamp-3">
-                {item.descricao_curta || item.descricao || item.comportamento_e_alvo_prioritario || ''}
+                {item.descricao_curta || item.descricao || item.comportamento_e_alvo_prioritario || item.descricao_forja_zero || ''}
               </p>
             </button>
           ))}

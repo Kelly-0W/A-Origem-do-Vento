@@ -1,0 +1,1891 @@
+{
+  "colar-de-anubis": {
+    "id": "colar-de-anubis",
+    "nome": "Colar de Anúbis",
+    "epiteto": "Deus da Ressurreição",
+    "categoria": "acessorio",
+    "categoria_detalhe": null,
+    "chassi_base": null,
+    "peso_base_kg": 0.3,
+    "peso_texto": null,
+    "alcance": "Visão (Vertente Passiva) / contato imediato com o corpo (Vertente Ativa)",
+    "recurso_custo": "sanidade",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é um colar simples de cobre e osso, indistinguível de um enfeite funerário comum --- assim permanece enquanto sua Forja não desperta. Por não possuir chassi físico, o Colar nunca recebe os bônus do Minério Indestrutível de Karnath.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "passiva",
+        "nome": "Último Suspiro",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "quando uma criatura sob o comando do usuário receberia um golpe fatal, pague 1 ponto de sanidade: em vez de cair, ela permanece de pé com 1 de vida até o fim do turno atual. O efeito passa por sorte, reflexo ou adrenalina --- nada que denuncie intervenção divina."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a janela de proteção se estende até o início do próximo turno do usuário, dando tempo real para que a criatura protegida seja curada."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o efeito passa a proteger qualquer criatura visível ao usuário, não apenas as sob seu comando, e nomeia oficialmente o estado Último Suspiro: durante essa janela, a criatura protegida não sofre dano de nenhuma fonte."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o efeito pode ser ativado duas vezes por cena, sem custo adicional de sanidade na segunda ativação."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "se a criatura protegida receber qualquer cura antes do fim do Último Suspiro, ela sobrevive de verdade --- a cláusula de morte automática deixa de existir. O Colar deixa de adiar a morte e passa a impedi-la."
+          }
+        ]
+      },
+      {
+        "id": "ativa",
+        "nome": "Mão que Reergue",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "quando uma criatura morre a até 3 metros do usuário, pague 2 pontos de sanidade para reanimar seu corpo como um servo instintivo e frágil --- sem memórias, sem perícias, obedecendo apenas comandos simples --- por 1d4 rodadas, ao fim das quais desmorona em pó. O efeito soa como necromancia de aprendiz, não como um deus agindo."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a duração antes de o corpo desmoronar aumenta para 1d4+3 rodadas."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a criatura reanimada passa a manter metade de suas perícias e ataques originais, vindo agora com metade de sua vida máxima."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o usuário pode manter duas criaturas reanimadas simultaneamente."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a criatura reanimada mantém todas as suas capacidades originais e deixa de decair --- a reanimação torna-se permanente enquanto ela obedecer ao usuário. A vida máxima permanece fixa em metade do original: mesmo no auge da Forja, ninguém retorna inteiro."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Estar presente, portando o Colar, na primeira morte violenta de alguém importante para o usuário."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Realizar um rito funerário apropriado a um morto antes de manipular sua alma."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Reanimar ou salvar do Último Suspiro três criaturas diferentes ao longo da campanha."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Impedir a morte definitiva de um aliado importante num momento crítico da história."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Ressuscitar dez invocações com o Colar ao longo da campanha."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Vontade de Anúbis",
+      "texto": "O Colar pode se recusar a agir --- a critério do Mestre --- caso o usuário profane um morto, negue ritos funerários a alguém, ou empregue seu poder de forma frívola e repetida, sem respeito pela morte."
+    }
+  },
+  "mascara-de-loki": {
+    "id": "mascara-de-loki",
+    "nome": "Máscara de Loki",
+    "epiteto": "O Deus de Mil Rostos",
+    "categoria": "acessorio",
+    "categoria_detalhe": null,
+    "chassi_base": null,
+    "peso_base_kg": 0.4,
+    "peso_texto": null,
+    "alcance": "Observação direta --- a criatura precisa já ter sido vista pelo usuário, sem limite de distância definido no momento da observação",
+    "recurso_custo": "sanidade",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é apenas uma máscara de madeira entalhada, com veios que lembram raízes --- trabalho de artesão qualquer, nada que denuncie o deus por trás dela. Por não possuir chassi físico, também não recebe os bônus do Minério Indestrutível de Karnath: seu poder vem do sangue do deus que deu origem aos Lokianos, não de nenhum metal.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Rosto Emprestado",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "ao observar atentamente uma criatura por alguns instantes, pague 1 ponto de sanidade para assumir sua aparência --- voz, altura, feições --- pelo resto da cena. É pura ilusão superficial, do tipo que qualquer charlatão de feira conseguiria replicar: não altera suas capacidades físicas nem concede qualquer poder do alvo. O usuário mantém apenas uma forma emprestada por vez."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a ilusão deixa de ter prazo --- permanece ativa até que o usuário decida encerrá-la."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a transformação deixa de ser ilusão e passa a ser real: o corpo do usuário assume de fato o porte, o Grau e os atributos físicos brutos do alvo, ainda sem replicar nenhuma de suas habilidades."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o usuário mantém a forma emprestada mesmo sob dano ou situações de estresse extremo, e passa a conseguir replicar criaturas vistas rapidamente, sem precisar de observação prolongada."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "enquanto estiver usando essa forma, o usuário ganha acesso às habilidades e poderes do alvo --- em troca, perde acesso aos seus próprios enquanto durar a transformação. Usar um poder copiado custa, em Sanidade, o mesmo valor que ele custaria em Arché ao dono original (conversão de 1 para 1); poderes que não custam Arché ao dono original custam 2 pontos de Sanidade por uso."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Sentir sem Ser",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "ao estudar o comportamento de uma criatura por uma cena inteira, o usuário ganha vantagem em testes sociais (Diplomacia, Enganação ou Intimidação) contra ela pelo resto daquela cena --- não é um bônus de uso único, dura enquanto a cena durar."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "essa vantagem deixa de expirar ao fim da cena --- passa a valer permanentemente contra aquela criatura específica, sempre que o usuário interagir com ela."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o usuário desenvolve um sentido empático real: num raio de 9 metros de qualquer criatura que já tenha estudado, sente sua intenção momentânea --- medo, hostilidade, engano dirigido a ele --- sem precisar de teste. Esse sentido funciona para apenas 1 criatura estudada por vez."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o alcance desse sentido aumenta para 18 metros, e o usuário passa a manter até 3 criaturas \"compreendidas\" simultaneamente, em vez de apenas 1."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a compreensão do usuário se torna tão profunda que ele antecipa os movimentos de qualquer criatura já estudada: recebe vantagem no primeiro teste de ataque ou defesa contra ela em cada cena --- sem nunca precisar se tornar ela."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Precisar desesperadamente se passar por outra pessoa pela primeira vez enquanto veste a Máscara, mesmo sem conseguir se transformar de verdade."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Estudar e compreender três criaturas de naturezas bem diferentes entre si."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Manter uma identidade emprestada por uma sessão inteira sem ser descoberto."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Usar um poder copiado para decidir o rumo de um combate importante."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Assumir a forma de uma criatura de poder muito superior ao seu e sobreviver usando o poder dela."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Vontade de Loki",
+      "texto": "Loki não tolera rotina. Se o usuário repetir a mesma identidade ou o mesmo poder copiado de forma idêntica por turnos seguidos, a Máscara cobra 1d4 de sanidade extra --- o mesmo capricho que rege o Selo de Loki nos próprios Lokianos."
+    }
+  },
+  "raios-de-helio": {
+    "id": "raios-de-helio",
+    "nome": "Raios de Hélio",
+    "epiteto": "A Ira do Sol Acorrentado",
+    "categoria": "arma",
+    "categoria_detalhe": "chassi duplo --- Espada Longa e Chicote",
+    "chassi_base": "espada-longa",
+    "peso_base_kg": 2.0,
+    "peso_texto": "2,0 kg (a mesma massa nas duas formas --- a mudança é geométrica, não física)",
+    "alcance": "1,5 m em Modo Espada (corpo a corpo) / 3,0 m em Modo Chicote, chegando a 4,5 m com a Passiva Alcance Ampliado",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": true,
+    "descricao_forja_zero": "Em Forja 0, é apenas uma espada longa de lâmina reta e cabo trançado em couro vermelho --- bom acabamento, nenhuma marca visível de que é mais do que aço. Ela nem sabe, ainda, que tem uma segunda forma. Por possuir chassi físico, ambas as formas que um dia assumirá herdam o piso do Minério Indestrutível de Karnath: +12 de dano físico embutido, sem escolha de minério pelo usuário.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "modo-espada",
+        "nome": "Fúria do Zênite",
+        "subtitulo": "Dano bruto e imediato.",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Facho do Meio-Dia",
+            "primeiro_despertar": true,
+            "texto": "uma vez por cena, ao acertar um ataque corpo a corpo em Modo Espada, pague 1 ponto de arché para somar 1d4 de dano de Fogo ao golpe. Ainda parece truque de ferreiro, não milagre."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": "Investida Radiante",
+            "primeiro_despertar": false,
+            "texto": "novo estilo de golpe: pague 2 pontos de arché para avançar até 3 metros em linha reta antes de atacar; se o ataque acertar, role o dado de dano da arma duas vezes e use o maior resultado."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Zênite",
+            "primeiro_despertar": false,
+            "texto": "pague 4 pontos de arché para desferir um corte que ignora a Redução de Dano física do alvo; se o golpe for crítico, causa dano adicional igual ao Grau de Ascensão do usuário."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": "Fio Incandescente",
+            "primeiro_despertar": false,
+            "texto": "enquanto em Modo Espada, a margem de crítico da arma se expande para 19-20."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "Fúria Constante",
+            "primeiro_despertar": false,
+            "texto": "cada acerto consecutivo contra o mesmo alvo em Modo Espada concede +1 de bônus de dano, acumulando até +3."
+          }
+        ]
+      },
+      {
+        "id": "modo-chicote",
+        "nome": "Correntes do Poente",
+        "subtitulo": "Alcance e controle.",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Desatar",
+            "primeiro_despertar": true,
+            "texto": "como ação padrão, pague 1 ponto de arché para desfazer a lâmina em um chicote de luz solar trançada, passando a usar as estatísticas de Chicote (1d4 de dano de Corte, alcance de 3,0m) no lugar das de espada. Retornar à forma de espada custa outra ação padrão. No início, a transformação é lenta e nada discreta --- todos ao redor percebem a mudança."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": "Laço Solar",
+            "primeiro_despertar": false,
+            "texto": "novo estilo de golpe: ao acertar um alvo em Modo Chicote, pague 1 ponto de arché para tentar imobilizá-lo, rolando Luta contra a Fortitude do alvo --- a mesma resolução usada pela Dança da Corrente do Kusarigama. Em caso de sucesso, aplique a condição Imobilizado até o fim do turno seguinte dele."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Arco do Poente",
+            "primeiro_despertar": false,
+            "texto": "pague 3 pontos de arché para golpear em um arco largo, atingindo todos os inimigos ao seu alcance simultaneamente."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": "Alcance Ampliado",
+            "primeiro_despertar": false,
+            "texto": "enquanto em Modo Chicote, o alcance de ataque aumenta em mais 1,5m, totalizando 4,5m."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "Persistência da Luz",
+            "primeiro_despertar": false,
+            "texto": "ataques realizados em Modo Chicote não provocam ataques de oportunidade ao se afastar de um inimigo adjacente."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Vencer um combate decisivo empunhando apenas a espada comum, sentindo pela primeira vez um calor latente na lâmina."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Acertar três inimigos diferentes com um único golpe em Modo Chicote."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Derrotar um inimigo com um acerto crítico em Modo Espada."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Sobreviver a um duelo contra um oponente mais forte, alternando ativamente entre as duas formas."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Derrotar sozinho um oponente de categoria Chefe usando as duas formas da arma."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Capricho de Hélio",
+      "texto": "O sol não fica parado no céu. Se o usuário permanecer numa única forma por cenas inteiras sem alternar, perde o bônus de uma de suas Passivas daquela forma --- à escolha do Mestre --- até voltar a usar a outra."
+    }
+  },
+  "aneis-de-hecate": {
+    "id": "aneis-de-hecate",
+    "nome": "Anéis de Hécate",
+    "epiteto": "A Flecha da Encruzilhada",
+    "categoria": "acessorio",
+    "categoria_detalhe": "conjunto de 3 anéis",
+    "chassi_base": null,
+    "peso_base_kg": null,
+    "peso_texto": "Desprezível --- três anéis leves, sem peso relevante",
+    "alcance": "18 metros",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, são apenas três anéis de ouro simples, sem pedra ou gravação --- alianças de família, nada mais. Nenhum arco existe ainda. Por não possuírem chassi físico algum --- nem mesmo um arco de verdade, já que a arma é conjurada, não forjada ---, os Anéis nunca recebem os bônus do Minério Indestrutível de Karnath.",
+    "propriedade_inata": {
+      "nome": "Natureza do Arco",
+      "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
+      "texto": "a Flecha de Arché Puro sempre acerta o alvo dentro do alcance de 18 metros, sem rolagem de ataque, e causa dano de um tipo que não existe na tabela elemental do Catálogo de Itens --- não sofre bônus nem penalidade de nenhuma vantagem, fraqueza ou resistência. Em compensação, nasce com dano base de 1d4, que só cresce pela Vertente Ativa. Esta propriedade não escala com a Forja: ela simplesmente é, do primeiro ponto investido em diante."
+    },
+    "vertentes": [
+      {
+        "id": "passiva",
+        "nome": "Desígnio",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de arché para que a flecha conceda a um alvo --- aliado ou inimigo --- um bônus ou penalidade de ±2 num teste à escolha do usuário, até o fim da cena."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o efeito deixa de valer pra um único teste: passa a se aplicar a todos os testes daquele tipo feitos pelo alvo até o fim do próximo turno dele."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a flecha passa a poder aplicar um Efeito catalogado de verdade, sempre escolhendo livremente entre um Efeito Negativo, em um inimigo, ou um Efeito Positivo, em um aliado: pague 1 ponto de arché para um efeito leve (Provocar, ou Vantagem na próxima rolagem do alvo) ou 2 pontos de arché para um efeito médio (Atordoamento ou Sangramento como Efeito Negativo; Escudo como Efeito Positivo)."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a lista de Efeitos disponíveis se expande: somam-se Medo, Cego ou Fadiga como novos Efeitos Negativos, e Regeneração ou Fortificação como novos Efeitos Positivos --- todos catalogados nas regras de Combate do jogo. O custo de arché de qualquer efeito da lista cai em 1 ponto, com mínimo de 1."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a flecha pode aplicar qualquer Efeito Positivo ou Negativo catalogado nas regras de Combate --- bênção em um aliado ou maldição em um inimigo ---, com o custo de arché a critério do Mestre. Efeitos que normalmente exigem um teste de resistência do alvo continuam exigindo esse teste: a Flecha nunca erra o alvo, mas o efeito ainda pode ser resistido."
+          }
+        ]
+      },
+      {
+        "id": "ativa",
+        "nome": "Chuva",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de arché para disparar uma segunda flecha simultânea contra o mesmo alvo."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o dado de dano de cada flecha sobe para 1d6."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "as flechas passam a poder se dispersar entre até 3 alvos diferentes, desde que estejam a até 9 metros uns dos outros."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o número de flechas simultâneas sobe para 4, e a distância máxima entre os alvos dispersos sobe para 18 metros --- todo o alcance do arco."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "Chuva de Hécate: pague 6 pontos de arché para disparar uma flecha contra cada inimigo (ou aliado) visível dentro do alcance, de uma só vez. Apenas um dos alvos atingidos pode receber um efeito da Vertente Passiva nesse disparo; os demais sofrem só o dano-base das flechas."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Enfrentar, pela primeira vez usando os Anéis, uma escolha real de encruzilhada --- sem poder voltar atrás depois de escolhida."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Enfrentar uma escolha difícil numa encruzilhada real da campanha --- ajudar um lado ou outro, abençoar ou amaldiçoar --- portando os Anéis."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Abater um alvo à distância sem que ele jamais tivesse chance de ver o usuário ou reagir."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Aplicar um efeito positivo e um efeito negativo em cenas diferentes da mesma sessão, honrando as duas faces de Hécate."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Decidir o destino de alguém --- vida ou morte, vitória ou derrota --- com um único disparo, num momento crucial da história."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Encruzilhada (Vontade de Hécate)",
+      "texto": "A cada cena, os Anéis só seguem um caminho. Se a Vertente Passiva já feriu um inimigo naquela cena, não pode beneficiar um aliado até a cena seguinte --- e vice-versa."
+    }
+  },
+  "espada-gemea": {
+    "id": "espada-gemea",
+    "nome": "Espada Gêmea",
+    "epiteto": "O Duelo dos Astros",
+    "categoria": "arma",
+    "categoria_detalhe": "chassi --- Espada Longa",
+    "chassi_base": "espada-longa",
+    "peso_base_kg": 2.0,
+    "peso_texto": null,
+    "alcance": "1,5 m (corpo a corpo)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": true,
+    "descricao_forja_zero": "Em Forja 0, é uma espada reta comum, de aço sem marcas --- nenhuma cor, nenhuma dualidade visível ainda. À medida que cada vertente ganha pontos, a lâmina passa a manifestar fisicamente aquele lado: metade escura e estrelada conforme Artemis desperta, metade clara e flamejante conforme Apollo desperta. Por possuir chassi físico, herda o piso do Minério Indestrutível de Karnath: +12 de dano físico embutido.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "apollo",
+        "nome": "Luz do Meio-Dia",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Raio da Alvorada",
+            "primeiro_despertar": true,
+            "texto": "uma vez por cena, sem custo de ação além do próprio ataque, pague 1 ponto de arché para somar 1d4 de dano de Fogo ao próximo ataque corpo a corpo.",
+            "irmandade_astral": "a margem de crítico da espada se expande em +1, permanentemente."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": "Mira Solar",
+            "primeiro_despertar": false,
+            "texto": "como Ação Padrão, pague 2 pontos de arché para atacar à distância de até 9 metros, arremessando um facho de luz solidificada que causa o mesmo dado de dano da espada.",
+            "irmandade_astral": "+2 em testes de Percepção baseados em visão."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Chama Profética",
+            "primeiro_despertar": false,
+            "texto": "como Ação Padrão, substituindo um ataque, pague 2 pontos de arché; se o golpe acertar, aplica a condição Queimadura.",
+            "irmandade_astral": "uma vez por cena, ao acertar uma criatura já sob Queimadura, cure 1d6 de Vida."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": "Zênite Radiante",
+            "primeiro_despertar": false,
+            "texto": "como Ação Padrão, substituindo um ataque, pague 3 pontos de arché para que o golpe ignore a Resistência Elemental do alvo.",
+            "irmandade_astral": "o dado de dano de Raio da Alvorada sobe de 1d4 para 1d6."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Flecha do Meio-Dia",
+            "primeiro_despertar": false,
+            "texto": "como Ação Padrão, pague 5 pontos de arché para um ataque à distância de até 18 metros que ignora a Redução de Dano física do alvo e causa o dobro de dano se ele estiver sob Queimadura.",
+            "irmandade_astral": "recebe o Efeito Positivo Precisão automaticamente no início de cada combate."
+          }
+        ]
+      },
+      {
+        "id": "artemis",
+        "nome": "Sombra da Lua Cheia",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Passo da Lua Nova",
+            "primeiro_despertar": true,
+            "texto": "como Ação de Movimento, pague 1 ponto de arché para se deslocar até 3 metros sem provocar ataques de oportunidade, antes ou depois de atacar.",
+            "irmandade_astral": "+1,5 metro de Deslocamento, permanentemente."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": "Emboscada Silenciosa",
+            "primeiro_despertar": false,
+            "texto": "como Ação Padrão, pague 2 pontos de arché; se o alvo ainda não agiu no combate ou está desprevenido, o ataque recebe Vantagem automaticamente.",
+            "irmandade_astral": "+2 em testes de Furtividade."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Marca da Presa",
+            "primeiro_despertar": false,
+            "texto": "como Ação Padrão, pague 2 pontos de arché para marcar um alvo por 3 turnos; todo aliado que acertar o alvo marcado causa +1d4 de dano adicional.",
+            "irmandade_astral": "enquanto o alvo estiver marcado, os ataques do usuário contra ele têm Vantagem."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": "Fuga da Caçadora",
+            "primeiro_despertar": false,
+            "texto": "como Ação de Reação, pague 3 pontos de arché para se afastar até 4,5 metros de um inimigo que acabou de atacá-lo, sem provocar ataque de oportunidade.",
+            "irmandade_astral": "+2 em testes de Reflexos."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Caçada da Lua Cheia",
+            "primeiro_despertar": false,
+            "texto": "como Ação Completa, pague 5 pontos de arché para realizar 3 ataques consecutivos contra um único alvo marcado, rolando o ataque e o dano de cada golpe separadamente.",
+            "irmandade_astral": "recebe o Efeito Positivo Aceleração automaticamente ao marcar um novo alvo com Marca da Presa."
+          }
+        ]
+      }
+    ],
+    "irmandade": {
+      "nome": "Irmandade Astral",
+      "texto": "Apollo e Artemis são gêmeos --- nenhum floresce sozinho. Todas as dez habilidades desta relíquia são puramente ativas; não existe uma Vertente Passiva separada. Porém, sempre que a Espada tiver ao menos 1 ponto de Forja investido em cada uma das duas vertentes simultaneamente, cada uma das dez habilidades passa a conceder também o bônus descrito em sua Irmandade Astral, de forma permanente e automática, além do seu efeito ativo normal. Um usuário que investir puramente em um só lado (5x0 ou 0x5) nunca desperta a Irmandade Astral --- os Gêmeos só abençoam quem honra os dois. Se, depois de despertá-la, o usuário passar 3 cenas seguidas sem usar nenhuma habilidade do lado negligenciado, a Irmandade Astral daquele lado se desliga até uma habilidade dele ser usada de novo."
+    },
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Lutar um combate decisivo empunhando a espada comum entre o entardecer e o anoitecer, sentindo pela primeira vez os dois chamados ao mesmo tempo."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Derrotar um inimigo combinando uma marca de Artemis com um golpe solar de Apollo (ou vice-versa) na mesma sequência de turnos."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Vencer um combate importante sem repetir a mesma técnica ativa duas vezes."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Investir ao menos 1 ponto em cada vertente e sentir a Irmandade Astral pela primeira vez."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Derrotar sozinho um oponente de categoria Chefe alternando entre técnicas das duas vertentes ao longo do combate."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Rivalidade dos Gêmeos (Vontade)",
+      "texto": "Os dois irmãos exigem equilíbrio, não indiferença --- o custo dessa exigência já está descrito na própria Irmandade Astral: negligenciar um lado por cenas seguidas desliga o bônus daquele lado até ele voltar a ser usado."
+    }
+  },
+  "mandibula-de-sugea": {
+    "id": "mandibula-de-sugea",
+    "nome": "Mandíbula de Sugea",
+    "epiteto": "A Relíquia da Serpente",
+    "categoria": "acessorio",
+    "categoria_detalhe": "braçadeira de um braço",
+    "chassi_base": null,
+    "peso_base_kg": 0.3,
+    "peso_texto": null,
+    "alcance": "1,5 m (corpo a corpo)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é uma braçadeira de couro simples amarrada ao antebraço --- nenhuma escama, nenhum olho verde entalhado, nenhuma garra saindo dos dedos ainda. Foi uma das primeiras relíquias forjadas por Genshō-Dai, feita com a pele e as mandíbulas de Sugea, um basilisco cujo veneno matava dez vezes mais rápido que o de qualquer outro de sua espécie --- corpo maior, mais resistente, mais veloz: o predador perfeito de sua raça, subjugado por meios que nenhum registro documentou. Séculos depois, foi a relíquia empunhada por Eldgrove na Guerra do Metal.",
+    "propriedade_inata": {
+      "nome": "A Presa de Sugea",
+      "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
+      "texto": "a braçadeira manifesta uma garra viva na mão do usuário, concedendo um ataque corpo a corpo natural de 1d4 de dano (Corte ou Perfuração, à escolha a cada ataque), com alcance de 1,5 metro. Por não possuir chassi de arma tradicional, esse ataque nunca recebe os bônus do Minério Indestrutível de Karnath."
+    },
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Presas de Sugea",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "uma vez por cena, pague 1 ponto de arché para que seu próximo ataque com a garra, se acertar, aplique a condição Envenenamento."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o teste de Constituição para resistir ao Envenenamento aplicado por esta garra passa a ter CD 22, em vez do padrão --- o veneno de Sugea nunca foi fácil de suportar."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o dano por turno do Envenenamento aplicado sobe de 1d12+2 para 1d12+2+Grau de Ascensão do usuário."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "ao aplicar Envenenamento num alvo já Envenenado por esta garra, os efeitos não apenas renovam a duração --- se somam: o alvo sofre o dano de todas as aplicações simultaneamente, até um máximo de 3 aplicações acumuladas."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Legado do Basilisco",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "+1,5 metro de Deslocamento, permanentemente, e vantagem em testes de Furtividade --- o predador se move como se não estivesse ali."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "+2 em testes de Constituição."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o usuário recebe Resistência a Envenenamento (sofre metade do dano de qualquer efeito de Envenenamento que sofrer, de qualquer fonte)."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o bônus de Deslocamento sobe para +3 metros."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o usuário se torna Imune ao efeito Envenenamento, de qualquer fonte --- o predador perfeito nunca é presa do próprio veneno."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Sobreviver ao ataque de uma criatura venenosa ou reptiliana perigosa enquanto veste a braçadeira, ainda sem poder envenenar ninguém."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Sobreviver a um combate contra uma criatura venenosa ou reptiliana usando a arma."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Derrotar um inimigo apenas pelo dano contínuo do Envenenamento, sem golpes adicionais depois de aplicá-lo."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Envenenar três inimigos diferentes na mesma cena."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Derrotar sozinho um oponente de categoria Chefe usando o Envenenamento como arma principal de vitória."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Orgulho do Predador (Vontade)",
+      "texto": "A Mandíbula despreza covardia. Se o usuário recuar de um combate depois de já ter envenenado um alvo naquela cena, sofre -2 no próximo teste de ataque até vencer outro combate."
+    }
+  },
+  "masolat": {
+    "id": "masolat",
+    "nome": "Masolat",
+    "epiteto": "O Olho que Copia",
+    "categoria": "acessorio",
+    "categoria_detalhe": "um olho --- implante ou joia ocular",
+    "chassi_base": null,
+    "peso_base_kg": null,
+    "peso_texto": "Desprezível",
+    "alcance": "Corpo a corpo (Eco de Masalot) / 9 metros a partir da Forja V",
+    "recurso_custo": "sanidade",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é só um olho de vidro comum, sem brilho, guardado numa caixa --- nenhum sinal de ter pertencido ao maior guerreiro do antigo império. Diferente de qualquer outra relíquia deste catálogo, Masolat nunca começa realmente adormecido: o Olho já testemunhou a queda do próprio Masalat na última linha de defesa do castelo, e por isso concede 1 Ponto de Forja imediatamente ao ser equipado pela primeira vez, para investir em Ativa ou Passiva à escolha do usuário.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "O Olho que Aprende",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Eco de Masalot",
+            "primeiro_despertar": true,
+            "texto": "quando sofrer um golpe de uma habilidade inimiga em combate corpo a corpo, pague 1 ponto de sanidade e role um teste de Percepção (CD 16). Em caso de sucesso, como Ação de Reação imediata, execute uma cópia daquela mesma habilidade contra o atacante, recalculada com os atributos do usuário --- mas o eco se perde no fim da cena, nada fica retido."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode tentar isso 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Primeiro Selo",
+            "primeiro_despertar": false,
+            "texto": "em vez de usar o eco imediatamente, o usuário pode escolher retê-lo: a técnica fica selada permanentemente em 1 slot, disponível para usar quando quiser, gastando a ação equivalente à da habilidade original."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o número de slots selados sobe de 1 para 2."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Olho Onisciente",
+            "primeiro_despertar": false,
+            "texto": "os slots sobem para 3, e o usuário deixa de precisar sofrer o golpe para copiá-lo --- basta testemunhar uma habilidade sendo usada a até 9 metros de distância (mesmo teste de Percepção, CD 16) para retê-la num slot livre."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Reflexo Monstruoso",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "+2 em testes de Reflexos."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o usuário passa a ter Vantagem em testes de Reflexos."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "ganha 1 Ação de Reação adicional por turno em combate, utilizável apenas para se esquivar ou se defender."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "+Grau de Ascensão na Iniciativa, e a Vantagem de Reflexos concedida na Passiva II passa a valer também para testes de Iniciativa."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "uma vez por cena, o usuário pode transformar um ataque que sofreria em um erro crítico automático do atacante --- o corpo reage antes da mente processar o perigo."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Já concluído ao equipar",
+        "texto": "O Olho já testemunhou a queda de Masalot na última linha de defesa do castelo --- concede 1 Ponto de Forja imediatamente, sem precisar ser jogado em mesa."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Sobreviver a um duelo inteiro reagindo só com técnicas copiadas na hora."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Selar sua primeira técnica permanentemente num slot."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Usar 3 técnicas diferentes armazenadas no mesmo combate."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Copiar a técnica de um oponente de categoria Chefe e derrotá-lo com ela."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": true,
+    "vontade": {
+      "nome": "Instinto do Último Guardião (Vontade)",
+      "texto": "O Olho foi forjado no auge de uma última resistência --- não tolera covardia passiva. Uma técnica selada e nunca usada por 5 cenas seguidas se apaga do repertório, liberando o slot."
+    }
+  },
+  "heimskringla": {
+    "id": "heimskringla",
+    "nome": "Heimskringla",
+    "epiteto": "O Anel da Multiplicação",
+    "categoria": "acessorio",
+    "categoria_detalhe": "anel",
+    "chassi_base": null,
+    "peso_base_kg": null,
+    "peso_texto": "Desprezível",
+    "alcance": "Adjacente a 9 metros (cópias ilusórias, conforme a Forja) / Toque (duplicação real, Ativa V)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": "só na Vertente Ativa --- a Passiva só consome a Reação",
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é um anel de prata simples, sem entalhes --- indistinguível de qualquer joia comum, exceto pelo peso da lenda que carrega: reza-se que o antigo lorde o amaldiçoou após ser traído pelo próprio bobo da corte, condenando todo futuro portador a morrer dentro de 3 noites após vesti-lo. É a mesma relíquia cujo eco os Lokianos ainda carregam no sangue --- a habilidade racial que leva seu nome é uma versão bem mais fraca do que o anel de verdade é capaz de fazer.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Mão que Multiplica",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "como Ação de Movimento, pague 2 pontos de arché para criar 1 cópia ilusória sua num espaço adjacente, com 1 ponto de vida, que age mas nunca causa dano real. Dura até o fim do seu próximo turno ou até ser destruída --- menos, por enquanto, do que o próprio sangue Lokiano é capaz de fazer sozinho."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "sobe para até 2 cópias por ativação, e a duração aumenta para 3 turnos."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "sobe para até 3 cópias --- paridade com a herança racial --- e, quando um inimigo escolher você como alvo, role 1d4: em 1, o ataque acerta você; em qualquer outro resultado, acerta e destrói uma cópia."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "as cópias passam a poder ser criadas a até 9 metros de distância, não só adjacentes, e você pode ativar isso 2 vezes por cena."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Multiplicação Verdadeira",
+            "primeiro_despertar": false,
+            "texto": "pague 5 pontos de arché para tocar uma criatura ou objeto e criar uma cópia real, física, capaz de causar dano de verdade. Role 1d6 para determinar sua força: 1-2 = metade dos atributos do original; 3-5 = atributos idênticos; 6 = atributos originais +1 em tudo. Em qualquer resultado, a cópia se desfaz em pó ao fim da cena."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Reflexo do Bobo",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "+2 em testes de Enganação."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "sempre que um inimigo errar um ataque contra o usuário, pode gastar sua Reação para criar uma cópia ilusória num espaço adjacente --- a mesma Miragem que corre no sangue Lokiano, só que sem precisar de sangue demoníaco algum."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a Miragem passa a funcionar mesmo quando o ataque acerta: role Enganação do usuário contra a Percepção do atacante; se vencer, o dano recai sobre a cópia, que se desfaz, em vez do usuário."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o efeito deixa de consumir a Reação do usuário --- pode ser usado mesmo já tendo reagido naquele turno."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "sempre que o usuário estivesse prestes a sofrer dano que reduziria sua vida a 0, uma cópia ilusória automaticamente absorve o golpe em seu lugar, sem custo e sem teste --- uma vez por sessão."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Sobreviver às primeiras 3 noites após vestir o anel pela primeira vez, sem qualquer poder da relíquia --- só a vontade de viver."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Enganar um inimigo ou aliado com sucesso usando uma ilusão criada pelo anel."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Criar sua primeira cópia real (não ilusória) de uma criatura ou objeto."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Usar uma cópia, real ou ilusória, para virar o rumo de um combate importante."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Enganar e derrotar decisivamente um oponente de categoria Chefe através de duplicação ou ilusão."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "A Maldição do Bobo (Vontade)",
+      "texto": "A maldição nunca desaparece de verdade --- só adormece enquanto o anel for usado. Se o usuário passar 3 cenas inteiras sem criar nenhuma cópia ou ilusão, ela desperta de novo: sofre 2d6 de dano no início da cena seguinte, e o contador reinicia."
+    }
+  },
+  "thornpiercer": {
+    "id": "thornpiercer",
+    "nome": "Thornpiercer",
+    "epiteto": "O Chicote de Grama",
+    "categoria": "arma",
+    "categoria_detalhe": "chassi --- Chicote",
+    "chassi_base": "chicote",
+    "peso_base_kg": 1.0,
+    "peso_texto": null,
+    "alcance": "3,0 m (4,5 m a partir da Ativa IV)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": true,
+    "descricao_forja_zero": "Em Forja 0, é um chicote trançado de vime comum, sem espinhos, sem flor --- nenhum sinal do mito que carrega. Diz a lenda questionável que foi essa arma que enforcou o antigo lorde e exibiu seu corpo na sacada do castelo; hoje, muitos acreditam que a verdadeira arma daquele dia foi Neudenn, a Relíquia dos Fios Demoníacos, e que Thornpiercer não passa de mito sem provas. Os poucos registros que sustentam sua existência dizem que ela se molda e se fortalece a partir da vontade de seu usuário --- o que explicaria, segundo eles, tamanho poder num momento de pura revolta.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Fúria do Espinho",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de arché para que o próximo golpe com o chicote cause 1d4 de dano adicional e aplique Sangramento, se acertar."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Amarras Vivas",
+            "primeiro_despertar": false,
+            "texto": "ao acertar, pague 2 pontos de arché para tentar imobilizar o alvo com os espinhos vivos, rolando Luta contra Reflexos dele. Sucesso aplica Imobilizado por 1 turno."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o alcance do chicote aumenta para 4,5 metros."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Floração da Fúria",
+            "primeiro_despertar": false,
+            "texto": "pague 5 pontos de arché para um golpe que causa o dobro do dado de dano normal e aplica Hemorragia."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Vontade Inflexível",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "enquanto estiver com metade da vida máxima ou menos, +2 no dado de dano do chicote."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o bônus sobe para +3, e passa a valer também sempre que estiver enfrentando 2 ou mais inimigos adjacentes ao mesmo tempo."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "sempre que enfrentar um oponente de categoria Chefe ou de poder claramente superior, recebe Vantagem em testes de Luta com o chicote."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o bônus de dano de baixa vida (I/II) sobe para +4."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "A Vontade Nunca se Curva",
+            "primeiro_despertar": false,
+            "texto": "uma vez por sessão, ao chegar a 1 ponto de vida antes de cair inconsciente ou morrer, pode agir imediatamente com o dobro de todo dano causado até o fim daquele combate."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Continuar lutando gravemente ferido pela primeira vez, empunhando apenas o chicote comum, sem nenhum poder da relíquia ainda --- só a vontade de resistir."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Vencer um combate contra um oponente claramente mais forte, usando o chicote."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Desafiar abertamente uma figura de autoridade estabelecida e sair vitorioso."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Sobreviver sozinho a um combate contra múltiplos inimigos ao mesmo tempo, usando o chicote."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Derrotar um oponente de categoria Chefe estando à beira da morte no momento decisivo."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "Não Dobra aos Covardes (Vontade)",
+      "texto": "O Chicote não obedece quem recua. Se o usuário se render ou fugir de um combate que poderia vencer através de pura vontade, perde acesso à Vertente Passiva até provar sua determinação de novo, vencendo outro combate difícil."
+    }
+  },
+  "bastao-de-wukong": {
+    "id": "bastao-de-wukong",
+    "nome": "Bastão de Wukong",
+    "epiteto": "A Relíquia do Deus Macaco",
+    "categoria": "arma",
+    "categoria_detalhe": "chassi --- Kanabō",
+    "chassi_base": "kanabo",
+    "peso_base_kg": 5.0,
+    "peso_texto": null,
+    "alcance": "1,5 m corpo a corpo (3,0 m quando alongado pela Ativa I)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": true,
+    "descricao_forja_zero": "Em Forja 0, é um bastão de madeira maciça comum, sem entalhes dourados, sem peso incomum --- nenhum sinal de conter a alma de um deus. Uma das últimas relíquias forjadas, inspirada no ser mitológico Sun Wukong, também chamada de O Bastão do Sol, sempre foi voltada inteiramente ao combate corpo a corpo. Lendas contam que seu primeiro usuário teria adquirido a própria forma de Wukong, embora nenhum registro confirme isso. Diz-se que a alma do deus macaco do sol ainda dorme dentro do bastão, esperando por alguém capaz de libertá-la e se tornar um só com a deidade.",
+    "propriedade_inata": {
+      "nome": "Vigor de Wukong",
+      "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
+      "texto": "sempre que o usuário sofrer 10 ou mais pontos de dano físico de uma vez, acumula 1 ponto de Vigor Armazenado (máximo de 5). Cada ponto de Vigor concede +1 de Redução de Dano física, permanente enquanto durar."
+    },
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Artes do Rei Macaco",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Bastão Crescente",
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de arché para que o bastão se alongue temporariamente, aumentando seu alcance para 3,0 metros até o fim do turno."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Nuvem de Voo",
+            "primeiro_despertar": false,
+            "texto": "pague 2 pontos de arché para se deslocar instantaneamente até 9 metros em qualquer direção, inclusive verticalmente, sem provocar ataques de oportunidade."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a Nuvem de Voo pode carregar 1 aliado adjacente junto, na mesma viagem."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Fúria do Rei Macaco",
+            "primeiro_despertar": false,
+            "texto": "pague todo o Vigor Armazenado no momento (mínimo de 3 pontos) para converter cada ponto gasto em +2 de dano no próximo ataque corpo a corpo --- a resistência acumulada vira fúria pura."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Transcendência do Macaco de Pedra",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "pelos finos começam a cobrir seus braços: +2 em testes de Atletismo relacionados a escalada ou saltos."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "cada ponto de Vigor Armazenado passa a conceder +2 de Redução de Dano física, em vez de +1."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "desenvolve uma cauda prênsil funcional, capaz de segurar objetos leves e conceder vantagem em testes de Equilíbrio ou Acrobacia; pode usá-la para um ataque adicional fraco (1d4 de dano de Impacto) como Ação Bônus, uma vez por turno."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "os olhos tornam-se dourados: vantagem em testes de Percepção, e o teto do Vigor Armazenado sobe de 5 para 8 pontos."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "Um com o Deus Macaco",
+            "primeiro_despertar": false,
+            "texto": "uma vez por sessão, por 3 turnos, o usuário se funde com a alma de Wukong: recebe Resistência Física total, Vantagem em todos os testes de Luta, e o Vigor Armazenado deixa de ter limite máximo durante esse período. Ao fim dos 3 turnos, todo o Vigor acumulado se esvai."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Sobreviver a um combate recebendo dano pesado pela primeira vez, empunhando apenas o bastão comum, sem nenhum poder da relíquia ainda --- só resistência bruta."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Vencer um combate corpo a corpo sozinho, sem ajuda de magia ou aliados, usando o bastão."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Sentir pela primeira vez os traços físicos do Rei Macaco emergirem (cauda, pelos, olhos dourados)."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Escalar ou saltar por um obstáculo que pareceria impossível para um mortal comum, usando as capacidades do bastão."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Derrotar um oponente de categoria Chefe fundindo-se brevemente com a alma de Wukong."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "O Rei Macaco Não se Ajoelha (Vontade)",
+      "texto": "O Bastão não aceita submissão. Se o usuário se curvar ou se render diante de uma figura de autoridade sem lutar, todo o Vigor Armazenado se esvai instantaneamente."
+    }
+  },
+  "escudo-de-geb": {
+    "id": "escudo-de-geb",
+    "nome": "Escudo de Geb",
+    "epiteto": null,
+    "categoria": "armadura_escudo",
+    "categoria_detalhe": "chassi --- Escudo de Torre",
+    "chassi_base": "escudo-de-torre",
+    "peso_base_kg": 6.0,
+    "peso_texto": null,
+    "alcance": "Corpo a corpo (golpe com o escudo) / adjacente a 9 metros (efeito de libertação, conforme a Forja)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": true,
+    "descricao_forja_zero": "Em Forja 0, é um escudo de ferro comum, redondo e sem ornamentos --- nenhum dragão gravado, nenhum brilho vermelho no centro. Última das oito relíquias lendárias a ser nomeada, foi empunhada por Velmor, o anão que comandava as trevas e ainda assim se tornou o sentinela mais reconhecido da guerra --- sempre à frente de seus aliados, sempre a última linha antes do perigo. Os humanos de Karnath devotam sua fé a Geb, o Deus Guerreiro da Terra: dizem que foi ele quem desceu aos mortais empunhando uma espada de rocha pura para quebrar as correntes da humanidade e libertá-la da opressão faminta dos dragões, ensinando-os a moldar a própria terra em monumentos impenetráveis e armas capazes de perfurar as escamas dracônicas mais espessas. Por possuir chassi físico, herda o piso do Minério Indestrutível de Karnath: -12 de Redução de Dano física embutida, além da propriedade Vácuo Abissal (Resistência a dano de Alma ou de Trevas).",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Punho de Geb",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de arché para usar o próprio escudo como arma nesse turno, causando 1d6 de dano de Impacto."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Correntes Quebradas",
+            "primeiro_despertar": false,
+            "texto": "pague 2 pontos de arché para libertar instantaneamente a si mesmo ou um aliado adjacente de uma condição de controle (Atordoamento, Imobilizado, Medo ou Provocar)."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o alcance de Correntes Quebradas aumenta para qualquer aliado a até 9 metros, não só adjacente."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Muralha de Geb",
+            "primeiro_despertar": false,
+            "texto": "pague 5 pontos de arché para erguer instantaneamente uma barreira de pedra sólida, bloqueando uma passagem ou concedendo Cobertura Total a todos os aliados atrás dela por 3 turnos --- o monumento impenetrável, feito realidade por um instante."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Sentinela de Geb",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "+2 de Defesa sempre que estiver posicionado entre um aliado e o inimigo mais próximo dele."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o bônus de Defesa da vanguarda (I) sobe para +3."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "recebe Resistência a dano causado por criaturas Dracônicas ou répteis gigantes (sofre metade do dano de ataques vindos delas)."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o bônus de Defesa da vanguarda (I/II) sobe para +4."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "O Sentinela Nunca Cai",
+            "primeiro_despertar": false,
+            "texto": "uma vez por sessão, se a vida do usuário chegasse a 0 enquanto ele estiver posicionado entre um aliado e o perigo, ele permanece de pé com 1 ponto de vida --- a vanguarda nunca abandona seu posto."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Proteger um aliado de um golpe fatal pela primeira vez, colocando-se entre ele e o perigo, empunhando apenas o escudo comum --- sem nenhum poder da relíquia ainda."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Libertar um aliado, ou a si mesmo, de uma condição de controle usando o escudo."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Sobreviver como a única linha de defesa de um grupo inteiro numa batalha importante."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Enfrentar e resistir ao ataque de uma criatura dracônica ou reptiliana de grande porte."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Erguer a Muralha de Geb no momento certo para salvar um grupo inteiro de aliados de uma ameaça devastadora."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "O Escudo Nunca Recua (Vontade)",
+      "texto": "O Escudo de Geb foi forjado para proteger, nunca para fugir. Se o usuário abandonar um aliado ferido para salvar a si mesmo, perde acesso à Vertente Passiva até se redimir protegendo outro aliado num momento de perigo real."
+    }
+  },
+  "iragarpena": {
+    "id": "iragarpena",
+    "nome": "Iragarpena",
+    "epiteto": "O Espírito das Previsões",
+    "categoria": "acessorio",
+    "categoria_detalhe": "uma pedra/gema, geralmente engastada num amuleto",
+    "chassi_base": null,
+    "peso_base_kg": null,
+    "peso_texto": "Desprezível",
+    "alcance": "Consciência do usuário (Vertente Passiva) / qualquer teste visível (Vertente Ativa)",
+    "recurso_custo": "sanidade",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é só uma pedra escura e sem brilho, presa a um cordão simples --- nenhum sinal do olho que dorme dentro dela. Diferente de todas as outras relíquias deste catálogo, Iragarpena não foi feita por Genshō-Dai nem forjada no Minério Indestrutível de Karnath: foi a primeira relíquia já criada, moldada pelo próprio antigo lorde com o sangue e a carne do profeta Iragarpena, seu conselheiro mais fiel, cuja morte fora profetizada três anos antes e que o rei não suportou perder. Mas a alma trazida de volta não aceitou ter seu descanso interrompido --- e foi dela que veio a profecia que selaria o destino do próprio lorde: \"Da mesma forma que você acabou com meu descanso, meu retorno significa que você acabará com seu próprio reinado.\"",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Palavras do Destino",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de sanidade para perguntar ao espírito sobre o resultado provável de uma ação próxima --- ele responde de forma vaga, como qualquer adivinho de feira faria."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": "Presságio",
+            "primeiro_despertar": false,
+            "texto": "antes de um teste importante do usuário ou de um aliado visível, pague 2 pontos de sanidade para rolar duas vezes e usar o melhor resultado."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o mesmo efeito pode ser usado contra um inimigo visível --- role duas vezes o teste dele e use o pior resultado, uma profecia de fracasso."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "A Profecia se Cumpre",
+            "primeiro_despertar": false,
+            "texto": "pague 5 pontos de sanidade para declarar, antes de uma ação importante acontecer, um resultado específico (sucesso ou fracasso). O Mestre decide como o destino conspira para cumpri-lo dentro da cena."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Fardo do Profeta",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "vantagem em testes de Percepção contra emboscadas e armadilhas."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "essa vantagem passa a ser automática --- não precisa mais rolar, apenas percebe."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "uma vez por cena, o Mestre avisa em segredo ao jogador, não ao personagem, se a próxima grande decisão de combate tende a sair bem ou mal, sem revelar detalhes."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "esse aviso pode ser dado 2 vezes por cena."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "O Preço de Saber Demais",
+            "primeiro_despertar": false,
+            "texto": "o usuário nunca perde sua Ação de Reação por ser pego de surpresa --- mas cada vez que esse efeito o salva de um perigo real, sofre 1 ponto de sanidade."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Sentir pela primeira vez um arrepio de aviso prestes a se concretizar, segurando a pedra, mesmo sem conseguir agir sobre isso ainda."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Agir com base num palpite dado pelo espírito e estar certo."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Testemunhar uma profecia do espírito se cumprir de forma perturbadora, mesmo contra sua vontade."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Usar a relíquia para alterar deliberadamente o resultado de um momento crucial da campanha."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Fazer as pazes com o espírito de Iragarpena --- ou desafiá-lo definitivamente --- num confronto pessoal decisivo."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "O Profeta Não Perdoa (Vontade)",
+      "texto": "Iragarpena nunca aceitou seu retorno forçado. Se o usuário explorar a relíquia repetidamente para benefício egoísta ou tirânico, o espírito pode se recusar a agir naquela cena --- ou pior, sussurrar uma profecia real e sombria sobre o próprio futuro do usuário, a critério do Mestre."
+    }
+  },
+  "coelho-de-demeter": {
+    "id": "coelho-de-demeter",
+    "nome": "Coelho de Deméter",
+    "epiteto": "Curandeiro do Jardim",
+    "categoria": "acessorio",
+    "categoria_detalhe": "bichinho de pelúcia, invocável como companheiro",
+    "chassi_base": null,
+    "peso_base_kg": null,
+    "peso_texto": "Desprezível",
+    "alcance": "3 a 9 metros, conforme a Forja (Campo da Vida) / todo o campo de batalha (Um por Todos)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é apenas um coelho de pelúcia branco, macio e imóvel --- um brinquedo comum, sem vida, sem magia aparente. Foi criado séculos atrás para ser o companheiro e curandeiro particular da filha de um imperador, uma criança extremamente frágil e doente que dificilmente sobreviveria sem cuidados constantes. Diferente de qualquer outra relíquia deste catálogo, o Coelho não desperta em silêncio: a cada Marco de Forja alcançado, ele ganha um pouco mais de vida própria --- um piscar de olhos, um leve tremor nas orelhas --- até que, no auge, se move e age por conta própria como qualquer criatura viva.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Um por Todos",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Brotos de Cura",
+            "primeiro_despertar": true,
+            "texto": "uma vez por cena, pague 1 ponto de arché para curar um único aliado adjacente ao coelho em 1d4 + a perícia de Cura do usuário."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "a cura passa a poder atingir até 3 aliados simultâneos, não só 1."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o alcance da cura aumenta para até 9 metros do coelho, não só adjacente."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Um por Todos",
+            "primeiro_despertar": false,
+            "texto": "quando desejar, pode usar toda a energia vital do coelho para distribuir cura a todos os aliados no campo de batalha, numa quantia igual a metade da vida máxima do aliado com mais vida entre eles. Ao fazer isso, o coelho não pode ser invocado nas próximas 5 lutas."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Campo da Vida",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "ao entrar em combate, pague 1 ponto de arché por turno para criar um campo de vida num raio de 3 metros ao redor do coelho: poderes de cura usados dentro dele restauram +2 pontos de Vida extra."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o raio do campo aumenta para 6 metros, e o bônus de cura sobe para +3."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "dentro do campo, sempre que um aliado causar dano a um inimigo, ele próprio se cura em 1/6 desse dano causado."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o raio do campo aumenta para 9 metros."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "poderes de cura usados dentro do campo são amplificados em +1 dado inteiro, e o campo passa também a estabilizar aliados caídos automaticamente, impedindo que percam Vida adicional enquanto inconscientes lá dentro."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Ver o coelho se mexer sozinho pela primeira vez, ainda que só um piscar de olhos, ao lado de alguém gravemente ferido --- mesmo sem conseguir curá-lo ainda."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Curar um aliado à beira da morte pela primeira vez usando o coelho."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Proteger e curar um grupo inteiro ao longo de um combate longo e desgastante."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Usar Um por Todos pela primeira vez, sacrificando 5 lutas de invocação para salvar o grupo de uma derrota certa."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Salvar a vida de alguém tão importante quanto a filha do imperador um dia foi para o coelho."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "O Coelho Nunca Abandona (Vontade)",
+      "texto": "Se um aliado ficar isolado e ferido sem ninguém por perto, o coelho tenta se mover em direção a ele mesmo sem ordem do usuário, a critério do Mestre --- reforçando seu propósito original de nunca deixar uma criança indefesa sem cuidado."
+    }
+  },
+  "espirito-da-retribuicao": {
+    "id": "espirito-da-retribuicao",
+    "nome": "Espírito da Retribuição",
+    "epiteto": "Dragão do Oceano Primordial",
+    "categoria": "acessorio",
+    "categoria_detalhe": "um Graal --- o vínculo se forma ao beber o líquido guardado dentro dele",
+    "chassi_base": null,
+    "peso_base_kg": 0.5,
+    "peso_texto": null,
+    "alcance": "Corpo a corpo (golpes elétricos das próprias mãos do usuário)",
+    "recurso_custo": "arche",
+    "recurso_custo_nota": null,
+    "recebe_minerio_karnathite": false,
+    "descricao_forja_zero": "Em Forja 0, é apenas um cálice de metal opaco, contendo um líquido escuro e imóvel --- nenhum sinal do espírito adormecido em seu interior. A lenda diz que um espírito dracônico, nascido do oceano primordial, se prende a todo aquele que bebe o líquido guardado neste Graal. Se o usuário morrer, o dragão se dissipa no ar e retorna ao Graal, não importa onde ele esteja --- pronto para se prender a outro bebedor.",
+    "propriedade_inata": null,
+    "vertentes": [
+      {
+        "id": "ativa",
+        "nome": "Mão do Diabo",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "ativa",
+            "titulo": "Choque do Diabo",
+            "primeiro_despertar": true,
+            "texto": "pague 1 ponto de arché para que seu próximo golpe corpo a corpo cause 1d4 de dano Elétrico adicional. Ao usar, sofre 1/8 da sua vida atual como dano de ricochete."
+          },
+          {
+            "numero": 2,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o dano elétrico adicional sobe para 2d4."
+          },
+          {
+            "numero": 3,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o golpe elétrico passa a poder aplicar a condição Condução no alvo, se acertar."
+          },
+          {
+            "numero": 4,
+            "tipo": "ativa",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o dano elétrico adicional sobe para 3d4, e o dano de ricochete sobe para 1/6 da vida atual do usuário."
+          },
+          {
+            "numero": 5,
+            "tipo": "ativa",
+            "titulo": "Fúria do Oceano Primordial",
+            "primeiro_despertar": false,
+            "texto": "pague 5 pontos de arché para um golpe elétrico devastador contra um alvo sob Condução: se o alvo estiver sob Queimadura, gera Sobrecarga (2d8 de dano adicional + 1/10 da vida do alvo, removendo Queimadura e Condução dele); se o alvo estiver molhado ou próximo de água, gera Supercondução (o dano de Condução sobe para 2d4+3 por 3 turnos, afetando também criaturas nas casas adjacentes ao alvo). Ao usar esse golpe, sofre 1/4 da sua vida atual como dano de ricochete."
+          }
+        ]
+      },
+      {
+        "id": "passiva",
+        "nome": "Mão de Deus",
+        "niveis": [
+          {
+            "numero": 1,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": true,
+            "texto": "+2 de dano Elétrico em todos os ataques corpo a corpo do usuário."
+          },
+          {
+            "numero": 2,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "o bônus sobe para +3."
+          },
+          {
+            "numero": 3,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "uma vez por cena, pode anular completamente o dano de ricochete da próxima ativação da Mão do Diabo."
+          },
+          {
+            "numero": 4,
+            "tipo": "passiva",
+            "titulo": null,
+            "primeiro_despertar": false,
+            "texto": "esse efeito de anular o ricochete pode ser usado 2 vezes por cena."
+          },
+          {
+            "numero": 5,
+            "tipo": "passiva",
+            "titulo": "Bênção do Dragão Primordial",
+            "primeiro_despertar": false,
+            "texto": "sempre que fosse sofrer dano de ricochete da Mão do Diabo, role 1d2: em 1, a Mão de Deus absorve metade desse dano automaticamente."
+          }
+        ]
+      }
+    ],
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Beber do Graal pela primeira vez e sentir o espírito do dragão se prender a você, mesmo sem manifestar nenhum poder ainda."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Sofrer o dano de ricochete pela primeira vez e continuar lutando mesmo assim."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Aplicar Condução em um inimigo e testemunhar o efeito se espalhar ou se intensificar."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Sobreviver a um combate decisivo usando o poder elétrico do dragão como arma principal."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Desencadear a Fúria do Oceano Primordial para derrotar um oponente de categoria Chefe."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "O Dragão Exige Tributo (Vontade)",
+      "texto": "A cada nova sessão, se o usuário não sofrer ao menos uma vez o dano de ricochete da Mão do Diabo, a Mão de Deus se recusa a conceder qualquer bônus na sessão seguinte."
+    }
+  }
+}

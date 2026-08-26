@@ -96,7 +96,7 @@ export default function PersonagemDetalhe() {
   const [carregando, setCarregando] = useState(true)
   const [erroCarregamento, setErroCarregamento] = useState(null)
   const [personagem, setPersonagem] = useState(null)
-  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {}, itens: {}, materiais: {} })
+  const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {}, itens: {}, materiais: {}, reliquias: {} })
 
   const [abaAtiva, setAbaAtiva] = useState('poderes')
   const [abaBackgroundAtiva, setAbaBackgroundAtiva] = useState('informacoes_pessoais')
@@ -115,7 +115,7 @@ export default function PersonagemDetalhe() {
       setCarregando(true)
       setErroCarregamento(null)
       try {
-        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos', 'itens', 'materiais']
+        const colecoes = ['racas', 'classes', 'origens', 'elementos', 'pericias', 'sagracanticos', 'itens', 'materiais', 'reliquias']
         const respostas = await Promise.all(colecoes.map((c) => api.buscarBiblioteca(c)))
         const novoCatalogo = {}
         colecoes.forEach((c, i) => { novoCatalogo[c] = respostas[i].dados?.itens ?? {} })
@@ -419,6 +419,7 @@ export default function PersonagemDetalhe() {
               inventario={personagem.inventario}
               catalogoItens={catalogo.itens}
               materiais={catalogo.materiais}
+              catalogoReliquias={catalogo.reliquias}
               porteBiologico={personagem.calculado.porte_biologico}
               forcaFinal={personagem.calculado.atributos_finais?.for}
               deslocamentoBaseM={personagem.calculado.status?.deslocamento_m}

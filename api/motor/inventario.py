@@ -177,6 +177,71 @@ def kit_origem_faltando(
 
 
 # ---------------------------------------------------------------------
+# Reliquias
+# ---------------------------------------------------------------------
+#
+# Uma reliquia vira uma entrada de inventario "avulsa" (mesmo mecanismo
+# ja usado pelos itens de kit de Origem sem equivalente no catalogo:
+# `item_id` None, nome e peso morando na propria entrada) -- marcada com
+# `eh_reliquia: True` pra ganhar tratamento proprio (Pontos de Forja por
+# vertente) no frontend, em vez do tratamento generico de item avulso.
+#
+# Regras do sistema de Forja (ver o .md de regras): Acessorios nunca
+# recebem o Minerio Indestrutivel de Karnath; Armas e Armaduras/Escudos
+# SEMPRE sao forjadas em Karnathite fixo, sem escolha do jogador -- por
+# isso o peso final ja sai calculado aqui (multiplicador do Karnathite
+# aplicado uma vez, na hora de adicionar), sem um `minerio` escolhivel
+# como um item comum teria.
+
+
+def tem_reliquia_no_inventario(inventario: List[dict]) -> bool:
+    """So' se pode carregar 1 reliquia por vez (referencia de design:
+    Akuma no Mi, de One Piece)."""
+    return any(e.get("eh_reliquia") for e in (inventario or []))
+
+
+def peso_efetivo_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> float:
+    """Peso final de uma reliquia, ja considerando o Karnathite fixo
+    quando ela tem chassi fisico (arma/armadura_escudo)."""
+    peso_base = reliquia.get("peso_base_kg")
+    if peso_base is None:
+        return 0.0  # "Desprezivel" (ex.: Aneis de Hecate, Iragarpena)
+    if not reliquia.get("recebe_minerio_karnathite"):
+        return round(peso_base, 3)
+    multiplicador = materiais.get("karnathite", {}).get("multiplicador_peso", 1.3)
+    return round(peso_base * multiplicador, 3)
+
+
+def entrada_de_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> dict:
+    """Constroi a entrada de inventario pra uma reliquia recem-equipada
+    -- pontos_forja comeca zerado em toda vertente que a reliquia
+    definir (a maioria tem 2: geralmente "ativa"/"passiva", mas alguns
+    catalogos usam outros nomes, como "apollo"/"artemis" da Espada
+    Gemea)."""
+    pontos_forja = {v["id"]: 0 for v in reliquia.get("vertentes", [])}
+    return {
+        "id": f"reliquia-{reliquia['id']}",
+        "eh_reliquia": True,
+        "reliquia_id": reliquia["id"],
+        "item_id": None,
+        "nome_livre": reliquia["nome"],
+        "quantidade": 1,
+        "peso_base_kg": peso_efetivo_reliquia(reliquia, materiais),
+        "minerio": "karnathite" if reliquia.get("recebe_minerio_karnathite") else None,
+        "durabilidade_atual": None,
+        "quebrado": False,
+        "pontos_forja": pontos_forja,
+    }
+
+
+def total_pontos_forja_investidos(pontos_forja: Dict[str, int]) -> int:
+    """Total de Pontos de Forja ja investidos (soma de todas as
+    vertentes) -- toda reliquia tem 5 no total, vindos dos 5 Marcos de
+    Forja."""
+    return sum(int(v or 0) for v in (pontos_forja or {}).values())
+
+
+# ---------------------------------------------------------------------
 # Peso de equipamentos
 # ---------------------------------------------------------------------
 
@@ -542,5 +607,45 @@ if __name__ == "__main__":
     r = reparar_item("azurita", materiais)
     assert r["durabilidade_atual"] == 80
     assert r["quebrado"] is False
+
+    # --- Reliquias ---
+    materiais_com_karnathite = {**materiais, "karnathite": {"multiplicador_peso": 1.3, "durabilidade_total": None, "limiar_desgaste": None}}
+
+    colar = {
+        "id": "colar-de-anubis", "nome": "Colar de Anúbis", "peso_base_kg": 0.3,
+        "recebe_minerio_karnathite": False,
+        "vertentes": [{"id": "passiva"}, {"id": "ativa"}],
+    }
+    entrada = entrada_de_reliquia(colar, materiais_com_karnathite)
+    assert entrada["eh_reliquia"] is True
+    assert entrada["reliquia_id"] == "colar-de-anubis"
+    assert entrada["item_id"] is None
+    assert entrada["nome_livre"] == "Colar de Anúbis"
+    assert entrada["minerio"] is None  # acessorio -- nunca recebe Karnathite
+    assert entrada["peso_base_kg"] == 0.3  # sem multiplicador de minerio
+    assert entrada["pontos_forja"] == {"passiva": 0, "ativa": 0}
+    assert total_pontos_forja_investidos(entrada["pontos_forja"]) == 0
+
+    escudo = {
+        "id": "escudo-de-geb", "nome": "Escudo de Geb", "peso_base_kg": 6.0,
+        "recebe_minerio_karnathite": True,
+        "vertentes": [{"id": "ativa"}, {"id": "passiva"}],
+    }
+    entrada_escudo = entrada_de_reliquia(escudo, materiais_com_karnathite)
+    assert entrada_escudo["minerio"] == "karnathite"
+    assert entrada_escudo["peso_base_kg"] == round(6.0 * 1.3, 3)  # 7.8kg -- Karnathite fixo aplicado
+    assert entrada_escudo["durabilidade_atual"] is None  # Karnathite = indestrutivel
+
+    aneis = {"id": "aneis-de-hecate", "nome": "Anéis de Hécate", "peso_base_kg": None,
+             "recebe_minerio_karnathite": False, "vertentes": [{"id": "passiva"}, {"id": "ativa"}]}
+    assert peso_efetivo_reliquia(aneis, materiais_com_karnathite) == 0.0  # "Desprezivel"
+
+    # So' 1 reliquia por vez.
+    assert tem_reliquia_no_inventario([]) is False
+    assert tem_reliquia_no_inventario([entrada]) is True
+
+    # total_pontos_forja_investidos soma todas as vertentes, inclusive
+    # nomes nao-padrao (ex.: Espada Gemea usa "apollo"/"artemis").
+    assert total_pontos_forja_investidos({"apollo": 3, "artemis": 2}) == 5
 
     print("inventario.py: todos os auto-testes passaram.")

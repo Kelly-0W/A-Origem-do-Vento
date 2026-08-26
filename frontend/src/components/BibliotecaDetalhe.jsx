@@ -625,12 +625,131 @@ function DetalhePericia({ item }) {
   )
 }
 
+const NOME_CATEGORIA_RELIQUIA = { acessorio: 'Acessório', arma: 'Arma', armadura_escudo: 'Armadura/Escudo' }
+
+function NivelForja({ n }) {
+  return (
+    <div className="stat-tile">
+      <div className="flex items-center justify-between gap-2 flex-wrap">
+        <span className="font-display text-sm text-white">
+          {n.titulo || `Nível ${n.numero}`}
+          {n.primeiro_despertar && <span className="text-gold text-xs font-normal"> (Primeiro Despertar)</span>}
+        </span>
+        <span
+          className={`text-[10px] uppercase tracking-widest border rounded px-1.5 py-0.5 shrink-0 ${
+            n.tipo === 'passiva' ? 'text-mist border-panel-border' : 'text-gold border-gold/40'
+          }`}
+        >
+          {n.tipo} {n.numero}
+        </span>
+      </div>
+      <p className="text-xs text-mist leading-relaxed mt-1">{n.texto}</p>
+      {n.irmandade_astral && (
+        <p className="text-[11px] text-blood-bright/90 italic mt-1.5 pt-1.5 border-t border-panel-border">
+          Irmandade Astral: {n.irmandade_astral}
+        </p>
+      )}
+    </div>
+  )
+}
+
+function DetalheReliquia({ item }) {
+  return (
+    <>
+      {item.epiteto && <p className="text-sm text-mist italic -mt-2 mb-4">{item.epiteto}</p>}
+      <div className="flex flex-wrap gap-2 mb-2">
+        <span className="text-xs px-2.5 py-1 rounded-md border border-gold/40 text-gold">
+          {NOME_CATEGORIA_RELIQUIA[item.categoria] || item.categoria}
+        </span>
+        {item.recurso_custo && (
+          <span className="text-xs px-2.5 py-1 rounded-md border border-panel-border text-mist capitalize">
+            Custo: {item.recurso_custo === 'arche' ? 'Arché' : 'Sanidade'}
+          </span>
+        )}
+        {item.recebe_minerio_karnathite && (
+          <span className="text-xs px-2.5 py-1 rounded-md border border-panel-border text-mist">
+            Karnathite fixo (+12 dano físico / −12 RD física)
+          </span>
+        )}
+        {item.ponto_forja_gratuito_ao_equipar && (
+          <span className="text-xs px-2.5 py-1 rounded-md border border-blood-bright/40 text-blood-bright">
+            1 Ponto de Forja grátis ao equipar
+          </span>
+        )}
+      </div>
+      {item.categoria_detalhe && <p className="text-[11px] text-mist mb-3 italic">({item.categoria_detalhe})</p>}
+
+      <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-mist mb-4">
+        {(item.peso_texto || item.peso_base_kg != null) && (
+          <span>Peso: {item.peso_texto || `${item.peso_base_kg} kg`}</span>
+        )}
+        {item.alcance && <span>Alcance: {item.alcance}</span>}
+      </div>
+      {item.recurso_custo_nota && <p className="text-[11px] text-mist mb-4">({item.recurso_custo_nota})</p>}
+
+      {item.descricao_forja_zero && (
+        <Secao titulo="Forja 0">
+          <p className="text-sm text-mist leading-relaxed">{item.descricao_forja_zero}</p>
+        </Secao>
+      )}
+
+      {item.propriedade_inata && (
+        <Secao titulo={item.propriedade_inata.nome}>
+          <p className="text-[11px] text-gold/80 italic mb-1">({item.propriedade_inata.gatilho})</p>
+          <p className="text-sm text-mist leading-relaxed">{item.propriedade_inata.texto}</p>
+        </Secao>
+      )}
+
+      {item.irmandade && (
+        <Secao titulo={item.irmandade.nome}>
+          <p className="text-sm text-mist leading-relaxed border border-blood-bright/30 rounded-md p-3">
+            {item.irmandade.texto}
+          </p>
+        </Secao>
+      )}
+
+      {(item.vertentes || []).map((v) => (
+        <Secao key={v.id} titulo={`${v.nome}${v.subtitulo ? ` — ${v.subtitulo}` : ''}`}>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {v.niveis.map((n) => (
+              <NivelForja key={`${v.id}-${n.numero}`} n={n} />
+            ))}
+          </div>
+        </Secao>
+      ))}
+
+      {Array.isArray(item.marcos_forja) && item.marcos_forja.length > 0 && (
+        <Secao titulo="Marcos de Forja">
+          <div className="flex flex-col gap-2">
+            {item.marcos_forja.map((m) => (
+              <div key={m.numero} className="stat-tile">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-display text-sm text-white">Marco {m.numero}</span>
+                  <span className="text-[10px] uppercase tracking-widest text-gold">{m.dificuldade}</span>
+                </div>
+                <p className="text-xs text-mist leading-relaxed mt-1">{m.texto}</p>
+              </div>
+            ))}
+          </div>
+        </Secao>
+      )}
+
+      {item.vontade && (
+        <Secao titulo={item.vontade.nome}>
+          <p className="text-sm text-mist leading-relaxed italic">{item.vontade.texto}</p>
+        </Secao>
+      )}
+    </>
+  )
+}
+
 const RENDERIZADORES = {
   racas: DetalheRaca,
   classes: DetalheClasse,
   origens: DetalheOrigem,
   elementos: DetalheElemento,
   itens: DetalheItem,
+  reliquias: DetalheReliquia,
   pericias: DetalhePericia,
   bestiario: DetalheBestiario,
 }

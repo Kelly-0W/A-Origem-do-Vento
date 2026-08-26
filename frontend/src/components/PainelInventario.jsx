@@ -13,6 +13,9 @@ import {
   durabilidadeMaximaMaterial,
   limiarDesgasteMaterial,
   kitOrigemFaltando,
+  temReliquiaNoInventario,
+  entradaDeReliquia,
+  totalPontosForjaInvestidos,
   NIVEL_NORMAL,
   NIVEL_LIMITE_ABSOLUTO,
 } from '../lib/inventario.js'
@@ -63,6 +66,7 @@ export default function PainelInventario({
   deslocamentoBaseM,
   origemId,
   origem,
+  catalogoReliquias,
   onAtualizado,
 }) {
   const [modalAberto, setModalAberto] = useState(false)
@@ -71,10 +75,13 @@ export default function PainelInventario({
   const [itemEscolhidoId, setItemEscolhidoId] = useState(null)
   const [minerioEscolhido, setMinerioEscolhido] = useState('cobre')
   const [quantidadeEscolhida, setQuantidadeEscolhida] = useState(1)
+  const [modalReliquiaAberto, setModalReliquiaAberto] = useState(false)
+  const [reliquiaEscolhidaId, setReliquiaEscolhidaId] = useState(null)
   const [processando, setProcessando] = useState(false)
   const [erro, setErro] = useState(null)
 
   const lista = inventario || []
+  const jaTemReliquia = temReliquiaNoInventario(lista)
 
   const kitOrigemPendente = useMemo(
     () => (origemId && origem ? kitOrigemFaltando(origemId, origem, lista, materiais) : []),
@@ -84,6 +91,36 @@ export default function PainelInventario({
   async function adicionarKitOrigem() {
     if (!interativo || kitOrigemPendente.length === 0) return
     persistir([...lista, ...kitOrigemPendente])
+  }
+
+  function abrirModalReliquia() {
+    setReliquiaEscolhidaId(null)
+    setErro(null)
+    setModalReliquiaAberto(true)
+  }
+
+  function confirmarAdicaoReliquia() {
+    if (!reliquiaEscolhidaId || jaTemReliquia) return
+    const reliquia = catalogoReliquias?.[reliquiaEscolhidaId]
+    if (!reliquia) return
+    persistir([...lista, entradaDeReliquia(reliquia, materiais)])
+    setModalReliquiaAberto(false)
+  }
+
+  function ajustarPontoForja(entradaId, vertenteId, delta) {
+    const nova = lista.map((e) => {
+      if (e.id !== entradaId) return e
+      const pontosAtuais = e.pontos_forja || {}
+      const totalAtual = totalPontosForjaInvestidos(pontosAtuais)
+      const valorAtual = pontosAtuais[vertenteId] || 0
+      const novoValor = Math.max(0, Math.min(5, valorAtual + delta))
+      // Total de Pontos de Forja de uma relíquia é sempre 5 (vindos dos 5
+      // Marcos) -- não deixa subir além disso, nem que uma vertente ainda
+      // tenha "espaço" sozinha.
+      if (delta > 0 && totalAtual >= 5) return e
+      return { ...e, pontos_forja: { ...pontosAtuais, [vertenteId]: novoValor } }
+    })
+    persistir(nova)
   }
 
   const porteValido = PORTES_VALIDOS.includes(porteBiologico)
@@ -218,6 +255,16 @@ export default function PainelInventario({
             <button className="btn-secondary text-xs" onClick={abrirModalAdicionar} disabled={processando}>
               + Adicionar item
             </button>
+            {catalogoReliquias && Object.keys(catalogoReliquias).length > 0 && (
+              <button
+                className="btn-secondary text-xs disabled:opacity-40"
+                onClick={abrirModalReliquia}
+                disabled={processando || jaTemReliquia}
+                title={jaTemReliquia ? 'Só é possível carregar 1 relíquia por vez.' : 'Equipar uma relíquia'}
+              >
+                + Relíquia
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -275,6 +322,91 @@ export default function PainelInventario({
       ) : (
         <div className="space-y-2">
           {lista.map((entrada) => {
+            // Relíquia equipada: nome/peso moram na própria entrada (igual
+            // item avulso), mas ganha renderização própria com os Pontos
+            // de Forja por vertente em vez do card genérico de item.
+            if (entrada.eh_reliquia) {
+              const reliquia = catalogoReliquias?.[entrada.reliquia_id]
+              if (!reliquia) {
+                return (
+                  <div
+                    key={entrada.id}
+                    className="flex items-center justify-between gap-3 p-3 rounded-md border border-panel-border bg-void/40 text-xs text-mist"
+                  >
+                    <span>Relíquia removida do catálogo ({entrada.reliquia_id})</span>
+                    {interativo && (
+                      <button className="text-blood-bright hover:underline shrink-0" onClick={() => removerEntrada(entrada.id)}>
+                        Remover
+                      </button>
+                    )}
+                  </div>
+                )
+              }
+              const totalForja = totalPontosForjaInvestidos(entrada.pontos_forja)
+              const indestrutivel = entrada.minerio === 'karnathite'
+              return (
+                <div key={entrada.id} className="p-3 rounded-md border border-gold/30 bg-void/40">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-white font-medium text-sm">{reliquia.nome}</span>
+                        <span className="text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-1.5 py-0.5">
+                          relíquia
+                        </span>
+                        {indestrutivel && <span className="text-[10px] text-mist">Karnathite (indestrutível)</span>}
+                      </div>
+                      {reliquia.epiteto && <p className="text-[11px] text-mist italic">{reliquia.epiteto}</p>}
+                      <p className="text-[11px] text-mist mt-0.5">{arredondar(entrada.peso_base_kg || 0)} kg</p>
+                    </div>
+                    {interativo && (
+                      <button className="text-mist hover:text-blood-bright text-xs shrink-0" onClick={() => removerEntrada(entrada.id)}>
+                        Remover
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="mt-2 pt-2 border-t border-panel-border">
+                    <div className="flex items-center justify-between text-[11px] text-mist mb-1.5">
+                      <span>Pontos de Forja</span>
+                      <span className={totalForja >= 5 ? 'text-forest' : 'text-gold'}>{totalForja} de 5</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      {(reliquia.vertentes || []).map((v) => {
+                        const valor = entrada.pontos_forja?.[v.id] || 0
+                        return (
+                          <div key={v.id} className="flex items-center justify-between gap-1 bg-panel/40 rounded px-2 py-1">
+                            <span className="text-[10px] text-mist truncate">{v.nome}</span>
+                            {interativo ? (
+                              <div className="flex items-center gap-1 shrink-0">
+                                <button
+                                  className="w-5 h-5 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-xs leading-none"
+                                  onClick={() => ajustarPontoForja(entrada.id, v.id, -1)}
+                                  disabled={processando || valor <= 0}
+                                >
+                                  −
+                                </button>
+                                <span className="font-display text-sm w-4 text-center">{valor}</span>
+                                <button
+                                  className="w-5 h-5 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-xs leading-none"
+                                  onClick={() => ajustarPontoForja(entrada.id, v.id, 1)}
+                                  disabled={processando || totalForja >= 5}
+                                >
+                                  +
+                                </button>
+                              </div>
+                            ) : (
+                              <span className="font-display text-sm">{valor}</span>
+                            )}
+                          </div>
+                        )
+                      })}
+                    </div>
+                    <p className="text-[10px] text-mist mt-1.5">Detalhes de cada nível na Biblioteca &gt; Relíquias.</p>
+                  </div>
+                </div>
+              )
+            }
+
             // Entrada avulsa/narrativa (kit de Origem sem equivalente no
             // catálogo mecânico) -- nome e peso moram na própria entrada,
             // não em catalogoItens. Sem minério, sem durabilidade.
@@ -542,6 +674,41 @@ export default function PainelInventario({
                 </button>
               </div>
             )}
+          </div>
+        </ModalBase>
+      )}
+
+      {modalReliquiaAberto && (
+        <ModalBase titulo="Equipar Relíquia" onFechar={() => setModalReliquiaAberto(false)}>
+          <div className="flex flex-col gap-3">
+            <p className="text-[11px] text-mist">
+              Só é possível carregar 1 relíquia por vez. Ela entra em Forja 0 (nenhuma habilidade ativa
+              ainda) -- os Pontos de Forja são ganhos jogando em mesa.
+            </p>
+            <div className="max-h-56 overflow-y-auto border border-panel-border rounded-md divide-y divide-panel-border">
+              {Object.entries(catalogoReliquias || {})
+                .sort((a, b) => a[1].nome.localeCompare(b[1].nome))
+                .map(([id, r]) => (
+                  <button
+                    key={id}
+                    onClick={() => setReliquiaEscolhidaId(id)}
+                    className={`w-full text-left px-3 py-2 text-xs hover:bg-panel-border/40 transition-colors ${
+                      reliquiaEscolhidaId === id ? 'bg-gold/10 text-gold' : 'text-mist'
+                    }`}
+                  >
+                    <span className="text-white">{r.nome}</span>
+                    {r.epiteto && <span className="ml-2 text-[10px] italic">{r.epiteto}</span>}
+                  </button>
+                ))}
+            </div>
+            {erro && <p className="text-blood-bright text-xs">{erro}</p>}
+            <button
+              className="btn-primary disabled:opacity-50"
+              onClick={confirmarAdicaoReliquia}
+              disabled={processando || !reliquiaEscolhidaId}
+            >
+              {processando ? 'Equipando...' : 'Equipar Relíquia'}
+            </button>
           </div>
         </ModalBase>
       )}

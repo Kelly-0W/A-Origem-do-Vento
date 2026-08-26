@@ -17,6 +17,7 @@ ARQUIVO_POR_COLECAO = {
     # Minério" do Catálogo de Itens no Notion, e api/motor/inventario.py,
     # que é quem de fato aplica essa tabela nos cálculos de peso/durabilidade.
     "materiais": "materiais.json",
+    "reliquias": "reliquias.json",
     "bestiario": "bestiario.json",
     "sagracanticos": "sagracanticos.json",
     # Catálogo de Efeitos Positivos/Negativos de combate (ver Combate.jsx,

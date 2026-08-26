@@ -44,6 +44,7 @@ COLECOES_SIMPLES = {
     "pericias.json": "pericias",
     "itens.json": "itens",
     "materiais.json": "materiais",
+    "reliquias.json": "reliquias",
 }
 
 CATALOGO_META_COLECAO = "catalogo_meta"
@@ -101,6 +102,7 @@ def calcular_hash_catalogo():
         "pericias.json",
         "itens.json",
         "materiais.json",
+        "reliquias.json",
         "elementos.json",
         "constantes_ascensao.json",
     ]
