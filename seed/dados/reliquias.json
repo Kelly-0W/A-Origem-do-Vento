@@ -14,6 +14,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é um colar simples de cobre e osso, indistinguível de um enfeite funerário comum --- assim permanece enquanto sua Forja não desperta. Por não possuir chassi físico, o Colar nunca recebe os bônus do Minério Indestrutível de Karnath.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "passiva",
@@ -98,6 +99,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -147,6 +151,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é apenas uma máscara de madeira entalhada, com veios que lembram raízes --- trabalho de artesão qualquer, nada que denuncie o deus por trás dela. Por não possuir chassi físico, também não recebe os bônus do Minério Indestrutível de Karnath: seu poder vem do sangue do deus que deu origem aos Lokianos, não de nenhum metal.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -231,6 +236,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -280,6 +288,7 @@
     "recebe_minerio_karnathite": true,
     "descricao_forja_zero": "Em Forja 0, é apenas uma espada longa de lâmina reta e cabo trançado em couro vermelho --- bom acabamento, nenhuma marca visível de que é mais do que aço. Ela nem sabe, ainda, que tem uma segunda forma. Por possuir chassi físico, ambas as formas que um dia assumirá herdam o piso do Minério Indestrutível de Karnath: +12 de dano físico embutido, sem escolha de minério pelo usuário.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "modo-espada",
@@ -366,6 +375,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -419,6 +431,7 @@
       "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
       "texto": "a Flecha de Arché Puro sempre acerta o alvo dentro do alcance de 18 metros, sem rolagem de ataque, e causa dano de um tipo que não existe na tabela elemental do Catálogo de Itens --- não sofre bônus nem penalidade de nenhuma vantagem, fraqueza ou resistência. Em compensação, nasce com dano base de 1d4, que só cresce pela Vertente Ativa. Esta propriedade não escala com a Forja: ela simplesmente é, do primeiro ponto investido em diante."
     },
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "passiva",
@@ -503,6 +516,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -552,6 +568,7 @@
     "recebe_minerio_karnathite": true,
     "descricao_forja_zero": "Em Forja 0, é uma espada reta comum, de aço sem marcas --- nenhuma cor, nenhuma dualidade visível ainda. À medida que cada vertente ganha pontos, a lâmina passa a manifestar fisicamente aquele lado: metade escura e estrelada conforme Artemis desperta, metade clara e flamejante conforme Apollo desperta. Por possuir chassi físico, herda o piso do Minério Indestrutível de Karnath: +12 de dano físico embutido.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "apollo",
@@ -646,6 +663,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": {
       "nome": "Irmandade Astral",
       "texto": "Apollo e Artemis são gêmeos --- nenhum floresce sozinho. Todas as dez habilidades desta relíquia são puramente ativas; não existe uma Vertente Passiva separada. Porém, sempre que a Espada tiver ao menos 1 ponto de Forja investido em cada uma das duas vertentes simultaneamente, cada uma das dez habilidades passa a conceder também o bônus descrito em sua Irmandade Astral, de forma permanente e automática, além do seu efeito ativo normal. Um usuário que investir puramente em um só lado (5x0 ou 0x5) nunca desperta a Irmandade Astral --- os Gêmeos só abençoam quem honra os dois. Se, depois de despertá-la, o usuário passar 3 cenas seguidas sem usar nenhuma habilidade do lado negligenciado, a Irmandade Astral daquele lado se desliga até uma habilidade dele ser usada de novo."
@@ -702,6 +722,7 @@
       "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
       "texto": "a braçadeira manifesta uma garra viva na mão do usuário, concedendo um ataque corpo a corpo natural de 1d4 de dano (Corte ou Perfuração, à escolha a cada ataque), com alcance de 1,5 metro. Por não possuir chassi de arma tradicional, esse ataque nunca recebe os bônus do Minério Indestrutível de Karnath."
     },
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -786,6 +807,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -835,6 +859,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é só um olho de vidro comum, sem brilho, guardado numa caixa --- nenhum sinal de ter pertencido ao maior guerreiro do antigo império. Diferente de qualquer outra relíquia deste catálogo, Masolat nunca começa realmente adormecido: o Olho já testemunhou a queda do próprio Masalat na última linha de defesa do castelo, e por isso concede 1 Ponto de Forja imediatamente ao ser equipado pela primeira vez, para investir em Ativa ou Passiva à escolha do usuário.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -919,6 +944,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -968,6 +996,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é um anel de prata simples, sem entalhes --- indistinguível de qualquer joia comum, exceto pelo peso da lenda que carrega: reza-se que o antigo lorde o amaldiçoou após ser traído pelo próprio bobo da corte, condenando todo futuro portador a morrer dentro de 3 noites após vesti-lo. É a mesma relíquia cujo eco os Lokianos ainda carregam no sangue --- a habilidade racial que leva seu nome é uma versão bem mais fraca do que o anel de verdade é capaz de fazer.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1052,6 +1081,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1101,6 +1133,7 @@
     "recebe_minerio_karnathite": true,
     "descricao_forja_zero": "Em Forja 0, é um chicote trançado de vime comum, sem espinhos, sem flor --- nenhum sinal do mito que carrega. Diz a lenda questionável que foi essa arma que enforcou o antigo lorde e exibiu seu corpo na sacada do castelo; hoje, muitos acreditam que a verdadeira arma daquele dia foi Neudenn, a Relíquia dos Fios Demoníacos, e que Thornpiercer não passa de mito sem provas. Os poucos registros que sustentam sua existência dizem que ela se molda e se fortalece a partir da vontade de seu usuário --- o que explicaria, segundo eles, tamanho poder num momento de pura revolta.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1185,6 +1218,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1238,6 +1274,7 @@
       "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
       "texto": "sempre que o usuário sofrer 10 ou mais pontos de dano físico de uma vez, acumula 1 ponto de Vigor Armazenado (máximo de 5). Cada ponto de Vigor concede +1 de Redução de Dano física, permanente enquanto durar."
     },
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1322,6 +1359,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1371,6 +1411,7 @@
     "recebe_minerio_karnathite": true,
     "descricao_forja_zero": "Em Forja 0, é um escudo de ferro comum, redondo e sem ornamentos --- nenhum dragão gravado, nenhum brilho vermelho no centro. Última das oito relíquias lendárias a ser nomeada, foi empunhada por Velmor, o anão que comandava as trevas e ainda assim se tornou o sentinela mais reconhecido da guerra --- sempre à frente de seus aliados, sempre a última linha antes do perigo. Os humanos de Karnath devotam sua fé a Geb, o Deus Guerreiro da Terra: dizem que foi ele quem desceu aos mortais empunhando uma espada de rocha pura para quebrar as correntes da humanidade e libertá-la da opressão faminta dos dragões, ensinando-os a moldar a própria terra em monumentos impenetráveis e armas capazes de perfurar as escamas dracônicas mais espessas. Por possuir chassi físico, herda o piso do Minério Indestrutível de Karnath: -12 de Redução de Dano física embutida, além da propriedade Vácuo Abissal (Resistência a dano de Alma ou de Trevas).",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1455,6 +1496,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1504,6 +1548,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é só uma pedra escura e sem brilho, presa a um cordão simples --- nenhum sinal do olho que dorme dentro dela. Diferente de todas as outras relíquias deste catálogo, Iragarpena não foi feita por Genshō-Dai nem forjada no Minério Indestrutível de Karnath: foi a primeira relíquia já criada, moldada pelo próprio antigo lorde com o sangue e a carne do profeta Iragarpena, seu conselheiro mais fiel, cuja morte fora profetizada três anos antes e que o rei não suportou perder. Mas a alma trazida de volta não aceitou ter seu descanso interrompido --- e foi dela que veio a profecia que selaria o destino do próprio lorde: \"Da mesma forma que você acabou com meu descanso, meu retorno significa que você acabará com seu próprio reinado.\"",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1588,6 +1633,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1637,6 +1685,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é apenas um coelho de pelúcia branco, macio e imóvel --- um brinquedo comum, sem vida, sem magia aparente. Foi criado séculos atrás para ser o companheiro e curandeiro particular da filha de um imperador, uma criança extremamente frágil e doente que dificilmente sobreviveria sem cuidados constantes. Diferente de qualquer outra relíquia deste catálogo, o Coelho não desperta em silêncio: a cada Marco de Forja alcançado, ele ganha um pouco mais de vida própria --- um piscar de olhos, um leve tremor nas orelhas --- até que, no auge, se move e age por conta própria como qualquer criatura viva.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1721,6 +1770,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1770,6 +1822,7 @@
     "recebe_minerio_karnathite": false,
     "descricao_forja_zero": "Em Forja 0, é apenas um cálice de metal opaco, contendo um líquido escuro e imóvel --- nenhum sinal do espírito adormecido em seu interior. A lenda diz que um espírito dracônico, nascido do oceano primordial, se prende a todo aquele que bebe o líquido guardado neste Graal. Se o usuário morrer, o dragão se dissipa no ar e retorna ao Graal, não importa onde ele esteja --- pronto para se prender a outro bebedor.",
     "propriedade_inata": null,
+    "modelo_forja": "vertentes",
     "vertentes": [
       {
         "id": "ativa",
@@ -1854,6 +1907,9 @@
         ]
       }
     ],
+    "caminhos": null,
+    "regra_habilidades_por_forma": null,
+    "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
       {
@@ -1886,6 +1942,179 @@
     "vontade": {
       "nome": "O Dragão Exige Tributo (Vontade)",
       "texto": "A cada nova sessão, se o usuário não sofrer ao menos uma vez o dano de ricochete da Mão do Diabo, a Mão de Deus se recusa a conceder qualquer bônus na sessão seguinte."
+    }
+  },
+  "bastao-dos-caminhos": {
+    "id": "bastao-dos-caminhos",
+    "nome": "O Bastão dos Caminhos",
+    "epiteto": "O Imperador dos Reinos",
+    "categoria": "arma",
+    "categoria_detalhe": "chassi variável --- muda de forma conforme o Caminho",
+    "chassi_base": null,
+    "peso_base_kg": 1.0,
+    "peso_texto": "Leve, do tamanho de uma baqueta e da grossura de um taco de beisebol",
+    "alcance": "Varia por Caminho (1,5m na maioria; 3,0m na Lança; 18m no Arco)",
+    "recurso_custo": "sanidade",
+    "recurso_custo_nota": "só para escolher a forma manualmente --- a Ativa Inata é grátis quando sorteada",
+    "recebe_minerio_karnathite": true,
+    "descricao_forja_zero": "Em Forja 0, é um cajado de madeira comum, sem símbolos, sem gravações --- apenas um bastão de treino como qualquer outro (1d6 de dano de Impacto). Foi criado pelo ferreiro-chefe do próprio imperador, que se rebelou e tentou moldar nele uma arma capaz de destruí-lo. Os seis Caminhos originais representavam equilíbrio, e o último era o Caminho da Paz --- mas o ferreiro não conseguiu vencer sozinho, e a arma caiu nas mãos do próprio imperador, que exigiu que a Paz fosse arrancada dela e substituída pela Dominação. Sempre que o bastão muda de Caminho, o nome dele se acende na base, em caracteres antigos.",
+    "propriedade_inata": {
+      "nome": "Ativa Inata: Troca de Caminho",
+      "gatilho": "desbloqueada no Marco 1, não consome Ponto de Forja",
+      "texto": "a qualquer momento, role 1d6 para que o bastão assuma um dos seis Caminhos, na ordem listada, sem custo algum. Alternativamente, pague 3 pontos de sanidade para escolher o Caminho desejado. De qualquer forma, uma vez assumida, a forma permanece por 5 turnos antes de poder ser trocada de novo; ao fim desse tempo, o bastão retorna à forma neutra de cajado até ser trocado outra vez."
+    },
+    "modelo_forja": "escolha_livre",
+    "vertentes": [],
+    "caminhos": [
+      {
+        "id": "natural",
+        "numero": 1,
+        "nome": "Caminho Natural",
+        "nome_grafia_original": "प्राकृतिक",
+        "forma": "espada longa (1d8 Corte ou Perfuração, versátil para 1d10 em duas mãos)",
+        "habilidades": [
+          {
+            "id": "lamina-do-mundo-deteriorado",
+            "nome": "Lâmina do Mundo Deteriorado",
+            "texto": "uma vez por cena, um golpe nessa forma pode aplicar a condição Deterioração."
+          },
+          {
+            "id": "praga-de-midgard",
+            "nome": "Praga de Midgard",
+            "texto": "contra um inimigo já sob qualquer Efeito Negativo do usuário, essa forma causa +1d4 de dano adicional."
+          }
+        ]
+      },
+      {
+        "id": "mortal",
+        "numero": 2,
+        "nome": "Caminho Mortal",
+        "nome_grafia_original": "नश्वर",
+        "forma": "foice (2d6 de dano de Corte, duas mãos)",
+        "habilidades": [
+          {
+            "id": "ceifador-de-arima",
+            "nome": "Ceifador de Arima",
+            "texto": "acertos críticos nessa forma aplicam Sangramento automaticamente."
+          },
+          {
+            "id": "transito-das-almas",
+            "nome": "Trânsito das Almas",
+            "texto": "ao reduzir um inimigo a 0 de vida com essa forma, cura metade do dano do golpe final."
+          }
+        ]
+      },
+      {
+        "id": "divino",
+        "numero": 3,
+        "nome": "Caminho Divino",
+        "nome_grafia_original": "दिव्य",
+        "forma": "lança celestial (1d10 de dano de Perfuração, alcance de 3,0m, duas mãos)",
+        "habilidades": [
+          {
+            "id": "furia-de-asgard",
+            "nome": "Fúria de Asgard",
+            "texto": "uma vez por cena, um ataque nessa forma ignora a Redução de Dano física do alvo."
+          },
+          {
+            "id": "julgamento-celestial",
+            "nome": "Julgamento Celestial",
+            "texto": "acertos críticos nessa forma causam dano adicional igual ao Grau de Ascensão do usuário."
+          }
+        ]
+      },
+      {
+        "id": "demoniaco",
+        "numero": 4,
+        "nome": "Caminho Demoníaco",
+        "nome_grafia_original": "राक्षसी",
+        "forma": "machado de duas mãos (1d12 de dano de Corte, duas mãos)",
+        "habilidades": [
+          {
+            "id": "furia-de-helheim",
+            "nome": "Fúria de Helheim",
+            "texto": "acertos nessa forma podem aplicar a condição Medo."
+          },
+          {
+            "id": "sede-demoniaca",
+            "nome": "Sede Demoníaca",
+            "texto": "cada acerto consecutivo contra o mesmo alvo nessa forma concede +1 de dano, acumulando até +4."
+          }
+        ]
+      },
+      {
+        "id": "espiritual",
+        "numero": 5,
+        "nome": "Caminho Espiritual",
+        "nome_grafia_original": "आध्यात्मिक",
+        "forma": "martelo de guerra feral (2d6 de dano de Impacto, duas mãos)",
+        "habilidades": [
+          {
+            "id": "furia-animal",
+            "nome": "Fúria Animal",
+            "texto": "acertos críticos nessa forma aplicam Atordoamento."
+          },
+          {
+            "id": "instinto-de-oruqai",
+            "nome": "Instinto de Oruqai",
+            "texto": "+2 em testes de Percepção e de Iniciativa enquanto nessa forma."
+          }
+        ]
+      },
+      {
+        "id": "dominacao",
+        "numero": 6,
+        "nome": "Caminho da Dominação",
+        "nome_grafia_original": "प्रभुत्व",
+        "forma": "arco (1d8 de dano de Perfuração, alcance de 18m, duas mãos)",
+        "habilidades": [
+          {
+            "id": "sacrificio-de-sangue",
+            "nome": "Sacrifício de Sangue",
+            "texto": "disparos nessa forma causam +1d6 de dano adicional, mas o usuário sofre 1 ponto de dano real de Vida a cada disparo."
+          },
+          {
+            "id": "dominio-absoluto",
+            "nome": "Domínio Absoluto",
+            "texto": "a cada inimigo derrotado com essa forma, o próximo disparo causa dano dobrado."
+          }
+        ]
+      }
+    ],
+    "regra_habilidades_por_forma": "Cada habilidade abaixo só funciona enquanto o bastão estiver na forma do Caminho a que pertence --- ao mudar de forma, as habilidades dos outros Caminhos ficam inativas até o bastão assumi-los de novo.",
+    "ativa_inata_forma": null,
+    "irmandade": null,
+    "marcos_forja": [
+      {
+        "numero": 1,
+        "dificuldade": "Fácil",
+        "texto": "Empunhar o bastão comum pela primeira vez e sentir os ecos dos caminhos esquecidos dentro dele, mesmo sem conseguir mudar de forma ainda. Desbloqueia a Ativa Inata e concede o 1º Ponto de Forja."
+      },
+      {
+        "numero": 2,
+        "dificuldade": "Fácil/Médio",
+        "texto": "Usar 3 Caminhos diferentes na mesma sessão."
+      },
+      {
+        "numero": 3,
+        "dificuldade": "Médio",
+        "texto": "Vencer um combate importante usando exclusivamente o Caminho da Dominação, pagando o preço da própria vida."
+      },
+      {
+        "numero": 4,
+        "dificuldade": "Médio/Difícil",
+        "texto": "Dominar por completo um Caminho --- as duas habilidades daquele Caminho desbloqueadas."
+      },
+      {
+        "numero": 5,
+        "dificuldade": "Difícil",
+        "texto": "Derrotar um oponente de categoria Chefe alternando entre ao menos 3 Caminhos diferentes ao longo do combate."
+      }
+    ],
+    "ponto_forja_gratuito_ao_equipar": false,
+    "vontade": {
+      "nome": "O Caminho Perdido (Vontade)",
+      "texto": "O bastão ainda lembra da Paz que lhe foi arrancada. Se o usuário empregar o Caminho da Dominação de forma cruel ou desnecessária, a critério do Mestre, o bastão resiste por um instante --- a próxima troca de forma falha automaticamente, como se a arma relutasse em obedecer."
     }
   }
 }

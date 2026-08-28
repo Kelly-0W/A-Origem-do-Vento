@@ -213,13 +213,18 @@ def peso_efetivo_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> float:
 
 
 def entrada_de_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> dict:
-    """Constroi a entrada de inventario pra uma reliquia recem-equipada
-    -- pontos_forja comeca zerado em toda vertente que a reliquia
-    definir (a maioria tem 2: geralmente "ativa"/"passiva", mas alguns
-    catalogos usam outros nomes, como "apollo"/"artemis" da Espada
-    Gemea)."""
-    pontos_forja = {v["id"]: 0 for v in reliquia.get("vertentes", [])}
-    return {
+    """Constroi a entrada de inventario pra uma reliquia recem-equipada.
+    Dois modelos possiveis (ver reliquia["modelo_forja"]):
+      - "vertentes" (a maioria): pontos_forja comeca zerado em toda
+        vertente que a reliquia definir (geralmente "ativa"/"passiva",
+        mas alguns catalogos usam outros nomes, como "apollo"/"artemis"
+        da Espada Gemea).
+      - "escolha_livre" (ex.: O Bastao dos Caminhos): sem vertente
+        nenhuma -- guarda a LISTA de habilidades (dentre as 12, 2 por
+        Caminho) ja destravadas, ate o limite de 5 vindo dos Marcos de
+        Forja.
+    """
+    base = {
         "id": f"reliquia-{reliquia['id']}",
         "eh_reliquia": True,
         "reliquia_id": reliquia["id"],
@@ -230,8 +235,11 @@ def entrada_de_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> dict:
         "minerio": "karnathite" if reliquia.get("recebe_minerio_karnathite") else None,
         "durabilidade_atual": None,
         "quebrado": False,
-        "pontos_forja": pontos_forja,
     }
+    if reliquia.get("modelo_forja") == "escolha_livre":
+        return {**base, "habilidades_desbloqueadas": []}
+    pontos_forja = {v["id"]: 0 for v in reliquia.get("vertentes", [])}
+    return {**base, "pontos_forja": pontos_forja}
 
 
 def total_pontos_forja_investidos(pontos_forja: Dict[str, int]) -> int:
@@ -239,6 +247,26 @@ def total_pontos_forja_investidos(pontos_forja: Dict[str, int]) -> int:
     vertentes) -- toda reliquia tem 5 no total, vindos dos 5 Marcos de
     Forja."""
     return sum(int(v or 0) for v in (pontos_forja or {}).values())
+
+
+def total_forja_investida(entrada: dict) -> int:
+    """Total de Pontos de Forja ja investidos numa entrada de reliquia,
+    qualquer que seja o modelo dela."""
+    if entrada.get("habilidades_desbloqueadas") is not None:
+        return len(entrada["habilidades_desbloqueadas"])
+    return total_pontos_forja_investidos(entrada.get("pontos_forja"))
+
+
+def alternar_habilidade_caminho(entrada: dict, habilidade_id: str) -> list:
+    """Alterna (liga/desliga) uma habilidade especifica do modelo
+    "escolha_livre", respeitando o teto de 5 no total -- nunca deixa
+    ligar uma 6a enquanto nao desligar outra primeiro."""
+    atuais = list(entrada.get("habilidades_desbloqueadas") or [])
+    if habilidade_id in atuais:
+        return [h for h in atuais if h != habilidade_id]
+    if len(atuais) >= 5:
+        return atuais
+    return atuais + [habilidade_id]
 
 
 # ---------------------------------------------------------------------
@@ -647,5 +675,36 @@ if __name__ == "__main__":
     # total_pontos_forja_investidos soma todas as vertentes, inclusive
     # nomes nao-padrao (ex.: Espada Gemea usa "apollo"/"artemis").
     assert total_pontos_forja_investidos({"apollo": 3, "artemis": 2}) == 5
+
+    # --- Modelo "escolha_livre" (O Bastao dos Caminhos) ---
+    bastao = {
+        "id": "bastao-dos-caminhos", "nome": "O Bastão dos Caminhos", "peso_base_kg": 1.0,
+        "recebe_minerio_karnathite": True, "modelo_forja": "escolha_livre",
+        "vertentes": [],
+    }
+    entrada_bastao = entrada_de_reliquia(bastao, materiais_com_karnathite)
+    assert entrada_bastao["habilidades_desbloqueadas"] == []
+    assert "pontos_forja" not in entrada_bastao
+    assert total_forja_investida(entrada_bastao) == 0
+
+    # liga 5 habilidades -- tudo bem, e' o teto.
+    lista = []
+    for hab_id in ["a", "b", "c", "d", "e"]:
+        lista = alternar_habilidade_caminho({**entrada_bastao, "habilidades_desbloqueadas": lista}, hab_id)
+    assert len(lista) == 5
+    assert total_forja_investida({"habilidades_desbloqueadas": lista}) == 5
+
+    # tentar ligar uma 6a e' ignorado (teto atingido).
+    lista_travada = alternar_habilidade_caminho({"habilidades_desbloqueadas": lista}, "f")
+    assert len(lista_travada) == 5
+    assert "f" not in lista_travada
+
+    # desligar uma ja ligada funciona normalmente.
+    lista_sem_a = alternar_habilidade_caminho({"habilidades_desbloqueadas": lista}, "a")
+    assert "a" not in lista_sem_a
+    assert len(lista_sem_a) == 4
+
+    # total_forja_investida funciona pros dois modelos, dado so' a entrada.
+    assert total_forja_investida({"pontos_forja": {"ativa": 2, "passiva": 1}}) == 3
 
     print("inventario.py: todos os auto-testes passaram.")

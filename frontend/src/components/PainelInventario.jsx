@@ -16,6 +16,8 @@ import {
   temReliquiaNoInventario,
   entradaDeReliquia,
   totalPontosForjaInvestidos,
+  totalForjaInvestida,
+  alternarHabilidadeCaminho,
   NIVEL_NORMAL,
   NIVEL_LIMITE_ABSOLUTO,
 } from '../lib/inventario.js'
@@ -120,6 +122,13 @@ export default function PainelInventario({
       if (delta > 0 && totalAtual >= 5) return e
       return { ...e, pontos_forja: { ...pontosAtuais, [vertenteId]: novoValor } }
     })
+    persistir(nova)
+  }
+
+  function alternarHabilidadeReliquia(entradaId, habilidadeId) {
+    const nova = lista.map((e) =>
+      e.id === entradaId ? { ...e, habilidades_desbloqueadas: alternarHabilidadeCaminho(e, habilidadeId) } : e
+    )
     persistir(nova)
   }
 
@@ -342,8 +351,9 @@ export default function PainelInventario({
                   </div>
                 )
               }
-              const totalForja = totalPontosForjaInvestidos(entrada.pontos_forja)
+              const totalForja = totalForjaInvestida(entrada)
               const indestrutivel = entrada.minerio === 'karnathite'
+              const modeloEscolhaLivre = reliquia.modelo_forja === 'escolha_livre'
               return (
                 <div key={entrada.id} className="p-3 rounded-md border border-gold/30 bg-void/40">
                   <div className="flex items-start justify-between gap-3">
@@ -370,37 +380,71 @@ export default function PainelInventario({
                       <span>Pontos de Forja</span>
                       <span className={totalForja >= 5 ? 'text-forest' : 'text-gold'}>{totalForja} de 5</span>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      {(reliquia.vertentes || []).map((v) => {
-                        const valor = entrada.pontos_forja?.[v.id] || 0
-                        return (
-                          <div key={v.id} className="flex items-center justify-between gap-1 bg-panel/40 rounded px-2 py-1">
-                            <span className="text-[10px] text-mist truncate">{v.nome}</span>
-                            {interativo ? (
-                              <div className="flex items-center gap-1 shrink-0">
-                                <button
-                                  className="w-5 h-5 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-xs leading-none"
-                                  onClick={() => ajustarPontoForja(entrada.id, v.id, -1)}
-                                  disabled={processando || valor <= 0}
-                                >
-                                  −
-                                </button>
-                                <span className="font-display text-sm w-4 text-center">{valor}</span>
-                                <button
-                                  className="w-5 h-5 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-xs leading-none"
-                                  onClick={() => ajustarPontoForja(entrada.id, v.id, 1)}
-                                  disabled={processando || totalForja >= 5}
-                                >
-                                  +
-                                </button>
-                              </div>
-                            ) : (
-                              <span className="font-display text-sm">{valor}</span>
-                            )}
+
+                    {modeloEscolhaLivre ? (
+                      // "Escolha livre" (O Bastão dos Caminhos): 12 habilidades
+                      // agrupadas em 6 Caminhos, 5 delas ligáveis em qualquer
+                      // ordem -- checklist em vez de stepper por vertente.
+                      <div className="flex flex-col gap-2">
+                        {(reliquia.caminhos || []).map((c) => (
+                          <div key={c.id}>
+                            <p className="text-[10px] uppercase tracking-widest text-mist mb-1">{c.nome}</p>
+                            <div className="grid grid-cols-2 gap-1.5">
+                              {c.habilidades.map((h) => {
+                                const ligada = (entrada.habilidades_desbloqueadas || []).includes(h.id)
+                                return (
+                                  <button
+                                    key={h.id}
+                                    type="button"
+                                    onClick={() => interativo && alternarHabilidadeReliquia(entrada.id, h.id)}
+                                    disabled={!interativo || processando || (!ligada && totalForja >= 5)}
+                                    title={h.texto}
+                                    className={`text-[10px] text-left rounded px-2 py-1 border transition-colors disabled:opacity-30 ${
+                                      ligada ? 'border-gold/50 text-gold bg-gold/10' : 'border-panel-border text-mist'
+                                    }`}
+                                  >
+                                    {ligada ? '✓ ' : ''}
+                                    {h.nome}
+                                  </button>
+                                )
+                              })}
+                            </div>
                           </div>
-                        )
-                      })}
-                    </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-2 gap-2">
+                        {(reliquia.vertentes || []).map((v) => {
+                          const valor = entrada.pontos_forja?.[v.id] || 0
+                          return (
+                            <div key={v.id} className="flex items-center justify-between gap-1 bg-panel/40 rounded px-2 py-1">
+                              <span className="text-[10px] text-mist truncate">{v.nome}</span>
+                              {interativo ? (
+                                <div className="flex items-center gap-1 shrink-0">
+                                  <button
+                                    className="w-5 h-5 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-xs leading-none"
+                                    onClick={() => ajustarPontoForja(entrada.id, v.id, -1)}
+                                    disabled={processando || valor <= 0}
+                                  >
+                                    −
+                                  </button>
+                                  <span className="font-display text-sm w-4 text-center">{valor}</span>
+                                  <button
+                                    className="w-5 h-5 rounded border border-panel-border text-mist hover:border-white/30 disabled:opacity-30 text-xs leading-none"
+                                    onClick={() => ajustarPontoForja(entrada.id, v.id, 1)}
+                                    disabled={processando || totalForja >= 5}
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              ) : (
+                                <span className="font-display text-sm">{valor}</span>
+                              )}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
                     <p className="text-[10px] text-mist mt-1.5">Detalhes de cada nível na Biblioteca &gt; Relíquias.</p>
                   </div>
                 </div>

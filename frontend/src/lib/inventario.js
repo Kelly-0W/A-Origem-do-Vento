@@ -273,16 +273,18 @@ export function pesoEfetivoReliquia(reliquia, materiais) {
   return round3(pesoBase * multiplicador);
 }
 
-/** Constrói a entrada de inventário pra uma relíquia recém-equipada --
- * pontos_forja começa zerado em toda vertente que a relíquia definir
- * (a maioria tem 2: geralmente "ativa"/"passiva", mas alguns catálogos
- * usam outros nomes, como "apollo"/"artemis" da Espada Gêmea). */
+/** Constrói a entrada de inventário pra uma relíquia recém-equipada.
+ * Dois modelos possíveis (ver `reliquia.modelo_forja`):
+ *  - "vertentes" (a maioria): pontos_forja começa zerado em toda
+ *    vertente que a relíquia definir (geralmente "ativa"/"passiva", mas
+ *    alguns catálogos usam outros nomes, como "apollo"/"artemis" da
+ *    Espada Gêmea).
+ *  - "escolha_livre" (ex.: O Bastão dos Caminhos): não tem vertente
+ *    nenhuma -- em vez de pontos por vertente, guarda a LISTA de
+ *    habilidades (dentre as 12, 2 por Caminho) já destravadas, até o
+ *    limite de 5 vindo dos Marcos de Forja. */
 export function entradaDeReliquia(reliquia, materiais) {
-  const pontosForja = {};
-  for (const v of reliquia.vertentes || []) {
-    pontosForja[v.id] = 0;
-  }
-  return {
+  const base = {
     id: crypto.randomUUID?.() ?? `reliquia-${Date.now()}-${Math.random().toString(36).slice(2)}`,
     eh_reliquia: true,
     reliquia_id: reliquia.id,
@@ -293,14 +295,41 @@ export function entradaDeReliquia(reliquia, materiais) {
     minerio: reliquia.recebe_minerio_karnathite ? 'karnathite' : null,
     durabilidade_atual: null, // Karnathite é indestrutível; acessórios sem chassi não têm durabilidade
     quebrado: false,
-    pontos_forja: pontosForja,
   };
+  if (reliquia.modelo_forja === 'escolha_livre') {
+    return { ...base, habilidades_desbloqueadas: [] };
+  }
+  const pontosForja = {};
+  for (const v of reliquia.vertentes || []) {
+    pontosForja[v.id] = 0;
+  }
+  return { ...base, pontos_forja: pontosForja };
 }
 
-/** Total de Pontos de Forja já investidos (soma de todas as vertentes)
- * -- toda relíquia tem 5 no total, vindos dos 5 Marcos de Forja. */
+/** Total de Pontos de Forja já investidos numa entrada de relíquia,
+ * qualquer que seja o modelo dela -- toda relíquia tem 5 no total,
+ * vindos dos 5 Marcos de Forja. */
+export function totalForjaInvestida(entrada) {
+  if (entrada.habilidades_desbloqueadas) return entrada.habilidades_desbloqueadas.length;
+  return totalPontosForjaInvestidos(entrada.pontos_forja);
+}
+
+/** Soma bruta de um objeto pontos_forja ({vertenteId: pontos}) -- usada
+ * tanto por totalForjaInvestida quanto onde só o objeto está disponível. */
 export function totalPontosForjaInvestidos(pontosForja) {
   return Object.values(pontosForja || {}).reduce((soma, n) => soma + (Number(n) || 0), 0);
+}
+
+/** Alterna (liga/desliga) uma habilidade específica do modelo
+ * "escolha_livre", respeitando o teto de 5 no total -- nunca deixa
+ * ligar uma 6ª enquanto não desligar outra primeiro. */
+export function alternarHabilidadeCaminho(entrada, habilidadeId) {
+  const atuais = entrada.habilidades_desbloqueadas || [];
+  if (atuais.includes(habilidadeId)) {
+    return atuais.filter((id) => id !== habilidadeId);
+  }
+  if (atuais.length >= 5) return atuais; // teto atingido, ignora o clique
+  return [...atuais, habilidadeId];
 }
 
 function round3(n) {

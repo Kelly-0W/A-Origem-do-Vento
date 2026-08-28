@@ -708,11 +708,31 @@ function DetalheReliquia({ item }) {
         </Secao>
       )}
 
+      {item.regra_habilidades_por_forma && (
+        <p className="text-[11px] text-gold/80 italic mb-4 border border-gold/20 rounded-md p-2">
+          {item.regra_habilidades_por_forma}
+        </p>
+      )}
+
       {(item.vertentes || []).map((v) => (
         <Secao key={v.id} titulo={`${v.nome}${v.subtitulo ? ` — ${v.subtitulo}` : ''}`}>
           <div className="grid sm:grid-cols-2 gap-3">
             {v.niveis.map((n) => (
               <NivelForja key={`${v.id}-${n.numero}`} n={n} />
+            ))}
+          </div>
+        </Secao>
+      ))}
+
+      {(item.caminhos || []).map((c) => (
+        <Secao key={c.id} titulo={`${c.numero}. ${c.nome} (${c.nome_grafia_original})`}>
+          <p className="text-xs text-mist mb-2">Forma: {c.forma}</p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {c.habilidades.map((h) => (
+              <div key={h.id} className="stat-tile">
+                <span className="font-display text-sm text-white">{h.nome}</span>
+                <p className="text-xs text-mist leading-relaxed mt-1">{h.texto}</p>
+              </div>
             ))}
           </div>
         </Secao>
