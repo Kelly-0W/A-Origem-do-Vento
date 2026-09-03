@@ -9,6 +9,7 @@ import { redimensionarImagem } from '../lib/imagem.js'
 import ResumoEscolhas from '../components/ResumoEscolhas.jsx'
 import FichaVisual from '../components/FichaVisual.jsx'
 import PainelAscensao from '../components/PainelAscensao.jsx'
+import PainelRedistribuicaoAtributos from '../components/PainelRedistribuicaoAtributos.jsx'
 import PainelPoderesTreino from '../components/PainelPoderesTreino.jsx'
 import PainelInventario from '../components/PainelInventario.jsx'
 
@@ -388,6 +389,18 @@ export default function PersonagemDetalhe() {
                     respondido_em: prev.ascensao_em_progresso?.respondido_em ?? null,
                   },
                 }))
+              }
+            />
+          )}
+
+          {ehDono && (
+            <PainelRedistribuicaoAtributos
+              personagemId={id}
+              donoUid={usuario.uid}
+              atributosAtuais={escolhas.atributos}
+              pedido={personagem.redistribuicao_atributos_em_progresso}
+              onAtualizado={(novoPedido) =>
+                setPersonagem((prev) => ({ ...prev, redistribuicao_atributos_em_progresso: novoPedido }))
               }
             />
           )}

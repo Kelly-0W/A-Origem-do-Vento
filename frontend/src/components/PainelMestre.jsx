@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { api } from '../lib/api.js'
+import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
 import ResumoEscolhas from './ResumoEscolhas.jsx'
 import FichaVisual from './FichaVisual.jsx'
 
@@ -61,8 +62,6 @@ function CardPersonagem({ item, catalogo, expandido, onAlternarExpandido, filho 
               archeAtual={item.arche_atual}
               bonusDefesa={item.bonus_defesa}
               bonusDeslocamento={item.bonus_deslocamento}
-              bonusVidaMaxima={item.bonus_vida_maxima}
-              vidaTemporaria={item.vida_temporaria}
             />
           )}
         </div>
@@ -81,6 +80,7 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
   const [erro, setErro] = useState(null)
   const [expandidoId, setExpandidoId] = useState(null)
   const [respondendoId, setRespondendoId] = useState(null)
+  const [respondendoRedistribuicaoId, setRespondendoRedistribuicaoId] = useState(null)
 
   async function carregar() {
     setCarregando(true)
@@ -128,11 +128,28 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
     }
   }
 
+  async function responderRedistribuicao(personagemId, aprovar) {
+    setRespondendoRedistribuicaoId(personagemId)
+    try {
+      const { ok, dados } = await api.responderRedistribuicaoAtributos({ mestreUid, campanhaId, personagemId, aprovar })
+      if (!ok || !dados?.sucesso) {
+        setErro(dados?.erros?.[0] || 'Não foi possível responder a esse pedido agora.')
+        return
+      }
+      await carregar()
+    } finally {
+      setRespondendoRedistribuicaoId(null)
+    }
+  }
+
   if (carregando && itens.length === 0) {
     return <div className="text-mist text-sm">Carregando painel do mestre...</div>
   }
 
   const pendentes = itens.filter((i) => i.ascensao_em_progresso?.status === 'aguardando_mestre')
+  const pendentesRedistribuicao = itens.filter(
+    (i) => i.redistribuicao_atributos_em_progresso?.status === 'aguardando_mestre'
+  )
 
   return (
     <div className="mt-10">
@@ -207,6 +224,68 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
               }
             />
           ))}
+        </div>
+      )}
+
+      <h2 className="text-xl font-display mb-4">Pedidos de Redistribuição de Atributos Pendentes</h2>
+      {pendentesRedistribuicao.length === 0 ? (
+        <div className="card-fantasy p-6 text-center text-mist text-sm mb-10">Nenhum pedido pendente no momento.</div>
+      ) : (
+        <div className="flex flex-col gap-4 mb-10">
+          {pendentesRedistribuicao.map((item) => {
+            const pedido = item.redistribuicao_atributos_em_progresso
+            const atuais = item.escolhas?.atributos || {}
+            return (
+              <div key={item.id} className="card-fantasy p-5">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-11 h-11 rounded border border-panel-border bg-void overflow-hidden shrink-0 flex items-center justify-center">
+                    {item.imagem_base64 ? (
+                      <img src={item.imagem_base64} alt={item.nome_personagem} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-mist text-[9px]">Sem foto</span>
+                    )}
+                  </div>
+                  <div>
+                    <div className="font-display font-semibold">{item.nome_personagem || 'Personagem sem nome'}</div>
+                    <div className="text-xs text-mist">{item.dono_nome || 'jogador desconhecido'}</div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-3">
+                  {ATRIBUTOS.map((a) => (
+                    <div key={a} className="stat-tile text-center">
+                      <span className="text-[10px] uppercase tracking-widest text-mist">{NOMES_ATRIBUTOS[a]}</span>
+                      <div className="font-display text-base">
+                        {atuais[a]} <span className="text-mist text-sm">→</span>{' '}
+                        <span className={pedido.atributos_propostos[a] !== atuais[a] ? 'text-gold' : ''}>
+                          {pedido.atributos_propostos[a]}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {pedido.motivo && <p className="text-xs text-mist italic mb-3">&ldquo;{pedido.motivo}&rdquo;</p>}
+
+                <div className="flex gap-3">
+                  <button
+                    className="btn-primary text-xs disabled:opacity-50"
+                    onClick={() => responderRedistribuicao(item.id, true)}
+                    disabled={respondendoRedistribuicaoId === item.id}
+                  >
+                    {respondendoRedistribuicaoId === item.id ? 'Aprovando...' : 'Aprovar'}
+                  </button>
+                  <button
+                    className="btn-secondary text-xs disabled:opacity-50"
+                    onClick={() => responderRedistribuicao(item.id, false)}
+                    disabled={respondendoRedistribuicaoId === item.id}
+                  >
+                    {respondendoRedistribuicaoId === item.id ? 'Recusando...' : 'Recusar'}
+                  </button>
+                </div>
+              </div>
+            )
+          })}
         </div>
       )}
     </div>

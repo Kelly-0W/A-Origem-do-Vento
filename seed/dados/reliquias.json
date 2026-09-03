@@ -12,7 +12,7 @@
     "recurso_custo": "sanidade",
     "recurso_custo_nota": null,
     "recebe_minerio_karnathite": false,
-    "descricao_forja_zero": "Em Forja 0, é um colar simples de cobre e osso, indistinguível de um enfeite funerário comum --- assim permanece enquanto sua Forja não desperta. Por não possuir chassi físico, o Colar nunca recebe os bônus do Minério Indestrutível de Karnath.",
+    "descricao_forja_zero": "Em Forja 0, é um colar simples de cobre e osso, indistinguível de um enfeite funerário comum --- e assim permanece enquanto sua Forja não desperta. Por não possuir chassi físico, o Colar nunca recebe os bônus do Minério Indestrutível de Karnath.",
     "propriedade_inata": null,
     "modelo_forja": "vertentes",
     "vertentes": [
@@ -25,7 +25,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "quando uma criatura sob o comando do usuário receberia um golpe fatal, pague 1 ponto de sanidade: em vez de cair, ela permanece de pé com 1 de vida até o fim do turno atual. O efeito passa por sorte, reflexo ou adrenalina --- nada que denuncie intervenção divina."
+            "texto": "quando uma criatura sob o comando do usuário receberia um golpe fatal, pague 1 ponto de Sanidade: em vez de cair, ela permanece de pé com 1 de Vida até o fim do turno atual."
           },
           {
             "numero": 2,
@@ -46,7 +46,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o efeito pode ser ativado duas vezes por cena, sem custo adicional de sanidade na segunda ativação."
+            "texto": "o efeito pode ser ativado duas vezes por cena, sem custo adicional de Sanidade na segunda ativação."
           },
           {
             "numero": 5,
@@ -66,7 +66,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "quando uma criatura morre a até 3 metros do usuário, pague 2 pontos de sanidade para reanimar seu corpo como um servo instintivo e frágil --- sem memórias, sem perícias, obedecendo apenas comandos simples --- por 1d4 rodadas, ao fim das quais desmorona em pó. O efeito soa como necromancia de aprendiz, não como um deus agindo."
+            "texto": "quando uma criatura morre a até 3 metros do usuário, pague 2 pontos de Sanidade para reanimar seu corpo como um servo instintivo e frágil --- sem memórias, sem perícias, obedecendo apenas comandos simples --- por 1d4 rodadas, ao fim das quais desmorona em pó."
           },
           {
             "numero": 2,
@@ -80,7 +80,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "a criatura reanimada passa a manter metade de suas perícias e ataques originais, vindo agora com metade de sua vida máxima."
+            "texto": "a criatura reanimada passa a manter metade de suas perícias e ataques originais, vindo agora com metade de sua Vida máxima."
           },
           {
             "numero": 4,
@@ -94,7 +94,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "a criatura reanimada mantém todas as suas capacidades originais e deixa de decair --- a reanimação torna-se permanente enquanto ela obedecer ao usuário. A vida máxima permanece fixa em metade do original: mesmo no auge da Forja, ninguém retorna inteiro."
+            "texto": "a criatura reanimada mantém todas as suas capacidades originais e deixa de decair --- a reanimação torna-se permanente enquanto ela obedecer ao usuário. A Vida máxima permanece fixa em metade do original: mesmo no auge da Forja, ninguém retorna inteiro."
           }
         ]
       }
@@ -133,7 +133,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "Vontade de Anúbis",
-      "texto": "O Colar pode se recusar a agir --- a critério do Mestre --- caso o usuário profane um morto, negue ritos funerários a alguém, ou empregue seu poder de forma frívola e repetida, sem respeito pela morte."
+      "texto": "o Colar pode se recusar a agir --- a critério do Mestre --- caso o usuário profane um morto, negue ritos funerários a alguém, ou empregue seu poder de forma frívola e repetida, sem respeito pela morte."
     }
   },
   "mascara-de-loki": {
@@ -162,7 +162,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "ao observar atentamente uma criatura por alguns instantes, pague 1 ponto de sanidade para assumir sua aparência --- voz, altura, feições --- pelo resto da cena. É pura ilusão superficial, do tipo que qualquer charlatão de feira conseguiria replicar: não altera suas capacidades físicas nem concede qualquer poder do alvo. O usuário mantém apenas uma forma emprestada por vez."
+            "texto": "ao observar atentamente uma criatura por alguns instantes, pague 1 ponto de Sanidade para assumir sua aparência --- voz, altura, feições --- pelo resto da cena. Não altera suas capacidades físicas nem concede qualquer poder do alvo. O usuário mantém apenas uma forma emprestada por vez."
           },
           {
             "numero": 2,
@@ -190,7 +190,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "enquanto estiver usando essa forma, o usuário ganha acesso às habilidades e poderes do alvo --- em troca, perde acesso aos seus próprios enquanto durar a transformação. Usar um poder copiado custa, em Sanidade, o mesmo valor que ele custaria em Arché ao dono original (conversão de 1 para 1); poderes que não custam Arché ao dono original custam 2 pontos de Sanidade por uso."
+            "texto": "enquanto estiver usando essa forma, o usuário ganha acesso às habilidades e poderes do alvo --- em troca, perde acesso aos próprios enquanto durar a transformação. Usar um poder copiado custa, em Sanidade, o mesmo valor que ele custaria em Arché ao dono original (conversão de 1 para 1); poderes que não custam Arché ao dono original custam 2 pontos de Sanidade por uso."
           }
         ]
       },
@@ -203,14 +203,14 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "ao estudar o comportamento de uma criatura por uma cena inteira, o usuário ganha vantagem em testes sociais (Diplomacia, Enganação ou Intimidação) contra ela pelo resto daquela cena --- não é um bônus de uso único, dura enquanto a cena durar."
+            "texto": "ao estudar o comportamento de uma criatura por uma cena inteira, o usuário ganha Vantagem em testes sociais (Diplomacia, Enganação ou Intimidação) contra ela pelo resto daquela cena --- não é um bônus de uso único, dura enquanto a cena durar."
           },
           {
             "numero": 2,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "essa vantagem deixa de expirar ao fim da cena --- passa a valer permanentemente contra aquela criatura específica, sempre que o usuário interagir com ela."
+            "texto": "essa Vantagem deixa de expirar ao fim da cena --- passa a valer permanentemente contra aquela criatura específica, sempre que o usuário interagir com ela."
           },
           {
             "numero": 3,
@@ -231,7 +231,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "a compreensão do usuário se torna tão profunda que ele antecipa os movimentos de qualquer criatura já estudada: recebe vantagem no primeiro teste de ataque ou defesa contra ela em cada cena --- sem nunca precisar se tornar ela."
+            "texto": "a compreensão do usuário se torna tão profunda que ele antecipa os movimentos de qualquer criatura já estudada: recebe Vantagem no primeiro teste de ataque ou defesa contra ela em cada cena --- sem nunca precisar se tornar ela."
           }
         ]
       }
@@ -270,7 +270,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "Vontade de Loki",
-      "texto": "Loki não tolera rotina. Se o usuário repetir a mesma identidade ou o mesmo poder copiado de forma idêntica por turnos seguidos, a Máscara cobra 1d4 de sanidade extra --- o mesmo capricho que rege o Selo de Loki nos próprios Lokianos."
+      "texto": "Se o usuário repetir a mesma identidade ou o mesmo poder copiado de forma idêntica por turnos seguidos, a Máscara cobra 1d4 de Sanidade extra."
     }
   },
   "raios-de-helio": {
@@ -300,21 +300,21 @@
             "tipo": "ativa",
             "titulo": "Facho do Meio-Dia",
             "primeiro_despertar": true,
-            "texto": "uma vez por cena, ao acertar um ataque corpo a corpo em Modo Espada, pague 1 ponto de arché para somar 1d4 de dano de Fogo ao golpe. Ainda parece truque de ferreiro, não milagre."
+            "texto": "uma vez por cena, ao acertar um ataque corpo a corpo em Modo Espada, pague 1 ponto de Arché para somar 1d4 de dano de Fogo ao golpe."
           },
           {
             "numero": 2,
             "tipo": "ativa",
             "titulo": "Investida Radiante",
             "primeiro_despertar": false,
-            "texto": "novo estilo de golpe: pague 2 pontos de arché para avançar até 3 metros em linha reta antes de atacar; se o ataque acertar, role o dado de dano da arma duas vezes e use o maior resultado."
+            "texto": "novo estilo de golpe: pague 2 pontos de Arché para avançar até 3 metros em linha reta antes de atacar; se o ataque acertar, role o dado de dano da arma duas vezes e use o maior resultado."
           },
           {
             "numero": 3,
             "tipo": "ativa",
             "titulo": "Zênite",
             "primeiro_despertar": false,
-            "texto": "pague 4 pontos de arché para desferir um corte que ignora a Redução de Dano física do alvo; se o golpe for crítico, causa dano adicional igual ao Grau de Ascensão do usuário."
+            "texto": "pague 4 pontos de Arché para desferir um corte que ignora a Redução de Dano física do alvo; se o golpe for crítico, causa dano adicional igual ao Grau de Ascensão do usuário."
           },
           {
             "numero": 4,
@@ -342,28 +342,28 @@
             "tipo": "ativa",
             "titulo": "Desatar",
             "primeiro_despertar": true,
-            "texto": "como ação padrão, pague 1 ponto de arché para desfazer a lâmina em um chicote de luz solar trançada, passando a usar as estatísticas de Chicote (1d4 de dano de Corte, alcance de 3,0m) no lugar das de espada. Retornar à forma de espada custa outra ação padrão. No início, a transformação é lenta e nada discreta --- todos ao redor percebem a mudança."
+            "texto": "como Ação Padrão, pague 1 ponto de Arché para desfazer a lâmina em um chicote de luz solar trançada, passando a usar as estatísticas de Chicote (1d4 de dano de Corte, alcance de 3,0 m) no lugar das de espada. Retornar à forma de espada custa outra Ação Padrão."
           },
           {
             "numero": 2,
             "tipo": "ativa",
             "titulo": "Laço Solar",
             "primeiro_despertar": false,
-            "texto": "novo estilo de golpe: ao acertar um alvo em Modo Chicote, pague 1 ponto de arché para tentar imobilizá-lo, rolando Luta contra a Fortitude do alvo --- a mesma resolução usada pela Dança da Corrente do Kusarigama. Em caso de sucesso, aplique a condição Imobilizado até o fim do turno seguinte dele."
+            "texto": "novo estilo de golpe: ao acertar um alvo em Modo Chicote, pague 1 ponto de Arché para tentar imobilizá-lo, rolando Luta contra a Fortitude do alvo --- a mesma resolução usada pela Dança da Corrente do Kusarigama. Em caso de sucesso, aplique a condição Imobilizado até o fim do turno seguinte dele."
           },
           {
             "numero": 3,
             "tipo": "ativa",
             "titulo": "Arco do Poente",
             "primeiro_despertar": false,
-            "texto": "pague 3 pontos de arché para golpear em um arco largo, atingindo todos os inimigos ao seu alcance simultaneamente."
+            "texto": "pague 3 pontos de Arché para golpear em um arco largo, atingindo todos os inimigos ao seu alcance simultaneamente."
           },
           {
             "numero": 4,
             "tipo": "passiva",
             "titulo": "Alcance Ampliado",
             "primeiro_despertar": false,
-            "texto": "enquanto em Modo Chicote, o alcance de ataque aumenta em mais 1,5m, totalizando 4,5m."
+            "texto": "enquanto em Modo Chicote, o alcance de ataque aumenta em mais 1,5 m, totalizando 4,5 m."
           },
           {
             "numero": 5,
@@ -409,7 +409,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "Capricho de Hélio",
-      "texto": "O sol não fica parado no céu. Se o usuário permanecer numa única forma por cenas inteiras sem alternar, perde o bônus de uma de suas Passivas daquela forma --- à escolha do Mestre --- até voltar a usar a outra."
+      "texto": "Se o usuário permanecer numa única forma por cenas inteiras sem alternar, perde o bônus de uma de suas Passivas daquela forma --- à escolha do Mestre --- até voltar a usar a outra."
     }
   },
   "aneis-de-hecate": {
@@ -442,35 +442,35 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de arché para que a flecha conceda a um alvo --- aliado ou inimigo --- um bônus ou penalidade de ±2 num teste à escolha do usuário, até o fim da cena."
+            "texto": "pague 1 ponto de Arché para que a flecha conceda a um alvo --- aliado ou inimigo --- um bônus ou penalidade de ±2 num teste à escolha do usuário, até o fim da cena."
           },
           {
             "numero": 2,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o efeito deixa de valer pra um único teste: passa a se aplicar a todos os testes daquele tipo feitos pelo alvo até o fim do próximo turno dele."
+            "texto": "o efeito deixa de valer para um único teste: passa a se aplicar a todos os testes daquele tipo feitos pelo alvo até o fim do próximo turno dele."
           },
           {
             "numero": 3,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "a flecha passa a poder aplicar um Efeito catalogado de verdade, sempre escolhendo livremente entre um Efeito Negativo, em um inimigo, ou um Efeito Positivo, em um aliado: pague 1 ponto de arché para um efeito leve (Provocar, ou Vantagem na próxima rolagem do alvo) ou 2 pontos de arché para um efeito médio (Atordoamento ou Sangramento como Efeito Negativo; Escudo como Efeito Positivo)."
+            "texto": "a flecha passa a poder aplicar um Efeito catalogado de verdade, sempre escolhendo livremente entre um Efeito Negativo, em um inimigo, ou um Efeito Positivo, em um aliado: pague 1 ponto de Arché para um efeito leve (Provocar, ou Vantagem na próxima rolagem do alvo) ou 2 pontos de Arché para um efeito médio (Atordoamento ou Sangramento como Efeito Negativo; Escudo como Efeito Positivo)."
           },
           {
             "numero": 4,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "a lista de Efeitos disponíveis se expande: somam-se Medo, Cego ou Fadiga como novos Efeitos Negativos, e Regeneração ou Fortificação como novos Efeitos Positivos --- todos catalogados nas regras de Combate do jogo. O custo de arché de qualquer efeito da lista cai em 1 ponto, com mínimo de 1."
+            "texto": "a lista de Efeitos disponíveis se expande: somam-se Medo, Cego ou Fadiga como novos Efeitos Negativos, e Regeneração ou Fortificação como novos Efeitos Positivos --- todos catalogados nas regras de Combate do jogo. O custo de Arché de qualquer efeito da lista cai em 1 ponto, com mínimo de 1."
           },
           {
             "numero": 5,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "a flecha pode aplicar qualquer Efeito Positivo ou Negativo catalogado nas regras de Combate --- bênção em um aliado ou maldição em um inimigo ---, com o custo de arché a critério do Mestre. Efeitos que normalmente exigem um teste de resistência do alvo continuam exigindo esse teste: a Flecha nunca erra o alvo, mas o efeito ainda pode ser resistido."
+            "texto": "a flecha pode aplicar qualquer Efeito Positivo ou Negativo catalogado nas regras de Combate --- bênção em um aliado ou maldição em um inimigo ---, com o custo de Arché a critério do Mestre. Efeitos que normalmente exigem um teste de resistência do alvo continuam exigindo esse teste: a Flecha nunca erra o alvo, mas o efeito ainda pode ser resistido."
           }
         ]
       },
@@ -483,7 +483,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de arché para disparar uma segunda flecha simultânea contra o mesmo alvo."
+            "texto": "pague 1 ponto de Arché para disparar uma segunda flecha simultânea contra o mesmo alvo."
           },
           {
             "numero": 2,
@@ -511,7 +511,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "Chuva de Hécate: pague 6 pontos de arché para disparar uma flecha contra cada inimigo (ou aliado) visível dentro do alcance, de uma só vez. Apenas um dos alvos atingidos pode receber um efeito da Vertente Passiva nesse disparo; os demais sofrem só o dano-base das flechas."
+            "texto": "Chuva de Hécate: pague 6 pontos de Arché para disparar uma flecha contra cada inimigo (ou aliado) visível dentro do alcance, de uma só vez. Apenas um dos alvos atingidos pode receber um efeito da Vertente Passiva nesse disparo; os demais sofrem só o dano-base das flechas."
           }
         ]
       }
@@ -579,7 +579,7 @@
             "tipo": "ativa",
             "titulo": "Raio da Alvorada",
             "primeiro_despertar": true,
-            "texto": "uma vez por cena, sem custo de ação além do próprio ataque, pague 1 ponto de arché para somar 1d4 de dano de Fogo ao próximo ataque corpo a corpo.",
+            "texto": "uma vez por cena, sem custo de ação além do próprio ataque, pague 1 ponto de Arché para somar 1d4 de dano de Fogo ao próximo ataque corpo a corpo.",
             "irmandade_astral": "a margem de crítico da espada se expande em +1, permanentemente."
           },
           {
@@ -587,7 +587,7 @@
             "tipo": "ativa",
             "titulo": "Mira Solar",
             "primeiro_despertar": false,
-            "texto": "como Ação Padrão, pague 2 pontos de arché para atacar à distância de até 9 metros, arremessando um facho de luz solidificada que causa o mesmo dado de dano da espada.",
+            "texto": "como Ação Padrão, pague 2 pontos de Arché para atacar à distância de até 9 metros, arremessando um facho de luz solidificada que causa o mesmo dado de dano da espada.",
             "irmandade_astral": "+2 em testes de Percepção baseados em visão."
           },
           {
@@ -595,7 +595,7 @@
             "tipo": "ativa",
             "titulo": "Chama Profética",
             "primeiro_despertar": false,
-            "texto": "como Ação Padrão, substituindo um ataque, pague 2 pontos de arché; se o golpe acertar, aplica a condição Queimadura.",
+            "texto": "como Ação Padrão, substituindo um ataque, pague 2 pontos de Arché; se o golpe acertar, aplica a condição Queimadura.",
             "irmandade_astral": "uma vez por cena, ao acertar uma criatura já sob Queimadura, cure 1d6 de Vida."
           },
           {
@@ -603,7 +603,7 @@
             "tipo": "ativa",
             "titulo": "Zênite Radiante",
             "primeiro_despertar": false,
-            "texto": "como Ação Padrão, substituindo um ataque, pague 3 pontos de arché para que o golpe ignore a Resistência Elemental do alvo.",
+            "texto": "como Ação Padrão, substituindo um ataque, pague 3 pontos de Arché para que o golpe ignore a Resistência Elemental do alvo.",
             "irmandade_astral": "o dado de dano de Raio da Alvorada sobe de 1d4 para 1d6."
           },
           {
@@ -611,7 +611,7 @@
             "tipo": "ativa",
             "titulo": "Flecha do Meio-Dia",
             "primeiro_despertar": false,
-            "texto": "como Ação Padrão, pague 5 pontos de arché para um ataque à distância de até 18 metros que ignora a Redução de Dano física do alvo e causa o dobro de dano se ele estiver sob Queimadura.",
+            "texto": "como Ação Padrão, pague 5 pontos de Arché para um ataque à distância de até 18 metros que ignora a Redução de Dano física do alvo e causa o dobro de dano se ele estiver sob Queimadura.",
             "irmandade_astral": "recebe o Efeito Positivo Precisão automaticamente no início de cada combate."
           }
         ]
@@ -625,7 +625,7 @@
             "tipo": "ativa",
             "titulo": "Passo da Lua Nova",
             "primeiro_despertar": true,
-            "texto": "como Ação de Movimento, pague 1 ponto de arché para se deslocar até 3 metros sem provocar ataques de oportunidade, antes ou depois de atacar.",
+            "texto": "como Ação de Movimento, pague 1 ponto de Arché para se deslocar até 3 metros sem provocar ataques de oportunidade, antes ou depois de atacar.",
             "irmandade_astral": "+1,5 metro de Deslocamento, permanentemente."
           },
           {
@@ -633,7 +633,7 @@
             "tipo": "ativa",
             "titulo": "Emboscada Silenciosa",
             "primeiro_despertar": false,
-            "texto": "como Ação Padrão, pague 2 pontos de arché; se o alvo ainda não agiu no combate ou está desprevenido, o ataque recebe Vantagem automaticamente.",
+            "texto": "como Ação Padrão, pague 2 pontos de Arché; se o alvo ainda não agiu no combate ou está desprevenido, o ataque recebe Vantagem automaticamente.",
             "irmandade_astral": "+2 em testes de Furtividade."
           },
           {
@@ -641,7 +641,7 @@
             "tipo": "ativa",
             "titulo": "Marca da Presa",
             "primeiro_despertar": false,
-            "texto": "como Ação Padrão, pague 2 pontos de arché para marcar um alvo por 3 turnos; todo aliado que acertar o alvo marcado causa +1d4 de dano adicional.",
+            "texto": "como Ação Padrão, pague 2 pontos de Arché para marcar um alvo por 3 turnos; todo aliado que acertar o alvo marcado causa +1d4 de dano adicional.",
             "irmandade_astral": "enquanto o alvo estiver marcado, os ataques do usuário contra ele têm Vantagem."
           },
           {
@@ -649,7 +649,7 @@
             "tipo": "ativa",
             "titulo": "Fuga da Caçadora",
             "primeiro_despertar": false,
-            "texto": "como Ação de Reação, pague 3 pontos de arché para se afastar até 4,5 metros de um inimigo que acabou de atacá-lo, sem provocar ataque de oportunidade.",
+            "texto": "como Ação de Reação, pague 3 pontos de Arché para se afastar até 4,5 metros de um inimigo que acabou de atacá-lo, sem provocar ataque de oportunidade.",
             "irmandade_astral": "+2 em testes de Reflexos."
           },
           {
@@ -657,7 +657,7 @@
             "tipo": "ativa",
             "titulo": "Caçada da Lua Cheia",
             "primeiro_despertar": false,
-            "texto": "como Ação Completa, pague 5 pontos de arché para realizar 3 ataques consecutivos contra um único alvo marcado, rolando o ataque e o dano de cada golpe separadamente.",
+            "texto": "como Ação Completa, pague 5 pontos de Arché para realizar 3 ataques consecutivos contra um único alvo marcado, rolando o ataque e o dano de cada golpe separadamente.",
             "irmandade_astral": "recebe o Efeito Positivo Aceleração automaticamente ao marcar um novo alvo com Marca da Presa."
           }
         ]
@@ -668,7 +668,7 @@
     "ativa_inata_forma": null,
     "irmandade": {
       "nome": "Irmandade Astral",
-      "texto": "Apollo e Artemis são gêmeos --- nenhum floresce sozinho. Todas as dez habilidades desta relíquia são puramente ativas; não existe uma Vertente Passiva separada. Porém, sempre que a Espada tiver ao menos 1 ponto de Forja investido em cada uma das duas vertentes simultaneamente, cada uma das dez habilidades passa a conceder também o bônus descrito em sua Irmandade Astral, de forma permanente e automática, além do seu efeito ativo normal. Um usuário que investir puramente em um só lado (5x0 ou 0x5) nunca desperta a Irmandade Astral --- os Gêmeos só abençoam quem honra os dois. Se, depois de despertá-la, o usuário passar 3 cenas seguidas sem usar nenhuma habilidade do lado negligenciado, a Irmandade Astral daquele lado se desliga até uma habilidade dele ser usada de novo."
+      "texto": "Todas as dez habilidades desta relíquia são puramente ativas; não existe uma Vertente Passiva separada. Porém, sempre que a Espada tiver ao menos 1 ponto de Forja investido em cada uma das duas vertentes simultaneamente, cada uma das dez habilidades passa a conceder também o bônus descrito em sua Irmandade Astral, de forma permanente e automática, além do seu efeito ativo normal. Um usuário que investir puramente em um só lado (5x0 ou 0x5) nunca desperta a Irmandade Astral. Se, depois de despertá-la, o usuário passar 3 cenas seguidas sem usar nenhuma habilidade do lado negligenciado, a Irmandade Astral daquele lado se desliga até uma habilidade dele ser usada de novo."
     },
     "marcos_forja": [
       {
@@ -700,7 +700,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "Rivalidade dos Gêmeos (Vontade)",
-      "texto": "Os dois irmãos exigem equilíbrio, não indiferença --- o custo dessa exigência já está descrito na própria Irmandade Astral: negligenciar um lado por cenas seguidas desliga o bônus daquele lado até ele voltar a ser usado."
+      "texto": "negligenciar um lado por cenas seguidas desliga o bônus da Irmandade Astral daquele lado até ele voltar a ser usado."
     }
   },
   "mandibula-de-sugea": {
@@ -733,7 +733,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "uma vez por cena, pague 1 ponto de arché para que seu próximo ataque com a garra, se acertar, aplique a condição Envenenamento."
+            "texto": "uma vez por cena, pague 1 ponto de Arché para que seu próximo ataque com a garra, se acertar, aplique a condição Envenenamento."
           },
           {
             "numero": 2,
@@ -747,7 +747,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o teste de Constituição para resistir ao Envenenamento aplicado por esta garra passa a ter CD 22, em vez do padrão --- o veneno de Sugea nunca foi fácil de suportar."
+            "texto": "o teste de Constituição para resistir ao Envenenamento aplicado por esta garra passa a ter CD 22, em vez do padrão."
           },
           {
             "numero": 4,
@@ -774,7 +774,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "+1,5 metro de Deslocamento, permanentemente, e vantagem em testes de Furtividade --- o predador se move como se não estivesse ali."
+            "texto": "+1,5 metro de Deslocamento, permanentemente, e Vantagem em testes de Furtividade."
           },
           {
             "numero": 2,
@@ -802,7 +802,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o usuário se torna Imune ao efeito Envenenamento, de qualquer fonte --- o predador perfeito nunca é presa do próprio veneno."
+            "texto": "o usuário se torna Imune ao efeito Envenenamento, de qualquer fonte."
           }
         ]
       }
@@ -841,7 +841,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "Orgulho do Predador (Vontade)",
-      "texto": "A Mandíbula despreza covardia. Se o usuário recuar de um combate depois de já ter envenenado um alvo naquela cena, sofre -2 no próximo teste de ataque até vencer outro combate."
+      "texto": "Se o usuário recuar de um combate depois de já ter envenenado um alvo naquela cena, sofre -2 no próximo teste de ataque até vencer outro combate."
     }
   },
   "masolat": {
@@ -857,7 +857,7 @@
     "recurso_custo": "sanidade",
     "recurso_custo_nota": null,
     "recebe_minerio_karnathite": false,
-    "descricao_forja_zero": "Em Forja 0, é só um olho de vidro comum, sem brilho, guardado numa caixa --- nenhum sinal de ter pertencido ao maior guerreiro do antigo império. Diferente de qualquer outra relíquia deste catálogo, Masolat nunca começa realmente adormecido: o Olho já testemunhou a queda do próprio Masalat na última linha de defesa do castelo, e por isso concede 1 Ponto de Forja imediatamente ao ser equipado pela primeira vez, para investir em Ativa ou Passiva à escolha do usuário.",
+    "descricao_forja_zero": "Em Forja 0, é só um olho de vidro comum, sem brilho, guardado numa caixa --- nenhum sinal de ter pertencido ao maior guerreiro do antigo império. Diferente de qualquer outra relíquia deste catálogo, Masolat nunca começa realmente adormecido: o Olho já testemunhou a queda do próprio Masalot na última linha de defesa do castelo, e por isso concede 1 Ponto de Forja imediatamente ao ser equipado pela primeira vez, para investir em Ativa ou Passiva à escolha do usuário.",
     "propriedade_inata": null,
     "modelo_forja": "vertentes",
     "vertentes": [
@@ -870,7 +870,7 @@
             "tipo": "ativa",
             "titulo": "Eco de Masalot",
             "primeiro_despertar": true,
-            "texto": "quando sofrer um golpe de uma habilidade inimiga em combate corpo a corpo, pague 1 ponto de sanidade e role um teste de Percepção (CD 16). Em caso de sucesso, como Ação de Reação imediata, execute uma cópia daquela mesma habilidade contra o atacante, recalculada com os atributos do usuário --- mas o eco se perde no fim da cena, nada fica retido."
+            "texto": "quando sofrer um golpe de uma habilidade inimiga em combate corpo a corpo, pague 1 ponto de Sanidade e role um teste de Percepção (CD 16). Em caso de sucesso, como Ação de Reação imediata, execute uma cópia daquela mesma habilidade contra o atacante, recalculada com os atributos do usuário --- mas o eco se perde no fim da cena."
           },
           {
             "numero": 2,
@@ -939,7 +939,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "uma vez por cena, o usuário pode transformar um ataque que sofreria em um erro crítico automático do atacante --- o corpo reage antes da mente processar o perigo."
+            "texto": "uma vez por cena, o usuário pode transformar um ataque que sofreria em um erro crítico automático do atacante."
           }
         ]
       }
@@ -978,7 +978,7 @@
     "ponto_forja_gratuito_ao_equipar": true,
     "vontade": {
       "nome": "Instinto do Último Guardião (Vontade)",
-      "texto": "O Olho foi forjado no auge de uma última resistência --- não tolera covardia passiva. Uma técnica selada e nunca usada por 5 cenas seguidas se apaga do repertório, liberando o slot."
+      "texto": "Uma técnica selada e nunca usada por 5 cenas seguidas se apaga do repertório, liberando o slot."
     }
   },
   "heimskringla": {
@@ -1007,7 +1007,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "como Ação de Movimento, pague 2 pontos de arché para criar 1 cópia ilusória sua num espaço adjacente, com 1 ponto de vida, que age mas nunca causa dano real. Dura até o fim do seu próximo turno ou até ser destruída --- menos, por enquanto, do que o próprio sangue Lokiano é capaz de fazer sozinho."
+            "texto": "como Ação de Movimento, pague 2 pontos de Arché para criar 1 cópia ilusória sua num espaço adjacente, com 1 ponto de Vida, que age mas nunca causa dano real. Dura até o fim do seu próximo turno ou até ser destruída."
           },
           {
             "numero": 2,
@@ -1021,7 +1021,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "sobe para até 3 cópias --- paridade com a herança racial --- e, quando um inimigo escolher você como alvo, role 1d4: em 1, o ataque acerta você; em qualquer outro resultado, acerta e destrói uma cópia."
+            "texto": "sobe para até 3 cópias; quando um inimigo escolher você como alvo, role 1d4: em 1, o ataque acerta você; em qualquer outro resultado, acerta e destrói uma cópia."
           },
           {
             "numero": 4,
@@ -1035,7 +1035,7 @@
             "tipo": "ativa",
             "titulo": "Multiplicação Verdadeira",
             "primeiro_despertar": false,
-            "texto": "pague 5 pontos de arché para tocar uma criatura ou objeto e criar uma cópia real, física, capaz de causar dano de verdade. Role 1d6 para determinar sua força: 1-2 = metade dos atributos do original; 3-5 = atributos idênticos; 6 = atributos originais +1 em tudo. Em qualquer resultado, a cópia se desfaz em pó ao fim da cena."
+            "texto": "pague 5 pontos de Arché para tocar uma criatura ou objeto e criar uma cópia real, física, capaz de causar dano de verdade. Role 1d6 para determinar sua força: 1-2 = metade dos atributos do original; 3-5 = atributos idênticos; 6 = atributos originais +1 em tudo. Em qualquer resultado, a cópia se desfaz em pó ao fim da cena."
           }
         ]
       },
@@ -1055,7 +1055,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "sempre que um inimigo errar um ataque contra o usuário, pode gastar sua Reação para criar uma cópia ilusória num espaço adjacente --- a mesma Miragem que corre no sangue Lokiano, só que sem precisar de sangue demoníaco algum."
+            "texto": "sempre que um inimigo errar um ataque contra o usuário, pode gastar sua Reação para criar uma cópia ilusória num espaço adjacente."
           },
           {
             "numero": 3,
@@ -1076,7 +1076,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "sempre que o usuário estivesse prestes a sofrer dano que reduziria sua vida a 0, uma cópia ilusória automaticamente absorve o golpe em seu lugar, sem custo e sem teste --- uma vez por sessão."
+            "texto": "sempre que o usuário estivesse prestes a sofrer dano que reduziria sua Vida a 0, uma cópia ilusória automaticamente absorve o golpe em seu lugar, sem custo e sem teste --- uma vez por sessão."
           }
         ]
       }
@@ -1115,7 +1115,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "A Maldição do Bobo (Vontade)",
-      "texto": "A maldição nunca desaparece de verdade --- só adormece enquanto o anel for usado. Se o usuário passar 3 cenas inteiras sem criar nenhuma cópia ou ilusão, ela desperta de novo: sofre 2d6 de dano no início da cena seguinte, e o contador reinicia."
+      "texto": "se o usuário passar 3 cenas inteiras sem criar nenhuma cópia ou ilusão, a maldição desperta: sofre 2d6 de dano no início da cena seguinte, e o contador reinicia."
     }
   },
   "thornpiercer": {
@@ -1144,7 +1144,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de arché para que o próximo golpe com o chicote cause 1d4 de dano adicional e aplique Sangramento, se acertar."
+            "texto": "pague 1 ponto de Arché para que o próximo golpe com o chicote cause 1d4 de dano adicional e aplique Sangramento, se acertar."
           },
           {
             "numero": 2,
@@ -1158,7 +1158,7 @@
             "tipo": "ativa",
             "titulo": "Amarras Vivas",
             "primeiro_despertar": false,
-            "texto": "ao acertar, pague 2 pontos de arché para tentar imobilizar o alvo com os espinhos vivos, rolando Luta contra Reflexos dele. Sucesso aplica Imobilizado por 1 turno."
+            "texto": "ao acertar, pague 2 pontos de Arché para tentar imobilizar o alvo com os espinhos vivos, rolando Luta contra Reflexos dele. Sucesso aplica Imobilizado por 1 turno."
           },
           {
             "numero": 4,
@@ -1172,7 +1172,7 @@
             "tipo": "ativa",
             "titulo": "Floração da Fúria",
             "primeiro_despertar": false,
-            "texto": "pague 5 pontos de arché para um golpe que causa o dobro do dado de dano normal e aplica Hemorragia."
+            "texto": "pague 5 pontos de Arché para um golpe que causa o dobro do dado de dano normal e aplica Hemorragia."
           }
         ]
       },
@@ -1185,7 +1185,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "enquanto estiver com metade da vida máxima ou menos, +2 no dado de dano do chicote."
+            "texto": "enquanto estiver com metade da Vida máxima ou menos, +2 no dado de dano do chicote."
           },
           {
             "numero": 2,
@@ -1206,14 +1206,14 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o bônus de dano de baixa vida (I/II) sobe para +4."
+            "texto": "o bônus de dano de baixa Vida (I/II) sobe para +4."
           },
           {
             "numero": 5,
             "tipo": "passiva",
             "titulo": "A Vontade Nunca se Curva",
             "primeiro_despertar": false,
-            "texto": "uma vez por sessão, ao chegar a 1 ponto de vida antes de cair inconsciente ou morrer, pode agir imediatamente com o dobro de todo dano causado até o fim daquele combate."
+            "texto": "uma vez por sessão, ao chegar a 1 ponto de Vida antes de cair inconsciente ou morrer, pode agir imediatamente com o dobro de todo dano causado até o fim daquele combate."
           }
         ]
       }
@@ -1252,7 +1252,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "Não Dobra aos Covardes (Vontade)",
-      "texto": "O Chicote não obedece quem recua. Se o usuário se render ou fugir de um combate que poderia vencer através de pura vontade, perde acesso à Vertente Passiva até provar sua determinação de novo, vencendo outro combate difícil."
+      "texto": "se o usuário se render ou fugir de um combate que poderia vencer, perde acesso à Vertente Passiva até provar sua determinação de novo, vencendo outro combate difícil."
     }
   },
   "bastao-de-wukong": {
@@ -1285,7 +1285,7 @@
             "tipo": "ativa",
             "titulo": "Bastão Crescente",
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de arché para que o bastão se alongue temporariamente, aumentando seu alcance para 3,0 metros até o fim do turno."
+            "texto": "pague 1 ponto de Arché para que o bastão se alongue temporariamente, aumentando seu alcance para 3,0 metros até o fim do turno."
           },
           {
             "numero": 2,
@@ -1299,7 +1299,7 @@
             "tipo": "ativa",
             "titulo": "Nuvem de Voo",
             "primeiro_despertar": false,
-            "texto": "pague 2 pontos de arché para se deslocar instantaneamente até 9 metros em qualquer direção, inclusive verticalmente, sem provocar ataques de oportunidade."
+            "texto": "pague 2 pontos de Arché para se deslocar instantaneamente até 9 metros em qualquer direção, inclusive verticalmente, sem provocar ataques de oportunidade."
           },
           {
             "numero": 4,
@@ -1313,7 +1313,7 @@
             "tipo": "ativa",
             "titulo": "Fúria do Rei Macaco",
             "primeiro_despertar": false,
-            "texto": "pague todo o Vigor Armazenado no momento (mínimo de 3 pontos) para converter cada ponto gasto em +2 de dano no próximo ataque corpo a corpo --- a resistência acumulada vira fúria pura."
+            "texto": "pague todo o Vigor Armazenado no momento (mínimo de 3 pontos) para converter cada ponto gasto em +2 de dano no próximo ataque corpo a corpo."
           }
         ]
       },
@@ -1326,7 +1326,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "pelos finos começam a cobrir seus braços: +2 em testes de Atletismo relacionados a escalada ou saltos."
+            "texto": "+2 em testes de Atletismo relacionados a escalada ou saltos."
           },
           {
             "numero": 2,
@@ -1340,21 +1340,21 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "desenvolve uma cauda prênsil funcional, capaz de segurar objetos leves e conceder vantagem em testes de Equilíbrio ou Acrobacia; pode usá-la para um ataque adicional fraco (1d4 de dano de Impacto) como Ação Bônus, uma vez por turno."
+            "texto": "ganha uma cauda prênsil: concede Vantagem em testes de Equilíbrio ou Acrobacia, e pode ser usada para um ataque adicional fraco (1d4 de dano de Impacto) como Ação Bônus, uma vez por turno."
           },
           {
             "numero": 4,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "os olhos tornam-se dourados: vantagem em testes de Percepção, e o teto do Vigor Armazenado sobe de 5 para 8 pontos."
+            "texto": "Vantagem em testes de Percepção, e o teto do Vigor Armazenado sobe de 5 para 8 pontos."
           },
           {
             "numero": 5,
             "tipo": "passiva",
             "titulo": "Um com o Deus Macaco",
             "primeiro_despertar": false,
-            "texto": "uma vez por sessão, por 3 turnos, o usuário se funde com a alma de Wukong: recebe Resistência Física total, Vantagem em todos os testes de Luta, e o Vigor Armazenado deixa de ter limite máximo durante esse período. Ao fim dos 3 turnos, todo o Vigor acumulado se esvai."
+            "texto": "uma vez por sessão, por 3 turnos, o usuário recebe Resistência Física total, Vantagem em todos os testes de Luta, e o Vigor Armazenado deixa de ter limite máximo durante esse período. Ao fim dos 3 turnos, todo o Vigor acumulado se esvai."
           }
         ]
       }
@@ -1393,7 +1393,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "O Rei Macaco Não se Ajoelha (Vontade)",
-      "texto": "O Bastão não aceita submissão. Se o usuário se curvar ou se render diante de uma figura de autoridade sem lutar, todo o Vigor Armazenado se esvai instantaneamente."
+      "texto": "Se o usuário se curvar ou se render diante de uma figura de autoridade sem lutar, todo o Vigor Armazenado se esvai instantaneamente."
     }
   },
   "escudo-de-geb": {
@@ -1422,7 +1422,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de arché para usar o próprio escudo como arma nesse turno, causando 1d6 de dano de Impacto."
+            "texto": "pague 1 ponto de Arché para usar o próprio escudo como arma nesse turno, causando 1d6 de dano de Impacto."
           },
           {
             "numero": 2,
@@ -1436,7 +1436,7 @@
             "tipo": "ativa",
             "titulo": "Correntes Quebradas",
             "primeiro_despertar": false,
-            "texto": "pague 2 pontos de arché para libertar instantaneamente a si mesmo ou um aliado adjacente de uma condição de controle (Atordoamento, Imobilizado, Medo ou Provocar)."
+            "texto": "pague 2 pontos de Arché para libertar instantaneamente a si mesmo ou um aliado adjacente de uma condição de controle (Atordoamento, Imobilizado, Medo ou Provocar)."
           },
           {
             "numero": 4,
@@ -1450,7 +1450,7 @@
             "tipo": "ativa",
             "titulo": "Muralha de Geb",
             "primeiro_despertar": false,
-            "texto": "pague 5 pontos de arché para erguer instantaneamente uma barreira de pedra sólida, bloqueando uma passagem ou concedendo Cobertura Total a todos os aliados atrás dela por 3 turnos --- o monumento impenetrável, feito realidade por um instante."
+            "texto": "pague 5 pontos de Arché para erguer instantaneamente uma barreira de pedra sólida, bloqueando uma passagem ou concedendo Cobertura Total a todos os aliados atrás dela por 3 turnos."
           }
         ]
       },
@@ -1491,7 +1491,7 @@
             "tipo": "passiva",
             "titulo": "O Sentinela Nunca Cai",
             "primeiro_despertar": false,
-            "texto": "uma vez por sessão, se a vida do usuário chegasse a 0 enquanto ele estiver posicionado entre um aliado e o perigo, ele permanece de pé com 1 ponto de vida --- a vanguarda nunca abandona seu posto."
+            "texto": "uma vez por sessão, se a Vida do usuário chegasse a 0 enquanto ele estiver posicionado entre um aliado e o perigo, ele permanece de pé com 1 ponto de Vida."
           }
         ]
       }
@@ -1530,7 +1530,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "O Escudo Nunca Recua (Vontade)",
-      "texto": "O Escudo de Geb foi forjado para proteger, nunca para fugir. Se o usuário abandonar um aliado ferido para salvar a si mesmo, perde acesso à Vertente Passiva até se redimir protegendo outro aliado num momento de perigo real."
+      "texto": "Se o usuário abandonar um aliado ferido para salvar a si mesmo, perde acesso à Vertente Passiva até se redimir protegendo outro aliado num momento de perigo real."
     }
   },
   "iragarpena": {
@@ -1559,7 +1559,7 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de sanidade para perguntar ao espírito sobre o resultado provável de uma ação próxima --- ele responde de forma vaga, como qualquer adivinho de feira faria."
+            "texto": "pague 1 ponto de Sanidade para perguntar ao espírito sobre o resultado provável de uma ação próxima. A resposta vem vaga e sem garantia de precisão."
           },
           {
             "numero": 2,
@@ -1573,21 +1573,21 @@
             "tipo": "ativa",
             "titulo": "Presságio",
             "primeiro_despertar": false,
-            "texto": "antes de um teste importante do usuário ou de um aliado visível, pague 2 pontos de sanidade para rolar duas vezes e usar o melhor resultado."
+            "texto": "antes de um teste importante do usuário ou de um aliado visível, pague 2 pontos de Sanidade para rolar duas vezes e usar o melhor resultado."
           },
           {
             "numero": 4,
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o mesmo efeito pode ser usado contra um inimigo visível --- role duas vezes o teste dele e use o pior resultado, uma profecia de fracasso."
+            "texto": "o mesmo efeito pode ser usado contra um inimigo visível --- role duas vezes o teste dele e use o pior resultado."
           },
           {
             "numero": 5,
             "tipo": "ativa",
             "titulo": "A Profecia se Cumpre",
             "primeiro_despertar": false,
-            "texto": "pague 5 pontos de sanidade para declarar, antes de uma ação importante acontecer, um resultado específico (sucesso ou fracasso). O Mestre decide como o destino conspira para cumpri-lo dentro da cena."
+            "texto": "pague 5 pontos de Sanidade para declarar, antes de uma ação importante acontecer, um resultado específico (sucesso ou fracasso). Cabe ao Mestre decidir como esse resultado se concretiza dentro da cena."
           }
         ]
       },
@@ -1600,14 +1600,14 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "vantagem em testes de Percepção contra emboscadas e armadilhas."
+            "texto": "Vantagem em testes de Percepção contra emboscadas e armadilhas."
           },
           {
             "numero": 2,
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "essa vantagem passa a ser automática --- não precisa mais rolar, apenas percebe."
+            "texto": "essa Vantagem passa a ser automática --- não precisa mais rolar, apenas percebe."
           },
           {
             "numero": 3,
@@ -1628,7 +1628,7 @@
             "tipo": "passiva",
             "titulo": "O Preço de Saber Demais",
             "primeiro_despertar": false,
-            "texto": "o usuário nunca perde sua Ação de Reação por ser pego de surpresa --- mas cada vez que esse efeito o salva de um perigo real, sofre 1 ponto de sanidade."
+            "texto": "o usuário nunca perde sua Ação de Reação por ser pego de surpresa --- mas cada vez que esse efeito o salva de um perigo real, sofre 1 ponto de Sanidade."
           }
         ]
       }
@@ -1667,13 +1667,13 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "O Profeta Não Perdoa (Vontade)",
-      "texto": "Iragarpena nunca aceitou seu retorno forçado. Se o usuário explorar a relíquia repetidamente para benefício egoísta ou tirânico, o espírito pode se recusar a agir naquela cena --- ou pior, sussurrar uma profecia real e sombria sobre o próprio futuro do usuário, a critério do Mestre."
+      "texto": "se o usuário explorar a relíquia repetidamente para benefício egoísta ou tirânico, o espírito pode se recusar a agir naquela cena --- ou, a critério do Mestre, revelar uma profecia real sobre o futuro do usuário."
     }
   },
   "coelho-de-demeter": {
     "id": "coelho-de-demeter",
     "nome": "Coelho de Deméter",
-    "epiteto": "Curandeiro do Jardim",
+    "epiteto": "O Curandeiro do Jardim",
     "categoria": "acessorio",
     "categoria_detalhe": "bichinho de pelúcia, invocável como companheiro",
     "chassi_base": null,
@@ -1696,7 +1696,7 @@
             "tipo": "ativa",
             "titulo": "Brotos de Cura",
             "primeiro_despertar": true,
-            "texto": "uma vez por cena, pague 1 ponto de arché para curar um único aliado adjacente ao coelho em 1d4 + a perícia de Cura do usuário."
+            "texto": "uma vez por cena, pague 1 ponto de Arché para curar um único aliado adjacente ao coelho em 1d4 + a perícia de Cura do usuário."
           },
           {
             "numero": 2,
@@ -1724,7 +1724,7 @@
             "tipo": "ativa",
             "titulo": "Um por Todos",
             "primeiro_despertar": false,
-            "texto": "quando desejar, pode usar toda a energia vital do coelho para distribuir cura a todos os aliados no campo de batalha, numa quantia igual a metade da vida máxima do aliado com mais vida entre eles. Ao fazer isso, o coelho não pode ser invocado nas próximas 5 lutas."
+            "texto": "quando desejar, pode usar toda a energia vital do coelho para distribuir cura a todos os aliados no campo de batalha, numa quantia igual a metade da Vida máxima do aliado com mais Vida entre eles. Ao fazer isso, o coelho não pode ser invocado nas próximas 5 lutas."
           }
         ]
       },
@@ -1737,7 +1737,7 @@
             "tipo": "passiva",
             "titulo": null,
             "primeiro_despertar": true,
-            "texto": "ao entrar em combate, pague 1 ponto de arché por turno para criar um campo de vida num raio de 3 metros ao redor do coelho: poderes de cura usados dentro dele restauram +2 pontos de Vida extra."
+            "texto": "ao entrar em combate, pague 1 ponto de Arché por turno para criar um campo de vida num raio de 3 metros ao redor do coelho: poderes de cura usados dentro dele restauram +2 pontos de Vida extra."
           },
           {
             "numero": 2,
@@ -1804,7 +1804,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "O Coelho Nunca Abandona (Vontade)",
-      "texto": "Se um aliado ficar isolado e ferido sem ninguém por perto, o coelho tenta se mover em direção a ele mesmo sem ordem do usuário, a critério do Mestre --- reforçando seu propósito original de nunca deixar uma criança indefesa sem cuidado."
+      "texto": "se um aliado ficar isolado e ferido sem ninguém por perto, o coelho tenta se mover em direção a ele mesmo sem ordem do usuário, a critério do Mestre."
     }
   },
   "espirito-da-retribuicao": {
@@ -1833,7 +1833,7 @@
             "tipo": "ativa",
             "titulo": "Choque do Diabo",
             "primeiro_despertar": true,
-            "texto": "pague 1 ponto de arché para que seu próximo golpe corpo a corpo cause 1d4 de dano Elétrico adicional. Ao usar, sofre 1/8 da sua vida atual como dano de ricochete."
+            "texto": "pague 1 ponto de Arché para que seu próximo golpe corpo a corpo cause 1d4 de dano Elétrico adicional. Ao usar, sofre 1/8 da sua Vida atual como dano de ricochete."
           },
           {
             "numero": 2,
@@ -1854,14 +1854,14 @@
             "tipo": "ativa",
             "titulo": null,
             "primeiro_despertar": false,
-            "texto": "o dano elétrico adicional sobe para 3d4, e o dano de ricochete sobe para 1/6 da vida atual do usuário."
+            "texto": "o dano elétrico adicional sobe para 3d4, e o dano de ricochete sobe para 1/6 da Vida atual do usuário."
           },
           {
             "numero": 5,
             "tipo": "ativa",
             "titulo": "Fúria do Oceano Primordial",
             "primeiro_despertar": false,
-            "texto": "pague 5 pontos de arché para um golpe elétrico devastador contra um alvo sob Condução: se o alvo estiver sob Queimadura, gera Sobrecarga (2d8 de dano adicional + 1/10 da vida do alvo, removendo Queimadura e Condução dele); se o alvo estiver molhado ou próximo de água, gera Supercondução (o dano de Condução sobe para 2d4+3 por 3 turnos, afetando também criaturas nas casas adjacentes ao alvo). Ao usar esse golpe, sofre 1/4 da sua vida atual como dano de ricochete."
+            "texto": "pague 5 pontos de Arché para um golpe elétrico devastador contra um alvo sob Condução: se o alvo estiver sob Queimadura, gera Sobrecarga (2d8 de dano adicional + 1/10 da Vida do alvo, removendo Queimadura e Condução dele); se o alvo estiver molhado ou próximo de água, gera Supercondução (o dano de Condução sobe para 2d4+3 por 3 turnos, afetando também criaturas nas casas adjacentes ao alvo). Ao usar esse golpe, sofre 1/4 da sua Vida atual como dano de ricochete."
           }
         ]
       },
@@ -1941,7 +1941,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "O Dragão Exige Tributo (Vontade)",
-      "texto": "A cada nova sessão, se o usuário não sofrer ao menos uma vez o dano de ricochete da Mão do Diabo, a Mão de Deus se recusa a conceder qualquer bônus na sessão seguinte."
+      "texto": "a cada nova sessão, se o usuário não sofrer ao menos uma vez o dano de ricochete da Mão do Diabo, a Mão de Deus se recusa a conceder qualquer bônus na sessão seguinte."
     }
   },
   "bastao-dos-caminhos": {
@@ -1953,7 +1953,7 @@
     "chassi_base": null,
     "peso_base_kg": 1.0,
     "peso_texto": "Leve, do tamanho de uma baqueta e da grossura de um taco de beisebol",
-    "alcance": "Varia por Caminho (1,5m na maioria; 3,0m na Lança; 18m no Arco)",
+    "alcance": "Varia por Caminho (1,5 m na maioria; 3,0 m na Lança; 18 m no Arco)",
     "recurso_custo": "sanidade",
     "recurso_custo_nota": "só para escolher a forma manualmente --- a Ativa Inata é grátis quando sorteada",
     "recebe_minerio_karnathite": true,
@@ -1961,7 +1961,7 @@
     "propriedade_inata": {
       "nome": "Ativa Inata: Troca de Caminho",
       "gatilho": "desbloqueada no Marco 1, não consome Ponto de Forja",
-      "texto": "a qualquer momento, role 1d6 para que o bastão assuma um dos seis Caminhos, na ordem listada, sem custo algum. Alternativamente, pague 3 pontos de sanidade para escolher o Caminho desejado. De qualquer forma, uma vez assumida, a forma permanece por 5 turnos antes de poder ser trocada de novo; ao fim desse tempo, o bastão retorna à forma neutra de cajado até ser trocado outra vez."
+      "texto": "a qualquer momento, role 1d6 para que o bastão assuma um dos seis Caminhos abaixo, na ordem listada, sem custo algum. Alternativamente, pague 3 pontos de Sanidade para escolher o Caminho desejado. De qualquer forma, uma vez assumida, a forma permanece por 5 turnos antes de poder ser trocada de novo; ao fim desse tempo, o bastão retorna à forma neutra de cajado até ser trocado outra vez."
     },
     "modelo_forja": "escolha_livre",
     "vertentes": [],
@@ -2000,7 +2000,7 @@
           {
             "id": "transito-das-almas",
             "nome": "Trânsito das Almas",
-            "texto": "ao reduzir um inimigo a 0 de vida com essa forma, cura metade do dano do golpe final."
+            "texto": "ao reduzir um inimigo a 0 de Vida com essa forma, cura metade do dano do golpe final."
           }
         ]
       },
@@ -2009,7 +2009,7 @@
         "numero": 3,
         "nome": "Caminho Divino",
         "nome_grafia_original": "दिव्य",
-        "forma": "lança celestial (1d10 de dano de Perfuração, alcance de 3,0m, duas mãos)",
+        "forma": "lança celestial (1d10 de dano de Perfuração, alcance de 3,0 m, duas mãos)",
         "habilidades": [
           {
             "id": "furia-de-asgard",
@@ -2066,7 +2066,7 @@
         "numero": 6,
         "nome": "Caminho da Dominação",
         "nome_grafia_original": "प्रभुत्व",
-        "forma": "arco (1d8 de dano de Perfuração, alcance de 18m, duas mãos)",
+        "forma": "arco (1d8 de dano de Perfuração, alcance de 18 m, duas mãos)",
         "habilidades": [
           {
             "id": "sacrificio-de-sangue",
@@ -2081,7 +2081,7 @@
         ]
       }
     ],
-    "regra_habilidades_por_forma": "Cada habilidade abaixo só funciona enquanto o bastão estiver na forma do Caminho a que pertence --- ao mudar de forma, as habilidades dos outros Caminhos ficam inativas até o bastão assumi-los de novo.",
+    "regra_habilidades_por_forma": "As 12 Habilidades Passivas abaixo têm escolha livre, em qualquer ordem, usando os 5 Pontos de Forja --- cada Caminho tem exatamente 2. Cada habilidade só funciona enquanto o bastão estiver na forma do Caminho a que pertence --- ao mudar de forma, as habilidades dos outros Caminhos ficam inativas até o bastão assumi-los de novo.",
     "ativa_inata_forma": null,
     "irmandade": null,
     "marcos_forja": [
@@ -2114,7 +2114,7 @@
     "ponto_forja_gratuito_ao_equipar": false,
     "vontade": {
       "nome": "O Caminho Perdido (Vontade)",
-      "texto": "O bastão ainda lembra da Paz que lhe foi arrancada. Se o usuário empregar o Caminho da Dominação de forma cruel ou desnecessária, a critério do Mestre, o bastão resiste por um instante --- a próxima troca de forma falha automaticamente, como se a arma relutasse em obedecer."
+      "texto": "se o usuário empregar o Caminho da Dominação de forma cruel ou desnecessária, a critério do Mestre, a próxima troca de forma falha automaticamente."
     }
   }
 }

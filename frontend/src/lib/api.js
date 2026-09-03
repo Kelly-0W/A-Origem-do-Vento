@@ -72,6 +72,30 @@ export const api = {
       escolhas_recompensa: escolhasRecompensa,
     }),
 
+  // POST /api/solicitar_redistribuicao_atributos  (ver api/solicitar_redistribuicao_atributos.py)
+  // atributosPropostos: {for, des, con, int, sab, car} -- mesma regra de
+  // soma/limites da criação. So' cria o pedido como pendente; quem
+  // aplica de fato é o Mestre, via responderRedistribuicaoAtributos.
+  solicitarRedistribuicaoAtributos: ({ personagemId, donoUid, atributosPropostos, motivo }) =>
+    post('solicitar_redistribuicao_atributos', {
+      personagem_id: personagemId,
+      dono_uid: donoUid,
+      atributos_propostos: atributosPropostos,
+      motivo,
+    }),
+
+  // POST /api/responder_redistribuicao_atributos  (ver api/responder_redistribuicao_atributos.py)
+  // aprovar=true já aplica a nova distribuição e recalcula a ficha inteira
+  // nessa mesma chamada (diferente da Ascensão, não tem uma etapa extra
+  // de "escolher recompensas" depois). aprovar=false so' marca recusado.
+  responderRedistribuicaoAtributos: ({ mestreUid, campanhaId, personagemId, aprovar }) =>
+    post('responder_redistribuicao_atributos', {
+      mestre_uid: mestreUid,
+      campanha_id: campanhaId,
+      personagem_id: personagemId,
+      aprovar,
+    }),
+
   // POST /api/excluir_conta  (ver api/excluir_conta.py)
   // Cascata completa: campanhas mestradas + jogadores expulsos delas,
   // saída de campanhas onde só é jogador, personagens próprios, perfil,

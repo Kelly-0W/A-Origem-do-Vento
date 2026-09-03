@@ -69,6 +69,7 @@ class handler(BaseHTTPRequestHandler):
                     "calculado": p.get("calculado"),
                     "grau_ascensao": p.get("grau_ascensao", 0),
                     "ascensao_em_progresso": p.get("ascensao_em_progresso"),
+                    "redistribuicao_atributos_em_progresso": p.get("redistribuicao_atributos_em_progresso"),
                     # Estado de jogo (ver FichaVisual.jsx) -- útil pro mestre
                     # acompanhar vida/sanidade/arché atuais da mesa sem
                     # precisar perguntar. Só leitura aqui: quem edita é
