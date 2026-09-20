@@ -666,9 +666,14 @@ function DetalheReliquia({ item }) {
             Custo: {item.recurso_custo === 'arche' ? 'Arché' : 'Sanidade'}
           </span>
         )}
-        {item.recebe_minerio_karnathite && (
+        {item.recebe_minerio_daiita && (
           <span className="text-xs px-2.5 py-1 rounded-md border border-panel-border text-mist">
-            Karnathite fixo (+12 dano físico / −12 RD física)
+            Daiita fixa (indestrutível) — dano físico / RD física = Grau de Ascensão + 2
+          </span>
+        )}
+        {!item.recebe_minerio_daiita && item.categoria !== 'arma' && item.categoria !== 'armadura_escudo' && (
+          <span className="text-xs px-2.5 py-1 rounded-md border border-panel-border text-mist">
+            Sem Daiita — Arché Máximo adicional (metade do Grau de Ascensão, mín. +1)
           </span>
         )}
         {item.ponto_forja_gratuito_ao_equipar && (

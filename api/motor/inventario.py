@@ -186,12 +186,23 @@ def kit_origem_faltando(
 # `eh_reliquia: True` pra ganhar tratamento proprio (Pontos de Forja por
 # vertente) no frontend, em vez do tratamento generico de item avulso.
 #
-# Regras do sistema de Forja (ver o .md de regras): Acessorios nunca
-# recebem o Minerio Indestrutivel de Karnath; Armas e Armaduras/Escudos
-# SEMPRE sao forjadas em Karnathite fixo, sem escolha do jogador -- por
-# isso o peso final ja sai calculado aqui (multiplicador do Karnathite
-# aplicado uma vez, na hora de adicionar), sem um `minerio` escolhivel
-# como um item comum teria.
+# Regras do sistema de Forja (ver o .md de regras, secao 3 "Daiita, o
+# Minerio que Cresce com o Portador"): Acessorios e Selos nunca recebem a
+# Daiita; Armas e Armaduras/Escudos SEMPRE sao forjadas em Daiita fixa,
+# sem escolha do jogador -- por isso o peso final ja sai calculado aqui
+# (multiplicador da Daiita aplicado uma vez, na hora de adicionar), sem um
+# `minerio` escolhivel como um item comum teria. Karnathite continua
+# existindo no catalogo (materiais.json) como um minerio independente,
+# comum -- so' deixou de ser o que as Reliquias usam.
+#
+# Diferente do antigo piso fixo, o bonus de dano fisico/RD fisica da
+# Daiita NAO e' um numero fixo: ela escala com o Grau de Ascensao do
+# proprio portador (bonus_dano_fisico_daiita/bonus_rd_fisica_daiita logo
+# abaixo). Por isso esse bonus nunca fica guardado na entrada de
+# inventario (que nao sabe o Grau de Ascensao atual) -- quem le a entrada
+# (a ficha calculada) e' quem aplica a formula com o grau vigente no
+# momento. Acessorios e Selos, que nunca recebem Daiita, ganham em troca
+# Arche Maximo adicional (bonus_arche_maximo_sem_daiita).
 
 
 def tem_reliquia_no_inventario(inventario: List[dict]) -> bool:
@@ -201,15 +212,37 @@ def tem_reliquia_no_inventario(inventario: List[dict]) -> bool:
 
 
 def peso_efetivo_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> float:
-    """Peso final de uma reliquia, ja considerando o Karnathite fixo
+    """Peso final de uma reliquia, ja considerando a Daiita fixa
     quando ela tem chassi fisico (arma/armadura_escudo)."""
     peso_base = reliquia.get("peso_base_kg")
     if peso_base is None:
         return 0.0  # "Desprezivel" (ex.: Aneis de Hecate, Iragarpena)
-    if not reliquia.get("recebe_minerio_karnathite"):
+    if not reliquia.get("recebe_minerio_daiita"):
         return round(peso_base, 3)
-    multiplicador = materiais.get("karnathite", {}).get("multiplicador_peso", 1.3)
+    multiplicador = materiais.get("daiita", {}).get("multiplicador_peso", 1.3)
     return round(peso_base * multiplicador, 3)
+
+
+def bonus_dano_fisico_daiita(grau_ascensao: int) -> int:
+    """Bonus de dano fisico embutido de uma Reliquia-Arma forjada em
+    Daiita (secao 3 do .md de regras): escala com o Grau de Ascensao do
+    proprio portador, ao contrario do antigo piso fixo de +12. Formula:
+    Grau de Ascensao + 2."""
+    return int(grau_ascensao) + 2
+
+
+def bonus_rd_fisica_daiita(grau_ascensao: int) -> int:
+    """Reducao de Dano fisica embutida de uma Reliquia-Armadura/Escudo
+    forjada em Daiita -- mesma formula do dano de Reliquia-Arma (Grau de
+    Ascensao + 2), ja que e' o mesmo piso mecanico, so' que defensivo."""
+    return int(grau_ascensao) + 2
+
+
+def bonus_arche_maximo_sem_daiita(grau_ascensao: int) -> int:
+    """Compensacao pra Acessorios e Selos, que nunca recebem Daiita (sem
+    chassi fisico pra ela se aplicar): Arche Maximo adicional igual a
+    metade do Grau de Ascensao, arredondado pra cima, minimo de +1."""
+    return max(1, math.ceil(int(grau_ascensao) / 2))
 
 
 def entrada_de_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> dict:
@@ -232,7 +265,7 @@ def entrada_de_reliquia(reliquia: dict, materiais: Dict[str, dict]) -> dict:
         "nome_livre": reliquia["nome"],
         "quantidade": 1,
         "peso_base_kg": peso_efetivo_reliquia(reliquia, materiais),
-        "minerio": "karnathite" if reliquia.get("recebe_minerio_karnathite") else None,
+        "minerio": "daiita" if reliquia.get("recebe_minerio_daiita") else None,
         "durabilidade_atual": None,
         "quebrado": False,
     }
@@ -404,7 +437,7 @@ def estado_de_carga(
 
 
 def durabilidade_maxima_material(minerio: str, materiais: Dict[str, dict]) -> Optional[int]:
-    """None = indestrutivel (Karnathite -- nunca perde pontos de
+    """None = indestrutivel (Daiita -- nunca perde pontos de
     durabilidade, nunca quebra)."""
     return materiais.get(minerio, {}).get("durabilidade_total")
 
@@ -426,7 +459,7 @@ def registrar_acerto(
     Golpes esquivados/errados NAO consomem durabilidade -- por isso esta
     funcao so' deve ser chamada num ACERTO confirmado.
 
-    Karnathite (material indestrutivel, durabilidade_total=None) nunca
+    Daiita (material indestrutivel, durabilidade_total=None) nunca
     perde pontos e nunca quebra -- retorna a durabilidade como None,
     "quebrado" sempre False.
 
@@ -457,7 +490,7 @@ def registrar_acerto(
 def reparar_item(minerio: str, materiais: Dict[str, dict]) -> Dict[str, Any]:
     """Restaura a durabilidade cheia -- usada apos a habilidade Criar e
     Reparar da pericia Oficio numa cena de descanso (ver
-    ferramentas-de-oficio no catalogo). Karnathite nao precisa disso
+    ferramentas-de-oficio no catalogo). Daiita nao precisa disso
     (nunca perde durabilidade), mas a funcao responde de forma consistente
     mesmo assim."""
     maximo = durabilidade_maxima_material(minerio, materiais)
@@ -473,6 +506,7 @@ if __name__ == "__main__":
         "ferro": {"multiplicador_peso": 1.0, "durabilidade_total": 60, "limiar_desgaste": 6},
         "azurita": {"multiplicador_peso": 0.6, "durabilidade_total": 80, "limiar_desgaste": 8},
         "karnathite": {"multiplicador_peso": 1.3, "durabilidade_total": None, "limiar_desgaste": None},
+        "daiita": {"multiplicador_peso": 1.3, "durabilidade_total": None, "limiar_desgaste": None},
     }
 
     # --- Capacidade de carga: bate exatamente com a tabela do Notion ---
@@ -627,8 +661,13 @@ if __name__ == "__main__":
     r = registrar_acerto(None, "cobre", materiais)
     assert r["durabilidade_atual"] == 19  # 20 (max do cobre) - 1
 
-    # Karnathite: indestrutivel, nunca perde durabilidade nem quebra.
+    # Karnathite e Daiita: dois minerios INDEPENDENTES que coexistem no
+    # catalogo, ambos indestrutiveis -- Karnathite continua disponivel
+    # como material normal, Daiita e' exclusiva de Reliquias (ver secao
+    # "Reliquias" abaixo).
     r = registrar_acerto(9999, "karnathite", materiais, alvo_protegido=True)
+    assert r == {"durabilidade_atual": None, "quebrado": False, "exige_teste_d12_desgaste": False}
+    r = registrar_acerto(9999, "daiita", materiais, alvo_protegido=True)
     assert r == {"durabilidade_atual": None, "quebrado": False, "exige_teste_d12_desgaste": False}
 
     # Reparar: volta pro maximo do material.
@@ -637,36 +676,47 @@ if __name__ == "__main__":
     assert r["quebrado"] is False
 
     # --- Reliquias ---
-    materiais_com_karnathite = {**materiais, "karnathite": {"multiplicador_peso": 1.3, "durabilidade_total": None, "limiar_desgaste": None}}
+    materiais_com_daiita = {**materiais, "daiita": {"multiplicador_peso": 1.3, "durabilidade_total": None, "limiar_desgaste": None}}
 
     colar = {
         "id": "colar-de-anubis", "nome": "Colar de Anúbis", "peso_base_kg": 0.3,
-        "recebe_minerio_karnathite": False,
+        "recebe_minerio_daiita": False,
         "vertentes": [{"id": "passiva"}, {"id": "ativa"}],
     }
-    entrada = entrada_de_reliquia(colar, materiais_com_karnathite)
+    entrada = entrada_de_reliquia(colar, materiais_com_daiita)
     assert entrada["eh_reliquia"] is True
     assert entrada["reliquia_id"] == "colar-de-anubis"
     assert entrada["item_id"] is None
     assert entrada["nome_livre"] == "Colar de Anúbis"
-    assert entrada["minerio"] is None  # acessorio -- nunca recebe Karnathite
+    assert entrada["minerio"] is None  # acessorio -- nunca recebe Daiita
     assert entrada["peso_base_kg"] == 0.3  # sem multiplicador de minerio
     assert entrada["pontos_forja"] == {"passiva": 0, "ativa": 0}
     assert total_pontos_forja_investidos(entrada["pontos_forja"]) == 0
 
     escudo = {
         "id": "escudo-de-geb", "nome": "Escudo de Geb", "peso_base_kg": 6.0,
-        "recebe_minerio_karnathite": True,
+        "recebe_minerio_daiita": True,
         "vertentes": [{"id": "ativa"}, {"id": "passiva"}],
     }
-    entrada_escudo = entrada_de_reliquia(escudo, materiais_com_karnathite)
-    assert entrada_escudo["minerio"] == "karnathite"
-    assert entrada_escudo["peso_base_kg"] == round(6.0 * 1.3, 3)  # 7.8kg -- Karnathite fixo aplicado
-    assert entrada_escudo["durabilidade_atual"] is None  # Karnathite = indestrutivel
+    entrada_escudo = entrada_de_reliquia(escudo, materiais_com_daiita)
+    assert entrada_escudo["minerio"] == "daiita"
+    assert entrada_escudo["peso_base_kg"] == round(6.0 * 1.3, 3)  # 7.8kg -- Daiita fixa aplicada
+    assert entrada_escudo["durabilidade_atual"] is None  # Daiita = indestrutivel
 
     aneis = {"id": "aneis-de-hecate", "nome": "Anéis de Hécate", "peso_base_kg": None,
-             "recebe_minerio_karnathite": False, "vertentes": [{"id": "passiva"}, {"id": "ativa"}]}
-    assert peso_efetivo_reliquia(aneis, materiais_com_karnathite) == 0.0  # "Desprezivel"
+             "recebe_minerio_daiita": False, "vertentes": [{"id": "passiva"}, {"id": "ativa"}]}
+    assert peso_efetivo_reliquia(aneis, materiais_com_daiita) == 0.0  # "Desprezivel"
+
+    # Bonus de Daiita escala com o Grau de Ascensao (Grau + 2), nao e'
+    # mais um piso fixo de +12 -- e Acessorios/Selos ganham Arche Maximo
+    # adicional em troca (metade do Grau, arredondado pra cima, min. +1).
+    assert bonus_dano_fisico_daiita(0) == 2
+    assert bonus_dano_fisico_daiita(5) == 7
+    assert bonus_rd_fisica_daiita(3) == 5
+    assert bonus_arche_maximo_sem_daiita(0) == 1  # minimo de +1, mesmo no Grau 0
+    assert bonus_arche_maximo_sem_daiita(1) == 1
+    assert bonus_arche_maximo_sem_daiita(4) == 2
+    assert bonus_arche_maximo_sem_daiita(5) == 3  # arredondado pra cima
 
     # So' 1 reliquia por vez.
     assert tem_reliquia_no_inventario([]) is False
@@ -679,10 +729,10 @@ if __name__ == "__main__":
     # --- Modelo "escolha_livre" (O Bastao dos Caminhos) ---
     bastao = {
         "id": "bastao-dos-caminhos", "nome": "O Bastão dos Caminhos", "peso_base_kg": 1.0,
-        "recebe_minerio_karnathite": True, "modelo_forja": "escolha_livre",
+        "recebe_minerio_daiita": True, "modelo_forja": "escolha_livre",
         "vertentes": [],
     }
-    entrada_bastao = entrada_de_reliquia(bastao, materiais_com_karnathite)
+    entrada_bastao = entrada_de_reliquia(bastao, materiais_com_daiita)
     assert entrada_bastao["habilidades_desbloqueadas"] == []
     assert "pontos_forja" not in entrada_bastao
     assert total_forja_investida(entrada_bastao) == 0

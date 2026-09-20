@@ -64,5 +64,19 @@
     "bonus_dano_fisico": 12,
     "reducao_dano_fisica": 12,
     "propriedade_especial_defensiva": "Vácuo Abissal: o usuário recebe Resistência contra dano de Alma ou de Trevas."
+  },
+  "daiita": {
+    "nome": "Daiita",
+    "multiplicador_peso": 1.3,
+    "durabilidade_total": null,
+    "indestrutivel": true,
+    "limiar_desgaste": null,
+    "propriedade_fisica": "Receptiva: extraída de Helheim, indestrutível e extraordinariamente receptiva à magia -- quanto mais forte o portador, mais forte o próprio metal se torna.",
+    "bonus_dano_fisico": null,
+    "reducao_dano_fisica": null,
+    "escala_com_grau_ascensao": true,
+    "formula_bonus_fisico": "grau_ascensao + 2",
+    "propriedade_especial_defensiva": "Vácuo Abissal: o usuário recebe Resistência contra dano de Alma ou de Trevas.",
+    "uso_exclusivo": "reliquia"
   }
 }

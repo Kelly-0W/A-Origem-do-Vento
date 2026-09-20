@@ -352,7 +352,7 @@ export default function PainelInventario({
                 )
               }
               const totalForja = totalForjaInvestida(entrada)
-              const indestrutivel = entrada.minerio === 'karnathite'
+              const indestrutivel = entrada.minerio === 'daiita'
               const modeloEscolhaLivre = reliquia.modelo_forja === 'escolha_livre'
               return (
                 <div key={entrada.id} className="p-3 rounded-md border border-gold/30 bg-void/40">
@@ -363,7 +363,7 @@ export default function PainelInventario({
                         <span className="text-[10px] uppercase tracking-widest text-gold border border-gold/40 rounded px-1.5 py-0.5">
                           relíquia
                         </span>
-                        {indestrutivel && <span className="text-[10px] text-mist">Karnathite (indestrutível)</span>}
+                        {indestrutivel && <span className="text-[10px] text-mist">Daiita (indestrutível)</span>}
                       </div>
                       {reliquia.epiteto && <p className="text-[11px] text-mist italic">{reliquia.epiteto}</p>}
                       <p className="text-[11px] text-mist mt-0.5">{arredondar(entrada.peso_base_kg || 0)} kg</p>
