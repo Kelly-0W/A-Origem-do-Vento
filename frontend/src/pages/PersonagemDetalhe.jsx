@@ -586,22 +586,24 @@ export default function PersonagemDetalhe() {
           )}
 
           {ehDono && (
-            <BotaoSalvarCosmetico
-              className="mt-4"
-              salvando={salvando}
-              nomePersonagem={nomePersonagem}
-              onSalvar={salvarCosmetico}
-              salvo={salvo}
-              erroSalvar={erroSalvar}
-            />
-          )}
+            <>
+              <BotaoSalvarCosmetico
+                className="mt-4"
+                salvando={salvando}
+                nomePersonagem={nomePersonagem}
+                onSalvar={salvarCosmetico}
+                salvo={salvo}
+                erroSalvar={erroSalvar}
+              />
 
-          <VinculoDiscord
-            personagemId={id}
-            codigoInicial={personagem.codigo_vinculo_discord}
-            expiraInicial={personagem.codigo_vinculo_discord_expira}
-            discordNome={personagem.discord_vinculado_nome}
-          />
+              <VinculoDiscord
+                personagemId={id}
+                codigoInicial={personagem.codigo_vinculo_discord}
+                expiraInicial={personagem.codigo_vinculo_discord_expira}
+                discordNome={personagem.discord_vinculado_nome}
+              />
+            </>
+          )}
         </div>
       )}
     </div>
