@@ -12,6 +12,7 @@ import PainelAscensao from '../components/PainelAscensao.jsx'
 import PainelRedistribuicaoAtributos from '../components/PainelRedistribuicaoAtributos.jsx'
 import PainelPoderesTreino from '../components/PainelPoderesTreino.jsx'
 import PainelInventario from '../components/PainelInventario.jsx'
+import VinculoDiscord from "../components/VinculoDiscord.jsx";
 
 // As 3 abas principais da ficha. "Poderes" reúne tudo que já existia antes
 // desta reestruturação (resumo de escolhas, status/perícias/atributos
@@ -246,35 +247,54 @@ export default function PersonagemDetalhe() {
   return (
     <div className="pt-2">
       <div className="flex items-center justify-between mb-6">
-        <Link to="/personagens" className="flex items-center gap-1 text-mist text-sm hover:text-white w-fit">
+        <Link
+          to="/personagens"
+          className="flex items-center gap-1 text-mist text-sm hover:text-white w-fit"
+        >
           <ChevronLeft size={16} /> Voltar
         </Link>
         <button
           onClick={excluirPersonagem}
           disabled={excluindo}
-          className={`text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50 ${ehDono ? '' : 'invisible'}`}
+          className={`text-xs text-mist hover:text-blood-bright transition-colors disabled:opacity-50 ${ehDono ? "" : "invisible"}`}
         >
-          {excluindo ? 'Excluindo...' : 'Excluir personagem'}
+          {excluindo ? "Excluindo..." : "Excluir personagem"}
         </button>
       </div>
-      {erroExcluir && <p className="text-blood-bright text-xs mb-4">{erroExcluir}</p>}
+      {erroExcluir && (
+        <p className="text-blood-bright text-xs mb-4">{erroExcluir}</p>
+      )}
 
       <div className="flex flex-col sm:flex-row gap-6 mb-8">
         <div className="shrink-0">
           <div className="w-32 h-32 rounded-lg border border-panel-border bg-void overflow-hidden flex items-center justify-center">
             {imagemBase64 ? (
-              <img src={imagemBase64} alt={nomePersonagem || 'Retrato do personagem'} className="w-full h-full object-cover" />
+              <img
+                src={imagemBase64}
+                alt={nomePersonagem || "Retrato do personagem"}
+                className="w-full h-full object-cover"
+              />
             ) : (
-              <span className="text-mist text-xs text-center px-2">Sem retrato</span>
+              <span className="text-mist text-xs text-center px-2">
+                Sem retrato
+              </span>
             )}
           </div>
           {ehDono && (
             <>
               <label className="btn-secondary text-xs mt-3 inline-block cursor-pointer">
-                {processandoImagem ? 'Processando...' : 'Trocar retrato'}
-                <input type="file" accept="image/*" className="hidden" onChange={selecionarImagem} disabled={processandoImagem} />
+                {processandoImagem ? "Processando..." : "Trocar retrato"}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={selecionarImagem}
+                  disabled={processandoImagem}
+                />
               </label>
-              {erroImagem && <p className="text-blood-bright text-xs mt-2">{erroImagem}</p>}
+              {erroImagem && (
+                <p className="text-blood-bright text-xs mt-2">{erroImagem}</p>
+              )}
             </>
           )}
         </div>
@@ -282,7 +302,9 @@ export default function PersonagemDetalhe() {
         {ehDono ? (
           <div className="flex-1">
             <label className="flex flex-col gap-1.5 mb-4 max-w-sm">
-              <span className="text-[11px] uppercase tracking-widest text-mist">Nome do personagem</span>
+              <span className="text-[11px] uppercase tracking-widest text-mist">
+                Nome do personagem
+              </span>
               <input
                 value={nomePersonagem}
                 onChange={(e) => setNomePersonagem(e.target.value)}
@@ -300,7 +322,9 @@ export default function PersonagemDetalhe() {
           </div>
         ) : (
           <div className="flex-1">
-            <h1 className="text-2xl font-display">{nomePersonagem || 'Personagem sem nome'}</h1>
+            <h1 className="text-2xl font-display">
+              {nomePersonagem || "Personagem sem nome"}
+            </h1>
           </div>
         )}
       </div>
@@ -308,13 +332,17 @@ export default function PersonagemDetalhe() {
       {/* Navegação das 3 abas principais */}
       <div className="flex items-center gap-1 border-b border-panel-border mb-8 overflow-x-auto">
         {ABAS.map((aba) => (
-          <BotaoAba key={aba.id} ativo={abaAtiva === aba.id} onClick={() => setAbaAtiva(aba.id)}>
+          <BotaoAba
+            key={aba.id}
+            ativo={abaAtiva === aba.id}
+            onClick={() => setAbaAtiva(aba.id)}
+          >
             {aba.rotulo}
           </BotaoAba>
         ))}
       </div>
 
-      {abaAtiva === 'poderes' && (
+      {abaAtiva === "poderes" && (
         <div>
           <ResumoEscolhas
             catalogo={catalogo}
@@ -342,7 +370,11 @@ export default function PersonagemDetalhe() {
               personagemId={id}
               donoUid={personagem.dono_uid}
               onAtualizado={(novoCalculado, novasEscolhas) =>
-                setPersonagem((prev) => ({ ...prev, calculado: novoCalculado, escolhas: novasEscolhas }))
+                setPersonagem((prev) => ({
+                  ...prev,
+                  calculado: novoCalculado,
+                  escolhas: novasEscolhas,
+                }))
               }
               vidaAtual={personagem.vida_atual}
               sanidadeAtual={personagem.sanidade_atual}
@@ -370,9 +402,16 @@ export default function PersonagemDetalhe() {
               escolhas={escolhas}
               estaEmCampanha={(personagem.campanhas_ids || []).length > 0}
               onAtualizado={(novaAscensao) =>
-                setPersonagem((prev) => ({ ...prev, ascensao_em_progresso: novaAscensao }))
+                setPersonagem((prev) => ({
+                  ...prev,
+                  ascensao_em_progresso: novaAscensao,
+                }))
               }
-              onAscensaoEfetivada={({ grau_ascensao, calculado, escolhas: novasEscolhas }) =>
+              onAscensaoEfetivada={({
+                grau_ascensao,
+                calculado,
+                escolhas: novasEscolhas,
+              }) =>
                 setPersonagem((prev) => ({
                   ...prev,
                   grau_ascensao,
@@ -383,10 +422,12 @@ export default function PersonagemDetalhe() {
                     catalisador: false,
                     provacao: false,
                     ritual: false,
-                    descricao_manifestacao: '',
-                    status: 'nenhuma',
-                    respondido_por_uid: prev.ascensao_em_progresso?.respondido_por_uid ?? null,
-                    respondido_em: prev.ascensao_em_progresso?.respondido_em ?? null,
+                    descricao_manifestacao: "",
+                    status: "nenhuma",
+                    respondido_por_uid:
+                      prev.ascensao_em_progresso?.respondido_por_uid ?? null,
+                    respondido_em:
+                      prev.ascensao_em_progresso?.respondido_em ?? null,
                   },
                 }))
               }
@@ -400,7 +441,10 @@ export default function PersonagemDetalhe() {
               atributosAtuais={escolhas.atributos}
               pedido={personagem.redistribuicao_atributos_em_progresso}
               onAtualizado={(novoPedido) =>
-                setPersonagem((prev) => ({ ...prev, redistribuicao_atributos_em_progresso: novoPedido }))
+                setPersonagem((prev) => ({
+                  ...prev,
+                  redistribuicao_atributos_em_progresso: novoPedido,
+                }))
               }
             />
           )}
@@ -415,7 +459,10 @@ export default function PersonagemDetalhe() {
               onAtualizado={(novosPoderes) =>
                 setPersonagem((prev) => ({
                   ...prev,
-                  escolhas: { ...prev.escolhas, poderes_escolhidos: novosPoderes },
+                  escolhas: {
+                    ...prev.escolhas,
+                    poderes_escolhidos: novosPoderes,
+                  },
                 }))
               }
             />
@@ -423,7 +470,7 @@ export default function PersonagemDetalhe() {
         </div>
       )}
 
-      {abaAtiva === 'inventario' && (
+      {abaAtiva === "inventario" && (
         <div>
           {personagem.calculado ? (
             <PainelInventario
@@ -439,16 +486,22 @@ export default function PersonagemDetalhe() {
               origemId={escolhas.origem_id}
               origem={origem}
               onAtualizado={(novoInventario) =>
-                setPersonagem((prev) => ({ ...prev, inventario: novoInventario }))
+                setPersonagem((prev) => ({
+                  ...prev,
+                  inventario: novoInventario,
+                }))
               }
             />
           ) : (
-            <p className="text-mist text-sm">A ficha ainda não foi calculada -- o inventário depende da Força e do Deslocamento do personagem.</p>
+            <p className="text-mist text-sm">
+              A ficha ainda não foi calculada -- o inventário depende da Força e
+              do Deslocamento do personagem.
+            </p>
           )}
         </div>
       )}
 
-      {abaAtiva === 'background' && (
+      {abaAtiva === "background" && (
         <div className="card-fantasy p-6">
           <div className="flex items-center gap-1 border-b border-panel-border mb-5 overflow-x-auto">
             {SUBABAS_BACKGROUND.map((sub) => (
@@ -463,18 +516,25 @@ export default function PersonagemDetalhe() {
             ))}
           </div>
 
-          {abaBackgroundAtiva === 'informacoes_pessoais' ? (
+          {abaBackgroundAtiva === "informacoes_pessoais" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {CAMPOS_INFO_PESSOAL.map((campo) => (
                 <label key={campo.chave} className="flex flex-col gap-1.5">
-                  <span className="text-[11px] uppercase tracking-widest text-mist">{campo.rotulo}</span>
+                  <span className="text-[11px] uppercase tracking-widest text-mist">
+                    {campo.rotulo}
+                  </span>
                   {ehDono ? (
                     <input
-                      value={background.informacoes_pessoais?.[campo.chave] ?? ''}
+                      value={
+                        background.informacoes_pessoais?.[campo.chave] ?? ""
+                      }
                       onChange={(e) =>
                         setBackground((prev) => ({
                           ...prev,
-                          informacoes_pessoais: { ...prev.informacoes_pessoais, [campo.chave]: e.target.value },
+                          informacoes_pessoais: {
+                            ...prev.informacoes_pessoais,
+                            [campo.chave]: e.target.value,
+                          },
                         }))
                       }
                       placeholder={campo.placeholder}
@@ -482,7 +542,9 @@ export default function PersonagemDetalhe() {
                     />
                   ) : (
                     <p className="text-sm text-white">
-                      {background.informacoes_pessoais?.[campo.chave]?.trim() ? (
+                      {background.informacoes_pessoais?.[
+                        campo.chave
+                      ]?.trim() ? (
                         background.informacoes_pessoais[campo.chave]
                       ) : (
                         <span className="text-mist">Não informado.</span>
@@ -493,23 +555,34 @@ export default function PersonagemDetalhe() {
               ))}
             </div>
           ) : (
-            CAMPOS_BACKGROUND.filter((c) => c.chave === abaBackgroundAtiva).map((campo) => (
-              <div key={campo.chave}>
-                {ehDono ? (
-                  <textarea
-                    value={background[campo.chave] ?? ''}
-                    onChange={(e) => setBackground((prev) => ({ ...prev, [campo.chave]: e.target.value }))}
-                    placeholder={campo.placeholder}
-                    rows={12}
-                    className="campo-input w-full resize-y"
-                  />
-                ) : (
-                  <p className="text-sm text-white whitespace-pre-wrap min-h-[8rem]">
-                    {background[campo.chave]?.trim() ? background[campo.chave] : <span className="text-mist">Nada escrito ainda.</span>}
-                  </p>
-                )}
-              </div>
-            ))
+            CAMPOS_BACKGROUND.filter((c) => c.chave === abaBackgroundAtiva).map(
+              (campo) => (
+                <div key={campo.chave}>
+                  {ehDono ? (
+                    <textarea
+                      value={background[campo.chave] ?? ""}
+                      onChange={(e) =>
+                        setBackground((prev) => ({
+                          ...prev,
+                          [campo.chave]: e.target.value,
+                        }))
+                      }
+                      placeholder={campo.placeholder}
+                      rows={12}
+                      className="campo-input w-full resize-y"
+                    />
+                  ) : (
+                    <p className="text-sm text-white whitespace-pre-wrap min-h-[8rem]">
+                      {background[campo.chave]?.trim() ? (
+                        background[campo.chave]
+                      ) : (
+                        <span className="text-mist">Nada escrito ainda.</span>
+                      )}
+                    </p>
+                  )}
+                </div>
+              ),
+            )
           )}
 
           {ehDono && (
@@ -522,8 +595,15 @@ export default function PersonagemDetalhe() {
               erroSalvar={erroSalvar}
             />
           )}
+
+          <VinculoDiscord
+            personagemId={id}
+            codigoInicial={personagem.codigo_vinculo_discord}
+            expiraInicial={personagem.codigo_vinculo_discord_expira}
+            discordNome={personagem.discord_vinculado_nome}
+          />
         </div>
       )}
     </div>
-  )
+  );
 }
