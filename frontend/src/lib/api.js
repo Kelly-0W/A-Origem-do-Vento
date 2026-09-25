@@ -10,7 +10,14 @@ async function homebrewFetch({ method = 'GET', query = '', body = undefined } = 
     headers: { Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}),
   })
-  const dados = await res.json()
+  const dados = await res.json().catch(() => ({ sucesso: false, erros: ['O servidor não conseguiu concluir a solicitação. Tente novamente.'] }))
+  if (Array.isArray(dados.erros)) {
+    dados.erros = dados.erros.map((mensagem) =>
+      ['internal', 'internal error', 'internal server error'].includes(String(mensagem).trim().toLowerCase())
+        ? 'Não foi possível concluir a solicitação agora. Tente novamente.'
+        : mensagem
+    )
+  }
   return { ok: res.ok, status: res.status, dados }
 }
 

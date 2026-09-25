@@ -2,6 +2,7 @@
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 import json
+import logging
 
 from firebase_admin import auth, firestore
 
@@ -84,7 +85,8 @@ class handler(BaseHTTPRequestHandler):
         except ErroAutenticacao as erro:
             resposta_json(self, 401, {"sucesso": False, "erros": [str(erro)]})
         except Exception as erro:
-            resposta_json(self, 500, {"sucesso": False, "erros": [f"Erro interno: {erro}"]})
+            logging.exception("Falha ao consultar conteúdo homebrew")
+            resposta_json(self, 500, {"sucesso": False, "erros": ["Não foi possível carregar o conteúdo agora. Tente novamente."]})
 
     def do_POST(self):
         try:
@@ -182,7 +184,8 @@ class handler(BaseHTTPRequestHandler):
         except ErroAutenticacao as erro:
             resposta_json(self, 401, {"sucesso": False, "erros": [str(erro)]})
         except Exception as erro:
-            resposta_json(self, 500, {"sucesso": False, "erros": [f"Erro interno: {erro}"]})
+            logging.exception("Falha ao salvar ou responder solicitação homebrew")
+            resposta_json(self, 500, {"sucesso": False, "erros": ["Não foi possível concluir a operação agora. Tente novamente."]})
 
     def do_OPTIONS(self):
         self.send_response(204)
