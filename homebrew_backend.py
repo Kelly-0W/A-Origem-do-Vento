@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import parse_qs, urlparse
 import json
 import logging
+import os
 
 from firebase_admin import auth, firestore
 
@@ -43,6 +44,31 @@ def docs_lista(referencia):
     return [{"id": d.id, **d.to_dict()} for d in referencia.stream()]
 
 
+def elementos_na_campanha(db, uid, campanha_id):
+    caminho_elementos = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seed", "dados", "elementos.json")
+    try:
+        with open(caminho_elementos, encoding="utf-8") as arquivo:
+            catalogo_elementos = json.load(arquivo)
+    except (OSError, json.JSONDecodeError):
+        catalogo_elementos = {}
+    personagens = db.collection("personagens").where("dono_uid", "==", uid).stream()
+    elementos = set()
+    for personagem in personagens:
+        dados = personagem.to_dict()
+        if campanha_id not in (dados.get("campanhas_ids") or []):
+            continue
+        escolhas = dados.get("escolhas") or {}
+        elemento_id = escolhas.get("elemento_id")
+        if elemento_id == "caca":
+            espiritual_id = escolhas.get("espiritual_escolhido")
+            elemento_id = next((espiritual.get("elemento_id") for elemento in catalogo_elementos.values()
+                                for id_espiritual, espiritual in (elemento.get("espirituais") or {}).items()
+                                if id_espiritual == espiritual_id), None)
+        if elemento_id:
+            elementos.add(elemento_id)
+    return elementos
+
+
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
@@ -65,16 +91,20 @@ class handler(BaseHTTPRequestHandler):
             eh_mestre = campanha.get("mestre_id") == uid
             aprovados = docs_lista(campanha_ref.collection("approvedHomebrew"))
             biblioteca = []
-            if eh_mestre:
-                pedidos = docs_lista(campanha_ref.collection("homebrewRequests").where("status", "==", "pendente"))
-                for pedido in pedidos:
-                    original = db.collection("usuarios").document(pedido["owner_uid"]).collection("homebrew").document(pedido["skill_id"]).get()
-                    pedido["conteudo"] = original.to_dict() if original.exists else pedido.get("conteudo")
-                for jogador_uid in campanha.get("jogadores_uids", []):
-                    criações = docs_lista(db.collection("usuarios").document(jogador_uid).collection("homebrew"))
-                    biblioteca.extend({**item, "owner_uid": jogador_uid} for item in criações)
+            jogador_uids = campanha.get("jogadores_uids", [])
+            for jogador_uid in jogador_uids:
+                criações = docs_lista(db.collection("usuarios").document(jogador_uid).collection("homebrew"))
+                biblioteca.extend({**item, "owner_uid": jogador_uid} for item in criações)
+            if not eh_mestre:
+                meus_elementos = elementos_na_campanha(db, uid, campanha_id)
+                biblioteca = [
+                    item for item in biblioteca
+                    if item.get("owner_uid") != uid
+                    and (item.get("tipo") != "poder_elemental" or item.get("elemento") in meus_elementos)
+                ]
+                pedidos = docs_lista(campanha_ref.collection("homebrewRequests").where("solicitante_uid", "==", uid))
             else:
-                pedidos = docs_lista(campanha_ref.collection("homebrewRequests").where("owner_uid", "==", uid))
+                pedidos = docs_lista(campanha_ref.collection("homebrewRequests").where("status", "==", "pendente"))
             return resposta_json(self, 200, {
                 "sucesso": True,
                 "aprovados": aprovados,
@@ -107,8 +137,14 @@ class handler(BaseHTTPRequestHandler):
                 nome, descricao = habilidade.get("nome"), habilidade.get("descricao")
                 if not isinstance(nome, str) or not nome.strip() or len(nome) > 100 or not isinstance(descricao, str) or not descricao.strip() or len(descricao) > 3000:
                     return resposta_json(self, 400, {"sucesso": False, "erros": ["Nome (até 100 caracteres) e descrição (até 3000) são obrigatórios."]})
-                permitidos = {"tipo", "nome", "descricao", "efeito", "execucao", "alcance", "pericia", "alvo", "duracao", "custo_arche", "dano", "grau_minimo"}
+                permitidos = {"tipo", "nome", "descricao", "efeito", "execucao", "alcance", "pericia", "alvo", "duracao", "custo_arche", "dano", "grau_minimo", "elemento"}
                 salvo = {k: v for k, v in habilidade.items() if k in permitidos}
+                if salvo["tipo"] == "poder_elemental":
+                    elemento = salvo.get("elemento")
+                    if not isinstance(elemento, str) or not elemento.strip() or len(elemento) > 80:
+                        return resposta_json(self, 400, {"sucesso": False, "erros": ["Escolha o elemento do poder elemental."]})
+                else:
+                    salvo.pop("elemento", None)
                 for campo in ("custo_arche", "grau_minimo"):
                     valor = salvo.get(campo, 0)
                     if isinstance(valor, bool) or not isinstance(valor, (int, float)) or valor < 0 or valor > 99:
@@ -132,19 +168,43 @@ class handler(BaseHTTPRequestHandler):
 
             if acao == "solicitar":
                 campanha_id, skill_id = corpo.get("campanha_id"), corpo.get("skill_id")
+                owner_uid = corpo.get("owner_uid") or uid
                 if not isinstance(campanha_id, str) or not campanha_id or not isinstance(skill_id, str) or not skill_id:
                     return resposta_json(self, 400, {"sucesso": False, "erros": ["Campanha e habilidade são obrigatórias."]})
                 campanha_ref = db.collection("campanhas").document(campanha_id)
                 campanha_snap = campanha_ref.get()
-                habilidade_snap = db.collection("usuarios").document(uid).collection("homebrew").document(skill_id).get()
-                if not campanha_snap.exists or not habilidade_snap.exists or uid not in (campanha_snap.to_dict().get("jogadores_uids") or []):
-                    return resposta_json(self, 403, {"sucesso": False, "erros": ["É necessário ser jogador da campanha e dono da habilidade."]})
-                pendentes = [d for d in campanha_ref.collection("homebrewRequests").where("owner_uid", "==", uid).stream() if d.to_dict().get("skill_id") == skill_id and d.to_dict().get("status") == "pendente"]
+                if not isinstance(owner_uid, str) or not owner_uid:
+                    return resposta_json(self, 400, {"sucesso": False, "erros": ["Criador da habilidade inválido."]})
+                campanha = campanha_snap.to_dict() if campanha_snap.exists else {}
+                habilidade_snap = db.collection("usuarios").document(owner_uid).collection("homebrew").document(skill_id).get()
+                membros = campanha.get("jogadores_uids") or []
+                if not campanha_snap.exists or not habilidade_snap.exists or uid not in membros or owner_uid not in membros:
+                    return resposta_json(self, 403, {"sucesso": False, "erros": ["Você e o criador precisam ser jogadores da campanha."]})
+                conteudo = habilidade_snap.to_dict()
+                if conteudo.get("tipo") == "poder_elemental" and conteudo.get("elemento") not in elementos_na_campanha(db, uid, campanha_id):
+                    return resposta_json(self, 403, {"sucesso": False, "erros": ["Seu personagem na campanha precisa manipular o mesmo elemento deste poder."]})
+                pendentes = [d for d in campanha_ref.collection("homebrewRequests").where("solicitante_uid", "==", uid).stream() if d.to_dict().get("owner_uid") == owner_uid and d.to_dict().get("skill_id") == skill_id and d.to_dict().get("status") == "pendente"]
                 if pendentes:
                     return resposta_json(self, 409, {"sucesso": False, "erros": ["Já existe um pedido pendente para esta habilidade."]})
-                conteudo = habilidade_snap.to_dict()
                 conteudo.pop("atualizado_em", None)
-                campanha_ref.collection("homebrewRequests").add({"owner_uid": uid, "skill_id": skill_id, "conteudo": conteudo, "status": "pendente", "solicitado_em": firestore.SERVER_TIMESTAMP})
+                campanha_ref.collection("homebrewRequests").add({"owner_uid": owner_uid, "skill_id": skill_id, "solicitante_uid": uid, "conteudo": conteudo, "status": "pendente", "solicitado_em": firestore.SERVER_TIMESTAMP})
+                return resposta_json(self, 200, {"sucesso": True})
+
+            if acao == "excluir":
+                skill_id = corpo.get("skill_id")
+                if not isinstance(skill_id, str) or not skill_id or "/" in skill_id:
+                    return resposta_json(self, 400, {"sucesso": False, "erros": ["Criação inválida."]})
+                referencia = db.collection("usuarios").document(uid).collection("homebrew").document(skill_id)
+                if not referencia.get().exists:
+                    return resposta_json(self, 404, {"sucesso": False, "erros": ["Criação não encontrada."]})
+                referencia.delete()
+                campanhas = db.collection("campanhas").where("jogadores_uids", "array_contains", uid).stream()
+                for campanha_doc in campanhas:
+                    pedidos = campanha_doc.reference.collection("homebrewRequests").where("owner_uid", "==", uid).stream()
+                    for pedido in pedidos:
+                        dados_pedido = pedido.to_dict()
+                        if dados_pedido.get("skill_id") == skill_id and dados_pedido.get("status") == "pendente":
+                            pedido.reference.delete()
                 return resposta_json(self, 200, {"sucesso": True})
 
             if acao == "responder":
@@ -172,7 +232,7 @@ class handler(BaseHTTPRequestHandler):
                     if aprovado:
                         conteudo = pedido.get("conteudo") or {}
                         destino_id = f"{pedido['owner_uid']}_{pedido['skill_id']}"
-                        tx.set(campanha_ref.collection("approvedHomebrew").document(destino_id), {**conteudo, "owner_uid": pedido["owner_uid"], "skill_id": pedido["skill_id"], "aprovado_por_uid": uid, "aprovado_em": firestore.SERVER_TIMESTAMP})
+                        tx.set(campanha_ref.collection("approvedHomebrew").document(destino_id), {**conteudo, "owner_uid": pedido["owner_uid"], "skill_id": pedido["skill_id"], "solicitante_uid": pedido.get("solicitante_uid", pedido["owner_uid"]), "aprovado_por_uid": uid, "aprovado_em": firestore.SERVER_TIMESTAMP})
 
                 try:
                     finalizar(transacao)

@@ -41,7 +41,8 @@ export const api = {
   listarHomebrew: () => homebrewFetch(),
   salvarHomebrew: (habilidade, id = null) => homebrewFetch({ method: 'POST', body: { acao: 'salvar', habilidade, id } }),
   dadosHomebrewCampanha: (campanhaId) => homebrewFetch({ query: `campanha_id=${encodeURIComponent(campanhaId)}` }),
-  solicitarHomebrew: (campanhaId, skillId) => homebrewFetch({ method: 'POST', body: { acao: 'solicitar', campanha_id: campanhaId, skill_id: skillId } }),
+  solicitarHomebrew: (campanhaId, skillId, ownerUid = null) => homebrewFetch({ method: 'POST', body: { acao: 'solicitar', campanha_id: campanhaId, skill_id: skillId, owner_uid: ownerUid } }),
+  excluirHomebrew: (skillId) => homebrewFetch({ method: 'POST', body: { acao: 'excluir', skill_id: skillId } }),
   responderHomebrew: (campanhaId, pedidoId, aprovar) => homebrewFetch({ method: 'POST', body: { acao: 'responder', campanha_id: campanhaId, pedido_id: pedidoId, aprovar } }),
   // GET /api/biblioteca?colecao=racas  (ver api/biblioteca.py)
   buscarBiblioteca: (colecao) => get(`biblioteca?colecao=${colecao}`),
