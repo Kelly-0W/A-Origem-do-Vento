@@ -11,15 +11,15 @@ const opcoesExecucao = [
   ['livre', 'Ação livre'], ['bonus', 'Ação bônus'], ['completa', 'Ação completa'],
 ]
 const opcoesAlcance = [
-  ['pessoal', 'Pessoal'], ['toque', 'Toque'], ['corpo a corpo', 'Corpo a corpo'],
-  ['curto', 'Curto'], ['medio', 'Médio'], ['medio (cone)', 'Médio (cone)'],
-  ['longo', 'Longo'], ['12m', '12 m'], ['18m', '18 m'], ['área', 'Área'],
+  ['pessoal', 'Pessoal'], ['toque', 'Toque'], ['corpo a corpo', 'Corpo a corpo'], ['3m', '3 m'], ['6m', '6 m'],
+  ['curto', 'Curto'], ['12m', '12 m'], ['15m', '15 m'], ['medio', 'Médio'],
+  ['21m', '21 m'], ['24m', '24 m'], ['longo', 'Longo'],
 ]
 const opcoesDuracao = [
   ['instantaneo', 'Instantâneo'], ['1 turno', '1 turno'], ['1 rodada', '1 rodada'],
   ['2 rodadas', '2 rodadas'], ['3 rodadas', '3 rodadas'], ['4 rodadas', '4 rodadas'],
   ['5 rodadas', '5 rodadas'], ['6 rodadas', '6 rodadas'], ['cena', 'Cena'],
-  ['enquanto mantiver concentracao', 'Enquanto mantiver concentração'], ['permanente', 'Permanente'],
+  ['sustentado', 'Sustentado'], ['permanente', 'Permanente'],
   ['ate 3 golpes (acertando ou errando)', 'Até 3 golpes'],
 ]
 const opcoesCusto = Array.from({ length: 21 }, (_, valor) => valor)
