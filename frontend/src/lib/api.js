@@ -1,16 +1,17 @@
-import { httpsCallable } from 'firebase/functions'
-import { functions } from './firebase.js'
+import { auth } from './firebase.js'
 
 const BASE = '/api'
 
-async function chamarHomebrew(payload) {
-  try {
-    const executar = httpsCallable(functions, 'gerenciar_homebrew')
-    const resultado = await executar(payload)
-    return { ok: true, status: 200, dados: resultado.data }
-  } catch (e) {
-    return { ok: false, status: 400, dados: { sucesso: false, erros: [e.message] } }
-  }
+async function homebrewFetch({ method = 'GET', query = '', body = undefined } = {}) {
+  const token = await auth.currentUser?.getIdToken()
+  if (!token) return { ok: false, status: 401, dados: { sucesso: false, erros: ['Faça login para usar o homebrew.'] } }
+  const res = await fetch(`${BASE}/homebrew${query}`, {
+    method,
+    headers: { Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
+    ...(body ? { body: JSON.stringify(body) } : {}),
+  })
+  const dados = await res.json()
+  return { ok: res.ok, status: res.status, dados }
 }
 
 async function post(caminho, corpo) {
@@ -30,11 +31,11 @@ async function get(caminho) {
 }
 
 export const api = {
-  listarHomebrew: () => chamarHomebrew({ acao: 'listar_proprios' }),
-  salvarHomebrew: (habilidade, id = null) => chamarHomebrew({ acao: 'salvar', habilidade, id }),
-  dadosHomebrewCampanha: (campanhaId) => chamarHomebrew({ acao: 'listar_campanha', campanha_id: campanhaId }),
-  solicitarHomebrew: (campanhaId, skillId) => chamarHomebrew({ acao: 'solicitar', campanha_id: campanhaId, skill_id: skillId }),
-  responderHomebrew: (campanhaId, pedidoId, aprovar) => chamarHomebrew({ acao: 'responder', campanha_id: campanhaId, pedido_id: pedidoId, aprovar }),
+  listarHomebrew: () => homebrewFetch(),
+  salvarHomebrew: (habilidade, id = null) => homebrewFetch({ method: 'POST', body: { acao: 'salvar', habilidade, id } }),
+  dadosHomebrewCampanha: (campanhaId) => homebrewFetch({ query: `?campanha_id=${encodeURIComponent(campanhaId)}` }),
+  solicitarHomebrew: (campanhaId, skillId) => homebrewFetch({ method: 'POST', body: { acao: 'solicitar', campanha_id: campanhaId, skill_id: skillId } }),
+  responderHomebrew: (campanhaId, pedidoId, aprovar) => homebrewFetch({ method: 'POST', body: { acao: 'responder', campanha_id: campanhaId, pedido_id: pedidoId, aprovar } }),
   // GET /api/biblioteca?colecao=racas  (ver api/biblioteca.py)
   buscarBiblioteca: (colecao) => get(`biblioteca?colecao=${colecao}`),
 
