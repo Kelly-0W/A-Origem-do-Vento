@@ -5,7 +5,7 @@ const BASE = '/api'
 async function homebrewFetch({ method = 'GET', query = '', body = undefined } = {}) {
   const token = await auth.currentUser?.getIdToken()
   if (!token) return { ok: false, status: 401, dados: { sucesso: false, erros: ['Faça login para usar o homebrew.'] } }
-  const res = await fetch(`${BASE}/homebrew${query}`, {
+  const res = await fetch(`${BASE}/biblioteca?acao=homebrew${query ? `&${query}` : ''}`, {
     method,
     headers: { Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}),
@@ -40,7 +40,7 @@ async function get(caminho) {
 export const api = {
   listarHomebrew: () => homebrewFetch(),
   salvarHomebrew: (habilidade, id = null) => homebrewFetch({ method: 'POST', body: { acao: 'salvar', habilidade, id } }),
-  dadosHomebrewCampanha: (campanhaId) => homebrewFetch({ query: `?campanha_id=${encodeURIComponent(campanhaId)}` }),
+  dadosHomebrewCampanha: (campanhaId) => homebrewFetch({ query: `campanha_id=${encodeURIComponent(campanhaId)}` }),
   solicitarHomebrew: (campanhaId, skillId) => homebrewFetch({ method: 'POST', body: { acao: 'solicitar', campanha_id: campanhaId, skill_id: skillId } }),
   responderHomebrew: (campanhaId, pedidoId, aprovar) => homebrewFetch({ method: 'POST', body: { acao: 'responder', campanha_id: campanhaId, pedido_id: pedidoId, aprovar } }),
   // GET /api/biblioteca?colecao=racas  (ver api/biblioteca.py)
