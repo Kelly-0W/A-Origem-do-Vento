@@ -14,6 +14,7 @@ import PoderDetalhe from './PoderDetalhe.jsx'
 // quem chama este componente já resolve isso antes de passar as props.
 export default function PainelPoderesTreino({
   personagemId, poderesEscolhidos, elementoPoderes, nomeElemento, isCaca, onAtualizado,
+  poderesHomebrewDisponiveis = [], poderesHomebrewEscolhidos = [],
 }) {
   const [modalAberto, setModalAberto] = useState(false)
   const [poderAberto, setPoderAberto] = useState(null)
@@ -25,6 +26,8 @@ export default function PainelPoderesTreino({
   const catalogoPoderes = elementoPoderes.poderes || {}
   const conhecidos = poderesEscolhidos.filter((id) => catalogoPoderes[id])
   const disponiveis = Object.entries(catalogoPoderes).filter(([id]) => !poderesEscolhidos.includes(id))
+  const idsHomebrewConhecidos = new Set(poderesHomebrewEscolhidos.map((poder) => poder.id))
+  const homebrewDisponiveis = poderesHomebrewDisponiveis.filter((poder) => !idsHomebrewConhecidos.has(poder.id))
 
   async function adicionarPoder(id) {
     setSalvando(id)
@@ -44,6 +47,25 @@ export default function PainelPoderesTreino({
     }
   }
 
+  async function adicionarPoderHomebrew(poder) {
+    setSalvando(poder.id)
+    setErro(null)
+    try {
+      const novasHomebrew = [...poderesHomebrewEscolhidos, poder]
+      await updateDoc(doc(db, 'personagens', personagemId), {
+        'escolhas.poderes_homebrew_escolhidos': arrayUnion(poder),
+        atualizado_em: serverTimestamp(),
+      })
+      onAtualizado(poderesEscolhidos, novasHomebrew)
+      setModalAberto(false)
+    } catch (err) {
+      console.error(err)
+      setErro('Não foi possível adicionar esse poder homebrew agora.')
+    } finally {
+      setSalvando(null)
+    }
+  }
+
   return (
     <div className="card-fantasy p-6 mt-6">
       <div className="flex items-center justify-between mb-2">
@@ -56,7 +78,7 @@ export default function PainelPoderesTreino({
         {isCaca && ' Esses poderes só podem ser usados enquanto o personagem estiver Transformado.'}
       </p>
 
-      {conhecidos.length === 0 ? (
+      {conhecidos.length === 0 && poderesHomebrewEscolhidos.length === 0 ? (
         <p className="text-mist text-sm">Nenhum poder conhecido ainda.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -73,14 +95,25 @@ export default function PainelPoderesTreino({
               </button>
             )
           })}
+          {poderesHomebrewEscolhidos.map((poder) => (
+            <button
+              key={poder.id}
+              onClick={() => setPoderAberto(poder)}
+              className="text-left card-fantasy p-4 hover:border-white/20 transition-colors"
+            >
+              <div className="text-[10px] uppercase tracking-widest text-gold mb-1">Homebrew aprovado</div>
+              <div className="font-display font-semibold mb-1 text-sm">{poder.nome}</div>
+              <p className="text-xs text-mist line-clamp-2">{poder.descricao}</p>
+            </button>
+          ))}
         </div>
       )}
 
       {modalAberto && (
         <ModalBase titulo={`Adicionar Poder de ${nomeElemento}`} onFechar={() => setModalAberto(false)}>
           {erro && <p className="text-blood-bright text-xs mb-4">{erro}</p>}
-          {disponiveis.length === 0 ? (
-            <p className="text-mist text-sm">Este personagem já conhece todos os poderes deste elemento.</p>
+          {disponiveis.length === 0 && homebrewDisponiveis.length === 0 ? (
+            <p className="text-mist text-sm">Não há outros poderes disponíveis para este elemento nesta campanha.</p>
           ) : (
             <div className="flex flex-col gap-3 max-h-96 overflow-y-auto">
               {disponiveis.map(([id, poder]) => (
@@ -97,6 +130,26 @@ export default function PainelPoderesTreino({
                       disabled={salvando === id}
                     >
                       {salvando === id ? 'Adicionando...' : 'Adicionar'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+              {homebrewDisponiveis.map((poder) => (
+                <div key={poder.id} className="card-fantasy p-4">
+                  <div className="text-[10px] uppercase tracking-widest text-gold mb-1">Homebrew aprovado</div>
+                  <div className="font-display font-semibold mb-1 text-sm">{poder.nome}</div>
+                  <p className="text-xs text-mist mb-3">{poder.descricao}</p>
+                  {poder.efeito && <p className="text-xs text-mist mb-3">Efeito: {poder.efeito}</p>}
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">
+                      Custo: {poder.custo_arche ?? 0} Arché
+                    </span>
+                    <button
+                      className="btn-primary text-xs disabled:opacity-50"
+                      onClick={() => adicionarPoderHomebrew(poder)}
+                      disabled={salvando === poder.id}
+                    >
+                      {salvando === poder.id ? 'Adicionando...' : 'Adicionar'}
                     </button>
                   </div>
                 </div>

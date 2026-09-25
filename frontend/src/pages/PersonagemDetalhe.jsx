@@ -98,6 +98,7 @@ export default function PersonagemDetalhe() {
   const [carregando, setCarregando] = useState(true)
   const [erroCarregamento, setErroCarregamento] = useState(null)
   const [personagem, setPersonagem] = useState(null)
+  const [poderesHomebrewCampanha, setPoderesHomebrewCampanha] = useState([])
   const [catalogo, setCatalogo] = useState({ racas: {}, classes: {}, origens: {}, elementos: {}, pericias: {}, sagracanticos: {}, itens: {}, materiais: {}, reliquias: {} })
 
   const [abaAtiva, setAbaAtiva] = useState('poderes')
@@ -130,6 +131,37 @@ export default function PersonagemDetalhe() {
           return
         }
         const dados = { id: snap.id, ...snap.data() }
+        const escolhasFicha = dados.escolhas || {}
+        const elementoId = escolhasFicha.elemento_id === 'caca'
+          ? novoCatalogo.elementos?.caca?.espirituais?.[escolhasFicha.espiritual_escolhido]?.elemento_id
+          : escolhasFicha.elemento_id
+        const campanhasIds = dados.campanhas_ids || []
+        const respostasHomebrew = await Promise.all(campanhasIds.map(async (campanhaId) => {
+          try {
+            const resposta = await api.dadosHomebrewCampanha(campanhaId)
+            return resposta.ok && resposta.dados?.sucesso
+              ? (resposta.dados.aprovados || []).filter((h) => h.tipo === 'poder_elemental' && h.elemento === elementoId)
+                .map((h) => ({
+                  id: `homebrew:${campanhaId}:${h.id}`,
+                  nome: h.nome,
+                  descricao: h.descricao,
+                  efeito: h.efeito,
+                  execucao: h.execucao,
+                  alcance: h.alcance,
+                  pericia: h.pericia,
+                  alvo: h.alvo,
+                  duracao: h.duracao,
+                  custo_arche: h.custo_arche,
+                  dano: h.dano,
+                  dano_secundario: h.dano_secundario,
+                  grau_minimo: h.grau_minimo,
+                  variacoes: h.variacoes,
+                  elemento: elementoId,
+                }))
+              : []
+          } catch { return [] }
+        }))
+        setPoderesHomebrewCampanha([...new Map(respostasHomebrew.flat().map((p) => [p.id, p])).values()])
         setPersonagem(dados)
         setNomePersonagem(dados.escolhas?.nome_personagem || '')
         setImagemBase64(dados.imagem_base64 || null)
@@ -364,6 +396,7 @@ export default function PersonagemDetalhe() {
               classe={classe}
               origem={origem}
               elemento={elemento}
+              poderesHomebrew={escolhas.poderes_homebrew_escolhidos || []}
               escolhas={escolhas}
               isCaca={isCaca}
               interativo={ehDono}
@@ -454,14 +487,17 @@ export default function PersonagemDetalhe() {
               personagemId={id}
               poderesEscolhidos={escolhas.poderes_escolhidos || []}
               elementoPoderes={elementoPoderes}
+              poderesHomebrewDisponiveis={poderesHomebrewCampanha}
+              poderesHomebrewEscolhidos={escolhas.poderes_homebrew_escolhidos || []}
               nomeElemento={nomeElementoPoderes}
               isCaca={isCaca}
-              onAtualizado={(novosPoderes) =>
+              onAtualizado={(novosPoderes, novosHomebrew = escolhas.poderes_homebrew_escolhidos || []) =>
                 setPersonagem((prev) => ({
                   ...prev,
                   escolhas: {
                     ...prev.escolhas,
                     poderes_escolhidos: novosPoderes,
+                    poderes_homebrew_escolhidos: novosHomebrew,
                   },
                 }))
               }

@@ -70,6 +70,7 @@ export default function FichaVisual({
   classe,
   origem,
   elemento,
+  poderesHomebrew = [],
   escolhas,
   isCaca,
   interativo = false,
@@ -113,7 +114,10 @@ export default function FichaVisual({
     nomePericia(catalogo, idA).localeCompare(nomePericia(catalogo, idB), 'pt-BR')
   )
 
-  const poderesResolvidos = (escolhas.poderes_escolhidos || []).map((id) => elemento?.poderes?.[id]).filter(Boolean)
+  const poderesResolvidos = [
+    ...(escolhas.poderes_escolhidos || []).map((id) => ({ id, poder: elemento?.poderes?.[id] })).filter((item) => item.poder),
+    ...poderesHomebrew.map((poder) => ({ id: poder.id, poder })),
+  ]
   const espiritual = escolhas.espiritual_escolhido ? elemento?.espirituais?.[escolhas.espiritual_escolhido] : null
 
   // A maioria das raças com sistema único guarda ele no nível da RAÇA
@@ -671,12 +675,15 @@ export default function FichaVisual({
           <div>
             <div className="text-xs uppercase tracking-widest text-mist mb-3">Poderes</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {poderesResolvidos.map((poder) => (
+              {poderesResolvidos.map(({ id, poder }) => (
                 <button
-                  key={poder.nome}
+                  key={id}
                   onClick={() => setPoderAberto(poder)}
                   className="text-left card-fantasy p-4 hover:border-white/20 transition-colors"
                 >
+                  {id.startsWith('homebrew:') && (
+                    <div className="text-[10px] uppercase tracking-widest text-gold mb-1">Homebrew aprovado</div>
+                  )}
                   <div className="font-display font-semibold mb-1">{poder.nome}</div>
                   <p className="text-xs text-mist mb-2">{poder.descricao}</p>
                   <span className="inline-block text-[11px] px-2 py-1 rounded border border-gold/40 text-gold">

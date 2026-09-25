@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ChevronLeft } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../lib/api.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { ATRIBUTOS, NOMES_ATRIBUTOS } from '../lib/constantes.js'
@@ -40,6 +40,8 @@ function definirPassos(catalogo, escolhas) {
 export default function CharacterWizard() {
   const { usuario } = useAuth()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const campanhaId = searchParams.get('campanha')
 
   const [passo, setPasso] = useState(0)
   const [carregando, setCarregando] = useState(true)
@@ -310,7 +312,7 @@ export default function CharacterWizard() {
     try {
       const { dados } = await api.calcularFicha(
         { ...escolhas, nome_personagem: nomePersonagem.trim() },
-        { donoUid: usuario?.uid ?? null }
+        { donoUid: usuario?.uid ?? null, campanhaId }
       )
       if (dados?.sucesso) {
         setResultado(dados.calculado)
