@@ -19,6 +19,7 @@ import { useAuth } from '../context/AuthContext.jsx'
 import ModalBase from '../components/ModalBase.jsx'
 import PainelMestre from '../components/PainelMestre.jsx'
 import SecaoPersonagensCampanha from '../components/SecaoPersonagensCampanha.jsx'
+import HomebrewCampanha from '../components/HomebrewCampanha.jsx'
 
 // Lista, dentro do modal, os personagens do próprio jogador que AINDA não
 // estão nessa campanha -- escolher um chama `onAdicionar`, que faz o
@@ -102,6 +103,7 @@ export default function CampanhaDetalhe() {
   const [catalogo, setCatalogo] = useState({ racas: {}, classes: {} })
   const [modalAberto, setModalAberto] = useState(false)
   const [codigoCopiado, setCodigoCopiado] = useState(false)
+  const [aba, setAba] = useState('mesa')
 
   useEffect(() => {
     Promise.all([api.buscarBiblioteca('racas'), api.buscarBiblioteca('classes')]).then(
@@ -312,6 +314,12 @@ export default function CampanhaDetalhe() {
         </div>
       </div>
 
+      <div className="flex border-b border-panel-border mb-6">
+        <button className={`tab-item ${aba === 'mesa' ? 'active' : ''}`} onClick={() => setAba('mesa')}>Mesa</button>
+        <button className={`tab-item ${aba === 'homebrew' ? 'active' : ''}`} onClick={() => setAba('homebrew')}>Homebrew</button>
+      </div>
+
+      {aba === 'homebrew' ? <HomebrewCampanha campanhaId={id} usuario={usuario} /> : <>
       <SecaoPersonagensCampanha participantes={participantes} catalogo={catalogo} ehMestre={ehMestre} />
 
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
@@ -360,6 +368,7 @@ export default function CampanhaDetalhe() {
       )}
 
       {ehMestre && <PainelMestre campanhaId={id} mestreUid={usuario.uid} />}
+      </>}
     </div>
   )
 }

@@ -12,6 +12,7 @@ import Combate from './pages/Combate.jsx'
 import Biblioteca from './pages/Biblioteca.jsx'
 import Configuracoes from './pages/Configuracoes.jsx'
 import EmBreve from './pages/EmBreve.jsx'
+import Homebrew from './pages/Homebrew.jsx'
 
 export default function App() {
   return (
@@ -27,7 +28,7 @@ export default function App() {
         <Route path="/campanhas/:id" element={<CampanhaDetalhe />} />
         <Route path="/combate" element={<Combate />} />
         <Route path="/biblioteca" element={<Biblioteca />} />
-        <Route path="/homebrew" element={<EmBreve titulo="Homebrew" descricao="Crie suas próprias regras, classes e criaturas." />} />
+        <Route path="/homebrew" element={<Homebrew />} />
         <Route path="/configuracoes" element={<Configuracoes />} />
       </Route>
     </Routes>

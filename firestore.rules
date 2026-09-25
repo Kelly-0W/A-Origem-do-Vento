@@ -127,6 +127,12 @@ service cloud.firestore {
         !('codigo_amizade' in resource.data)
         || request.resource.data.codigo_amizade == resource.data.codigo_amizade
       );
+
+      // Criações privadas do jogador; aprovações públicas ficam em uma
+      // cópia separada dentro da campanha.
+      match /homebrew/{skillId} {
+        allow read, create, update, delete: if ehDono(uid);
+      }
     }
 
     // ---- Campanhas ----
@@ -156,6 +162,19 @@ service cloud.firestore {
       );
 
       allow delete: if ehDono(resource.data.mestre_id);
+
+      match /homebrewRequests/{requestId} {
+        allow read: if estaAutenticado() && (ehDono(get(/databases/$(database)/documents/campanhas/$(campanhaId)).data.mestre_id)
+          || request.auth.uid == resource.data.owner_uid);
+        // Solicitações/respostas usam a API autenticada com Admin SDK.
+        allow write: if false;
+      }
+
+      match /approvedHomebrew/{skillId} {
+        allow read: if estaAutenticado() && (ehDono(get(/databases/$(database)/documents/campanhas/$(campanhaId)).data.mestre_id)
+          || request.auth.uid in get(/databases/$(database)/documents/campanhas/$(campanhaId)).data.jogadores_uids);
+        allow write: if false;
+      }
     }
 
     // ---- Encontros de combate ----

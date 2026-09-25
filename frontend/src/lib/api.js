@@ -1,4 +1,17 @@
+import { httpsCallable } from 'firebase/functions'
+import { functions } from './firebase.js'
+
 const BASE = '/api'
+
+async function chamarHomebrew(payload) {
+  try {
+    const executar = httpsCallable(functions, 'gerenciar_homebrew')
+    const resultado = await executar(payload)
+    return { ok: true, status: 200, dados: resultado.data }
+  } catch (e) {
+    return { ok: false, status: 400, dados: { sucesso: false, erros: [e.message] } }
+  }
+}
 
 async function post(caminho, corpo) {
   const res = await fetch(`${BASE}/${caminho}`, {
@@ -17,6 +30,11 @@ async function get(caminho) {
 }
 
 export const api = {
+  listarHomebrew: () => chamarHomebrew({ acao: 'listar_proprios' }),
+  salvarHomebrew: (habilidade, id = null) => chamarHomebrew({ acao: 'salvar', habilidade, id }),
+  dadosHomebrewCampanha: (campanhaId) => chamarHomebrew({ acao: 'listar_campanha', campanha_id: campanhaId }),
+  solicitarHomebrew: (campanhaId, skillId) => chamarHomebrew({ acao: 'solicitar', campanha_id: campanhaId, skill_id: skillId }),
+  responderHomebrew: (campanhaId, pedidoId, aprovar) => chamarHomebrew({ acao: 'responder', campanha_id: campanhaId, pedido_id: pedidoId, aprovar }),
   // GET /api/biblioteca?colecao=racas  (ver api/biblioteca.py)
   buscarBiblioteca: (colecao) => get(`biblioteca?colecao=${colecao}`),
 
