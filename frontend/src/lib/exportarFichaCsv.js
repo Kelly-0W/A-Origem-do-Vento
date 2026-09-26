@@ -49,12 +49,13 @@ export function baixarFichaCsv(personagem, catalogo) {
     : ''
 
   const cabecalhos = [
-    'Nome', 'Grau', 'Manipulação', 'Classe', 'Origem', 'Perícias (bônus)',
+    'Nome', 'Grau', 'Raça', 'Manipulação', 'Classe', 'Origem', 'Perícias (bônus)',
     'Poderes', 'Habilidades de raça', 'Habilidades de classe', 'Sistema único', 'Habilidade de origem',
   ]
   const valores = [
     escolhas.nome_personagem || '',
     personagem.grau_ascensao ?? personagem.calculado?.grau_ascensao ?? 0,
+    raca?.nome || '',
     manipulacao,
     classe?.nome || '',
     origem?.nome || '',
