@@ -6,6 +6,7 @@ import { db } from '../lib/firebase.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { api } from '../lib/api.js'
 import { redimensionarImagem } from '../lib/imagem.js'
+import { baixarFichaCsv } from '../lib/exportarFichaCsv.js'
 import ResumoEscolhas from '../components/ResumoEscolhas.jsx'
 import FichaVisual from '../components/FichaVisual.jsx'
 import PainelAscensao from '../components/PainelAscensao.jsx'
@@ -14,7 +15,7 @@ import PainelPoderesTreino from '../components/PainelPoderesTreino.jsx'
 import PainelInventario from '../components/PainelInventario.jsx'
 import VinculoDiscord from "../components/VinculoDiscord.jsx";
 
-// As 3 abas principais da ficha. "Poderes" reúne tudo que já existia antes
+// As abas principais da ficha. "Poderes" reúne tudo que já existia antes
 // desta reestruturação (resumo de escolhas, status/perícias/atributos
 // calculados, ascensão e treino de poderes); "Inventário" é só o painel
 // novo de peso/durabilidade; "Background" é texto livre de interpretação,
@@ -23,6 +24,7 @@ const ABAS = [
   { id: 'poderes', rotulo: 'Poderes' },
   { id: 'inventario', rotulo: 'Inventário' },
   { id: 'background', rotulo: 'Background' },
+  { id: 'exportar', rotulo: 'Exportar ficha' },
 ]
 
 // Sub-abas escritas dentro de Background -- cada uma vira uma chave própria
@@ -361,7 +363,7 @@ export default function PersonagemDetalhe() {
         )}
       </div>
 
-      {/* Navegação das 3 abas principais */}
+      {/* Navegação das abas principais */}
       <div className="flex items-center gap-1 border-b border-panel-border mb-8 overflow-x-auto">
         {ABAS.map((aba) => (
           <BotaoAba
@@ -641,6 +643,23 @@ export default function PersonagemDetalhe() {
             </>
           )}
         </div>
+      )}
+
+      {abaAtiva === "exportar" && (
+        <section className="card-fantasy p-6 max-w-2xl">
+          <h2 className="text-xl mb-2">Exportar ficha</h2>
+          <p className="text-sm text-mist mb-5">
+            Baixe um CSV que pode ser aberto no Excel ou em outros editores de planilhas. Ele inclui nome, grau,
+            elemento, classe, origem, bônus de perícias, poderes e nomes das habilidades da ficha.
+          </p>
+          <button
+            type="button"
+            className="btn-primary"
+            onClick={() => baixarFichaCsv(personagem, catalogo)}
+          >
+            Baixar ficha CSV
+          </button>
+        </section>
       )}
     </div>
   );
