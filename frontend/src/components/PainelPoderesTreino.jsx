@@ -51,16 +51,21 @@ export default function PainelPoderesTreino({
     setSalvando(poder.id)
     setErro(null)
     try {
-      const novasHomebrew = [...poderesHomebrewEscolhidos, poder]
+      // Campos opcionais do poder podem vir como `undefined` da API. O
+      // Firestore rejeita undefined dentro do objeto passado ao arrayUnion.
+      const poderPersistido = Object.fromEntries(
+        Object.entries(poder).filter(([, valor]) => valor !== undefined)
+      )
+      const novasHomebrew = [...poderesHomebrewEscolhidos, poderPersistido]
       await updateDoc(doc(db, 'personagens', personagemId), {
-        'escolhas.poderes_homebrew_escolhidos': arrayUnion(poder),
+        'escolhas.poderes_homebrew_escolhidos': arrayUnion(poderPersistido),
         atualizado_em: serverTimestamp(),
       })
       onAtualizado(poderesEscolhidos, novasHomebrew)
       setModalAberto(false)
     } catch (err) {
       console.error(err)
-      setErro('Não foi possível adicionar esse poder homebrew agora.')
+      setErro(`Não foi possível adicionar esse poder homebrew agora.${err?.code ? ` (${err.code})` : ''}`)
     } finally {
       setSalvando(null)
     }
