@@ -4378,5 +4378,191 @@
         }
       ]
     }
+  },
+  "kukulkan": {
+    "nome": "Kukulkan, a Serpente Emplumada",
+    "categoria": "lenda",
+    "elemento": "variavel",
+    "comportamento_e_alvo_prioritario": "Quatro espíritos elementais dividem o corpo e alternam o controle. Vento prioriza quem está mais perto da borda da arena, para separar o grupo; Fogo prioriza quem causou mais dano no turno anterior; Terra prioriza quem tem maior Defesa ou Vida; Água não ataca ninguém.",
+    "ponto_fraco": "Quatro gemas visíveis pelo corpo, uma por espírito. Um acerto crítico ou ataque pesado declarado contra a gema de um espírito que não está ativo fere aquele espírito e o retira do ciclo pelo resto do combate; a rolagem 1d4 da abertura passa a ignorar o resultado correspondente (ou usa 1d3 entre os espíritos restantes).",
+    "atributos": {
+      "for": 1,
+      "des": 5,
+      "con": 4,
+      "int": 1,
+      "sab": 3,
+      "car": 2
+    },
+    "status": {
+      "vida": {
+        "base": 110,
+        "mult_ascensao": 14
+      },
+      "sanidade": {
+        "base": 60,
+        "mult_ascensao": 6
+      },
+      "arche": {
+        "base": 95,
+        "mult_ascensao": 10
+      },
+      "defesa": {
+        "base": 10,
+        "bonus_atributo": {
+          "atributo": "des",
+          "valor": 5
+        },
+        "bonus_extra": {
+          "descricao": "Escamas Ancestrais",
+          "valor": 4
+        },
+        "total": 19,
+        "escala_ascensao": {
+          "regra": "Categoria Lenda: +1 por Grau de Ascensão do combate (mesmo ritmo do Chefe/PJ).",
+          "formula": "Grau"
+        }
+      },
+      "deslocamento_m": 18,
+      "tipo_deslocamento": "voo"
+    },
+    "pericias_treinadas": [
+      "misticismo",
+      "vontade",
+      "percepcao",
+      "intimidacao",
+      "iniciativa",
+      "misticismo",
+      "acrobacia"
+    ],
+    "ataques_basicos": [
+      {
+        "nome": "Mordida Ancestral",
+        "pericia": "luta",
+        "dano": {
+          "dados": "2d6",
+          "atributo": "des"
+        },
+        "descricao": null
+      }
+    ],
+    "habilidades": {
+      "inicial": 4,
+      "maximo_progressao": 9,
+      "lista": [
+        {
+          "id": "ciclo-dos-quatro-espiritos",
+          "nome": "O Ciclo dos Quatro Espíritos",
+          "descricao": "A partir do início do 2º turno, antes do primeiro ator da Ordem de Combate, role 1d4 (1 Vento, 2 Fogo, 3 Terra, 4 Água). Se repetir o espírito ativo, nada acontece. Se mudar, o novo espírito assume e causa uma explosão em área de raio sugerido de 9m. CD 12 + Misticismo de Kukulkan; não custa Arché. Vento: sem dano, teste de Fortitude ou empurrado 9m para longe de Kukulkan. Fogo: 1d8+2 de dano de Fogo e teste de Reflexos, mesmo contra Defesa. Terra: 2d8 de dano de Impacto, anulado por Defesa ou Reflexos. Água: sem dano; Kukulkan recupera 20% da Vida máxima. Esta habilidade usa custos da faixa Comum/Monstro Inata, não a tabela de Lenda, pois dispara a cada rodada.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "presenca-ancestral",
+          "nome": "Presença Ancestral",
+          "descricao": "Todo inimigo que encare Kukulkan diretamente pela primeira vez no combate faz teste de Vontade contra CD fixa conforme a régua de Habilidades próprias ou recebe Medo por 1 rodada, qualquer que seja o espírito ativo.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": "medo",
+          "suprema": false
+        },
+        {
+          "id": "voz-das-quatro-serpentes",
+          "nome": "Voz das Quatro Serpentes",
+          "descricao": "Fora de combate ou entre rodadas, as quatro vozes sobrepostas comentam o mesmo assunto por ângulos distintos: Vento (liberdade/pressa), Fogo (paixão/destruição), Terra (paciência/tradição) e Água (ciclo/sacrifício). Concede Vantagem em testes de Intimidação ou Misticismo feitos sobre ele.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "ciclo-inquebravel",
+          "nome": "Ciclo Inquebrável",
+          "descricao": "Imune a efeitos que o impeçam de agir ou alterem sua posição na Ordem de Combate, incluindo Atordoamento, Fadiga, Sono e Imobilizado. Isso não protege as gemas elementais, que permanecem vulneráveis.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "memoria-das-eras",
+          "nome": "Memória das Eras",
+          "descricao": "Uma vez por cena, se cairia a 0 de Vida e ainda tiver ao menos 10 de Arché, pode gastar toda a Arché restante para permanecer com 1 de Vida.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": null,
+          "suprema": false
+        }
+      ]
+    },
+    "manipulacao_elemental": {
+      "inicial": 4,
+      "maximo_progressao": 9,
+      "lista": [
+        {
+          "id": "sopro-da-serpente-quadrupla",
+          "nome": "Sopro da Serpente Quádrupla",
+          "custo_arche": 12,
+          "pericia": "misticismo",
+          "alcance": "médio; 1 alvo",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "3d8 + mod. Misticismo",
+            "tipo": "variável pelo espírito"
+          },
+          "efeito": "Ação Padrão. Custo equivalente indicado na ficha: 10–14. Vento: dano de Corte. Fogo: dano de Fogo e Queimadura. Terra: dano de Impacto e Imobilizado por 1 rodada. Água: em vez de dano, drena Arché do alvo (se houver) e recupera metade do valor drenado como Vida.",
+          "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
+          "suprema": false
+        },
+        {
+          "id": "grito-do-circulo-sagrado",
+          "nome": "Grito do Círculo Sagrado",
+          "custo_arche": 10,
+          "pericia": "misticismo",
+          "alcance": "curto; área de raio 6m centrada em Kukulkan",
+          "duracao": "2 rodadas",
+          "dano": null,
+          "efeito": "Ação Padrão. Custo equivalente indicado: 8–12. Vento: parede na borda da área; quem tentar sair falha em Fortitude ou fica Imobilizado por 1 rodada. Fogo: área em chamas por 2 rodadas; quem terminar o turno nela sofre 1d6+3 de dano. Terra: Terreno Difícil e -3m de deslocamento por 2 rodadas. Água: Kukulkan e aliados na área recuperam 1d8 de Vida no início de cada turno próprio por 2 rodadas.",
+          "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
+          "suprema": false
+        },
+        {
+          "id": "investida-da-serpente",
+          "nome": "Investida da Serpente",
+          "custo_arche": 4,
+          "pericia": "luta",
+          "alcance": "curto; desloca até 9m em linha reta até o alvo",
+          "duracao": "instantâneo",
+          "dano": {
+            "dados": "1d8+2 + mod. Luta",
+            "tipo": "variável pelo espírito"
+          },
+          "efeito": "Ação Padrão. Custo equivalente indicado: 3–5. Vento: Kukulkan ganha Vantagem em Reflexos até o início do próximo turno. Fogo: aplica Queimadura. Terra: reduz o deslocamento do alvo pela metade por 1 rodada. Água: recupera Vida igual a 25% do dano causado.",
+          "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
+          "suprema": false
+        },
+        {
+          "id": "veu-do-espirito-latente",
+          "nome": "Véu do Espírito Latente",
+          "custo_arche": 4,
+          "pericia": "misticismo",
+          "alcance": "pessoal",
+          "duracao": "1 rodada",
+          "dano": null,
+          "efeito": "Ação de Movimento. Custo equivalente indicado: 3–5. Vento: Vantagem em Reflexos por 1 rodada. Fogo: reduz pela metade o próximo dano de Fogo recebido. Terra: +4 de Defesa por 1 rodada. Água: recupera 1d8 de Vida.",
+          "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
+          "suprema": false
+        }
+      ]
+    }
   }
 }

@@ -399,7 +399,7 @@
       {
         "id": "pata-espiritual",
         "nome": "Pata Espiritual",
-        "descricao": "Você sente naturalmente a presenca do Plano Espiritual. Recebe +2 em Ocultismo e pode perceber naturalmente quando uma criatura, objeto ou fenomeno possui natureza espiritual.",
+        "descricao": "Você sente naturalmente a presenca do Plano Espiritual. Recebe +2 em Misticismo e pode perceber naturalmente quando uma criatura, objeto ou fenomeno possui natureza espiritual.",
         "tipo": "passiva",
         "efeitos": []
       },
