@@ -1459,6 +1459,155 @@
       ]
     }
   },
+  "aokaze": {
+    "nome": "Aokaze",
+    "categoria": "comum",
+    "elemento": "vento",
+    "comportamento_e_alvo_prioritario": "Alicórnio de porte Grande, aliado dos personagens (não se aplica ameaça independente de Defesa). Pelagem branca como luar, crina e asas de um azul-gelo que parecem feitas de névoa; o único chifre espiralado brilha quando alguém sangra por perto. Escolheu o dono por afinidade, não por ordem, e foge de crueldade e de cativeiro: quem o maltrata perde o corcel e ganha um inimigo que nunca esquece o rosto. Não ataca por iniciativa. Cura o aliado com menos Vida e se mantém atrás da linha de frente. Em perigo real, foge levando o dono. Só usa a Chifrada/Coice como último recurso. Recupera 4 + Grau de Arché por descanso (2 + SAB + Grau). Grau mínimo da cena: 0.",
+    "ponto_fraco": "O chifre. Um acerto crítico nele (ou um golpe declarado contra o chifre com -3 no teste de acerto) desativa Chifre Curativo e Chifre Purificador por 1 turno.",
+    "atributos": {
+      "for": 0,
+      "des": 2,
+      "con": 1,
+      "int": 0,
+      "sab": 2,
+      "car": 0
+    },
+    "status": {
+      "vida": {
+        "base": 12,
+        "mult_ascensao": 6
+      },
+      "sanidade": {
+        "base": 6,
+        "mult_ascensao": 3
+      },
+      "arche": {
+        "base": 4,
+        "mult_ascensao": 2
+      },
+      "defesa": {
+        "base": 10,
+        "bonus_atributo": {
+          "atributo": "des",
+          "valor": 2
+        },
+        "bonus_extra": null,
+        "total": 12,
+        "escala_ascensao": {
+          "regra": "Aliado (Alicórnio): +1 de Defesa por Grau de Ascensão da cena (Defesa 12 + Grau; 22 no Grau 10), mesmo ritmo do PJ.",
+          "formula": "Grau"
+        }
+      },
+      "deslocamento_m": 15,
+      "tipo_deslocamento": "terrestre / 12m voador (a partir do Grau 3)"
+    },
+    "pericias_treinadas": [
+      "misticismo",
+      "reflexos"
+    ],
+    "ataques_basicos": [
+      {
+        "nome": "Chifrada/Coice",
+        "pericia": "luta",
+        "dano": {
+          "dados": "1d6",
+          "atributo": "for"
+        },
+        "descricao": "Dano de Perfuração. Ação Padrão, corpo a corpo. Luta não é treinada de propósito: é um ataque de último recurso."
+      }
+    ],
+    "habilidades": {
+      "inicial": 2,
+      "maximo_progressao": 4,
+      "lista": [
+        {
+          "id": "chifre-curativo",
+          "nome": "Chifre Curativo",
+          "descricao": "Ação Padrão, Toque, gasta 1 de Arché. Cura 1d6 + Misticismo em um aliado.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": "Uma vez por cena (duas a partir do Grau 5).",
+          "suprema": false
+        },
+        {
+          "id": "vontade-do-alicornio",
+          "nome": "Vontade do Alicórnio",
+          "descricao": "Se o dono ferir inocentes por crueldade ou o prender, o Mestre pode fazer o alicórnio recusar a montaria e os poderes até que o dono se redima.",
+          "inata": true,
+          "grau_ascensao": null,
+          "condicao": "Decisão do Mestre, em resposta a crueldade ou cativeiro.",
+          "suprema": false
+        },
+        {
+          "id": "asas-do-alicornio",
+          "nome": "Asas do Alicórnio",
+          "descricao": "Ação de Movimento. Sobe até 4,5 m e voa por até 2 turnos consecutivos, depois precisa pousar por 1 turno. O cavaleiro voa junto.",
+          "inata": false,
+          "grau_ascensao": 3,
+          "condicao": null,
+          "suprema": false
+        },
+        {
+          "id": "chifre-purificador",
+          "nome": "Chifre Purificador",
+          "descricao": "Ação Padrão, Toque, gasta 2 de Arché. Aplica Purificação a um aliado.",
+          "inata": false,
+          "grau_ascensao": 7,
+          "condicao": "Uma vez por cena.",
+          "suprema": false
+        }
+      ]
+    },
+    "manipulacao_elemental": {
+      "inicial": 1,
+      "maximo_progressao": 3,
+      "lista": [
+        {
+          "id": "bater-de-asas",
+          "nome": "Bater de Asas",
+          "custo_arche": 2,
+          "pericia": "misticismo",
+          "alcance": "raio de 6m (centrada nele)",
+          "duracao": "3 turnos",
+          "dano": null,
+          "efeito": "Ação Padrão. Consome 2 de Arché: aliados na área recebem Aceleração. Não exige rolagem de acerto.",
+          "condicao": null,
+          "grau_ascensao": null,
+          "inata": true,
+          "suprema": false
+        },
+        {
+          "id": "mira-do-vento",
+          "nome": "Mira do Vento",
+          "custo_arche": 2,
+          "pericia": "misticismo",
+          "alcance": "curto; até 2 aliados",
+          "duracao": "3 turnos",
+          "dano": null,
+          "efeito": "Ação Padrão. Consome 2 de Arché: os alvos recebem +3 nos testes de ataque à distância (Pontaria e poderes à distância). Não acumula com Precisão: vale o maior bônus. Não exige rolagem de acerto.",
+          "condicao": null,
+          "grau_ascensao": 3,
+          "inata": false,
+          "suprema": false
+        },
+        {
+          "id": "corrente-desviante",
+          "nome": "Corrente Desviante",
+          "custo_arche": 2,
+          "pericia": "misticismo",
+          "alcance": "médio; raio de 6m",
+          "duracao": "2 turnos",
+          "dano": null,
+          "efeito": "Ação Padrão. Consome 2 de Arché: aliados na área contam como em Cobertura Parcial contra ataques à distância. Não acumula com cobertura real: vale a maior. Não exige rolagem de acerto.",
+          "condicao": "Uma vez por cena.",
+          "grau_ascensao": 5,
+          "inata": false,
+          "suprema": false
+        }
+      ]
+    }
+  },
   "lirio-sanguineo": {
     "nome": "Lírio-Sanguíneo",
     "categoria": "monstro",
@@ -4415,6 +4564,7 @@
         "bonus_extra": {
           "descricao": "Escamas Ancestrais",
           "valor": 4
+          
         },
         "total": 19,
         "escala_ascensao": {
