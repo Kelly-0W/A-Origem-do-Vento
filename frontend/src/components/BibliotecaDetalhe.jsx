@@ -653,6 +653,58 @@ function NivelForja({ n }) {
   )
 }
 
+function BlocoAcordes({ acordes }) {
+  const cordas = acordes.valores_cordas
+  return (
+    <>
+      {acordes.estrutura && (
+        <Secao titulo="Estrutura da Forja">
+          <p className="text-sm text-mist leading-relaxed">{acordes.estrutura}</p>
+        </Secao>
+      )}
+
+      <Secao titulo="Os Acordes">
+        {acordes.execucao && <p className="text-sm text-mist leading-relaxed mb-2">{acordes.execucao}</p>}
+        {acordes.teste_vontade && <p className="text-sm text-mist leading-relaxed mb-2">{acordes.teste_vontade}</p>}
+        {cordas && (
+          <>
+            <p className="text-xs text-mist leading-relaxed mt-3 mb-3">{cordas.texto}</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs text-left border-collapse">
+                <thead>
+                  <tr className="text-[10px] uppercase tracking-widest text-gold">
+                    <th className="py-1.5 pr-3 font-normal">Valor</th>
+                    {cordas.graus.map((g) => (
+                      <th key={g} className="py-1.5 px-2 font-normal whitespace-nowrap">
+                        Grau {g}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {cordas.linhas.map((l) => (
+                    <tr key={l.id} className="border-t border-panel-border align-top">
+                      <td className="py-1.5 pr-3">
+                        <span className="font-display text-white">{l.nome}</span>{' '}
+                        <span className="text-mist">({l.descricao})</span>
+                      </td>
+                      {cordas.graus.map((g) => (
+                        <td key={g} className="py-1.5 px-2 text-white whitespace-nowrap">
+                          {l.valores[String(g)]}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+      </Secao>
+    </>
+  )
+}
+
 function DetalheReliquia({ item }) {
   return (
     <>
@@ -718,6 +770,8 @@ function DetalheReliquia({ item }) {
           {item.regra_habilidades_por_forma}
         </p>
       )}
+
+      {item.acordes && <BlocoAcordes acordes={item.acordes} />}
 
       {(item.vertentes || []).map((v) => (
         <Secao key={v.id} titulo={`${v.nome}${v.subtitulo ? ` — ${v.subtitulo}` : ''}`}>
