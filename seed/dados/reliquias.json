@@ -999,7 +999,7 @@
     "recurso_custo": "arche",
     "recurso_custo_nota": null,
     "recebe_minerio_daiita": false,
-    "descricao_forja_zero": "Em Forja 0, é um instrumento de madeira escura, de placa lisa e veios finos, que soa como um omnichord comum e um pouco desafinado --- nada nele revela a relíquia. Foi feita com a madeira da própria Yggdrasil para o bardo pessoal de Genshō-Dai (hoje Belial), e foi sua principal auxiliar em combate: suas notas desnorteavam os inimigos, minavam as forças deles e fortaleciam os soldados do imperador. A seiva da árvore lhe dá o poder de curar. Por não possuir chassi físico, a Eufonia nunca recebe os bônus de Daiita; como todo Acessório, concede ao usuário Arché Máximo adicional igual à metade do Grau de Ascensão (arredondado para cima, mínimo de +1).",
+    "descricao_forja_zero": "Em Forja 0, é um instrumento de madeira escura, de placa lisa e veios finos, que soa como um omnichord comum e um pouco desafinado --- nada nele revela a relíquia. Foi feita com a madeira da própria Yggdrasil para o bardo pessoal de Genshō-Dai, e foi sua principal auxiliar em combate: suas notas desnorteavam os inimigos, minavam as forças deles e fortaleciam os soldados do imperador. A seiva da árvore lhe dá o poder de curar. Por não possuir chassi físico, a Eufonia nunca recebe os bônus de Daiita; como todo Acessório, concede ao usuário Arché Máximo adicional igual à metade do Grau de Ascensão (arredondado para cima, mínimo de +1).",
     "propriedade_inata": {
       "nome": "Solista",
       "gatilho": "propriedade inata, desperta junto ao primeiro ponto investido em qualquer vertente",
