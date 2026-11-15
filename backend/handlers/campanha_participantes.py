@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 import json
 
-from api.motor.persistencia import (
+from backend.motor.persistencia import (
     buscar_campanha,
     listar_personagens_da_campanha,
     buscar_nomes_usuarios,

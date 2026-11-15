@@ -498,7 +498,7 @@ def reparar_item(minerio: str, materiais: Dict[str, dict]) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    # Auto-teste simples: roda com `python -m api.motor.inventario` ou
+    # Auto-teste simples: roda com `python -m backend.motor.inventario` ou
     # `python inventario.py` a partir desta pasta.
 
     materiais = {

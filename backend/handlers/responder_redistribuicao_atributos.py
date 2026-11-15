@@ -3,17 +3,15 @@ import json
 
 from firebase_admin import firestore
 
-from api.motor.persistencia import (
-    buscar_campanha,
-    buscar_personagem,
-    atualizar_personagem,
-)
+from backend.motor.catalogo import carregar_catalogo
+from backend.motor.ficha import calcular_ficha
+from backend.motor.persistencia import buscar_campanha, buscar_personagem, atualizar_personagem
 
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         """
-        POST /api/responder_ascensao
+        POST /api/responder_redistribuicao_atributos
         Corpo: {
           "mestre_uid": "uid de quem esta aprovando/recusando",
           "campanha_id": "id da campanha (confirma que o mestre e dessa mesa)",
@@ -21,24 +19,23 @@ class handler(BaseHTTPRequestHandler):
           "aprovar": true | false
         }
 
-        Aprovar: NAO recalcula a ficha aqui -- so' muda
-        ascensao_em_progresso.status para "aguardando_recompensas", que
-        libera o DONO do personagem para escolher as recompensas do grau
-        (habilidade(s) de raca/classe -- ver constantes_ascensao.json;
-        "Treinamento de Pericia" nao precisa de escolha formal aqui porque
-        ja existe o toggle livre de pericia direto na ficha, ver
-        pericias_manuais em motor/pericias.py). E' so' depois que o dono
-        escolhe e chama /api/aplicar_recompensas_ascensao que a ficha e'
-        de fato recalculada e o grau_ascensao avanca.
+        Diferente da Ascensao (que tem uma etapa extra de "escolher
+        recompensas" depois da aprovacao), redistribuir atributos nao tem
+        mais nenhuma escolha pendente depois do aprovar -- a proposta
+        inteira ja' veio pronta no pedido (ver
+        /api/solicitar_redistribuicao_atributos). Por isso aprovar aqui
+        JA' aplica a nova distribuicao em escolhas["atributos"] e
+        recalcula a ficha inteira (atributos_finais, status, pericias --
+        tudo que depende de atributo), na mesma passada.
 
-        Recusar: marca ascensao_em_progresso.status = "recusada" (mantem
-        os 3 booleans como estavam, pra o jogador ver o que foi julgado),
-        sem tocar em grau_ascensao/calculado.
+        Recusar: marca redistribuicao_atributos_em_progresso.status =
+        "recusada" (mantem os atributos_propostos, pra o jogador ver o
+        que foi julgado e poder reenviar ajustado), sem tocar em
+        escolhas/calculado.
 
         So o mestre_id de fato dessa campanha pode chamar isto -- checado
-        aqui com o Admin SDK, nao pelas Firestore Rules (ver comentario em
-        api/mestre_campanha_personagens.py sobre por que essa checagem nao
-        da pra fazer só com Rules).
+        aqui com o Admin SDK, nao pelas Firestore Rules (mesmo motivo
+        documentado em api/mestre_campanha_personagens.py).
         """
         try:
             content_length = int(self.headers.get("Content-Length", 0))
@@ -63,7 +60,7 @@ class handler(BaseHTTPRequestHandler):
             if campanha.get("mestre_id") != mestre_uid:
                 self._responder(403, {
                     "sucesso": False,
-                    "erros": ["Somente o mestre desta campanha pode responder a esta Ascensao."],
+                    "erros": ["Somente o mestre desta campanha pode responder a este pedido."],
                 })
                 return
 
@@ -78,18 +75,18 @@ class handler(BaseHTTPRequestHandler):
                 })
                 return
 
-            ascensao = personagem.get("ascensao_em_progresso") or {}
-            if ascensao.get("status") != "aguardando_mestre":
+            pedido = personagem.get("redistribuicao_atributos_em_progresso") or {}
+            if pedido.get("status") != "aguardando_mestre":
                 self._responder(400, {
                     "sucesso": False,
-                    "erros": ["Este personagem nao tem nenhum pedido de Ascensao aguardando resposta."],
+                    "erros": ["Este personagem nao tem nenhum pedido de redistribuicao aguardando resposta."],
                 })
                 return
 
             if not aprovar:
                 atualizar_personagem(personagem_id, {
-                    "ascensao_em_progresso": {
-                        **ascensao,
+                    "redistribuicao_atributos_em_progresso": {
+                        **pedido,
                         "status": "recusada",
                         "respondido_por_uid": mestre_uid,
                         "respondido_em": firestore.SERVER_TIMESTAMP,
@@ -99,16 +96,40 @@ class handler(BaseHTTPRequestHandler):
                 self._responder(200, {"sucesso": True, "aprovado": False})
                 return
 
+            escolhas_atualizadas = dict(personagem.get("escolhas") or {})
+            escolhas_atualizadas["atributos"] = pedido["atributos_propostos"]
+
+            catalogo = carregar_catalogo()
+            sucesso, resultado = calcular_ficha(
+                escolhas_atualizadas, catalogo, grau_ascensao=personagem.get("grau_ascensao", 0)
+            )
+            if not sucesso:
+                self._responder(400, {
+                    "sucesso": False,
+                    "erros": ["Nao foi possivel recalcular a ficha com esses atributos."] + resultado.get("erros", []),
+                })
+                return
+
             atualizar_personagem(personagem_id, {
-                "ascensao_em_progresso": {
-                    **ascensao,
-                    "status": "aguardando_recompensas",
+                "escolhas": escolhas_atualizadas,
+                "calculado": resultado["calculado"],
+                "redistribuicao_atributos_em_progresso": {
+                    "status": "nenhuma",
+                    "atributos_propostos": None,
+                    "motivo": "",
+                    "solicitado_em": None,
                     "respondido_por_uid": mestre_uid,
                     "respondido_em": firestore.SERVER_TIMESTAMP,
                 },
                 "atualizado_em": firestore.SERVER_TIMESTAMP,
             })
-            self._responder(200, {"sucesso": True, "aprovado": True, "status": "aguardando_recompensas"})
+
+            self._responder(200, {
+                "sucesso": True,
+                "aprovado": True,
+                "escolhas": escolhas_atualizadas,
+                "calculado": resultado["calculado"],
+            })
 
         except Exception as e:
             self._responder(500, {"sucesso": False, "erros": [f"Erro interno no servidor: {str(e)}"]})

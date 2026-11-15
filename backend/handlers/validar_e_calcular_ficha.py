@@ -3,9 +3,9 @@ import json
 
 # Import relativo ao pacote "api" (e assim que o Vercel Python Functions
 # resolve os modulos quando o handler fica em api/*.py e importa de api/motor/).
-from api.motor.ficha import calcular_ficha
-from api.motor.persistencia import salvar_ficha_calculada
-from api.motor.catalogo import carregar_catalogo
+from backend.motor.ficha import calcular_ficha
+from backend.motor.persistencia import salvar_ficha_calculada
+from backend.motor.catalogo import carregar_catalogo
 
 
 class handler(BaseHTTPRequestHandler):

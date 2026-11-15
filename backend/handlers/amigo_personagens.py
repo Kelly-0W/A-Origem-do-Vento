@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 import json
 
-from api.motor.persistencia import existe_amizade_aceita, listar_personagens_visiveis_do_dono
+from backend.motor.persistencia import existe_amizade_aceita, listar_personagens_visiveis_do_dono
 
 
 class handler(BaseHTTPRequestHandler):

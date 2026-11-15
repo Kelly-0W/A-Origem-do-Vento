@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler
 import json
 
-from api.motor.persistencia import (
+from backend.motor.persistencia import (
     buscar_campanha,
     listar_personagens_da_campanha,
     remover_campanha_de_personagem,

@@ -3,11 +3,11 @@ import json
 
 from firebase_admin import firestore
 
-from api.motor.catalogo import carregar_catalogo
-from api.motor.constantes import recompensas_do_grau, pontos_status_do_grau
-from api.motor.ficha import calcular_ficha
-from api.motor.persistencia import buscar_personagem, atualizar_personagem
-from api.motor.status import STATUS_DISTRIBUIVEIS
+from backend.motor.catalogo import carregar_catalogo
+from backend.motor.constantes import recompensas_do_grau, pontos_status_do_grau
+from backend.motor.ficha import calcular_ficha
+from backend.motor.persistencia import buscar_personagem, atualizar_personagem
+from backend.motor.status import STATUS_DISTRIBUIVEIS
 
 
 def _origem_pertence_ao_pool(origem_pick: str, origem_exigida: str) -> bool:

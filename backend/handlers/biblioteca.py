@@ -4,7 +4,7 @@ import json
 import os
 from homebrew_backend import handler as HomebrewHandler
 
-PASTA_DADOS = os.path.join(os.path.dirname(__file__), "..", "seed", "dados")
+PASTA_DADOS = os.path.join(os.path.dirname(__file__), "..", "..", "seed", "dados")
 
 ARQUIVO_POR_COLECAO = {
     "racas": "racas.json",

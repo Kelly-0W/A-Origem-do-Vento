@@ -3,7 +3,7 @@ import json
 
 from firebase_admin import auth
 
-from api.motor.persistencia import (
+from backend.motor.persistencia import (
     obter_cliente_firestore,
     buscar_campanha,
     buscar_personagem,

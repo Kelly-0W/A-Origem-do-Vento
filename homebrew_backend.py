@@ -7,7 +7,7 @@ import os
 
 from firebase_admin import auth, firestore
 
-from api.motor.persistencia import obter_cliente_firestore
+from backend.motor.persistencia import obter_cliente_firestore
 
 
 class ErroAutenticacao(Exception):

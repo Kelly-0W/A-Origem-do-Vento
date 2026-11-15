@@ -3,7 +3,7 @@ import json
 
 from firebase_admin import auth as admin_auth
 
-from api.motor.persistencia import (
+from backend.motor.persistencia import (
     listar_personagens_do_dono,
     listar_campanhas_como_mestre,
     listar_campanhas_como_jogador,

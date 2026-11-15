@@ -3,8 +3,8 @@ import json
 
 from firebase_admin import firestore
 
-from api.motor.atributos import validar_distribuicao_atributos
-from api.motor.persistencia import buscar_personagem, atualizar_personagem
+from backend.motor.atributos import validar_distribuicao_atributos
+from backend.motor.persistencia import buscar_personagem, atualizar_personagem
 
 
 class handler(BaseHTTPRequestHandler):

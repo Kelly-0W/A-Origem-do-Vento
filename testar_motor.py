@@ -38,7 +38,7 @@ def encontrar_raiz_do_projeto(a_partir_de):
 RAIZ = encontrar_raiz_do_projeto(os.path.dirname(__file__))
 sys.path.insert(0, RAIZ)
 
-from api.motor.ficha import calcular_ficha  # noqa: E402
+from backend.motor.ficha import calcular_ficha  # noqa: E402
 
 PASTA_DADOS = os.path.join(RAIZ, "seed", "dados")
 

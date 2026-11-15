@@ -3,7 +3,7 @@ from urllib.parse import urlparse, parse_qs
 from typing import Dict
 import json
 
-from api.motor.persistencia import (
+from backend.motor.persistencia import (
     buscar_campanha,
     listar_personagens_da_campanha,
     buscar_nomes_usuarios,
