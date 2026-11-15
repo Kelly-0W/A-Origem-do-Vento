@@ -31,6 +31,18 @@ async function post(caminho, corpo) {
   return { ok: res.ok, status: res.status, dados }
 }
 
+async function postAutenticado(caminho, corpo) {
+  const token = await auth.currentUser?.getIdToken()
+  if (!token) return { ok: false, status: 401, dados: { sucesso: false, erros: ['Faça login para continuar.'] } }
+  const res = await fetch(`${BASE}/${caminho}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify(corpo),
+  })
+  const dados = await res.json().catch(() => ({ sucesso: false, erros: ['O servidor não conseguiu concluir a solicitação. Tente novamente.'] }))
+  return { ok: res.ok, status: res.status, dados }
+}
+
 async function get(caminho) {
   const res = await fetch(`${BASE}/${caminho}`)
   const dados = await res.json()
@@ -134,6 +146,16 @@ export const api = {
   // So o mestre_id de fato dessa campanha consegue -- checado no servidor.
   excluirCampanha: ({ mestreUid, campanhaId }) =>
     post('excluir_campanha', { mestre_uid: mestreUid, campanha_id: campanhaId }),
+
+  // POST /api/mestre_remover_da_campanha -- remove somente o vínculo com
+  // esta mesa. Ao remover uma pessoa, todos os personagens dela também são
+  // desvinculados; nenhuma ficha é apagada.
+  removerDaCampanhaComoMestre: ({ campanhaId, jogadorUid = null, personagemId = null }) =>
+    postAutenticado('mestre_remover_da_campanha', {
+      campanha_id: campanhaId,
+      acao: jogadorUid ? 'jogador' : 'personagem',
+      ...(jogadorUid ? { jogador_uid: jogadorUid } : { personagem_id: personagemId }),
+    }),
 
   // POST /api/mestre_ajustar_recurso_personagem  (ver api/mestre_ajustar_recurso_personagem.py)
   // Única exceção à regra de "só o dono edita vida/sanidade/arché" --

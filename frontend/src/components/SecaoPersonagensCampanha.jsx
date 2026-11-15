@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 // `target="_blank"` (lá a navegação é na mesma aba, porque não faz
 // sentido abrir dezenas de abas do PRÓPRIO personagem; aqui faz, porque é
 // o mestre revisando vários personagens de uma vez).
-export default function SecaoPersonagensCampanha({ participantes, catalogo, ehMestre }) {
+export default function SecaoPersonagensCampanha({ participantes, catalogo, ehMestre, onRemoverPersonagem, removendoPersonagemId }) {
   return (
     <div className="mb-10">
       <h2 className="text-xl font-display mb-6">Personagens da Campanha</h2>
@@ -44,16 +44,27 @@ export default function SecaoPersonagensCampanha({ participantes, catalogo, ehMe
               </div>
             )
             return ehMestre ? (
-              <Link
-                key={p.id}
-                to={`/personagens/${p.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-fantasy p-5 hover:border-gold/50 transition-colors"
-                title="Abrir ficha completa em uma nova aba"
-              >
-                {conteudo}
-              </Link>
+              <div key={p.id} className="card-fantasy p-5 hover:border-gold/50 transition-colors">
+                <Link
+                  to={`/personagens/${p.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                  title="Abrir ficha completa em uma nova aba"
+                >
+                  {conteudo}
+                </Link>
+                {onRemoverPersonagem && (
+                  <button
+                    type="button"
+                    className="mt-4 text-xs text-mist hover:text-blood-bright disabled:opacity-50"
+                    onClick={() => onRemoverPersonagem(p)}
+                    disabled={removendoPersonagemId === p.id}
+                  >
+                    {removendoPersonagemId === p.id ? 'Removendo...' : 'Remover da campanha'}
+                  </button>
+                )}
+              </div>
             ) : (
               <div key={p.id} className="card-fantasy p-5">
                 {conteudo}

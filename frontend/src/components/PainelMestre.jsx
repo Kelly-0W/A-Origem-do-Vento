@@ -72,7 +72,7 @@ function CardPersonagem({ item, catalogo, expandido, onAlternarExpandido, filho 
   )
 }
 
-export default function PainelMestre({ campanhaId, mestreUid }) {
+export default function PainelMestre({ campanhaId, mestreUid, onMesaAtualizada }) {
   const [catalogo, setCatalogo] = useState(null)
   const [itens, setItens] = useState([])
   const [jogadores, setJogadores] = useState([])
@@ -81,6 +81,7 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
   const [expandidoId, setExpandidoId] = useState(null)
   const [respondendoId, setRespondendoId] = useState(null)
   const [respondendoRedistribuicaoId, setRespondendoRedistribuicaoId] = useState(null)
+  const [removendoJogadorUid, setRemovendoJogadorUid] = useState(null)
 
   async function carregar() {
     setCarregando(true)
@@ -142,6 +143,27 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
     }
   }
 
+  async function removerJogador(jogador) {
+    const nome = jogador.nome || 'esta pessoa'
+    if (!window.confirm(`Remover ${nome} da campanha? Todos os personagens dela também sairão desta mesa, mas as fichas continuarão existindo.`)) return
+    setRemovendoJogadorUid(jogador.uid)
+    setErro(null)
+    try {
+      const { ok, dados } = await api.removerDaCampanhaComoMestre({ campanhaId, jogadorUid: jogador.uid })
+      if (!ok || !dados?.sucesso) {
+        setErro(dados?.erros?.[0] || 'Não foi possível remover essa pessoa agora.')
+        return
+      }
+      await carregar()
+      await onMesaAtualizada?.()
+    } catch (err) {
+      console.error(err)
+      setErro('Não foi possível remover essa pessoa agora.')
+    } finally {
+      setRemovendoJogadorUid(null)
+    }
+  }
+
   if (carregando && itens.length === 0) {
     return <div className="text-mist text-sm">Carregando painel do mestre...</div>
   }
@@ -169,14 +191,24 @@ export default function PainelMestre({ campanhaId, mestreUid }) {
                 j.tem_personagem ? '' : 'border-gold/40'
               }`}
             >
-              <span className="text-sm truncate">{j.nome || 'Jogador sem nome definido'}</span>
-              {j.tem_personagem ? (
-                <span className="text-[10px] uppercase tracking-widest text-forest shrink-0">
-                  {j.quantidade_personagens > 1 ? `${j.quantidade_personagens} personagens` : '1 personagem'}
-                </span>
-              ) : (
-                <span className="text-[10px] uppercase tracking-widest text-gold shrink-0">Sem personagem</span>
-              )}
+              <div className="min-w-0">
+                <span className="block text-sm truncate">{j.nome || 'Jogador sem nome definido'}</span>
+                {j.tem_personagem ? (
+                  <span className="text-[10px] uppercase tracking-widest text-forest">
+                    {j.quantidade_personagens > 1 ? `${j.quantidade_personagens} personagens` : '1 personagem'}
+                  </span>
+                ) : (
+                  <span className="text-[10px] uppercase tracking-widest text-gold">Sem personagem</span>
+                )}
+              </div>
+              <button
+                type="button"
+                className="text-xs text-mist hover:text-blood-bright shrink-0 disabled:opacity-50"
+                onClick={() => removerJogador(j)}
+                disabled={removendoJogadorUid === j.uid}
+              >
+                {removendoJogadorUid === j.uid ? 'Removendo...' : 'Remover'}
+              </button>
             </div>
           ))}
         </div>

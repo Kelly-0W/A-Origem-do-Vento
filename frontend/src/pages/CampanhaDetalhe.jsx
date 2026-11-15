@@ -104,6 +104,7 @@ export default function CampanhaDetalhe() {
   const [modalAberto, setModalAberto] = useState(false)
   const [codigoCopiado, setCodigoCopiado] = useState(false)
   const [aba, setAba] = useState('mesa')
+  const [removendoPersonagemId, setRemovendoPersonagemId] = useState(null)
 
   useEffect(() => {
     Promise.all([api.buscarBiblioteca('racas'), api.buscarBiblioteca('classes')]).then(
@@ -240,6 +241,26 @@ export default function CampanhaDetalhe() {
     }
   }
 
+  async function removerPersonagemDaCampanha(personagem) {
+    const nome = personagem.nome_personagem || 'este personagem'
+    const confirmado = window.confirm(`Remover ${nome} desta campanha? A ficha continuará existindo para seu jogador.`)
+    if (!confirmado) return
+    setRemovendoPersonagemId(personagem.id)
+    try {
+      const { ok, dados } = await api.removerDaCampanhaComoMestre({ campanhaId: id, personagemId: personagem.id })
+      if (!ok || !dados?.sucesso) {
+        setErroSair(dados?.erros?.[0] || 'Não foi possível remover esse personagem agora.')
+        return
+      }
+      await carregar()
+    } catch (err) {
+      console.error(err)
+      setErroSair('Não foi possível remover esse personagem agora.')
+    } finally {
+      setRemovendoPersonagemId(null)
+    }
+  }
+
   if (carregando) {
     return <div className="pt-10 text-mist">Carregando campanha...</div>
   }
@@ -320,7 +341,13 @@ export default function CampanhaDetalhe() {
       </div>
 
       {aba === 'homebrew' ? <HomebrewCampanha campanhaId={id} usuario={usuario} /> : <>
-      <SecaoPersonagensCampanha participantes={participantes} catalogo={catalogo} ehMestre={ehMestre} />
+      <SecaoPersonagensCampanha
+        participantes={participantes}
+        catalogo={catalogo}
+        ehMestre={ehMestre}
+        onRemoverPersonagem={ehMestre ? removerPersonagemDaCampanha : undefined}
+        removendoPersonagemId={removendoPersonagemId}
+      />
 
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <h2 className="text-xl font-display">Seus personagens nessa campanha</h2>
@@ -367,7 +394,7 @@ export default function CampanhaDetalhe() {
         />
       )}
 
-      {ehMestre && <PainelMestre campanhaId={id} mestreUid={usuario.uid} />}
+      {ehMestre && <PainelMestre campanhaId={id} mestreUid={usuario.uid} onMesaAtualizada={carregar} />}
       </>}
     </div>
   )
