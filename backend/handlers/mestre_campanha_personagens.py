@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from typing import Dict
 import json
+import logging
 
 from backend.motor.persistencia import (
     buscar_campanha,
@@ -115,6 +116,10 @@ class handler(BaseHTTPRequestHandler):
             })
 
         except Exception as e:
+            # Mantém o traceback no Runtime Log da Vercel. Sem isso, a tela
+            # só sabe que a mesa não carregou, mas não revela qual campo ou
+            # operação do Firestore causou a falha.
+            logging.exception("Falha ao carregar personagens da mesa")
             self._responder(500, {"sucesso": False, "erros": [f"Erro interno no servidor: {str(e)}"]})
 
     def do_OPTIONS(self):

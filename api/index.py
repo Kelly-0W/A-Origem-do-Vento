@@ -7,6 +7,7 @@ uma Serverless Function sem alterar o contrato usado pelo frontend.
 """
 from http.server import BaseHTTPRequestHandler
 import json
+import logging
 from urllib.parse import parse_qs, urlparse
 
 from backend.handlers.amigo_personagens import handler as AmigoPersonagensHandler
@@ -65,10 +66,15 @@ class handler(BaseHTTPRequestHandler):
         self._encaminhar("do_OPTIONS")
 
     def _responder(self, status_code, resposta):
+        # Serializa ANTES de começar a resposta HTTP. Se algum dado vindo do
+        # Firestore não puder ser convertido em JSON, o handler conseguirá
+        # devolver um único erro 500 válido, em vez de enviar 200 e 500 na
+        # mesma conexão (o que fazia o navegador falhar ao ler o JSON).
+        corpo = json.dumps(resposta, ensure_ascii=False, default=str).encode("utf-8")
         self.send_response(status_code)
         self.send_header("Content-type", "application/json")
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
         self.end_headers()
-        self.wfile.write(json.dumps(resposta, ensure_ascii=False).encode("utf-8"))
+        self.wfile.write(corpo)
