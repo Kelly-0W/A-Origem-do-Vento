@@ -2,7 +2,7 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "rewrites": [
-    { "source": "/api/:endpoint*", "destination": "/api?endpoint=:endpoint*" },
+    { "source": "/api/:endpoint*", "destination": "/api" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
