@@ -2,10 +2,23 @@ import { auth } from './firebase.js'
 
 const BASE = '/api'
 
+// Todas as operações são atendidas por api/index.py. Manter o nome da
+// operação na query evita depender da propagação de parâmetros em rewrites
+// da Vercel (que antes fazia algumas chamadas chegarem sem campanha_id/uid).
+function urlApi(caminho, query = '') {
+  const [endpoint, queryNoCaminho = ''] = caminho.split('?', 2)
+  const parametros = new URLSearchParams(queryNoCaminho)
+  if (query) {
+    new URLSearchParams(query).forEach((valor, chave) => parametros.append(chave, valor))
+  }
+  parametros.set('endpoint', endpoint)
+  return `${BASE}?${parametros.toString()}`
+}
+
 async function homebrewFetch({ method = 'GET', query = '', body = undefined } = {}) {
   const token = await auth.currentUser?.getIdToken()
   if (!token) return { ok: false, status: 401, dados: { sucesso: false, erros: ['Faça login para usar o homebrew.'] } }
-  const res = await fetch(`${BASE}/biblioteca?acao=homebrew${query ? `&${query}` : ''}`, {
+  const res = await fetch(urlApi('biblioteca', `acao=homebrew${query ? `&${query}` : ''}`), {
     method,
     headers: { Authorization: `Bearer ${token}`, ...(body ? { 'Content-Type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}),
@@ -22,7 +35,7 @@ async function homebrewFetch({ method = 'GET', query = '', body = undefined } = 
 }
 
 async function post(caminho, corpo) {
-  const res = await fetch(`${BASE}/${caminho}`, {
+  const res = await fetch(urlApi(caminho), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(corpo),
@@ -34,7 +47,7 @@ async function post(caminho, corpo) {
 async function postAutenticado(caminho, corpo) {
   const token = await auth.currentUser?.getIdToken()
   if (!token) return { ok: false, status: 401, dados: { sucesso: false, erros: ['Faça login para continuar.'] } }
-  const res = await fetch(`${BASE}/${caminho}`, {
+  const res = await fetch(urlApi(caminho), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(corpo),
@@ -44,7 +57,7 @@ async function postAutenticado(caminho, corpo) {
 }
 
 async function get(caminho) {
-  const res = await fetch(`${BASE}/${caminho}`)
+  const res = await fetch(urlApi(caminho))
   const dados = await res.json()
   return { ok: res.ok, status: res.status, dados }
 }
