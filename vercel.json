@@ -1,6 +1,11 @@
 {
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "{backend/**,homebrew_backend.py,seed/dados/**}"
+    }
+  },
   "rewrites": [
     { "source": "/api/:endpoint*", "destination": "/api" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
